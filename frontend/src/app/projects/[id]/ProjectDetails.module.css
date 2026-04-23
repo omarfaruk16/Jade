@@ -1,0 +1,283 @@
+.pageWrapper {
+  background: #fcfcfc;
+  color: #000;
+  min-height: 100vh;
+}
+
+.hero {
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 6rem;
+  border-radius: 0 0 32px 32px;
+}
+
+.coverImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contentContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Meta Grid Section */
+.overviewSection {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 8rem;
+  align-items: start;
+}
+
+.middleColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 2rem;
+  margin-bottom: 4rem;
+}
+
+.metaItem label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.metaItem span {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 400;
+}
+
+.overviewDesc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  max-width: 600px;
+}
+
+.rightColumn {
+  width: 100%;
+  position: relative;
+}
+
+.overviewImage {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  display: block;
+}
+
+/* Gallery Section */
+.gallerySection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 8rem;
+}
+
+.galleryRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.galleryMain {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.galleryImg {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* Process Section */
+.processSection {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 8rem;
+  align-items: start;
+}
+
+.processList {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.processItem h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #000;
+}
+
+.processItem p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.processImage {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  display: block;
+}
+
+/* Related */
+.relatedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 1200px) {
+  .overviewSection, .processSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .leftColumn {
+    grid-column: span 2;
+    margin-bottom: 1rem;
+  }
+  .rightColumn {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .overviewSection, .processSection {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+  }
+  .leftColumn, .middleColumn, .rightColumn {
+    grid-column: span 1;
+  }
+  .metaGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .galleryRow {
+    grid-template-columns: 1fr;
+  }
+  .overviewImage, .processImage {
+    border-radius: 16px;
+  }
+}
+
+/* Related */
+.relatedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.relatedHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+.relatedCard img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.relatedFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .overviewSection, .processSection {
+    grid-template-columns: 1fr;
+  }
+  .galleryRow {
+    grid-template-columns: 1fr;
+  }
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}

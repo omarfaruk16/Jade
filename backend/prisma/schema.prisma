@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
+
+model Project {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  
+  // Header
+  title           String
+  subtitle        String
+  coverImage      String
+
+  // Meta
+  date            String
+  category        String
+  client          String
+  timeline        String
+  overviewDesc    String   // long text
+  overviewImage   String
+
+  // Gallery (Stored as a stringified JSON array, e.g., '["url1", "url2", "url3"]')
+  galleryJson     String   @default("[]")
+
+  // Process Section
+  processImage    String
+  p1Title         String
+  p1Desc          String
+  p2Title         String
+  p2Desc          String
+  p3Title         String
+  p3Desc          String
+}
+
+model Promotion {
+  id        String   @id @default(uuid())
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  role      String?
+  review    String
+  avatar    String?
+  rating    Int      @default(5)
+  createdAt DateTime @default(now())
+}
+
+model TeamMember {
+  id          String   @id @default(uuid())
+  name        String
+  designation String?
+  image       String
+  createdAt   DateTime @default(now())
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+}

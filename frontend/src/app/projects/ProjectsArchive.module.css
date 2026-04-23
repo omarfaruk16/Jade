@@ -1,0 +1,140 @@
+.pageWrapper {
+  background: #fbfbfb;
+  color: #000;
+  min-height: 100vh;
+  padding-bottom: 8rem;
+}
+
+.headerSection {
+  padding: 10rem 4rem 4rem 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.gridControls {
+  padding: 0 4rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 1.5rem;
+}
+
+.count {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.filterItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.filterItem:hover, .filterItem.active {
+  opacity: 1;
+}
+
+.projectsGrid {
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.projectCard:hover .imageWrapper img {
+  transform: scale(1.05);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  padding: 0 0.5rem;
+}
+
+.cardTitle {
+  font-weight: 500;
+}
+
+.cardDate {
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .headerSection {
+    padding: 8rem 1.5rem 3rem 1.5rem;
+  }
+  .gridControls {
+    padding: 0 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
+}

@@ -1,0 +1,167 @@
+.heroWrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 800px;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transform: scale(1.05); /* Slight scale for potential parallax or breathing animation */
+  animation: breathe 20s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0,0,0,0.6));
+  z-index: -1;
+}
+
+.content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.hashtag {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+}
+
+.ctaButton {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+/* Bottom widgets */
+.bottomLeftWidget {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  margin-left: -12px;
+  background-color: #333;
+  object-fit: cover;
+}
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.trustText {
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.trustText strong {
+  display: block;
+  font-weight: 500;
+}
+
+.bottomRightWidget {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.awardsLabel {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.awardIcon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.madeInTag {
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+  .bottomLeftWidget, .bottomRightWidget {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+  .bottomRightWidget {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

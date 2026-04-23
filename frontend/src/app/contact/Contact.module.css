@@ -1,0 +1,230 @@
+.pageWrapper {
+  background: #fff;
+  min-height: 100vh;
+  color: #000;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* Hero */
+.heroSection {
+  padding: 12rem 4rem 5rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #777;
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Split Layout */
+.splitLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  padding: 4rem 0 8rem;
+}
+
+/* Contact Form */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin-bottom: 0.6rem;
+}
+
+.formInput, .formTextarea {
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  border-bottom: 1.5px solid #e5e5e5;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  color: #000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.formInput:focus, .formTextarea:focus {
+  border-color: #000;
+}
+
+.formInput::placeholder, .formTextarea::placeholder {
+  color: #ccc;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 1.1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Info Side */
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoCard {
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.infoIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #999;
+  margin-bottom: 0.25rem;
+}
+
+.infoValue {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Map */
+.mapWrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 220px;
+  border: 1px solid #f0f0f0;
+  margin-top: auto;
+}
+
+.mapWrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* CTA Bar */
+.ctaBar {
+  background: #f5f5f5;
+  text-align: center;
+  padding: 4rem;
+}
+
+.ctaBarText {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.ctaBarLink {
+  color: #000;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-left: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.ctaBarLink:hover {
+  opacity: 0.7;
+}
+
+/* Success Message */
+.successMessage {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #166534;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .splitLayout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .heroSection {
+    padding: 10rem 1.5rem 3rem;
+  }
+  .ctaBar {
+    padding: 3rem 1.5rem;
+  }
+}

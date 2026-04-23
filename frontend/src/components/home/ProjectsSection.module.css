@@ -1,0 +1,114 @@
+.scrollContainer {
+  height: 300vh; /* creates the sticky scroll area */
+  position: relative;
+  background: #fdfdfd;
+}
+
+.stickySection {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  padding: 0 4rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brandLogos {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0.6;
+}
+
+.brandLogos span {
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.projectsWrapper {
+  display: flex;
+  padding: 0 4rem;
+  gap: 2rem;
+  /* Will be translated by framer-motion */
+}
+
+.projectCard {
+  min-width: 60vw;
+  max-width: 900px;
+  height: 65vh;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.projectCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.projectCard:hover img {
+  transform: scale(1.03);
+}
+
+.cardFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.cardDate {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .scrollContainer {
+    height: auto;
+  }
+  .stickySection {
+    position: relative;
+    height: auto;
+    padding: 4rem 1.5rem;
+  }
+  .projectsWrapper {
+    flex-direction: column;
+    padding: 0;
+    gap: 2rem;
+  }
+  .projectCard {
+    width: 100%;
+    min-width: 100%;
+    height: 400px;
+  }
+  .header {
+    padding: 0;
+    justify-content: flex-start;
+  }
+}

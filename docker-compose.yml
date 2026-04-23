@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: jade_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: jade_user
+      POSTGRES_PASSWORD: jade_pass
+      POSTGRES_DB: jade_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: jade_backend
+    ports:
+      - "5001:5001"
+    environment:
+      - DATABASE_URL=postgresql://jade_user:jade_pass@db:5432/jade_db?schema=public
+      - JWT_SECRET=supersecretproductionkey123
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - ./Backend/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: jade_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

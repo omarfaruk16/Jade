@@ -1,0 +1,310 @@
+.pageWrapper {
+  background: #fff;
+  min-height: 100vh;
+  color: #000;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* Hero */
+.heroSection {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+  filter: brightness(0.4);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Benefits Grid */
+.benefitsSection {
+  padding: 8rem 0;
+}
+
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 0.75rem;
+  display: block;
+  letter-spacing: 0.08em;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefitCard {
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.benefitCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  border-color: #e0e0e0;
+}
+
+.benefitIconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #111, #333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.benefitTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.benefitDesc {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* How It Works */
+.howSection {
+  padding: 8rem 0;
+  background: #0a0a0c;
+  color: #fff;
+}
+
+.howTitle {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.stepsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.step {
+  text-align: center;
+}
+
+.stepNum {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.step:hover .stepNum {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+}
+
+.stepTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.stepDesc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Application Form */
+.formSection {
+  padding: 8rem 0;
+}
+
+.formWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #0a0a0c;
+  border-radius: 28px;
+  padding: 4rem;
+  color: #fff;
+}
+
+.formTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroupFull {
+  grid-column: span 2;
+}
+
+.formLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.formInput, .formTextarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.formInput:focus, .formTextarea:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.formInput::placeholder, .formTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  grid-column: span 2;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 1.1rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+}
+
+.successMessage {
+  text-align: center;
+  color: #34d399;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+  .stepsRow {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .formGroupFull {
+    grid-column: span 1;
+  }
+  .submitBtn {
+    grid-column: span 1;
+  }
+  .formWrapper {
+    padding: 2.5rem 1.5rem;
+  }
+  .sectionTitle, .howTitle {
+    font-size: 2.2rem;
+  }
+}
