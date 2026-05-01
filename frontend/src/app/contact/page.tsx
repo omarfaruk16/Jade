@@ -1,14 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './Contact.module.css';
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, Mail, Instagram, Linkedin, Twitter, Github, Facebook, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [contact, setContact] = useState<any>(null);
+  const [faqs, setFaqs] = useState<any[]>([]);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/contact`)
+      .then(res => res.json())
+      .then(data => setContact(data))
+      .catch(err => console.error(err));
+
+    fetch(`${API_BASE}/faq`)
+      .then(res => res.json())
+      .then(data => setFaqs(data))
+      .catch(err => console.error(err));
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,148 +36,125 @@ export default function ContactPage() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      {/* Hero */}
-      <section className={styles.heroSection}>
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={styles.heroTitle}
-        >
-          Get in Touch
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className={styles.heroSub}
-        >
-          Have a project in mind? We&apos;d love to hear from you. Send us a message
-          and we&apos;ll respond within 24 hours.
-        </motion.p>
-      </section>
-
-      <div className={styles.container}>
-        <div className={styles.splitLayout}>
-          {/* Form Side */}
-          <motion.div
-            className={styles.formSection}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+      <div className={styles.mainContainer}>
+        <div className={styles.contactHeader}>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={styles.pageTitle}
           >
-            {submitted ? (
-              <div className={styles.successMessage}>
-                ✓ Thank you! Your message has been sent successfully. We&apos;ll be in touch soon.
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="John Smith"
-                    className={styles.formInput}
-                  />
-                </div>
-                <div className={styles.formGroup} style={{ marginTop: '1.5rem' }}>
-                  <label className={styles.formLabel}>Email Address</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="john@example.com"
-                    className={styles.formInput}
-                  />
-                </div>
-                <div className={styles.formGroup} style={{ marginTop: '1.5rem' }}>
-                  <label className={styles.formLabel}>Subject</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Project inquiry"
-                    className={styles.formInput}
-                  />
-                </div>
-                <div className={styles.formGroup} style={{ marginTop: '1.5rem' }}>
-                  <label className={styles.formLabel}>Message</label>
-                  <textarea
-                    required
-                    placeholder="Tell us about your project..."
-                    className={styles.formTextarea}
-                  />
-                </div>
-                <button type="submit" className={styles.submitBtn} style={{ marginTop: '2rem' }}>
-                  Send Message <Send size={18} />
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Info Side */}
-          <motion.div
-            className={styles.infoSection}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            Contact Us
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className={styles.pageSubtitle}
           >
-            <div className={styles.infoCard}>
-              <div className={styles.infoIconWrap}>
-                <MapPin size={20} />
-              </div>
-              <div>
-                <div className={styles.infoLabel}>Address</div>
-                <div className={styles.infoValue}>123 Design Avenue, Suite 400<br />New York, NY 10001</div>
-              </div>
-            </div>
-
-            <div className={styles.infoCard}>
-              <div className={styles.infoIconWrap}>
-                <Phone size={20} />
-              </div>
-              <div>
-                <div className={styles.infoLabel}>Phone</div>
-                <div className={styles.infoValue}>+1 (555) 234-5678</div>
-              </div>
-            </div>
-
-            <div className={styles.infoCard}>
-              <div className={styles.infoIconWrap}>
-                <Mail size={20} />
-              </div>
-              <div>
-                <div className={styles.infoLabel}>Email</div>
-                <div className={styles.infoValue}>hello@jadespaces.com</div>
-              </div>
-            </div>
-
-            <div className={styles.infoCard}>
-              <div className={styles.infoIconWrap}>
-                <Clock size={20} />
-              </div>
-              <div>
-                <div className={styles.infoLabel}>Business Hours</div>
-                <div className={styles.infoValue}>Mon – Fri: 9:00 AM – 6:00 PM<br />Sat: 10:00 AM – 4:00 PM</div>
-              </div>
-            </div>
-
-            <div className={styles.mapWrapper}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215!2d-73.9855!3d40.748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1"
-                allowFullScreen
-                loading="lazy"
-                title="Location Map"
-              />
-            </div>
-          </motion.div>
+            Reach out to us—we&apos;d love to hear from you!
+          </motion.p>
         </div>
-      </div>
 
-      {/* CTA Bar */}
-      <div className={styles.ctaBar}>
-        <p className={styles.ctaBarText}>
-          Prefer a quick chat?
-          <a href="#" className={styles.ctaBarLink}>Book a Call →</a>
-        </p>
+        <div className={styles.formGrid}>
+          {/* Left Side: Info */}
+          <div className={styles.infoSide}>
+             <div className={styles.infoGrid}>
+                <div className={styles.infoItem}>
+                  <h4>Call us</h4>
+                  <p>{contact?.phone || '+1 123 456 78 90'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>General inquiries</h4>
+                  <p>{contact?.email || 'hello@jadespaces.com'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>Social</h4>
+                  <div className={styles.socialList}>
+                    {contact?.socials?.map((s: any) => (
+                      <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
+                    ))}
+                    {!contact && <p>Instagram, LinkedIn, Twitter</p>}
+                  </div>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>Address</h4>
+                  <p className={styles.addressText}>{contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}</p>
+                </div>
+             </div>
+          </div>
+
+          {/* Right Side: Form */}
+          <div className={styles.formSide}>
+            <div className={styles.formCard}>
+              {submitted ? (
+                <div className={styles.formSuccess}>
+                   <h3>Message Sent!</h3>
+                   <p>We will get back to you shortly.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <div className={styles.formGroup}>
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Jane Smith" required />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>Email</label>
+                    <input type="email" placeholder="jane@example.com" required />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>Message</label>
+                    <textarea placeholder="Type something..." required />
+                  </div>
+                  <button type="submit" className={styles.submitBtn}>Submit</button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <section className={styles.faqSection}>
+          <div className={styles.faqHeader}>
+            <h2 className={styles.faqTitle}>Answers that bring clarity</h2>
+            <p className={styles.faqSubtitle}>We&apos;ve answered the most common questions to help you move forward.</p>
+          </div>
+
+          <div className={styles.faqSplit}>
+            <div className={styles.faqImageColumn}>
+               {/* eslint-disable-next-line @next/next/no-img-element */}
+               <img 
+                 src="/images/contact_faq_team.png" 
+                 alt="Team in office" 
+                 className={styles.faqSideImage}
+               />
+            </div>
+            <div className={styles.faqList}>
+              {faqs.map((faq) => (
+                <div key={faq.id} className={styles.faqItem}>
+                  <button 
+                    className={styles.faqTrigger}
+                    onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
+                  >
+                    <span>{faq.question}</span>
+                    {openFaq === faq.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === faq.id && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.faqContent}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
       <Footer />

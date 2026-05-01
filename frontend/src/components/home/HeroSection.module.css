@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  isolation: isolate;
 }
 
 .bgImage {
@@ -60,6 +61,18 @@
   letter-spacing: -0.03em;
   margin-bottom: 2.5rem;
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lineOverflow {
+  overflow: hidden;
+  display: flex;
+}
+
+.line {
+  display: inline-block;
 }
 
 .ctaButton {
@@ -139,7 +152,7 @@
   object-fit: contain;
 }
 
-.madeInTag {
+.madeInFramer {
   background: white;
   color: black;
   border-radius: 8px;
@@ -149,6 +162,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {

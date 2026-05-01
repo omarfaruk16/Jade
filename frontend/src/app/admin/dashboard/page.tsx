@@ -2,15 +2,23 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, HelpCircle } from 'lucide-react';
+import API_BASE from '@/lib/api';
+import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box } from 'lucide-react';
+import ServicesAdmin from './ServicesAdmin';
+import ProductsAdmin from './ProductsAdmin';
+import BlogsAdmin from './BlogsAdmin';
+import styles from './AdminDashboard.module.css';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'services' | 'products' | 'blogs'>('projects');
   const [projects, setProjects] = useState<any[]>([]);
   const [promotions, setPromotions] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
   const [faqs, setFaqs] = useState<any[]>([]);
+  const [partners, setPartners] = useState<any[]>([]);
+  const [dealerRequests, setDealerRequests] = useState<any[]>([]);
+  const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', address: '', socials: [] });
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -26,6 +34,7 @@ export default function AdminDashboard() {
   const [testimonialData, setTestimonialData] = useState({ name: '', role: '', review: '', avatar: '', rating: 5 });
   const [teamData, setTeamData] = useState({ name: '', designation: '', image: '' });
   const [faqData, setFaqData] = useState({ question: '', answer: '' });
+  const [partnerData, setPartnerData] = useState({ name: '', logo: '' });
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -39,18 +48,32 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const [projRes, promRes, testRes, teamRes, faqRes] = await Promise.all([
-        fetch('http://localhost:5001/api/projects'),
-        fetch('http://localhost:5001/api/promotions'),
-        fetch('http://localhost:5001/api/testimonials'),
-        fetch('http://localhost:5001/api/team'),
-        fetch('http://localhost:5001/api/faq')
+      const token = localStorage.getItem('adminToken');
+      const [projRes, promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes] = await Promise.all([
+        fetch(`${API_BASE}/projects`),
+        fetch(`${API_BASE}/promotions`),
+        fetch(`${API_BASE}/testimonials`),
+        fetch(`${API_BASE}/team`),
+        fetch(`${API_BASE}/faq`),
+        fetch(`${API_BASE}/contact`),
+        fetch(`${API_BASE}/partners`),
+        fetch(`${API_BASE}/dealer/requests`, { headers: { 'Authorization': `Bearer ${token}` } })
       ]);
+
+      if (dealRes.status === 401 || dealRes.status === 403) {
+        localStorage.removeItem('adminToken');
+        router.push('/admin');
+        return;
+      }
+
       setProjects(await projRes.json());
       setPromotions(await promRes.json());
       setTestimonials(await testRes.json());
       setTeam(await teamRes.json());
       setFaqs(await faqRes.json());
+      setContactInfo(await contactRes.json());
+      setPartners(await partRes.json());
+      setDealerRequests(await dealRes.json());
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -65,12 +88,13 @@ export default function AdminDashboard() {
     const fd = new FormData();
     fd.append('image', file);
     try {
-      const res = await fetch('http://localhost:5001/api/upload', { method: 'POST', body: fd });
+      const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd });
       const data = await res.json();
       if (data.url) {
         if (tab === 'promotions') setPromotionData(prev => ({ ...prev, [field]: data.url }));
         else if (tab === 'testimonials') setTestimonialData(prev => ({ ...prev, [field]: data.url }));
         else if (tab === 'team') setTeamData(prev => ({ ...prev, [field]: data.url }));
+        else if (tab === 'partners') setPartnerData(prev => ({ ...prev, [field]: data.url }));
         else setProjectData(prev => ({ ...prev, [field]: data.url }));
       }
     } catch (err) { console.error(err); }
@@ -93,6 +117,9 @@ export default function AdminDashboard() {
     } else if (activeTab === 'faq') {
       if (item) { setEditingItem(item); setFaqData({ question: item.question, answer: item.answer }); }
       else { setEditingItem(null); setFaqData({ question: '', answer: '' }); }
+    } else if (activeTab === 'partners') {
+      if (item) { setEditingItem(item); setPartnerData({ name: item.name, logo: item.logo }); }
+      else { setEditingItem(null); setPartnerData({ name: '', logo: '' }); }
     }
     setIsModalOpen(true);
   };
@@ -102,7 +129,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('adminToken');
     const method = editingItem ? 'PUT' : 'POST';
     const endpoint = activeTab;
-    const url = editingItem ? `http://localhost:5001/api/${endpoint}/${editingItem.id}` : `http://localhost:5001/api/${endpoint}`;
+    const url = editingItem ? `${API_BASE}/${endpoint}/${editingItem.id}` : `${API_BASE}/${endpoint}`;
 
     let bodyData;
     if (activeTab === 'projects') bodyData = projectData;
@@ -110,6 +137,7 @@ export default function AdminDashboard() {
     else if (activeTab === 'testimonials') bodyData = { ...testimonialData, rating: Number(testimonialData.rating) };
     else if (activeTab === 'team') bodyData = teamData;
     else if (activeTab === 'faq') bodyData = faqData;
+    else if (activeTab === 'partners') bodyData = partnerData;
 
     try {
       const res = await fetch(url, {
@@ -125,7 +153,8 @@ export default function AdminDashboard() {
     if (!confirm('Are you sure?')) return;
     const token = localStorage.getItem('adminToken');
     try {
-      await fetch(`http://localhost:5001/api/${tab}/${id}`, {
+      const endpointPath = tab === 'dealerRequests' ? 'dealer/requests' : tab;
+      await fetch(`${API_BASE}/${endpointPath}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -138,153 +167,277 @@ export default function AdminDashboard() {
     if (activeTab === 'promotions') return promotions;
     if (activeTab === 'testimonials') return testimonials;
     if (activeTab === 'team') return team;
-    return faqs;
+    if (activeTab === 'faq') return faqs;
+    if (activeTab === 'partners') return partners;
+    return dealerRequests;
   };
 
-  if (loading) return <div style={{ background:'#0a0a0c', minHeight:'100vh', color:'#fff', padding:'2rem' }}>Loading...</div>;
+  if (loading) return <div className={styles.dashboardWrapper} style={{justifyContent:'center', alignItems:'center'}}>Loading...</div>;
+
+  const tabs = [
+    { id: 'projects', icon: Folder, label: 'Projects' },
+    { id: 'promotions', icon: Megaphone, label: 'Promotions' },
+    { id: 'testimonials', icon: MessageSquare, label: 'Voices' },
+    { id: 'team', icon: Users, label: 'Team' },
+    { id: 'faq', icon: HelpCircle, label: 'FAQ' },
+    { id: 'contact', icon: Settings, label: 'Contact' },
+    { id: 'partners', icon: Users, label: 'Partners' },
+    { id: 'dealerRequests', icon: MessageSquare, label: 'Dealer Request' },
+    { id: 'services', icon: Layers, label: 'Services' },
+    { id: 'products', icon: Box, label: 'Products' },
+    { id: 'blogs', icon: MessageSquare, label: 'Blogs' },
+  ];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0a0c', color: '#fff', padding: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 600 }}>Jade Control</h2>
-        <div style={{ display:'flex', gap:'1rem'}}>
-           <div style={{ background:'#111', borderRadius:'12px', padding:'4px', display:'flex', border:'1px solid #222' }}>
-              <button onClick={() => setActiveTab('projects')} style={{ padding:'0.6rem 1.2rem', borderRadius:'8px', background: activeTab === 'projects' ? '#222' : 'transparent', color: '#fff', border:'none', cursor:'pointer', display:'flex', gap:'0.5rem', alignItems:'center'}}>
-                <Folder size={18}/> Projects
-              </button>
-              <button onClick={() => setActiveTab('promotions')} style={{ padding:'0.6rem 1.2rem', borderRadius:'8px', background: activeTab === 'promotions' ? '#222' : 'transparent', color: '#fff', border:'none', cursor:'pointer', display:'flex', gap:'0.5rem', alignItems:'center'}}>
-                <Megaphone size={18}/> Promotions
-              </button>
-              <button onClick={() => setActiveTab('testimonials')} style={{ padding:'0.6rem 1.2rem', borderRadius:'8px', background: activeTab === 'testimonials' ? '#222' : 'transparent', color: '#fff', border:'none', cursor:'pointer', display:'flex', gap:'0.5rem', alignItems:'center'}}>
-                <MessageSquare size={18}/> Voices
-              </button>
-              <button onClick={() => setActiveTab('team')} style={{ padding:'0.6rem 1.2rem', borderRadius:'8px', background: activeTab === 'team' ? '#222' : 'transparent', color: '#fff', border:'none', cursor:'pointer', display:'flex', gap:'0.5rem', alignItems:'center'}}>
-                <Users size={18}/> Team
-              </button>
-              <button onClick={() => setActiveTab('faq')} style={{ padding:'0.6rem 1.2rem', borderRadius:'8px', background: activeTab === 'faq' ? '#222' : 'transparent', color: '#fff', border:'none', cursor:'pointer', display:'flex', gap:'0.5rem', alignItems:'center'}}>
-                <HelpCircle size={18}/> FAQ
-              </button>
-           </div>
-           <button onClick={() => { localStorage.removeItem('adminToken'); router.push('/admin'); }} style={{ padding: '0.6rem 1.2rem', background: '#1a1a1c', color: '#fff', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer' }}>Logout</button>
+    <div className={styles.dashboardWrapper}>
+      {/* Sidebar Navigation */}
+      <aside className={styles.sidebar}>
+        <div className={styles.logo}>
+          <span>J</span><span>ade</span>
         </div>
-      </div>
+        <nav className={styles.navGroup}>
+          {tabs.map(tab => (
+            <button 
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`${styles.navButton} ${activeTab === tab.id ? styles.activeNav : ''}`}
+            >
+              <tab.icon size={20} />
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+        <button 
+          className={styles.logoutBtn}
+          onClick={() => { localStorage.removeItem('adminToken'); router.push('/admin'); }}
+        >
+          Logout
+        </button>
+      </aside>
 
-      <div style={{ background: '#111', padding: '2rem', borderRadius: '16px', border: '1px solid #222' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-          <h3 style={{ fontSize: '1.4rem' }}>
-            {activeTab === 'projects' ? 'Portfolio Projects' : activeTab === 'promotions' ? 'Active Promotions' : activeTab === 'testimonials' ? 'Client Testimonials' : activeTab === 'team' ? 'Team Members' : 'FAQs'}
-          </h3>
-          <button onClick={() => handleOpenModal()} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.7rem 1.5rem', background: '#fff', color: '#000', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
-            <Plus size={18} /> Add New
-          </button>
+      {/* Main Content Area */}
+      <main className={styles.mainContent}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>
+            {tabs.find(t => t.id === activeTab)?.label} Management
+          </h1>
+          {activeTab !== 'contact' && activeTab !== 'dealerRequests' && activeTab !== 'services' && activeTab !== 'products' && activeTab !== 'blogs' && (
+            <button onClick={() => handleOpenModal()} className={styles.addNewBtn}>
+              <Plus size={20} /> Add New
+            </button>
+          )}
+        </header>
+
+        <div className={styles.card}>
+          {activeTab === 'services' ? (
+            <ServicesAdmin />
+          ) : activeTab === 'products' ? (
+            <ProductsAdmin />
+          ) : activeTab === 'blogs' ? (
+            <BlogsAdmin />
+          ) : activeTab === 'contact' ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className={styles.inputGroup}>
+                  <label>Business Phone</label>
+                  <input value={contactInfo.phone} onChange={e => setContactInfo({...contactInfo, phone: e.target.value})} className={styles.input} />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Public Email</label>
+                  <input value={contactInfo.email} onChange={e => setContactInfo({...contactInfo, email: e.target.value})} className={styles.input} />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Headquarters Address</label>
+                  <textarea value={contactInfo.address} onChange={e => setContactInfo({...contactInfo, address: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
+                </div>
+                <button onClick={async () => {
+                  const token = localStorage.getItem('adminToken');
+                  const res = await fetch(`${API_BASE}/contact`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify(contactInfo)
+                  });
+                  if (res.ok) alert('Settings saved!');
+                }} className={styles.saveBtn}>
+                  Save All Contact Settings
+                </button>
+              </div>
+
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Social Media Links</label>
+                  <button onClick={() => setContactInfo({...contactInfo, socials: [...contactInfo.socials, { name: '', url: '' }]})} className={styles.navButton} style={{padding: '0.4rem 0.8rem'}}>
+                    <PlusCircle size={16} /> Add Social
+                  </button>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {contactInfo.socials.map((social: any, idx: number) => (
+                    <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                      <input placeholder="Name" value={social.name} onChange={e => {
+                        const newSocials = [...contactInfo.socials];
+                        newSocials[idx].name = e.target.value;
+                        setContactInfo({...contactInfo, socials: newSocials});
+                      }} className={styles.input} style={{flex: 1}} />
+                      <input placeholder="URL" value={social.url} onChange={e => {
+                        const newSocials = [...contactInfo.socials];
+                        newSocials[idx].url = e.target.value;
+                        setContactInfo({...contactInfo, socials: newSocials});
+                      }} className={styles.input} style={{flex: 2}} />
+                      <button onClick={() => {
+                        const newSocials = contactInfo.socials.filter((_: any, i: number) => i !== idx);
+                        setContactInfo({...contactInfo, socials: newSocials});
+                      }} className={`${styles.actionBtn} ${styles.deleteBtn}`}><Trash2 size={18}/></button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>{activeTab === 'faq' ? 'Question' : activeTab === 'dealerRequests' ? 'Dealer Name' : (activeTab === 'projects' || activeTab === 'promotions' ? 'Title' : 'Name')}</th>
+                    {activeTab === 'dealerRequests' && <th>Email</th>}
+                    {activeTab === 'dealerRequests' && <th>Phone</th>}
+                    <th style={{ textAlign: 'right' }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getActiveArray().map(item => (
+                    <tr key={item.id}>
+                      <td style={{ fontWeight: 500 }}>
+                        {activeTab === 'faq' ? item.question : activeTab === 'dealerRequests' ? item.fullName : (activeTab === 'projects' || activeTab === 'promotions' ? item.title : item.name)}
+                      </td>
+                      {activeTab === 'dealerRequests' && <td>{item.email}</td>}
+                      {activeTab === 'dealerRequests' && <td>{item.phone}</td>}
+                      <td style={{ textAlign: 'right' }}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                          {activeTab === 'projects' && <button onClick={() => router.push(`/projects/${item.id}`)} className={styles.actionBtn} title="View"><Eye size={18}/></button>}
+                          {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18}/></button>}
+                          <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18}/></button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
+      </main>
 
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid #222' }}>
-                <th style={{ padding: '1rem', color: '#666' }}>
-                  {activeTab === 'faq' ? 'Question' : (activeTab === 'projects' || activeTab === 'promotions' ? 'Title' : 'Name')}
-                </th>
-                <th style={{ padding: '1rem', color: '#666', textAlign: 'right' }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {getActiveArray().map(item => (
-                <tr key={item.id} style={{ borderBottom: '1px solid #1a1a1c' }}>
-                  <td style={{ padding: '1rem' }}>
-                    {activeTab === 'faq' ? item.question : (activeTab === 'projects' || activeTab === 'promotions' ? item.title : item.name)}
-                  </td>
-                  <td style={{ padding: '1rem', textAlign: 'right', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-                    {activeTab === 'projects' && <button onClick={() => router.push(`/projects/${item.id}`)} title="View" style={{ padding: '0.5rem', background: '#1a1a1c', color: '#fff', border: '1px solid #333', borderRadius: '6px', cursor: 'pointer' }}><Eye size={16}/></button>}
-                    <button onClick={() => handleOpenModal(item)} title="Edit" style={{ padding: '0.5rem', background: '#1a1a1c', color: '#fff', border: '1px solid #333', borderRadius: '6px', cursor: 'pointer' }}><Edit2 size={16}/></button>
-                    <button onClick={() => handleDelete(item.id, activeTab)} title="Delete" style={{ padding: '0.5rem', background: '#1a1a1c', color: '#ef4444', border: '1px solid #333', borderRadius: '6px', cursor: 'pointer' }}><Trash2 size={16}/></button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      {/* Modal Overlay */}
       {isModalOpen && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '2rem' }}>
-          <div style={{ background: '#111', width: '100%', maxWidth: activeTab === 'projects' ? '800px' : '500px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '24px', border: '1px solid #333', padding: '2.5rem', position: 'relative' }}>
-            <button onClick={() => setIsModalOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X /></button>
-            <h3 style={{ marginBottom: '2rem', fontSize: '1.5rem' }}>{editingItem ? 'Edit' : 'Add'}</h3>
+        <div className={styles.modalOverlay}>
+          <div className={`${styles.modal} ${activeTab === 'projects' ? styles.wideModal : ''}`} style={{maxWidth: activeTab === 'projects' ? '900px' : '550px'}}>
+            <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20}/></button>
+            <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700 }}>
+              {editingItem ? 'Edit' : 'Add New'} {activeTab.slice(0, -1)}
+            </h3>
             <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: activeTab === 'projects' ? '1fr 1fr' : '1fr', gap: '1.5rem' }}>
               {activeTab === 'projects' && (
                 <>
-                  <input required placeholder="Title" value={projectData.title} onChange={e => setProjectData({...projectData, title: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
-                  <input required placeholder="Subtitle" value={projectData.subtitle} onChange={e => setProjectData({...projectData, subtitle: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
-                  <div style={{ gridColumn: 'span 2'}}><label style={{fontSize:'0.8rem', color:'#888'}}>Cover Image</label><div style={{display:'flex', gap:'0.5rem'}}><input value={projectData.coverImage} readOnly style={{ flex:1, background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }}/><input type="file" onChange={e => handleUpload(e, 'coverImage', 'projects')}/></div></div>
-                  <textarea required placeholder="Description" value={projectData.overviewDesc} onChange={e => setProjectData({...projectData, overviewDesc: e.target.value})} style={{ gridColumn: 'span 2', background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff', minHeight: '100px' }} />
+                  <div className={styles.inputGroup}>
+                    <label>Project Title</label>
+                    <input required placeholder="Title" value={projectData.title} onChange={e => setProjectData({...projectData, title: e.target.value})} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Subtitle</label>
+                    <input required placeholder="Subtitle" value={projectData.subtitle} onChange={e => setProjectData({...projectData, subtitle: e.target.value})} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
+                    <label>Cover Image {uploading && '(Uploading...)'}</label>
+                    <div style={{display:'flex', gap:'1rem'}}>
+                      <input value={projectData.coverImage} readOnly className={styles.input} style={{flex: 1}} />
+                      <input type="file" onChange={e => handleUpload(e, 'coverImage', 'projects')} />
+                    </div>
+                  </div>
+                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
+                    <label>Overview Description</label>
+                    <textarea required placeholder="Description" value={projectData.overviewDesc} onChange={e => setProjectData({...projectData, overviewDesc: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
+                  </div>
                 </>
               )}
               {activeTab === 'promotions' && (
                 <>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Promotion Title</label>
-                    <input required value={promotionData.title} onChange={e => setPromotionData({...promotionData, title: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                    <input required value={promotionData.title} onChange={e => setPromotionData({...promotionData, title: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Promotion Image {uploading && '(Uploading...)'}</label>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <input value={promotionData.image} readOnly style={{ flex: 1, background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff', fontSize: '0.8rem' }} />
-                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'promotions')} style={{ width: '100px' }} />
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                      <input value={promotionData.image} readOnly className={styles.input} style={{flex: 1}} />
+                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'promotions')} />
                     </div>
                   </div>
                 </>
               )}
               {activeTab === 'testimonials' && (
                 <>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Reviewer Name</label>
-                    <input required value={testimonialData.name} onChange={e => setTestimonialData({...testimonialData, name: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                    <input required value={testimonialData.name} onChange={e => setTestimonialData({...testimonialData, name: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Role</label>
-                    <input value={testimonialData.role} onChange={e => setTestimonialData({...testimonialData, role: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                    <input value={testimonialData.role} onChange={e => setTestimonialData({...testimonialData, role: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Review Text</label>
-                    <textarea required value={testimonialData.review} onChange={e => setTestimonialData({...testimonialData, review: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff', minHeight: '100px' }} />
+                    <textarea required value={testimonialData.review} onChange={e => setTestimonialData({...testimonialData, review: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
                   </div>
                 </>
               )}
               {activeTab === 'team' && (
                 <>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <label>Team Member Name</label>
-                    <input required value={teamData.name} onChange={e => setTeamData({...teamData, name: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                  <div className={styles.inputGroup}>
+                    <label>Member Name</label>
+                    <input required value={teamData.name} onChange={e => setTeamData({...teamData, name: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Designation</label>
-                    <input value={teamData.designation} onChange={e => setTeamData({...teamData, designation: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                    <input value={teamData.designation} onChange={e => setTeamData({...teamData, designation: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <label>Image Portrait</label>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <input value={teamData.image} readOnly style={{ flex: 1, background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff', fontSize: '0.8rem' }} />
-                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'team')} style={{ width: '100px' }} />
+                  <div className={styles.inputGroup}>
+                    <label>Photo {uploading && '(Uploading...)'}</label>
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                      <input value={teamData.image} readOnly className={styles.input} style={{flex: 1}} />
+                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'team')} />
                     </div>
                   </div>
                 </>
               )}
               {activeTab === 'faq' && (
                 <>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Question</label>
-                    <input required value={faqData.question} onChange={e => setFaqData({...faqData, question: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff' }} />
+                    <input required value={faqData.question} onChange={e => setFaqData({...faqData, question: e.target.value})} className={styles.input} />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div className={styles.inputGroup}>
                     <label>Answer</label>
-                    <textarea required value={faqData.answer} onChange={e => setFaqData({...faqData, answer: e.target.value})} style={{ background: '#000', border: '1px solid #333', padding: '0.8rem', borderRadius: '8px', color: '#fff', minHeight: '150px' }} />
+                    <textarea required value={faqData.answer} onChange={e => setFaqData({...faqData, answer: e.target.value})} className={styles.textarea} style={{minHeight: '180px'}} />
                   </div>
                 </>
               )}
-              <button type="submit" disabled={uploading} style={{ gridColumn: 'span ' + (activeTab === 'projects' ? 2 : 1), marginTop: '1rem', padding: '1.2rem', background: uploading ? '#444' : '#fff', color: uploading ? '#888' : '#000', border: 'none', borderRadius: '12px', fontWeight: 800, fontSize: '1.1rem', cursor: uploading ? 'not-allowed' : 'pointer' }}>
-                Save
+              {activeTab === 'partners' && (
+                <>
+                  <div className={styles.inputGroup}>
+                    <label>Partner Name</label>
+                    <input required value={partnerData.name} onChange={e => setPartnerData({...partnerData, name: e.target.value})} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Logo {uploading && '(Uploading...)'}</label>
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                      <input value={partnerData.logo} readOnly className={styles.input} style={{flex: 1}} />
+                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'logo', 'partners')} />
+                    </div>
+                  </div>
+                </>
+              )}
+              <button type="submit" disabled={uploading} className={styles.saveBtn} style={{ gridColumn: 'span ' + (activeTab === 'projects' ? 2 : 1) }}>
+                {uploading ? 'Uploading...' : 'Save Changes'}
               </button>
             </form>
           </div>
@@ -293,3 +446,4 @@ export default function AdminDashboard() {
     </div>
   );
 }
+

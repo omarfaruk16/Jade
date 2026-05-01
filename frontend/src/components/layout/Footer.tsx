@@ -1,12 +1,33 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import API_BASE from '@/lib/api';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, ArrowUp, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp, ArrowRight, Instagram, Linkedin, Twitter, Github, Facebook, Globe } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const [contact, setContact] = useState<any>(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/contact`)
+      .then(res => res.json())
+      .then(data => setContact(data))
+      .catch(err => console.error(err));
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getSocialIcon = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes('instagram')) return <Instagram size={18} />;
+    if (n.includes('linkedin')) return <Linkedin size={18} />;
+    if (n.includes('twitter') || n.includes(' x ')) return <Twitter size={18} />;
+    if (n.includes('github')) return <Github size={18} />;
+    if (n.includes('facebook')) return <Facebook size={18} />;
+    return <Globe size={18} />;
   };
 
   return (
@@ -23,15 +44,21 @@ export default function Footer() {
               Premium design, global reach.
             </p>
             <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialLink} aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </a>
-              <a href="#" className={styles.socialLink} aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              </a>
-              <a href="#" className={styles.socialLink} aria-label="Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-              </a>
+              {contact?.socials?.map((social: any) => (
+                <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label={social.name}>
+                  {getSocialIcon(social.name)}
+                </a>
+              ))}
+              {!contact && (
+                <>
+                  <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                    <Linkedin size={18} />
+                  </a>
+                  <a href="#" className={styles.socialLink} aria-label="Instagram">
+                    <Instagram size={18} />
+                  </a>
+                </>
+              )}
             </div>
           </div>
 
@@ -62,15 +89,15 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Get in Touch</h4>
             <div className={styles.contactItem}>
               <MapPin size={16} />
-              <span>123 Design Avenue, Suite 400<br />New York, NY 10001</span>
+              <span>{contact?.address || '123 Design Avenue, New York, NY'}</span>
             </div>
             <div className={styles.contactItem}>
               <Phone size={16} />
-              <span>+1 (555) 234-5678</span>
+              <span>{contact?.phone || '+1 (555) 234-5678'}</span>
             </div>
             <div className={styles.contactItem}>
               <Mail size={16} />
-              <span>hello@jadespaces.com</span>
+              <span>{contact?.email || 'hello@jadespaces.com'}</span>
             </div>
             <div className={styles.newsletterForm}>
               <input 
@@ -88,7 +115,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <span className={styles.copyright}>
-            © {new Date().getFullYear()} Jade Spaces. All rights reserved.
+            © {new Date().getFullYear()} Developed by One-Spot-Solution.
           </span>
           <button className={styles.backToTop} onClick={scrollToTop}>
             Back to top <ArrowUp size={14} />

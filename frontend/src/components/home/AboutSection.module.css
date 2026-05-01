@@ -1,7 +1,5 @@
 .aboutSection {
-  padding: 6rem 1.5rem;
-  max-width: 1800px;
-  margin: 0 auto;
+  padding: 6rem 5%;
   color: #000;
   background: #fdfdfd;
 }
@@ -11,30 +9,32 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 4rem;
-  padding: 0 1rem;
+  gap: 4rem;
 }
 
 .title {
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  flex: 1;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  max-width: 800px;
+  margin: 0;
 }
 
 .headerRight {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  max-width: 400px;
   text-align: right;
   gap: 1.5rem;
 }
 
 .subtitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #4a4a4a;
-  line-height: 1.5;
+  line-height: 1.6;
+  max-width: 500px;
 }
 
 .getToKnowBtn {
@@ -42,7 +42,7 @@
   color: #fff;
   border: none;
   border-radius: 9999px;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -56,8 +56,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
   gap: 1.5rem;
   margin-bottom: 4rem;
 }
@@ -67,20 +67,20 @@
   overflow: hidden;
   position: relative;
   background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .missionCard {
-  grid-row: span 2;
-  padding: 3rem 2rem;
-  display: flex;
-  flex-direction: column;
+  grid-area: 1 / 1 / 3 / 2;
+  padding: 3rem 2.5rem;
   justify-content: space-between;
   border: 1px solid rgba(0,0,0,0.05);
   box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
 
 .missionText {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   line-height: 1.6;
   color: #333;
 }
@@ -93,28 +93,28 @@
 }
 
 .founderImg {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .founderInfo h4 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
 .founderInfo p {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #666;
 }
 
 .imageCard {
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 250px;
 }
 
 .imageCard img {
@@ -129,9 +129,8 @@
 }
 
 .textCard {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  padding: 2.5rem 2rem;
+  justify-content: space-between;
   border: 1px solid rgba(0,0,0,0.05);
   background: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.02);
@@ -140,7 +139,7 @@
 .cardNumber {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #666;
   margin-bottom: auto;
@@ -149,37 +148,34 @@
 .cardTitle {
   font-size: 1.5rem;
   font-weight: 500;
-  margin: 1.5rem 0 1rem 0;
-  line-height: 1.2;
+  margin: 2rem 0 1rem 0;
+  line-height: 1.3;
 }
 
 .cardDesc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
   line-height: 1.5;
 }
 
-/* Specific Placements based on reference */
-.cImg1 { grid-column: 2; grid-row: 1; }
-.cText2 { grid-column: 2; grid-row: 2; }
-
-.cText1 { grid-column: 3; grid-row: 1; }
-.cImg2 { grid-column: 3; grid-row: 2; }
-
-.cImg3 { grid-column: 4; grid-row: 1; }
-.cText3 { grid-column: 4; grid-row: 2; }
-
+/* PC Placement Mapping */
+.cImg1 { grid-area: 1 / 2 / 2 / 3; }
+.cText2 { grid-area: 2 / 2 / 3 / 3; }
+.cText1 { grid-area: 1 / 3 / 2 / 4; }
+.cImg2 { grid-area: 2 / 3 / 3 / 4; }
+.cImg3 { grid-area: 1 / 4 / 2 / 5; }
+.cText3 { grid-area: 2 / 4 / 3 / 5; }
 
 .statsRow {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 3rem 0;
   border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .statItem h3 {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.05em;
   margin-bottom: 0.5rem;
@@ -187,26 +183,12 @@
 
 .statItem p {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.4;
 }
 
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-  }
-  .missionCard {
-    grid-column: span 2;
-    grid-row: span 1;
-  }
-  .cImg1, .cText2, .cText1, .cImg2, .cImg3, .cText3 {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-}
-
-@media (max-width: 768px) {
+/* TABLET */
+@media (max-width: 1024px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
@@ -216,20 +198,41 @@
     text-align: left;
     align-items: flex-start;
   }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
+  .missionCard { grid-area: 1 / 1 / 3 / 2; }
+  .cImg1 { grid-area: 1 / 2 / 2 / 3; }
+  .cText1 { grid-area: 2 / 2 / 3 / 3; }
+  .cImg3 { grid-area: 3 / 1 / 4 / 2; }
+  .cText3 { grid-area: 4 / 1 / 5 / 2; }
+  .cText2 { grid-area: 3 / 2 / 4 / 3; }
+  .cImg2 { grid-area: 4 / 2 / 5 / 3; }
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 4rem 5%;
+  }
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .grid {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
-  .missionCard {
-    grid-column: 1;
-  }
-  .statsRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-  .statItem h3 {
-    font-size: 2.5rem;
-  }
+  .missionCard { grid-area: auto; }
+  .cImg1 { grid-area: auto; }
+  .cText1 { grid-area: auto; }
+  .cImg3 { grid-area: auto; }
+  .cText3 { grid-area: auto; }
+  .cText2 { grid-area: auto; }
+  .cImg2 { grid-area: auto; }
 }

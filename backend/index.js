@@ -2,13 +2,27 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Security Middleware
+app.use(helmet({
+  crossOriginResourcePolicy: false, // Allow images to be served to different origins
+}));
 app.use(cors());
 app.use(express.json());
+
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use('/api/', limiter);
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Multer Storage
@@ -19,12 +33,26 @@ const storage = multer.diskStorage({
     cb(null, uniqueSuffix + path.extname(file.originalname));
   }
 });
-const upload = multer({ storage });
 
-// Upload Endpoint
-app.post('/api/upload', upload.single('image'), (req, res) => {
+const upload = multer({ 
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|webp|gif/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    if (extname && mimetype) return cb(null, true);
+    cb(new Error('Only images (jpeg, jpg, png, webp, gif) are allowed'));
+  }
+});
+
+const auth = require('./middleware/auth');
+
+// Upload Endpoint (Protected)
+app.post('/api/upload', auth, upload.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-  const imageUrl = `http://localhost:${PORT}/uploads/${req.file.filename}`;
+  const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+  const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
   res.json({ url: imageUrl });
 });
 
@@ -38,6 +66,11 @@ const promotionRoutes = require('./routes/promotionRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const faqRoutes = require('./routes/faqRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const partnerRoutes = require('./routes/partnerRoutes');
+const dealerRoutes = require('./routes/dealerRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+const productRoutes = require('./routes/productRoutes');
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/projects', projectRoutes);
@@ -45,7 +78,13 @@ app.use('/api/promotions', promotionRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/team', teamRoutes);
 app.use('/api/faq', faqRoutes);
-
+app.use('/api/contact', contactRoutes);
+app.use('/api/partners', partnerRoutes);
+app.use('/api/dealer', dealerRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/products', productRoutes);
+const blogRoutes = require('./routes/blogRoutes');
+app.use('/api/blogs', blogRoutes);
 
 
 

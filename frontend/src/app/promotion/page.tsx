@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -11,7 +12,7 @@ export default function PromotionPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/promotions')
+    fetch(`${API_BASE}/promotions`)
       .then(res => res.json())
       .then(data => {
         setPromotions(data);

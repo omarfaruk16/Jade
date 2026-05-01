@@ -12,23 +12,15 @@
 
 /* Hero Section */
 .heroSection {
-  height: 80vh;
-  width: 100%;
-  position: relative;
+  height: 60vh;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-.heroBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://images.unsplash.com/photo-1629079447841-d83b1999f0c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
-  filter: brightness(0.7);
+  text-align: center;
+  color: #fff;
 }
 
 .heroContent {
@@ -161,6 +153,7 @@
   aspect-ratio: 16/10;
   border-radius: 20px;
   object-fit: cover;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
 /* Quotes Section */
@@ -254,20 +247,90 @@
 /* Insights Section */
 .insightsSection {
   padding: 8rem 0;
-  background: #fdfdfd;
+  background: #fff;
 }
 
-.mapContainer {
+.mapWrapper {
+  /* Styles now live in WorldMap.module.css — this is kept for backwards compat */
   margin: 4rem 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .mapImg {
-  max-width: 1000px;
   width: 100%;
-  opacity: 0.9;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Map Markers */
+.mapMarker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.markerDot {
+  width: 18px;
+  height: 18px;
+  background: #F05C46;
+  border: 2.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(240, 92, 70, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mapMarker:hover .markerDot {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 7px rgba(240, 92, 70, 0.2);
+}
+
+.markerTooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  min-width: 140px;
+}
+
+/* Arrow */
+.markerTooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(30, 30, 30, 0.88);
+}
+
+.mapMarker:hover .markerTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltipCountry {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #F05C46;
+}
+
+.tooltipInfo {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .statsRow {
@@ -291,74 +354,145 @@
   letter-spacing: 0.05em;
 }
 
-/* FAQ Section */
-.faqSection {
+/* FAQ Card Section (Synced with Dealer Page) */
+.faqCardSection {
   padding: 10rem 0;
+  background: #fff;
 }
 
-.faqLayout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-}
-
-.faqList {
-  display: flex;
-  flex-direction: column;
-}
-
-.faqItem {
-  border-bottom: 1px solid #eee;
-}
-
-.faqQuestion {
-  width: 100%;
+.faqHeaderCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  margin-bottom: 5rem;
+}
+
+.faqTitleCard {
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.faqSubtitleCard {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 350px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.faqSplitCard {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: stretch;
+}
+
+.faqListCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.faqItemCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+  transition: border-color 0.3s;
+}
+
+.faqItemCard:hover {
+  border-color: #ddd;
+}
+
+.faqTriggerCard {
+  width: 100%;
+  padding: 1.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: none;
   border: none;
-  text-align: left;
-  font-size: 1.1rem;
-  font-weight: 500;
   cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #000;
 }
 
-.faqAnswer {
-  max-height: 0;
+.faqContentCard {
   overflow: hidden;
-  transition: all 0.4s ease;
-  color: #666;
-  line-height: 1.6;
-  padding-bottom: 0;
+  padding: 0 2rem 1.8rem;
+  color: #555;
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
-.faqItemActive .faqAnswer {
-  max-height: 500px;
-  padding-bottom: 2rem;
-}
-
-.faqImgSide {
+.faqImageWrapCard {
   position: relative;
-}
-
-.faqImgLarge {
-  width: 100%;
   border-radius: 24px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 550px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
 }
 
-.contactBadge {
+.faqRightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  background: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+}
+
+.faqOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5rem 2.5rem 2.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  color: #fff;
+}
+
+.overlayIcon {
+  margin-bottom: 1.2rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+}
+
+.faqOverlay h4 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+  line-height: 1.3;
+}
+
+.faqContactBtn {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.faqContactBtn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
 }
 
 /* Responsive */

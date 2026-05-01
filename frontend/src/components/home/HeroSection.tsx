@@ -7,29 +7,67 @@ export default function HeroSection() {
   return (
     <section className={styles.heroWrapper}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/images/hero_background.png" alt="Luxurious modern house exterior" className={styles.bgImage} />
+      <img src="/images/home-hero.webp" alt="Luxurious modern house exterior" className={styles.bgImage} />
       <div className={styles.overlay}></div>
 
-      <motion.div 
-        className={styles.content}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
-      >
-        <p className={styles.hashtag}># Bringing Spaces to Life</p>
+      <div className={styles.content}>
+        <motion.p 
+          className={styles.hashtag}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          # Bringing Spaces to Life
+        </motion.p>
+        
         <h1 className={styles.title}>
-          The Best Interior<br />
-          Company in<br />
-          Malaysia
+          <div className={styles.lineOverflow}>
+            <motion.span 
+              className={styles.line}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            >
+              The Best Interior
+            </motion.span>
+          </div>
+          <div className={styles.lineOverflow}>
+            <motion.span 
+              className={styles.line}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            >
+              Company in
+            </motion.span>
+          </div>
+          <div className={styles.lineOverflow}>
+            <motion.span 
+              className={styles.line}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+            >
+              Malaysia
+            </motion.span>
+          </div>
         </h1>
-        <button className={styles.ctaButton}>Let's Talk Concepts</button>
-      </motion.div>
+
+        <motion.button 
+          className={styles.ctaButton}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          Let's Talk Concepts
+        </motion.button>
+      </div>
 
       <motion.div 
         className={styles.bottomLeftWidget}
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 1 }}
       >
         <div className={styles.avatars}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -49,17 +87,14 @@ export default function HeroSection() {
         className={styles.bottomRightWidget}
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 1 }}
       >
         <span className={styles.awardsLabel}>Awards:</span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/images/award.png" alt="Award Excellence" className={styles.awardIcon} />
-        
-        <div className={styles.madeInTag}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m12 2 9 4.9V17L12 22l-9-4.9V7z"/>
-          </svg>
-          Made by Jade
+        <div className={styles.madeInFramer}>
+          <svg viewBox="0 0 14 14" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H14V7H7V14L0 7V0Z" fill="black"></path></svg>
+          Made in Framer
         </div>
       </motion.div>
     </section>

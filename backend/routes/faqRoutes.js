@@ -1,22 +1,9 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
-const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 const prisma = new PrismaClient();
-
-// Middleware to protect admin routes
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if (!token) return res.sendStatus(401);
-
-  jwt.verify(token, process.env.JWT_SECRET || 'supersecret', (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-};
 
 // GET all FAQs (Public)
 router.get('/', async (req, res) => {
@@ -31,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST new FAQ (Protected)
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const faq = await prisma.fAQ.create({ data: req.body });
     res.json(faq);
@@ -41,7 +28,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // PUT update FAQ (Protected)
-router.put('/:id', authenticateToken, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
     const faq = await prisma.fAQ.update({
       where: { id: req.params.id },
@@ -54,7 +41,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
 });
 
 // DELETE FAQ (Protected)
-router.delete('/:id', authenticateToken, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     await prisma.fAQ.delete({ where: { id: req.params.id } });
     res.json({ message: 'Deleted' });

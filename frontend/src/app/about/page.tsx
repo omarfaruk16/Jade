@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './About.module.css';
@@ -12,12 +13,12 @@ export default function AboutPage() {
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/testimonials')
+    fetch(`${API_BASE}/testimonials`)
       .then(res => res.json())
       .then(data => setTestimonials(data))
       .catch(console.error);
       
-    fetch('http://localhost:5001/api/team')
+    fetch(`${API_BASE}/team`)
       .then(res => res.json())
       .then(data => setTeamMembers(data))
       .catch(console.error);

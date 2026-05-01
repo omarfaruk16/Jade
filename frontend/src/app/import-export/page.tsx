@@ -1,18 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './ImportExport.module.css';
 import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import WorldMap from '@/components/home/WorldMap';
 
 export default function ImportExportPage() {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [activeFaq, setActiveFaq] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/faq')
+    fetch(`${API_BASE}/faq`)
       .then(res => res.json())
       .then(data => setFaqs(data))
       .catch(console.error);
@@ -28,7 +30,6 @@ export default function ImportExportPage() {
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
-        <div className={styles.heroBackground}></div>
         <div className={styles.heroContent}>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
@@ -193,10 +194,7 @@ export default function ImportExportPage() {
              <button className={styles.moreDetailsBtn}>Details</button>
            </div>
            
-           <div className={styles.mapContainer}>
-             {/* eslint-disable-next-line @next/next/no-img-element */}
-             <img src="https://i.ibb.co/LnhYv08/world-map-dark.png" alt="World Map" className={styles.mapImg} />
-           </div>
+           <WorldMap />
 
            <div className={styles.statsRow}>
              <div className={styles.statItem}>
@@ -220,57 +218,61 @@ export default function ImportExportPage() {
 
         {/* FAQ Section */}
         <motion.section 
-          className={styles.faqSection}
+          className={styles.faqCardSection}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-           <div className={styles.faqLayout}>
-             <div className={styles.faqLeft}>
-                <span className={styles.sectionLabel}>Support</span>
-                <h2 className={styles.sectionTitle}>Answers that bring clarity</h2>
-                
-                <div className={styles.faqList}>
-                  {faqs.length > 0 ? (
-                    faqs.map((faq) => (
-                      <div key={faq.id} className={`${styles.faqItem} ${activeFaq === faq.id ? styles.faqItemActive : ''}`}>
-                        <button className={styles.faqQuestion} onClick={() => toggleFaq(faq.id)}>
-                          {faq.question}
-                          {activeFaq === faq.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                        </button>
-                        <AnimatePresence>
-                          {activeFaq === faq.id && (
-                            <motion.div 
-                              className={styles.faqAnswer}
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            >
-                              <div style={{ paddingBottom: '2rem' }}>
-                                {faq.answer}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ))
-                  ) : (
-                    <p style={{ color: '#999', marginTop: '2rem' }}>No FAQs added yet.</p>
-                  )}
-                </div>
-             </div>
+          <div className={styles.faqHeaderCard}>
+            <h2 className={styles.faqTitleCard}>Answers that bring clarity</h2>
+            <p className={styles.faqSubtitleCard}>We&apos;ve answered the most common questions to help you move forward.</p>
+          </div>
 
-             <div className={styles.faqImgSide}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://images.unsplash.com/photo-1600880212340-02d956ea3b85?auto=format&fit=crop&w=1000&q=80" alt="Team" className={styles.faqImgLarge} />
-                <div className={styles.contactBadge}>
-                   <div style={{ width: 8, height: 8, background: '#10b981', borderRadius: '50%' }}></div>
-                   Talk with our expert
-                   <ArrowRight size={14} />
+          <div className={styles.faqSplitCard}>
+            <div className={styles.faqListCard}>
+              {faqs.map((faq) => (
+                <div key={faq.id} className={styles.faqItemCard}>
+                  <button 
+                    className={styles.faqTriggerCard}
+                    onClick={() => toggleFaq(faq.id)}
+                  >
+                    <span>{faq.question}</span>
+                    {activeFaq === faq.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                  <AnimatePresence>
+                    {activeFaq === faq.id && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.faqContentCard}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-             </div>
-           </div>
+              ))}
+            </div>
+            
+            <div className={styles.faqImageWrapCard}>
+               {/* eslint-disable-next-line @next/next/no-img-element */}
+               <img 
+                 src="/images/contact_faq_team.png" 
+                 alt="Team working" 
+                 className={styles.faqRightImage}
+               />
+               <div className={styles.faqOverlay}>
+                  <div className={styles.overlayIcon}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C12.5523 2 13 2.44772 13 3V10H20C20.5523 10 21 10.4477 21 11C21 11.5523 20.5523 12 20 12H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V12H4C3.44772 12 3 11.5523 3 11C3 10.4477 3.44772 10 4 10H11V3C11 2.44772 11.4477 2 12 2Z" fill="white"/>
+                    </svg>
+                  </div>
+                  <h4>Still have a question in mind?</h4>
+                  <a href="/contact" className={styles.faqContactBtn}>Contact Us</a>
+               </div>
+            </div>
+          </div>
         </motion.section>
       </main>
 

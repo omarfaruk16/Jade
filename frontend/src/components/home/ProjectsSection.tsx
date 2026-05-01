@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import styles from './ProjectsSection.module.css';
@@ -15,7 +16,7 @@ export default function ProjectsSection() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    fetch('http://localhost:5001/api/projects')
+    fetch(`${API_BASE}/projects`)
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(console.error);
@@ -30,7 +31,7 @@ export default function ProjectsSection() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-55%"]);
 
   return (
-    <section ref={targetRef} className={styles.scrollContainer}>
+    <section ref={targetRef}>
       <div className={styles.stickySection}>
         <div className={styles.header}>
           <div className={styles.brandLogos}>
@@ -39,7 +40,7 @@ export default function ProjectsSection() {
             <span>SHANTA</span>
           </div>
         </div>
-        
+
         <motion.div style={{ x: isMobile ? 0 : x }} className={styles.projectsWrapper}>
           {projects.map((project) => (
             <Link href={`/projects/${project.id}`} key={project.id} passHref legacyBehavior>
@@ -55,13 +56,13 @@ export default function ProjectsSection() {
           ))}
           {/* Fallback if no db projects */}
           {projects.length === 0 && (
-             <div className={styles.projectCard}>
-               <img src="/images/f1.png" alt="Fallback" />
-               <div className={styles.cardFooter}>
-                 <span className={styles.cardTitle}>Loading...</span>
-                 <span className={styles.cardDate}>Please wait</span>
-               </div>
-             </div>
+            <div className={styles.projectCard}>
+              <img src="/images/f1.png" alt="Fallback" />
+              <div className={styles.cardFooter}>
+                <span className={styles.cardTitle}>Loading...</span>
+                <span className={styles.cardDate}>Please wait</span>
+              </div>
+            </div>
           )}
         </motion.div>
       </div>

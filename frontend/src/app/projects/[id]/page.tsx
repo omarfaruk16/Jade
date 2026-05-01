@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import API_BASE from '@/lib/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { CheckCircle2, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
@@ -16,7 +17,7 @@ export default function ProjectDetails() {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   useEffect(() => {
-    fetch(`http://localhost:5001/api/projects/${params.id}`)
+    fetch(`${API_BASE}/projects/${params.id}`)
       .then(res => res.json())
       .then(data => {
         if (!data.error) {

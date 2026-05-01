@@ -1,23 +1,9 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
-const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 const prisma = new PrismaClient();
-
-// Middleware to protect admin routes
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  
-  if (token == null) return res.sendStatus(401);
-
-  jwt.verify(token, process.env.JWT_SECRET || 'supersecret', (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-};
 
 // GET all projects (public)
 router.get('/', async (req, res) => {
@@ -37,7 +23,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST new project (protected)
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     // ensuring galleryJson is a string
     const data = req.body;
@@ -53,7 +39,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // PUT update project (protected)
-router.put('/:id', authenticateToken, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
     const data = req.body;
     if (Array.isArray(data.galleryJson)) {
@@ -71,7 +57,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
 });
 
 // DELETE project (protected)
-router.delete('/:id', authenticateToken, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     await prisma.project.delete({
       where: { id: req.params.id }

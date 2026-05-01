@@ -1,8 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Maximize2 } from 'lucide-react';
 import styles from './AboutSection.module.css';
+
+const FourDotsIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="4" r="2.5" fill="currentColor"/>
+    <circle cx="12" cy="20" r="2.5" fill="currentColor"/>
+    <circle cx="4" cy="12" r="2.5" fill="currentColor"/>
+    <circle cx="20" cy="12" r="2.5" fill="currentColor"/>
+  </svg>
+);
 
 export default function AboutSection() {
   return (
@@ -33,7 +41,9 @@ export default function AboutSection() {
       </div>
 
       <div className={styles.grid}>
-        {/* Column 1: Mission statement span 2 rows */}
+        {/* DOM order set for proper responsive stacking */}
+        
+        {/* 1. Mission Card */}
         <motion.div 
           className={`${styles.card} ${styles.missionCard}`}
           initial={{ opacity: 0, y: 30 }}
@@ -53,37 +63,43 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* Column 2 */}
-        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg1}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        {/* 2. Image 1 (Dark Bowl) */}
+        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg1}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/f1.png" alt="Cabinet design" />
         </motion.div>
+
+        {/* 3. Text 1 (01 Royal Reverie) */}
+        <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText1}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className={styles.cardNumber}><span>01</span> <FourDotsIcon /></div>
+          <h3 className={styles.cardTitle}>Royal Reverie in Every Cabinet</h3>
+          <p className={styles.cardDesc}>Step into a home that feels like royalty. Every piece is crafted with regal elegance, blending timeless craftsmanship with luxurious beauty.</p>
+        </motion.div>
+
+        {/* 4. Text 2 (02 Whispered Elegance) */}
         <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText2}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className={styles.cardNumber}><span>02</span> <Maximize2 size={16} /></div>
+          <div className={styles.cardNumber}><span>02</span> <FourDotsIcon /></div>
           <h3 className={styles.cardTitle}>Whispered Elegance in Timeless Wood</h3>
           <p className={styles.cardDesc}>Each grain of wood tells a story of nature and heritage. Designed with intention, our work brings quiet beauty to every corner of your space.</p>
         </motion.div>
 
-        {/* Column 3 */}
-        <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText1}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className={styles.cardNumber}><span>01</span> <Maximize2 size={16} /></div>
-          <h3 className={styles.cardTitle}>Royal Reverie in Every Cabinet</h3>
-          <p className={styles.cardDesc}>Step into a home that feels like royalty. Every piece is crafted with regal elegance, blending timeless craftsmanship with luxurious beauty.</p>
-        </motion.div>
-        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg2}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/f2.png" alt="Orange Sink design" />
-        </motion.div>
-
-        {/* Column 4 */}
-        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg3}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        {/* 5. Image 3 (Staircase) */}
+        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg3}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/f3.png" alt="Concrete interior" />
         </motion.div>
+
+        {/* 6. Text 3 (03 Dreamscape) */}
         <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText3}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className={styles.cardNumber}><span>03</span> <Maximize2 size={16} /></div>
+          <div className={styles.cardNumber}><span>03</span> <FourDotsIcon /></div>
           <h3 className={styles.cardTitle}>Dreamscape of Sculpted Spaces</h3>
           <p className={styles.cardDesc}>Our designs transform spaces into sculptural experiences where light, texture, and form unite, creating a home that feels surreal and uniquely yours.</p>
+        </motion.div>
+
+        {/* 7. Image 2 (Orange Sink) */}
+        <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg2}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/f2.png" alt="Orange Sink design" />
         </motion.div>
       </div>
 

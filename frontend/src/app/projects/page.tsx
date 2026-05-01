@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import API_BASE from '@/lib/api';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Target, Filter } from 'lucide-react';
@@ -12,7 +13,7 @@ export default function ProjectsArchive() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/projects')
+    fetch(`${API_BASE}/projects`)
       .then(res => res.json())
       .then(data => {
         setProjects(data);
