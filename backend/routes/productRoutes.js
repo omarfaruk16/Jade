@@ -97,7 +97,7 @@ const fullProductInclude = {
   descriptions: { orderBy: { order: 'asc' } },
   types: { orderBy: { order: 'asc' } },
   materials: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
-  accessories: { orderBy: { order: 'asc' } },
+  accessories: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
   appliances: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
 };
 
@@ -141,13 +141,20 @@ router.post('/', auth, async (req, res) => {
         gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
         descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
         types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
-        accessories: { create: (accessories || []).map((a, i) => ({ name: a.name, description: a.description, order: i })) },
         materials: {
           create: (materials || []).map((m, i) => ({
             sectionTitle: m.sectionTitle,
             sectionDesc: m.sectionDesc,
             order: i,
             items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
+        },
+        accessories: {
+          create: (accessories || []).map((a, i) => ({
+            sectionTitle: a.sectionTitle,
+            sectionDesc: a.sectionDesc,
+            order: i,
+            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
           }))
         },
         appliances: {
@@ -178,14 +185,19 @@ router.put('/:id', auth, async (req, res) => {
     await prisma.productGalleryImage.deleteMany({ where: { productId: req.params.id } });
     await prisma.productDescription.deleteMany({ where: { productId: req.params.id } });
     await prisma.productType.deleteMany({ where: { productId: req.params.id } });
-    await prisma.productAccessory.deleteMany({ where: { productId: req.params.id } });
 
-    // For materials and appliances, delete items first then parent
+    // For materials, accessories, and appliances, delete items first then parent
     const existingMaterials = await prisma.productMaterial.findMany({ where: { productId: req.params.id } });
     for (const m of existingMaterials) {
       await prisma.productMaterialItem.deleteMany({ where: { materialId: m.id } });
     }
     await prisma.productMaterial.deleteMany({ where: { productId: req.params.id } });
+
+    const existingAccessories = await prisma.productAccessory.findMany({ where: { productId: req.params.id } });
+    for (const a of existingAccessories) {
+      await prisma.productAccessoryItem.deleteMany({ where: { accessoryId: a.id } });
+    }
+    await prisma.productAccessory.deleteMany({ where: { productId: req.params.id } });
 
     const existingAppliances = await prisma.productAppliance.findMany({ where: { productId: req.params.id } });
     for (const a of existingAppliances) {
@@ -205,13 +217,20 @@ router.put('/:id', auth, async (req, res) => {
         gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
         descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
         types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
-        accessories: { create: (accessories || []).map((a, i) => ({ name: a.name, description: a.description, order: i })) },
         materials: {
           create: (materials || []).map((m, i) => ({
             sectionTitle: m.sectionTitle,
             sectionDesc: m.sectionDesc,
             order: i,
             items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
+        },
+        accessories: {
+          create: (accessories || []).map((a, i) => ({
+            sectionTitle: a.sectionTitle,
+            sectionDesc: a.sectionDesc,
+            order: i,
+            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
           }))
         },
         appliances: {

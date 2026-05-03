@@ -6,7 +6,7 @@
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 0 2.5rem;
 }
@@ -689,7 +689,8 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1.25rem;
+    max-width: 95%;
+    padding: 0;
   }
 
   /* Grid rows — tight, no phantom gaps */

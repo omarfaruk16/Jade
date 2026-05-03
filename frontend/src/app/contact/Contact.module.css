@@ -7,7 +7,7 @@
 
 .mainContainer {
   width: 100%;
-  max-width: 1400px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 10rem 4rem 4rem;
 }
@@ -278,7 +278,8 @@
 
 @media (max-width: 768px) {
   .mainContainer {
-    padding: 8rem 2rem 2rem;
+    max-width: 95%;
+    padding: 8rem 0 2rem;
   }
   .infoGrid {
     grid-template-columns: 1fr;

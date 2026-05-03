@@ -26,7 +26,7 @@
 }
 
 .contentContainer {
-  max-width: 1400px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 0 4rem;
 }
@@ -105,7 +105,8 @@
 
 @media (max-width: 768px) {
   .contentContainer {
-    padding: 0 1.5rem;
+    max-width: 95%;
+    padding: 0;
   }
   .promotionGrid {
     grid-template-columns: 1fr;

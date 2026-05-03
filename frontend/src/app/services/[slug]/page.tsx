@@ -32,6 +32,8 @@ export default function ServiceChildPage() {
   const [showSubNav, setShowSubNav] = useState(false);
   const itemRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
+  const [contact, setContact] = useState<any>(null);
+
   useEffect(() => {
     fetch(`${API_BASE}/services/child/${slug}`)
       .then(r => r.json())
@@ -40,6 +42,10 @@ export default function ServiceChildPage() {
         if (childData.items?.length > 0) setActiveItem(childData.items[0].id);
         setLoading(false);
       });
+    fetch(`${API_BASE}/contact`)
+      .then(r => r.json())
+      .then(setContact)
+      .catch(() => {});
   }, [slug]);
 
   useEffect(() => {
@@ -126,7 +132,7 @@ export default function ServiceChildPage() {
                 <h1 className={styles.itemTitle}>{item.title}</h1>
                 <div className={styles.itemHeaderRight}>
                   <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
-                  <button className={styles.contactBtn}>Contact now</button>
+                  <button className={styles.contactBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
                 </div>
               </div>
 
@@ -223,6 +229,26 @@ export default function ServiceChildPage() {
           </SectionReveal>
         ))}
       </div>
+
+      {/* ── Full Width Contact Section ── */}
+      <SectionReveal>
+        <section className={styles.contactSection}>
+          <div className={styles.contactInner}>
+            <div>
+              <p className={styles.contactLabel}>Get In Touch</p>
+              <h2 className={styles.contactTitle}>Interested in {data.name}?</h2>
+              <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
+              <button className={styles.contactBtnLarge} onClick={() => window.location.href='/contact'}>Contact Us</button>
+            </div>
+            <div className={styles.contactDetails}>
+              {contact?.phone && <div className={styles.contactItem}><h4>Call Us</h4><p>{contact.phone}</p></div>}
+              {contact?.email && <div className={styles.contactItem}><h4>Email</h4><p>{contact.email}</p></div>}
+              {contact?.address && <div className={styles.contactItem}><h4>Visit Us</h4><p>{contact.address}</p></div>}
+            </div>
+          </div>
+        </section>
+      </SectionReveal>
+
       <Footer />
     </div>
   );

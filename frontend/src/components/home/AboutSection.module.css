@@ -213,13 +213,14 @@
   .statsRow {
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
+    padding: 2rem 0; /* Reduced from 3rem */
   }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
   .aboutSection {
-    padding: 4rem 5%;
+    padding: 4rem 5% 2rem 5%;
   }
   .title {
     font-size: 2rem;

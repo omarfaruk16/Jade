@@ -90,12 +90,8 @@ export default function HeroSection() {
         transition={{ duration: 1.2, delay: 1 }}
       >
         <span className={styles.awardsLabel}>Awards:</span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Award Excellence widget */}
         <img src="/images/award.png" alt="Award Excellence" className={styles.awardIcon} />
-        <div className={styles.madeInFramer}>
-          <svg viewBox="0 0 14 14" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H14V7H7V14L0 7V0Z" fill="black"></path></svg>
-          Made in Framer
-        </div>
       </motion.div>
     </section>
   );

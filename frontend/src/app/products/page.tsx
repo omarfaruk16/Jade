@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
@@ -30,7 +31,14 @@ export default function ProductsOverviewPage() {
       <Navbar />
 
       <div style={{ paddingTop: '120px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', maxWidth: '1400px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
-        <h1 style={{ color: '#fff', fontSize: '3rem', fontWeight: 600, marginBottom: '1rem', letterSpacing: '-0.02em' }}>Our Products</h1>
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.85 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          style={{ color: '#fff', fontSize: '3rem', fontWeight: 600, marginBottom: '1rem', letterSpacing: '-0.02em' }}
+        >
+          Our Products
+        </motion.h1>
         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.2rem', marginBottom: '4rem', maxWidth: '600px' }}>Explore our range of premium collections, crafted with luxury and elegance in mind.</p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%' }}>

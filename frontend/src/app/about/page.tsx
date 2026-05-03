@@ -6,13 +6,43 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './About.module.css';
 import { CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
 import TeamSection from '@/components/home/TeamSection';
+import LogoMarquee from '@/components/common/LogoMarquee';
+
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function AboutPage() {
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
+
+  const heroMedia = [
+    { id: 0, type: 'image', src: '/images/f1.png' },
+    { id: 1, type: 'video', src: '/images/download.mp4' },
+    { id: 2, type: 'image', src: '/images/f2.png' },
+    { id: 3, type: 'image', src: '/images/f3.png' }
+  ];
+
+  const handleNext = () => setActiveIndex(p => (p + 1) % heroMedia.length);
+  const handlePrev = () => setActiveIndex(p => (p === 0 ? heroMedia.length - 1 : p - 1));
+
+  const getVisibleIndices = () => {
+    const left = activeIndex === 0 ? heroMedia.length - 1 : activeIndex - 1;
+    const center = activeIndex;
+    const right = (activeIndex + 1) % heroMedia.length;
+    return [left, center, right];
+  };
+
+  const visibleIndices = getVisibleIndices();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [activeIndex]); // Re-bind whenever activeIndex changes to reset the 2s timer if user clicks
 
   useEffect(() => {
     fetch(`${API_BASE}/testimonials`)
@@ -34,22 +64,78 @@ export default function AboutPage() {
         {/* Header Section */}
         <SectionReveal>
           <section className={styles.headerSection}>
-            <h1 className={styles.pageTitle}>About Us</h1>
+            <motion.h1 
+              className={styles.pageTitle}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              About Us
+            </motion.h1>
             <p className={styles.pageSubtitle}>
               Jade spaces blends high-end design principles with timeless materials
               and luxury living, ensuring every corner offers both inspiration and relaxation.
             </p>
 
+            <div className={styles.heroLogos}>
+              <LogoMarquee />
+            </div>
+
             <div className={styles.heroImagesGrid}>
-              <div className={styles.imageCol}>
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Architecture" />
-              </div>
-              <div className={styles.imageCol}>
-                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior Stairs" />
-              </div>
-              <div className={styles.imageCol}>
-                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lounge Chair" />
-              </div>
+              {visibleIndices.map((mediaIndex, i) => {
+                const media = heroMedia[mediaIndex];
+                const isLeft = i === 0;
+                const isCenter = i === 1;
+                const isRight = i === 2;
+                
+                return (
+                  <div key={i} className={styles.imageCol}>
+                    <AnimatePresence mode="popLayout">
+                      <motion.div
+                        key={media.id}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+                      >
+                        {media.type === 'video' ? (
+                          <video src={media.src} autoPlay muted loop playsInline className={styles.heroMediaEl} />
+                        ) : (
+                          <img src={media.src} alt="" className={styles.heroMediaEl} />
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Left Arrow on Left Image */}
+                    {isLeft && (
+                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft}`} onClick={handlePrev}>
+                        <ChevronLeft size={24} />
+                      </button>
+                    )}
+
+                    {/* Right Arrow on Right Image */}
+                    {isRight && (
+                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight}`} onClick={handleNext}>
+                        <ChevronRight size={24} />
+                      </button>
+                    )}
+
+                    {/* Dots on Center Image */}
+                    {isCenter && (
+                      <div className={styles.sliderDots}>
+                        {heroMedia.map((_, dotIdx) => (
+                          <span 
+                            key={dotIdx} 
+                            className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
+                            onClick={() => setActiveIndex(dotIdx)}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </section>
         </SectionReveal>

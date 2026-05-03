@@ -25,9 +25,9 @@ export default function ImportExportPage() {
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2 }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className={styles.heroTitle}
           >
             Worldwide Export Import
@@ -212,3 +212,12 @@ export default function ImportExportPage() {
     </div>
   );
 }
+
+const FourDotsIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginBottom: 12 }}>
+    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="16" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="16" r="1.5" fill="currentColor"/>
+    <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+  </svg>
+);

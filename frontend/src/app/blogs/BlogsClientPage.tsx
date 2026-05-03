@@ -33,7 +33,7 @@ export default function BlogsClientPage() {
           </svg>
         </motion.div>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.05 }}
+          initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
           style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 500, letterSpacing: '-0.03em', marginBottom: '1rem', lineHeight: 1.1 }}
         >
           Our Insights

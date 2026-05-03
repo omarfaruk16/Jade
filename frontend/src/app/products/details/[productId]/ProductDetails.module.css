@@ -1,4 +1,4 @@
-.pageWrapper { display:flex; flex-direction:column; min-height:100vh; background:#fbfaf9; }
+.pageWrapper { display:flex; flex-direction:column; min-height:100vh; background:#ffffff; }
 
 .heroSection { position:relative; width:100%; height:90vh; min-height:600px; background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; }
 .heroOverlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 5vw; }
@@ -32,8 +32,8 @@
 .typeName { color:#fff; font-size:0.95rem; font-weight:600; letter-spacing:0.01em; }
 
 /* ── Materials 2-col ── */
-.materialSection { display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:flex-start; margin-top:3rem; }
-.materialLeft { position:sticky; top:100px; }
+.materialSection { display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:center; margin-top:3rem; }
+.materialLeft { }
 .materialLeftTitle { font-size:clamp(1.5rem,2.5vw,2.2rem); font-weight:500; letter-spacing:-0.03em; color:#111; margin:0 0 1rem; }
 .materialLeftDesc { font-size:0.9rem; color:#666; line-height:1.8; }
 .materialItemsGrid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
@@ -66,8 +66,7 @@
 @media (max-width:1024px) {
   .descGrid { grid-template-columns:repeat(2,1fr); }
   .typesGrid { grid-template-columns:repeat(2,1fr); }
-  .materialSection { grid-template-columns:1fr; gap:2rem; }
-  .materialLeft { position:static; }
+  .materialSection { grid-template-columns:1fr; gap:2rem; align-items:flex-start; }
   .accessGrid { grid-template-columns:repeat(3,1fr); }
   .contactInner { grid-template-columns:1fr; gap:3rem; }
 }

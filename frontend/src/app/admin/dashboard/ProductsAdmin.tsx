@@ -32,6 +32,8 @@ const sectionBox: React.CSSProperties = { border:'1px solid rgba(255,255,255,0.0
 
 type MaterialItem = { title: string; description: string; image: string };
 type Material = { sectionTitle: string; sectionDesc: string; items: MaterialItem[] };
+type AccessoryItem = { title: string; description: string; image: string };
+type Accessory = { sectionTitle: string; sectionDesc: string; items: AccessoryItem[] };
 type ApplianceItem = { title: string; description: string; image: string };
 type Appliance = { sectionTitle: string; sectionDesc: string; items: ApplianceItem[] };
 
@@ -44,7 +46,7 @@ const emptyProduct = () => ({
   descriptions:[] as {title:string;description:string}[],
   types:[] as {name:string;image:string}[],
   materials:[] as Material[],
-  accessories:[] as {name:string;description:string}[],
+  accessories:[] as Accessory[],
   appliances:[] as Appliance[],
 });
 
@@ -129,13 +131,13 @@ export default function ProductsAdmin() {
       descriptions:(p.descriptions||[]).map((d:any)=>({title:d.title,description:d.description})),
       types:(p.types||[]).map((t:any)=>({name:t.name,image:t.image})),
       materials:(p.materials||[]).map((m:any)=>({sectionTitle:m.sectionTitle,sectionDesc:m.sectionDesc,items:(m.items||[]).map((i:any)=>({title:i.title,description:i.description,image:i.image}))})),
-      accessories:(p.accessories||[]).map((a:any)=>({name:a.name,description:a.description})),
+      accessories:(p.accessories||[]).map((a:any)=>({sectionTitle:a.sectionTitle,sectionDesc:a.sectionDesc,items:(a.items||[]).map((i:any)=>({title:i.title,description:i.description,image:i.image}))})),
       appliances:(p.appliances||[]).map((a:any)=>({sectionTitle:a.sectionTitle,sectionDesc:a.sectionDesc,items:(a.items||[]).map((i:any)=>({title:i.title,description:i.description,image:i.image}))})),
     } : { ...emptyProduct(), categoryId:categories[0]?.id||'' });
     setProductModal(true);
   };
 
-  const overlayStyle: React.CSSProperties = { position:'fixed', inset:0, background:'rgba(0,0,0,0.85)', backdropFilter:'blur(16px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3000, padding:'2rem' };
+  const overlayStyle: React.CSSProperties = { position:'fixed', inset:0, background:'rgba(0,0,0,0.85)', backdropFilter:'blur(16px)', display:'flex', alignItems:'flex-start', justifyContent:'center', zIndex:3000, padding:'4vh 2rem' };
   const modalStyle: React.CSSProperties = { background:'#111', borderRadius:24, border:'1px solid rgba(255,255,255,0.1)', padding:'2rem', width:'100%', maxWidth:860, maxHeight:'92vh', overflowY:'auto', position:'relative', boxShadow:'0 40px 100px rgba(0,0,0,0.5)' };
 
   const addMaterial = () => setProductForm(f=>({...f, materials:[...f.materials, {sectionTitle:'',sectionDesc:'',items:[]}]}));
@@ -144,6 +146,12 @@ export default function ProductsAdmin() {
   const addMatItem = (mi:number) => setProductForm(f=>{ const a=[...f.materials]; a[mi].items=[...a[mi].items,{title:'',description:'',image:''}]; return {...f,materials:a}; });
   const delMatItem = (mi:number,ii:number) => setProductForm(f=>{ const a=[...f.materials]; a[mi].items=a[mi].items.filter((_,i)=>i!==ii); return {...f,materials:a}; });
   const updMatItem = (mi:number,ii:number,key:string,val:string) => setProductForm(f=>{ const a=[...f.materials]; a[mi].items=[...a[mi].items]; a[mi].items[ii]={...a[mi].items[ii],[key]:val}; return {...f,materials:a}; });
+  const addAccessory = () => setProductForm(f=>({...f, accessories:[...f.accessories, {sectionTitle:'',sectionDesc:'',items:[]}]}));
+  const delAccessory = (ai:number) => setProductForm(f=>({...f, accessories:f.accessories.filter((_,i)=>i!==ai)}));
+  const updAccessory = (ai:number, key:string, val:string) => setProductForm(f=>{ const a=[...f.accessories]; a[ai]={...a[ai],[key]:val}; return {...f,accessories:a}; });
+  const addAccItem = (ai:number) => setProductForm(f=>{ const a=[...f.accessories]; a[ai].items=[...a[ai].items,{title:'',description:'',image:''}]; return {...f,accessories:a}; });
+  const delAccItem = (ai:number,ii:number) => setProductForm(f=>{ const a=[...f.accessories]; a[ai].items=a[ai].items.filter((_,i)=>i!==ii); return {...f,accessories:a}; });
+  const updAccItem = (ai:number,ii:number,key:string,val:string) => setProductForm(f=>{ const a=[...f.accessories]; a[ai].items=[...a[ai].items]; a[ai].items[ii]={...a[ai].items[ii],[key]:val}; return {...f,accessories:a}; });
 
   const addAppliance = () => setProductForm(f=>({...f, appliances:[...f.appliances, {sectionTitle:'',sectionDesc:'',items:[]}]}));
   const delAppliance = (ai:number) => setProductForm(f=>({...f, appliances:f.appliances.filter((_,i)=>i!==ai)}));
@@ -365,18 +373,40 @@ export default function ProductsAdmin() {
               {/* Accessories Section */}
               <div style={{background:'rgba(255,255,255,0.03)',borderRadius:12,padding:'1rem'}}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'0.75rem'}}>
-                  <div style={{color:'rgba(255,255,255,0.4)',fontSize:11,textTransform:'uppercase',letterSpacing:'0.08em'}}>Accessories (6-col PC, 3-col tablet, 2-col mobile)</div>
-                  <button type="button" onClick={()=>setProductForm(f=>({...f,accessories:[...f.accessories,{name:'',description:''}]}))} style={{display:'flex',alignItems:'center',gap:4,padding:'4px 10px',background:'#1a1a1c',border:'1px solid #333',borderRadius:6,color:'#fff',cursor:'pointer',fontSize:12}}><Plus size={12}/>Add</button>
+                  <div style={{color:'rgba(255,255,255,0.4)',fontSize:11,textTransform:'uppercase',letterSpacing:'0.08em'}}>Accessories</div>
+                  <button type="button" onClick={addAccessory} style={{display:'flex',alignItems:'center',gap:4,padding:'4px 10px',background:'#1a1a1c',border:'1px solid #333',borderRadius:6,color:'#fff',cursor:'pointer',fontSize:12}}><Plus size={12}/>Add Accessory Section</button>
                 </div>
-                {productForm.accessories.map((a,i)=>(
-                  <div key={i} style={sectionBox}>
+                {productForm.accessories.map((a,ai)=>(
+                  <div key={ai} style={{...sectionBox,marginBottom:'0.75rem'}}>
                     <div style={{display:'flex',justifyContent:'space-between',marginBottom:8}}>
-                      <span style={{color:'#666',fontSize:11}}>Accessory {i+1}</span>
-                      <button type="button" onClick={()=>setProductForm(f=>({...f,accessories:f.accessories.filter((_,idx)=>idx!==i)}))} style={{background:'none',border:'none',color:'#ef4444',cursor:'pointer'}}><Trash2 size={12}/></button>
+                      <span style={{color:'#aaa',fontSize:12,fontWeight:600}}>Accessory Section {ai+1}</span>
+                      <button type="button" onClick={()=>delAccessory(ai)} style={{background:'none',border:'none',color:'#ef4444',cursor:'pointer'}}><Trash2 size={13}/></button>
                     </div>
-                    <input style={{...inp,marginBottom:8}} placeholder="Name (bold title)" value={a.name} onChange={e=>{const arr=[...productForm.accessories];arr[i]={...arr[i],name:e.target.value};setProductForm(f=>({...f,accessories:arr}));}}/>
-                    <label style={lbl}>Description (rich text)</label>
-                    <RichEditor value={a.description} onChange={v=>{const arr=[...productForm.accessories];arr[i]={...arr[i],description:v};setProductForm(f=>({...f,accessories:arr}));}}/>
+                    <input style={{...inp,marginBottom:8}} placeholder="Section Title" value={a.sectionTitle} onChange={e=>updAccessory(ai,'sectionTitle',e.target.value)}/>
+                    <textarea style={{...inp,minHeight:60,marginBottom:'0.75rem'}} placeholder="Section Description" value={a.sectionDesc} onChange={e=>updAccessory(ai,'sectionDesc',e.target.value)}/>
+                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+                      <span style={{color:'rgba(255,255,255,0.3)',fontSize:11}}>Accessory Items</span>
+                      <button type="button" onClick={()=>addAccItem(ai)} style={{display:'flex',alignItems:'center',gap:4,padding:'3px 8px',background:'#1a1a1c',border:'1px solid #333',borderRadius:5,color:'#fff',cursor:'pointer',fontSize:11}}><Plus size={10}/>Add Item</button>
+                    </div>
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.6rem'}}>
+                      {a.items.map((item,ii)=>(
+                        <div key={ii} style={{background:'rgba(0,0,0,0.3)',borderRadius:8,padding:'0.75rem',border:'1px solid rgba(255,255,255,0.05)'}}>
+                          <div style={{display:'flex',justifyContent:'space-between',marginBottom:6}}>
+                            <span style={{color:'#555',fontSize:10}}>Item {ii+1}</span>
+                            <button type="button" onClick={()=>delAccItem(ai,ii)} style={{background:'none',border:'none',color:'#ef4444',cursor:'pointer'}}><Trash2 size={10}/></button>
+                          </div>
+                          <input style={{...inp,marginBottom:6,fontSize:12}} placeholder="Title" value={item.title} onChange={e=>updAccItem(ai,ii,'title',e.target.value)}/>
+                          <textarea style={{...inp,minHeight:50,marginBottom:6,fontSize:12}} placeholder="Description" value={item.description} onChange={e=>updAccItem(ai,ii,'description',e.target.value)}/>
+                          <div style={{display:'flex',gap:6,alignItems:'center'}}>
+                            <input style={{...inp,flex:1,fontSize:10}} value={item.image} readOnly placeholder="Image"/>
+                            <label style={{padding:'3px 7px',background:'#1a1a1c',border:'1px solid #333',borderRadius:5,color:'#fff',cursor:'pointer',fontSize:10}}>
+                              Upload<input type="file" accept="image/*" style={{display:'none'}} onChange={async e=>{const f=e.target.files?.[0];if(!f)return;const u=await upload(f);updAccItem(ai,ii,'image',u);}}/>
+                            </label>
+                            {item.image&&<img src={item.image} alt="" style={{width:48,height:36,objectFit:'cover',borderRadius:4}}/>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>

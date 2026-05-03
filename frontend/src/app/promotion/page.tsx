@@ -31,9 +31,9 @@ export default function PromotionPage() {
 
       <section className={styles.heroSection}>
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
           className={styles.pageTitle}
         >
           Special Promotions

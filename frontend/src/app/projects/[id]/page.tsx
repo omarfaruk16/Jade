@@ -55,9 +55,9 @@ export default function ProjectDetails() {
         <div className={styles.heroOverlay}></div>
         <motion.div 
           className={styles.heroContent} 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className={styles.title}>{project.title}</h1>
           <p className={styles.subtitle}>{project.subtitle}</p>

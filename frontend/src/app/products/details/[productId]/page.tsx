@@ -37,7 +37,14 @@ export default function ProductDetailsPage() {
       {/* ── Hero ── */}
       <div className={styles.heroSection} style={{ backgroundImage:`url(${product.coverImage})` }}>
         <motion.div className={styles.heroOverlay} initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:1.2,delay:0.2}}>
-          <h1 className={styles.heroTitle}>{product.title}</h1>
+          <motion.h1 
+            className={styles.heroTitle}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {product.title}
+          </motion.h1>
           {product.subtitle && <p className={styles.heroSubtitle}>{product.subtitle}</p>}
         </motion.div>
       </div>
@@ -106,22 +113,28 @@ export default function ProductDetailsPage() {
         ))}
 
         {/* ── Accessories ── */}
-        {product.accessories?.length > 0 && (
-          <SectionReveal>
+        {product.accessories?.map((acc: any) => (
+          <SectionReveal key={acc.id}>
             <section className={styles.section}>
-              <p className={styles.sectionLabel}>Accessories</p>
-              <h2 className={styles.sectionTitle}>Types of Accessories</h2>
-              <div className={styles.accessGrid}>
-                {product.accessories.map((a: any, i: number) => (
-                  <motion.div key={a.id} className={styles.accessCard} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.05}} viewport={{once:true}}>
-                    <p className={styles.accessName}>{a.name}</p>
-                    <div className={styles.accessDesc} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(a.description)}} />
-                  </motion.div>
-                ))}
+              <div className={styles.materialSection}>
+                <div className={styles.materialLeft}>
+                  <p className={styles.sectionLabel}>Accessories</p>
+                  <h2 className={styles.materialLeftTitle}>{acc.sectionTitle}</h2>
+                  <p className={styles.materialLeftDesc}>{acc.sectionDesc}</p>
+                </div>
+                <div className={styles.materialItemsGrid}>
+                  {acc.items?.map((item: any, i: number) => (
+                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                      {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
+                      <p className={styles.materialItemTitle}>{item.title}</p>
+                      <p className={styles.materialItemDesc}>{item.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </section>
           </SectionReveal>
-        )}
+        ))}
 
         {/* ── Appliances ── */}
         {product.appliances?.map((app: any) => (
@@ -151,7 +164,7 @@ export default function ProductDetailsPage() {
 
       {/* ── Contact ── */}
       <SectionReveal>
-        <section className={`${styles.section} ${styles.contactSection}`}>
+        <section className={styles.contactSection}>
           <div className={styles.contactInner}>
             <div>
               <p className={styles.sectionLabel} style={{color:'rgba(255,255,255,0.4)'}}>Get In Touch</p>

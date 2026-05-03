@@ -7,7 +7,12 @@ const auth = (req, res, next) => {
     return res.status(401).json({ error: 'Authentication required' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET || 'supersecret', (err, user) => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
+
+  jwt.verify(token, secret, (err, user) => {
     if (err) {
       return res.status(403).json({ error: 'Invalid or expired token' });
     }

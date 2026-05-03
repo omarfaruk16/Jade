@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 
@@ -287,12 +287,23 @@ model ProductMaterialItem {
 
 // ─── Product Accessories ─────────────────────────────────────────────────────
 model ProductAccessory {
-  id          String   @id @default(uuid())
-  name        String
+  id           String                @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                   @default(0)
+  productId    String
+  product      Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductAccessoryItem[]
+}
+
+model ProductAccessoryItem {
+  id          String           @id @default(uuid())
+  title       String
   description String
-  order       Int      @default(0)
-  productId   String
-  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  image       String
+  order       Int              @default(0)
+  accessoryId String
+  accessory   ProductAccessory @relation(fields: [accessoryId], references: [id], onDelete: Cascade)
 }
 
 // ─── Product Appliances ──────────────────────────────────────────────────────

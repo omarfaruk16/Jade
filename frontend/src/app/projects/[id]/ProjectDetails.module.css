@@ -56,7 +56,7 @@
 }
 
 .contentContainer {
-  max-width: 1400px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -213,6 +213,10 @@
 }
 
 @media (max-width: 768px) {
+  .contentContainer {
+    max-width: 95%;
+    padding: 0;
+  }
   .overviewSection, .processSection {
     grid-template-columns: 1fr;
     gap: 3rem;

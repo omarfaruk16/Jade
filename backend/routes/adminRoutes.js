@@ -23,7 +23,16 @@ router.post('/login', async (req, res) => {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
 
-  const token = jwt.sign({ id: admin.id, username: admin.username }, process.env.JWT_SECRET || 'supersecret', { expiresIn: '1d' });
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
+
+  const token = jwt.sign(
+    { id: admin.id, username: admin.username },
+    jwtSecret,
+    { expiresIn: '7d' }
+  );
   res.json({ token });
 });
 

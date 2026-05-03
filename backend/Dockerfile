@@ -2,21 +2,24 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install openssl for prisma
+# Install openssl for prisma compatibility
 RUN apk add --no-cache openssl
 
+# Install dependencies first (cached layer)
 COPY package*.json ./
-RUN npm install
+RUN npm ci --only=production
 
+# Generate Prisma client
 COPY prisma ./prisma/
 RUN npx prisma generate
 
+# Copy source
 COPY . .
 
-# Ensure directory for SQLite exists and has proper permissions
-RUN mkdir -p /app/data
+# Ensure uploads directory exists with correct permissions
+RUN mkdir -p /app/uploads && chmod 755 /app/uploads
 
-EXPOSE 5000
+EXPOSE 5001
 
-# Script to run migrations and then start the app
-CMD ["sh", "-c", "npx prisma db push && node seed.js && node index.js"]
+# Run migrations + seed (idempotent) then start server
+CMD ["sh", "-c", "npx prisma migrate deploy && node seed.js && node index.js"]

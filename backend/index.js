@@ -13,13 +13,28 @@ const PORT = process.env.PORT || 5001;
 app.use(helmet({
   crossOriginResourcePolicy: false, // Allow images to be served to different origins
 }));
-app.use(cors());
+
+// CORS: allow only the frontend origin (set FRONTEND_URL in .env)
+const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || 'http://localhost:3000').split(',');
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    return callback(new Error(`CORS: Origin ${origin} not allowed`));
+  },
+  credentials: true,
+}));
+
 app.use(express.json());
 
-// Rate Limiting
+// Rate Limiting — 200 requests per 15 minutes per IP
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10000 // limit each IP to 10000 requests per windowMs (increased for dev)
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' },
 });
 app.use('/api/', limiter);
 

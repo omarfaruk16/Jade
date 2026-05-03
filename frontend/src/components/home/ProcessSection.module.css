@@ -11,7 +11,7 @@
 }
 
 .leftColumn {
-  flex: 0 0 45%;
+  flex: 0 0 33.33%;
   align-self: flex-start;
   position: sticky;
   top: 8rem;

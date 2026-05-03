@@ -29,11 +29,25 @@
   margin: 0;
 }
 
+.marqueeContainer {
+  width: 50%; /* Take up half the header width */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Align icons to the right */
+}
+
 .brandLogos {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  opacity: 0.8;
+  gap: 6rem; /* Increased gap to help with '4 at a time' visibility */
+  animation: marquee 15s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .logoItem {
@@ -49,18 +63,36 @@
 }
 
 .cardsWrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  overflow-x: auto;
   padding: 0 4vw;
   gap: 2rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.cardsWrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .card {
-  width: 100%;
+  width: 45%;
+  min-width: 350px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   text-decoration: none;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 85%;
+    min-width: 280px;
+  }
 }
 
 .imageContainer {
@@ -104,6 +136,7 @@
 @media (max-width: 768px) {
   .scrollContainer {
     height: auto !important;
+    padding-top: 2rem; /* Reduced from 8rem */
   }
 
   .stickySection {
