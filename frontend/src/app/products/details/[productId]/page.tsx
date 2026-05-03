@@ -1,174 +1,173 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useEffect, useState, useRef } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import styles from '../../../services/[slug]/ServiceChild.module.css'; // Reusing service styles
-
-const PinIcon = () => (
-  <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="6" cy="4.5" r="3.5" stroke="#111" strokeWidth="1.2"/>
-    <path d="M6 8V13.5" stroke="#111" strokeWidth="1.2"/>
-  </svg>
-);
-
-const QuoteIcon = () => (
-  <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor"/>
-    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor"/>
-  </svg>
-);
+import SectionReveal from '@/components/layout/SectionReveal';
+import styles from './ProductDetails.module.css';
 
 export default function ProductDetailsPage() {
   const { productId } = useParams() as { productId: string };
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [contact, setContact] = useState<any>(null);
 
   useEffect(() => {
     fetch(`${API_BASE}/products/${productId}`)
       .then(r => r.json())
-      .then(data => {
-        if (!data.error) setProduct(data);
-        setLoading(false);
-      })
-      .catch(e => {
-        console.error(e);
-        setLoading(false);
-      });
+      .then(data => { if (!data.error) setProduct(data); setLoading(false); })
+      .catch(() => setLoading(false));
+    fetch(`${API_BASE}/contact`)
+      .then(r => r.json()).then(setContact).catch(() => {});
   }, [productId]);
 
   if (loading) return <div className={styles.loading}>Loading…</div>;
-  if (!product || product.error) return <div className={styles.loading}>Product not found.</div>;
+  if (!product) return <div className={styles.loading}>Product not found.</div>;
+
+  const fadeUp = { hidden:{opacity:0,y:40}, visible:{opacity:1,y:0,transition:{duration:0.8,ease:[0.16,1,0.3,1]}} };
 
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      {/* ── Full Width Hero Section ── */}
-      <div 
-        className={styles.heroSection} 
-        style={{ backgroundImage: `url(${product.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})` }}
-      >
-        <div className={styles.heroOverlay}>
+      {/* ── Hero ── */}
+      <div className={styles.heroSection} style={{ backgroundImage:`url(${product.coverImage})` }}>
+        <motion.div className={styles.heroOverlay} initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:1.2,delay:0.2}}>
           <h1 className={styles.heroTitle}>{product.title}</h1>
-          {product.subtitle && (
-            <p className={styles.heroDesc}>{product.subtitle}</p>
-          )}
-        </div>
+          {product.subtitle && <p className={styles.heroSubtitle}>{product.subtitle}</p>}
+        </motion.div>
       </div>
 
       <div className={styles.page}>
-        <section className={styles.serviceItem}>
-          
-          <div className={styles.itemHeader}>
-            <h1 className={styles.itemTitle}>{product.title}</h1>
-            <div className={styles.itemHeaderRight}>
-              <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
-              <button className={styles.contactBtn}>Contact now</button>
-            </div>
-          </div>
 
-          {/* Row 1: About service (using same labels for consistency) */}
-          <div className={styles.gridRow}>
-            <div className={styles.leftCol}>
-              <PinIcon />
-              <span>About service</span>
-            </div>
-            
-            <div className={styles.middleCol}>
-              <p className={styles.aboutText}>{product.about}</p>
-              {product.keyLine && (
-                <div className={styles.quoteBoxOrange} style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '8px', color: '#fff', fontSize: '14px', lineHeight: '1.6' }}>
-                  <div className={styles.quoteWrap} style={{ marginBottom: '1rem', color: '#fff' }}><QuoteIcon /></div>
-                  <span>{product.keyLine}</span>
+        {/* ── Descriptions ── */}
+        {product.descriptions?.length > 0 && (
+          <SectionReveal>
+            <section className={styles.section}>
+              <p className={styles.sectionLabel}>Overview</p>
+              <h2 className={styles.sectionTitle}>{product.title}</h2>
+              {product.subtitle && <p className={styles.sectionSubtitle}>{product.subtitle}</p>}
+              <div className={styles.descGrid}>
+                {product.descriptions.map((d: any, i: number) => (
+                  <motion.div key={d.id} className={styles.descCard} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} transition={{duration:0.6,delay:i*0.1}} viewport={{once:true}}>
+                    <h3 className={styles.descCardTitle}>{d.title}</h3>
+                    <p className={styles.descCardText}>{d.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+          </SectionReveal>
+        )}
+
+        {/* ── Types ── */}
+        {product.types?.length > 0 && (
+          <SectionReveal>
+            <section className={styles.section}>
+              <p className={styles.sectionLabel}>Explore</p>
+              <h2 className={styles.sectionTitle}>Types of {product.title}</h2>
+              <div className={styles.typesGrid}>
+                {product.types.map((t: any, i: number) => (
+                  <motion.div key={t.id} className={styles.typeCard} initial={{opacity:0,scale:0.95}} whileInView={{opacity:1,scale:1}} transition={{duration:0.5,delay:i*0.08}} viewport={{once:true}}>
+                    <img src={t.image} alt={t.name} />
+                    <div className={styles.typeOverlay}><span className={styles.typeName}>{t.name}</span></div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+          </SectionReveal>
+        )}
+
+        {/* ── Materials ── */}
+        {product.materials?.map((mat: any) => (
+          <SectionReveal key={mat.id}>
+            <section className={styles.section}>
+              <div className={styles.materialSection}>
+                <div className={styles.materialLeft}>
+                  <p className={styles.sectionLabel}>Materials</p>
+                  <h2 className={styles.materialLeftTitle}>{mat.sectionTitle}</h2>
+                  <p className={styles.materialLeftDesc}>{mat.sectionDesc}</p>
                 </div>
-              )}
-            </div>
-
-            <div className={styles.rightCol}>
-              {product.imageUrl && (
-                <img src={product.imageUrl} alt={product.title} className={styles.aboutImage} />
-              )}
-            </div>
-          </div>
-
-          {/* Row 2: Overview */}
-          {(product.overviewCategory || product.overviewBestFor || product.overviewStyleApproach) && (
-            <div className={styles.gridRow}>
-              <div className={styles.leftCol}>
-                <PinIcon />
-                <span>Overview</span>
-              </div>
-              
-              <div className={styles.middleCol} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
-                {product.overviewCategory && (
-                  <div>
-                    <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Category</h4>
-                    <p style={{ fontSize: '14px', color: '#333' }}>{product.overviewCategory}</p>
-                  </div>
-                )}
-                {product.overviewBestFor && (
-                  <div>
-                    <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Best For</h4>
-                    <p style={{ fontSize: '14px', color: '#333' }}>{product.overviewBestFor}</p>
-                  </div>
-                )}
-              </div>
-
-              <div className={styles.rightCol} style={{ justifyContent: 'flex-start' }}>
-                {product.overviewStyleApproach && (
-                  <div>
-                    <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Style Approach</h4>
-                    <p style={{ fontSize: '14px', color: '#333' }}>{product.overviewStyleApproach}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Row 3: Features */}
-          <div className={styles.gridRow}>
-            <div className={styles.leftCol}>
-              <PinIcon />
-              <span>Features</span>
-            </div>
-            
-            <div className={styles.includedMiddleCol}>
-              {product.whatsIncluded?.map((w: any, idx: number) => (
-                <div key={w.id} className={styles.includedBlock}>
-                  <h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4>
-                  <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description) }} />
+                <div className={styles.materialItemsGrid}>
+                  {mat.items?.map((item: any, i: number) => (
+                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                      {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
+                      <p className={styles.materialItemTitle}>{item.title}</p>
+                      <p className={styles.materialItemDesc}>{item.description}</p>
+                    </motion.div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </section>
+          </SectionReveal>
+        ))}
 
-            <div className={styles.includedRightCol}>
-              {JSON.parse(product.featureQuotesJson || "[]").map((q: string, idx: number, arr: string[]) => {
-                const isLast = idx === arr.length - 1;
-                return (
-                  <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
-                    <div className={styles.quoteWrap}><QuoteIcon /></div>
-                    <span>{q}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        {/* ── Accessories ── */}
+        {product.accessories?.length > 0 && (
+          <SectionReveal>
+            <section className={styles.section}>
+              <p className={styles.sectionLabel}>Accessories</p>
+              <h2 className={styles.sectionTitle}>Types of Accessories</h2>
+              <div className={styles.accessGrid}>
+                {product.accessories.map((a: any, i: number) => (
+                  <motion.div key={a.id} className={styles.accessCard} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.05}} viewport={{once:true}}>
+                    <p className={styles.accessName}>{a.name}</p>
+                    <div className={styles.accessDesc} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(a.description)}} />
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+          </SectionReveal>
+        )}
 
-          {/* Gallery Row */}
-          {product.gallery?.length > 0 && (
-            <div className={styles.galleryRow}>
-              {product.gallery.map((g: any) => (
-                <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
-              ))}
-            </div>
-          )}
+        {/* ── Appliances ── */}
+        {product.appliances?.map((app: any) => (
+          <SectionReveal key={app.id}>
+            <section className={styles.section}>
+              <div className={styles.materialSection}>
+                <div className={styles.materialLeft}>
+                  <p className={styles.sectionLabel}>Appliances</p>
+                  <h2 className={styles.materialLeftTitle}>{app.sectionTitle}</h2>
+                  <p className={styles.materialLeftDesc}>{app.sectionDesc}</p>
+                </div>
+                <div className={styles.materialItemsGrid}>
+                  {app.items?.map((item: any, i: number) => (
+                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                      {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
+                      <p className={styles.materialItemTitle}>{item.title}</p>
+                      <p className={styles.materialItemDesc}>{item.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </SectionReveal>
+        ))}
 
-        </section>
       </div>
+
+      {/* ── Contact ── */}
+      <SectionReveal>
+        <section className={`${styles.section} ${styles.contactSection}`}>
+          <div className={styles.contactInner}>
+            <div>
+              <p className={styles.sectionLabel} style={{color:'rgba(255,255,255,0.4)'}}>Get In Touch</p>
+              <h2 className={styles.contactTitle}>Interested in {product.title}?</h2>
+              <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
+              <button className={styles.contactBtn} onClick={()=>window.location.href='/contact'}>Contact Us</button>
+            </div>
+            <div className={styles.contactDetails}>
+              {contact?.phone && <div className={styles.contactItem}><h4>Call Us</h4><p>{contact.phone}</p></div>}
+              {contact?.email && <div className={styles.contactItem}><h4>Email</h4><p>{contact.email}</p></div>}
+              {contact?.address && <div className={styles.contactItem}><h4>Visit Us</h4><p>{contact.address}</p></div>}
+            </div>
+          </div>
+        </section>
+      </SectionReveal>
+
       <Footer />
     </div>
   );

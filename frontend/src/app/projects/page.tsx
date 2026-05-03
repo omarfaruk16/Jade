@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Target, Filter } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
+import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './ProjectsArchive.module.css';
 
 export default function ProjectsArchive() {
@@ -25,19 +26,6 @@ export default function ProjectsArchive() {
       });
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
@@ -48,16 +36,17 @@ export default function ProjectsArchive() {
         </div>
         <motion.h1 
           className={styles.title}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
         >
           Selected Projects
         </motion.h1>
         <motion.p 
           className={styles.subtitle}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
         >
           With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
         </motion.p>
@@ -72,31 +61,34 @@ export default function ProjectsArchive() {
         </div>
       </div>
 
-      <motion.div 
-        className={styles.projectsGrid}
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {loading ? (
-          <div style={{ textAlign: 'center', width: '100%', gridColumn: 'span 3', padding: '4rem' }}>Loading architecture...</div>
-        ) : (
-          projects.map((p) => (
-            <Link href={`/projects/${p.id}`} key={p.id} passHref legacyBehavior>
-              <motion.a className={styles.projectCard} variants={itemVariants}>
-                <div className={styles.imageWrapper}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.coverImage} alt={p.title} />
-                </div>
-                <div className={styles.cardFooter}>
-                  <span className={styles.cardTitle}>{p.title}</span>
-                  <span className={styles.cardDate}>{p.date}</span>
-                </div>
-              </motion.a>
-            </Link>
-          ))
-        )}
-      </motion.div>
+      <SectionReveal>
+        <div className={styles.projectsGrid}>
+          {loading ? (
+            <div style={{ textAlign: 'center', width: '100%', gridColumn: 'span 3', padding: '4rem' }}>Loading architecture...</div>
+          ) : (
+            projects.map((p, i) => (
+              <Link href={`/projects/${p.id}`} key={p.id} passHref legacyBehavior>
+                <motion.a 
+                  className={styles.projectCard}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: i * 0.1 }}
+                >
+                  <div className={styles.imageWrapper}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.coverImage} alt={p.title} />
+                  </div>
+                  <div className={styles.cardFooter}>
+                    <span className={styles.cardTitle}>{p.title}</span>
+                    <span className={styles.cardDate}>{p.date}</span>
+                  </div>
+                </motion.a>
+              </Link>
+            ))
+          )}
+        </div>
+      </SectionReveal>
     </div>
   );
 }

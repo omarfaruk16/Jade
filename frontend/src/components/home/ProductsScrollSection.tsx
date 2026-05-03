@@ -21,10 +21,16 @@ export default function ProductsScrollSection() {
       <div className={styles.stickySection}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            <p className={styles.headerText}>
+            <motion.p 
+              className={styles.headerText}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               Each project is a reflection of our design philosophy—<br />
               intentional, timeless, and tailored.
-            </p>
+            </motion.p>
           </div>
           <div className={styles.brandLogos}>
             <div className={styles.logoItem}>

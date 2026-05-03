@@ -24,6 +24,12 @@
   margin-bottom: 1.5rem;
 }
 
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .subtitle {
   font-size: 1.1rem;
   color: #555;

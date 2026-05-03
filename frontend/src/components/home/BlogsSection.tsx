@@ -31,6 +31,7 @@ export default function BlogsSection() {
         <motion.h2
           className={styles.title}
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
         >
           Insights that shape spaces
         </motion.h2>
@@ -46,7 +47,8 @@ export default function BlogsSection() {
         {featured && (
           <motion.div
             className={styles.featuredCard}
-            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
           >
             <Link href={`/blogs/${featured.slug}`} className={styles.featuredLink}>
               <img src={featured.coverImage} alt={featured.title} className={styles.featuredImg} />
@@ -68,8 +70,8 @@ export default function BlogsSection() {
             <motion.div
               key={blog.id}
               className={styles.listItem}
-              initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              transition={{ delay: idx * 0.08 }}
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: idx * 0.08 }}
             >
               <div className={styles.fourDots}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

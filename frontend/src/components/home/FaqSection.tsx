@@ -1,22 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
+import API_BASE from '@/lib/api';
 import styles from './FaqSection.module.css';
 
-const faqs = [
-  { question: "What services does Jade Kitchen offer?", answer: "Jade Kitchen creates bespoke kitchens, wardrobes, and interiors designed to match your lifestyle and taste. We provide complete solutions, from design consultancy and concept visuals to full execution, including custom furniture and ongoing care programs. Our products are also exported internationally, delivering Jade Kitchen's craftsmanship worldwide." },
-  { question: "How does the design process work?", answer: "Our process begins with a detailed consultation to understand your needs, followed by concept development, 3D renderings, material selection, and finally precise execution and installation." },
-  { question: "How long does a typical project take?", answer: "Project timelines vary depending on the scope and complexity. A standard residential renovation might take 2-4 months, while a full commercial build can take 6-12 months." },
-  { question: "Can I request design changes?", answer: "Yes, we encourage collaboration. During the concept phase, revisions are welcomed to ensure the final design aligns perfectly with your vision." },
-  { question: "What are your pricing options?", answer: "We offer transparent, phased pricing tailored to your project's specific requirements, materials chosen, and overall scope." },
-  { question: "Do you work outside Malaysia?", answer: "Yes, we have extensive experience managing and delivering high-end interior projects internationally." }
-];
-
 export default function FaqSection() {
+  const [faqs, setFaqs] = useState<any[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/faq`)
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setFaqs(data);
+      })
+      .catch(console.error);
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -95,8 +97,8 @@ export default function FaqSection() {
 
         <motion.div 
           className={styles.rightContent}
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <img src="/images/contact_faq_team.png" alt="Team meeting" className={styles.faqImage} />

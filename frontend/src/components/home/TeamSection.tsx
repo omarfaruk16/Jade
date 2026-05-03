@@ -24,6 +24,7 @@ export default function TeamSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
           >
             Meet the Team Behind Your Dream Space
           </motion.h2>
@@ -32,7 +33,7 @@ export default function TeamSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.1 }}
           >
             Great design is a collaborative journey. Our team works closely to deliver thoughtful, seamless results that go beyond your expectations.
           </motion.p>
@@ -46,7 +47,7 @@ export default function TeamSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              transition={{ duration: 1.2, delay: idx * 0.1 }}
             >
               <div className={styles.imageWrapper}>
                 <img src={member.image} alt={member.name} />
@@ -76,6 +77,7 @@ export default function TeamSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
         >
           <div className={styles.footerLeft}>
             <h4 className={styles.footerHeadline}>Join us in shaping better spaces</h4>

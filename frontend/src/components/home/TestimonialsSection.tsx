@@ -86,8 +86,8 @@ export default function TestimonialsSection() {
         {/* Tall video card — 3rd column */}
         <motion.div
           className={`${styles.card} ${styles.videoCard}`}
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >

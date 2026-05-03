@@ -15,8 +15,8 @@ export default function ProcessSection() {
         {/* LEFT SIDE: Video */}
         <motion.div 
           className={styles.leftColumn}
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <div className={styles.videoWrapper} onClick={() => setIsVideoOpen(true)}>

@@ -22,14 +22,24 @@ body {
   overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif !important;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-outfit), sans-serif;
+h1, h2, h3, h4, h5, h6, .jade-page-title, .jade-section-title {
+  font-family: var(--font-outfit), 'Outfit', sans-serif !important;
   letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+p, span, div, a, button, input, textarea {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+button {
+  font-family: var(--font-inter), 'Inter', sans-serif !important;
+  letter-spacing: -0.01em;
 }
 
 body::before {

@@ -21,7 +21,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.2 }}
         >
           Jade blends calm and character —<br />
           creating beautifully crafted interiors.
@@ -31,7 +31,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
         >
           <p className={styles.subtitle}>
             At Jade, we craft interiors that blend calm elegance with bold character using premium materials and timeless design to create spaces that feel as good as they look.
@@ -103,7 +103,13 @@ export default function AboutSection() {
         </motion.div>
       </div>
 
-      <div className={styles.statsRow}>
+      <motion.div 
+        className={styles.statsRow}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay: 0.2 }}
+      >
         <div className={styles.statItem}>
           <h3>15+</h3>
           <p>Years of market expertise.</p>
@@ -120,7 +126,7 @@ export default function AboutSection() {
           <h3>8k+</h3>
           <p>Projects Completed — Quality work.</p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

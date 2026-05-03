@@ -2,11 +2,13 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './ServiceChild.module.css';
+import SectionReveal from '@/components/layout/SectionReveal';
 
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,126 +102,125 @@ export default function ServiceChildPage() {
         className={styles.heroSection} 
         style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})` }}
       >
-        <div className={styles.heroOverlay}>
+        <motion.div 
+          className={styles.heroOverlay}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+        >
           <h1 className={styles.heroTitle}>{data.name}</h1>
           {data.description && (
             <p className={styles.heroDesc}>{data.description}</p>
           )}
-        </div>
+        </motion.div>
       </div>
 
       <div className={styles.page}>
         {data.items.map((item: any) => (
-          <section 
-            key={item.id} 
-            ref={el => { itemRefs.current[item.id] = el; }}
-            className={styles.serviceItem}
-          >
-            
-            <div className={styles.itemHeader}>
-              <h1 className={styles.itemTitle}>{item.title}</h1>
-              <div className={styles.itemHeaderRight}>
-                <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
-                <button className={styles.contactBtn}>Contact now</button>
-              </div>
-            </div>
-
-            {/* Row 1: About service */}
-            <div className={styles.gridRow}>
-              <div className={styles.leftCol}>
-                <PinIcon />
-                <span>About service</span>
-              </div>
-              
-              <div className={styles.middleCol}>
-                <p className={styles.aboutText}>{item.about}</p>
-                {item.keyLine && (
-                  <div className={styles.quoteBoxOrange} style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '8px', color: '#fff', fontSize: '14px', lineHeight: '1.6' }}>
-                    <div className={styles.quoteWrap} style={{ marginBottom: '1rem', color: '#fff' }}><QuoteIcon /></div>
-                    <span>{item.keyLine}</span>
-                  </div>
-                )}
+          <SectionReveal key={item.id}>
+            <section
+              ref={el => { itemRefs.current[item.id] = el; }}
+              className={styles.serviceItem}
+            >
+              <div className={styles.itemHeader}>
+                <h1 className={styles.itemTitle}>{item.title}</h1>
+                <div className={styles.itemHeaderRight}>
+                  <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
+                  <button className={styles.contactBtn}>Contact now</button>
+                </div>
               </div>
 
-              <div className={styles.rightCol}>
-                {item.imageUrl && (
-                  <img src={item.imageUrl} alt={item.title} className={styles.aboutImage} />
-                )}
-              </div>
-            </div>
-
-            {/* Row 2: Overview */}
-            {(item.overviewCategory || item.overviewBestFor || item.overviewStyleApproach) && (
+              {/* Row 1: About service */}
               <div className={styles.gridRow}>
                 <div className={styles.leftCol}>
                   <PinIcon />
-                  <span>Overview</span>
+                  <span>About service</span>
                 </div>
-                
-                <div className={styles.middleCol} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
-                  {item.overviewCategory && (
-                    <div>
-                      <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Category</h4>
-                      <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewCategory}</p>
-                    </div>
-                  )}
-                  {item.overviewBestFor && (
-                    <div>
-                      <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Best For</h4>
-                      <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewBestFor}</p>
+                <div className={styles.middleCol}>
+                  <p className={styles.aboutText}>{item.about}</p>
+                  {item.keyLine && (
+                    <div className={styles.quoteBoxOrange} style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '8px', color: '#fff', fontSize: '14px', lineHeight: '1.6' }}>
+                      <div className={styles.quoteWrap} style={{ marginBottom: '1rem', color: '#fff' }}><QuoteIcon /></div>
+                      <span>{item.keyLine}</span>
                     </div>
                   )}
                 </div>
-
-                <div className={styles.rightCol} style={{ justifyContent: 'flex-start' }}>
-                  {item.overviewStyleApproach && (
-                    <div>
-                      <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Style Approach</h4>
-                      <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewStyleApproach}</p>
-                    </div>
+                <div className={styles.rightCol}>
+                  {item.imageUrl && (
+                    <img src={item.imageUrl} alt={item.title} className={styles.aboutImage} />
                   )}
                 </div>
               </div>
-            )}
 
-            {/* Row 3: Features */}
-            <div className={styles.gridRow}>
-              <div className={styles.leftCol}>
-                <PinIcon />
-                <span>Features</span>
-              </div>
-              
-              <div className={styles.includedMiddleCol}>
-                {item.whatsIncluded?.map((w: any, idx: number) => (
-                  <div key={w.id} className={styles.includedBlock}>
-                    <h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4>
-                    <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description) }} />
+              {/* Row 2: Overview */}
+              {(item.overviewCategory || item.overviewBestFor || item.overviewStyleApproach) && (
+                <div className={styles.gridRow}>
+                  <div className={styles.leftCol}>
+                    <PinIcon />
+                    <span>Overview</span>
                   </div>
-                ))}
-              </div>
+                  <div className={styles.middleCol} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+                    {item.overviewCategory && (
+                      <div>
+                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Category</h4>
+                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewCategory}</p>
+                      </div>
+                    )}
+                    {item.overviewBestFor && (
+                      <div>
+                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Best For</h4>
+                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewBestFor}</p>
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.rightCol} style={{ justifyContent: 'flex-start' }}>
+                    {item.overviewStyleApproach && (
+                      <div>
+                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Style Approach</h4>
+                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewStyleApproach}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
 
-              <div className={styles.includedRightCol}>
-                {JSON.parse(item.featureQuotesJson || "[]").map((q: string, idx: number, arr: string[]) => {
-                  const isLast = idx === arr.length - 1;
-                  return (
-                    <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
-                      <div className={styles.quoteWrap}><QuoteIcon /></div>
-                      <span>{q}</span>
+              {/* Row 3: Features */}
+              <div className={styles.gridRow}>
+                <div className={styles.leftCol}>
+                  <PinIcon />
+                  <span>Features</span>
+                </div>
+                <div className={styles.includedMiddleCol}>
+                  {item.whatsIncluded?.map((w: any, idx: number) => (
+                    <div key={w.id} className={styles.includedBlock}>
+                      <h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4>
+                      <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description) }} />
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+                <div className={styles.includedRightCol}>
+                  {JSON.parse(item.featureQuotesJson || '[]').map((q: string, idx: number, arr: string[]) => {
+                    const isLast = idx === arr.length - 1;
+                    return (
+                      <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
+                        <div className={styles.quoteWrap}><QuoteIcon /></div>
+                        <span>{q}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            {/* Gallery Row */}
-            {item.gallery?.length > 0 && (
-              <div className={styles.galleryRow}>
-                {item.gallery.map((g: any) => (
-                  <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
-                ))}
-              </div>
-            )}
-          </section>
+              {/* Gallery Row */}
+              {item.gallery?.length > 0 && (
+                <div className={styles.galleryRow}>
+                  {item.gallery.map((g: any) => (
+                    <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
+                  ))}
+                </div>
+              )}
+            </section>
+          </SectionReveal>
         ))}
       </div>
       <Footer />

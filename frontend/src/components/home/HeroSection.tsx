@@ -15,7 +15,7 @@ export default function HeroSection() {
           className={styles.hashtag}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
         >
           # Bringing Spaces to Life
         </motion.p>
@@ -26,7 +26,7 @@ export default function HeroSection() {
               className={styles.line}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             >
               The Best Interior
             </motion.span>
@@ -36,7 +36,7 @@ export default function HeroSection() {
               className={styles.line}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             >
               Company in
             </motion.span>
@@ -46,7 +46,7 @@ export default function HeroSection() {
               className={styles.line}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             >
               Malaysia
             </motion.span>
@@ -57,7 +57,7 @@ export default function HeroSection() {
           className={styles.ctaButton}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
         >
           Let's Talk Concepts
         </motion.button>
@@ -65,9 +65,9 @@ export default function HeroSection() {
 
       <motion.div 
         className={styles.bottomLeftWidget}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 1 }}
       >
         <div className={styles.avatars}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,9 +85,9 @@ export default function HeroSection() {
 
       <motion.div 
         className={styles.bottomRightWidget}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 1 }}
       >
         <span className={styles.awardsLabel}>Awards:</span>
         {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -24,7 +24,7 @@ export default function BlogsClientPage() {
     <main style={{ minHeight: '100vh', background: '#fff', paddingTop: '80px' }}>
       {/* Header */}
       <section style={{ padding: '5rem 5% 3rem', textAlign: 'center' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: '1rem' }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }} style={{ marginBottom: '1rem' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4 }}>
             <circle cx="12" cy="4" r="2" fill="black"/>
             <circle cx="12" cy="20" r="2" fill="black"/>
@@ -33,19 +33,19 @@ export default function BlogsClientPage() {
           </svg>
         </motion.div>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.05 }}
           style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 500, letterSpacing: '-0.03em', marginBottom: '1rem', lineHeight: 1.1 }}
         >
           Our Insights
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.1 }}
           style={{ color: '#666', fontSize: '1rem', marginBottom: '2rem' }}
         >
           Explore ideas, trends, and behind-the-scenes stories from our studio.
         </motion.p>
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.15 }}
           style={{ display: 'flex', justifyContent: 'center', gap: '0' }}
         >
           <input
@@ -74,7 +74,7 @@ export default function BlogsClientPage() {
                 key={blog.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.06 }}
+                transition={{ duration: 1.2, delay: idx * 0.06 }}
               >
                 <Link href={`/blogs/${blog.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }}>
                   <img

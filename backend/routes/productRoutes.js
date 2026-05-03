@@ -16,7 +16,15 @@ router.get('/categories', async (req, res) => {
       include: {
         products: {
           orderBy: { order: 'asc' },
-          include: { whatsIncluded: { orderBy: { order: 'asc' } }, gallery: { orderBy: { order: 'asc' } } }
+          include: {
+            whatsIncluded: { orderBy: { order: 'asc' } },
+            gallery: { orderBy: { order: 'asc' } },
+            descriptions: { orderBy: { order: 'asc' } },
+            types: { orderBy: { order: 'asc' } },
+            materials: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+            accessories: { orderBy: { order: 'asc' } },
+            appliances: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+          }
         }
       }
     });
@@ -31,7 +39,15 @@ router.get('/categories/:slug', async (req, res) => {
       include: {
         products: {
           orderBy: { order: 'asc' },
-          include: { whatsIncluded: { orderBy: { order: 'asc' } }, gallery: { orderBy: { order: 'asc' } } }
+          include: {
+            whatsIncluded: { orderBy: { order: 'asc' } },
+            gallery: { orderBy: { order: 'asc' } },
+            descriptions: { orderBy: { order: 'asc' } },
+            types: { orderBy: { order: 'asc' } },
+            materials: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+            accessories: { orderBy: { order: 'asc' } },
+            appliances: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+          }
         }
       }
     });
@@ -74,15 +90,22 @@ router.delete('/categories/:id', auth, async (req, res) => {
 //  PRODUCTS
 // ════════════════════════════════════════════════════════
 
+const fullProductInclude = {
+  category: true,
+  whatsIncluded: { orderBy: { order: 'asc' } },
+  gallery: { orderBy: { order: 'asc' } },
+  descriptions: { orderBy: { order: 'asc' } },
+  types: { orderBy: { order: 'asc' } },
+  materials: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+  accessories: { orderBy: { order: 'asc' } },
+  appliances: { orderBy: { order: 'asc' }, include: { items: { orderBy: { order: 'asc' } } } },
+};
+
 router.get('/', async (req, res) => {
   try {
     const products = await prisma.product.findMany({
       orderBy: { order: 'asc' },
-      include: {
-        category: true,
-        whatsIncluded: { orderBy: { order: 'asc' } },
-        gallery: { orderBy: { order: 'asc' } }
-      }
+      include: fullProductInclude
     });
     res.json(products);
   } catch (e) { res.status(500).json({ error: e.message }); }
@@ -92,11 +115,7 @@ router.get('/:id', async (req, res) => {
   try {
     const product = await prisma.product.findUnique({
       where: { id: req.params.id },
-      include: {
-        category: true,
-        whatsIncluded: { orderBy: { order: 'asc' } },
-        gallery: { orderBy: { order: 'asc' } }
-      }
+      include: fullProductInclude
     });
     if (!product) return res.status(404).json({ error: 'Not found' });
     res.json(product);
@@ -105,22 +124,42 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   try {
-    const { title, subtitle, coverImage, overviewCategory, overviewBestFor, overviewStyleApproach, about, keyLine, imageUrl, categoryId, order, whatsIncluded, gallery, featureQuotesJson } = req.body;
+    const {
+      title, subtitle, coverImage, overviewCategory, overviewBestFor, overviewStyleApproach,
+      about, keyLine, imageUrl, categoryId, order, whatsIncluded, gallery, featureQuotesJson,
+      descriptions, types, materials, accessories, appliances
+    } = req.body;
+
     const product = await prisma.product.create({
       data: {
         title, subtitle, coverImage,
         overviewCategory, overviewBestFor, overviewStyleApproach,
         about, keyLine, imageUrl,
-        featureQuotesJson: featureQuotesJson || "[]",
+        featureQuotesJson: featureQuotesJson || '[]',
         categoryId, order: Number(order) || 0,
-        whatsIncluded: {
-          create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i }))
+        whatsIncluded: { create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i })) },
+        gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
+        descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
+        types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
+        accessories: { create: (accessories || []).map((a, i) => ({ name: a.name, description: a.description, order: i })) },
+        materials: {
+          create: (materials || []).map((m, i) => ({
+            sectionTitle: m.sectionTitle,
+            sectionDesc: m.sectionDesc,
+            order: i,
+            items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
         },
-        gallery: {
-          create: (gallery || []).map((g, i) => ({ url: g.url, order: i }))
-        }
+        appliances: {
+          create: (appliances || []).map((a, i) => ({
+            sectionTitle: a.sectionTitle,
+            sectionDesc: a.sectionDesc,
+            order: i,
+            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
+        },
       },
-      include: { whatsIncluded: true, gallery: true }
+      include: fullProductInclude
     });
     res.json(product);
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -128,25 +167,63 @@ router.post('/', auth, async (req, res) => {
 
 router.put('/:id', auth, async (req, res) => {
   try {
-    const { title, subtitle, coverImage, overviewCategory, overviewBestFor, overviewStyleApproach, about, keyLine, imageUrl, categoryId, order, whatsIncluded, gallery, featureQuotesJson } = req.body;
+    const {
+      title, subtitle, coverImage, overviewCategory, overviewBestFor, overviewStyleApproach,
+      about, keyLine, imageUrl, categoryId, order, whatsIncluded, gallery, featureQuotesJson,
+      descriptions, types, materials, accessories, appliances
+    } = req.body;
+
+    // Delete all existing sub-records
     await prisma.productWhatsIncluded.deleteMany({ where: { productId: req.params.id } });
     await prisma.productGalleryImage.deleteMany({ where: { productId: req.params.id } });
+    await prisma.productDescription.deleteMany({ where: { productId: req.params.id } });
+    await prisma.productType.deleteMany({ where: { productId: req.params.id } });
+    await prisma.productAccessory.deleteMany({ where: { productId: req.params.id } });
+
+    // For materials and appliances, delete items first then parent
+    const existingMaterials = await prisma.productMaterial.findMany({ where: { productId: req.params.id } });
+    for (const m of existingMaterials) {
+      await prisma.productMaterialItem.deleteMany({ where: { materialId: m.id } });
+    }
+    await prisma.productMaterial.deleteMany({ where: { productId: req.params.id } });
+
+    const existingAppliances = await prisma.productAppliance.findMany({ where: { productId: req.params.id } });
+    for (const a of existingAppliances) {
+      await prisma.productApplianceItem.deleteMany({ where: { applianceId: a.id } });
+    }
+    await prisma.productAppliance.deleteMany({ where: { productId: req.params.id } });
+
     const product = await prisma.product.update({
       where: { id: req.params.id },
       data: {
         title, subtitle, coverImage,
         overviewCategory, overviewBestFor, overviewStyleApproach,
         about, keyLine, imageUrl,
-        featureQuotesJson: featureQuotesJson || "[]",
+        featureQuotesJson: featureQuotesJson || '[]',
         categoryId, order: Number(order) || 0,
-        whatsIncluded: {
-          create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i }))
+        whatsIncluded: { create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i })) },
+        gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
+        descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
+        types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
+        accessories: { create: (accessories || []).map((a, i) => ({ name: a.name, description: a.description, order: i })) },
+        materials: {
+          create: (materials || []).map((m, i) => ({
+            sectionTitle: m.sectionTitle,
+            sectionDesc: m.sectionDesc,
+            order: i,
+            items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
         },
-        gallery: {
-          create: (gallery || []).map((g, i) => ({ url: g.url, order: i }))
-        }
+        appliances: {
+          create: (appliances || []).map((a, i) => ({
+            sectionTitle: a.sectionTitle,
+            sectionDesc: a.sectionDesc,
+            order: i,
+            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+          }))
+        },
       },
-      include: { whatsIncluded: true, gallery: true }
+      include: fullProductInclude
     });
     res.json(product);
   } catch (e) { res.status(400).json({ error: e.message }); }

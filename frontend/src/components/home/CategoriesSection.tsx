@@ -47,7 +47,12 @@ export default function CategoriesSection() {
         </motion.p>
       </div>
 
-      <div className={styles.list}>
+      <motion.div 
+        className={styles.list}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
         {categories.map((cat, index) => {
           const isExpanded = expandedIndex === index;
           const displayNum = (index + 1).toString().padStart(2, '0');
@@ -121,7 +126,7 @@ export default function CategoriesSection() {
             </div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }

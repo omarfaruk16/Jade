@@ -220,6 +220,11 @@ model Product {
   
   whatsIncluded         ProductWhatsIncluded[]
   gallery               ProductGalleryImage[]
+  descriptions          ProductDescription[]
+  types                 ProductType[]
+  materials             ProductMaterial[]
+  accessories           ProductAccessory[]
+  appliances            ProductAppliance[]
 }
 
 model ProductWhatsIncluded {
@@ -237,6 +242,78 @@ model ProductGalleryImage {
   order         Int      @default(0)
   productId     String
   product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Descriptions ────────────────────────────────────────────────────
+model ProductDescription {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  order       Int      @default(0)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Types ───────────────────────────────────────────────────────────
+model ProductType {
+  id        String   @id @default(uuid())
+  name      String
+  image     String
+  order     Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Materials ───────────────────────────────────────────────────────
+model ProductMaterial {
+  id          String              @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                @default(0)
+  productId    String
+  product      Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductMaterialItem[]
+}
+
+model ProductMaterialItem {
+  id         String          @id @default(uuid())
+  title      String
+  description String
+  image      String
+  order      Int             @default(0)
+  materialId String
+  material   ProductMaterial @relation(fields: [materialId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Accessories ─────────────────────────────────────────────────────
+model ProductAccessory {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  order       Int      @default(0)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Appliances ──────────────────────────────────────────────────────
+model ProductAppliance {
+  id           String                @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                   @default(0)
+  productId    String
+  product      Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductApplianceItem[]
+}
+
+model ProductApplianceItem {
+  id          String           @id @default(uuid())
+  title       String
+  description String
+  image       String
+  order       Int              @default(0)
+  applianceId String
+  appliance   ProductAppliance @relation(fields: [applianceId], references: [id], onDelete: Cascade)
 }
 
 // ─── Blogs ───────────────────────────────────────────────────────────────────

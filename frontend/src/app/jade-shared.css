@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════
+   JADE SHARED DESIGN TOKENS
+   Import this in any page CSS to stay consistent.
+═══════════════════════════════════════════════════ */
+
+/* ── Hero sections (all pages) ── */
+.jade-hero {
+  min-height: 55vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.jade-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.jade-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  padding: 0 1.5rem;
+}
+
+/* ── Shared typography ── */
+.jade-page-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.jade-page-subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  opacity: 0.88;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.jade-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.jade-section-title {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.jade-section-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* ── CEO / Founder badge ── */
+.jade-founder-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.jade-founder-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.jade-founder-name {
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  color: #111;
+}
+
+.jade-founder-role {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+/* ── What's Included quote cards ── */
+.jade-quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.jade-quote-card {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.jade-quote-card:hover {
+  transform: translateY(-4px);
+}
+
+.jade-quote-card.orange {
+  background: #F05C46;
+  color: #fff;
+}
+
+.jade-quote-card.orange .jade-quote-icon {
+  color: #fff;
+}
+
+.jade-quote-card.orange .jade-quote-text {
+  color: #fff;
+}
+
+.jade-quote-icon {
+  width: 40px;
+  height: 40px;
+  color: #F05C46;
+  flex-shrink: 0;
+}
+
+.jade-quote-text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #333;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .jade-quotes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .jade-quote-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    gap: 1rem;
+  }
+  .jade-quote-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .jade-quote-text {
+    font-size: 0.95rem;
+  }
+  .jade-founder-badge {
+    margin-top: 1.25rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   UNIVERSAL LAYOUT TOKENS (NEW STANDARD)
+═══════════════════════════════════════════════════ */
+
+/* ── Universal Container (Applies same width globally) ── */
+.jade-container {
+  width: 100%;
+  max-width: 1400px; /* Universal width for the entire platform */
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* ── Universal Gaps (Applies identical spacing globally) ── */
+.jade-gap-section {
+  gap: 6rem;
+}
+
+.jade-gap-grid {
+  gap: 3rem;
+}
+
+.jade-gap-element {
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .jade-container {
+    padding: 0 1.5rem;
+  }
+  .jade-gap-section {
+    gap: 4rem;
+  }
+  .jade-gap-grid {
+    gap: 2rem;
+  }
+}
