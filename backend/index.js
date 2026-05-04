@@ -49,26 +49,41 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use('/uploads', express.static(uploadsDir));
 
-// Cloudinary Storage
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+// Storage: use Cloudinary if CLOUDINARY_URL is valid, otherwise fallback to local disk
+let storage;
 
-// Cloudinary automatically configures itself if CLOUDINARY_URL is present in process.env.
-// No manual parsing is needed.
+const cloudinaryUrl = process.env.CLOUDINARY_URL || '';
+const hasCloudinary = cloudinaryUrl.startsWith('cloudinary://') && cloudinaryUrl.length > 30;
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'jade',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-  },
-});
+if (hasCloudinary) {
+  const cloudinary = require('cloudinary').v2;
+  const { CloudinaryStorage } = require('multer-storage-cloudinary');
+  // Cloudinary SDK auto-reads CLOUDINARY_URL from env
+  storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+      folder: 'jade',
+      allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+    },
+  });
+  console.log('Using Cloudinary storage');
+} else {
+  // Fallback: local disk storage
+  storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadsDir),
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+  });
+  console.log('Using local disk storage for uploads');
+}
 
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|webp|gif/;
+    const allowedTypes = /jpeg|jpg|png|webp|gif|avif/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
     if (extname && mimetype) return cb(null, true);
@@ -82,8 +97,9 @@ const auth = require('./middleware/auth');
 app.post('/api/upload', auth, (req, res, next) => {
   upload.single('image')(req, res, (err) => {
     if (err) {
-      console.error('Multer error:', err);
-      return res.status(400).json({ error: err.message || 'Upload failed' });
+      const msg = err?.message || JSON.stringify(err) || 'Upload failed';
+      console.error('Upload error:', msg);
+      return res.status(400).json({ error: msg });
     }
 
     if (!req.file) {
@@ -91,13 +107,28 @@ app.post('/api/upload', auth, (req, res, next) => {
     }
 
     try {
-      // req.file.path contains the full Cloudinary URL
-      res.json({ url: req.file.path });
+      let url;
+      if (hasCloudinary && req.file.path && req.file.path.startsWith('http')) {
+        // Cloudinary returns a full URL in req.file.path
+        url = req.file.path;
+      } else {
+        // Local disk: build URL from BASE_URL + filename
+        const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+        url = `${baseUrl}/uploads/${req.file.filename}`;
+      }
+      console.log('Upload success:', url);
+      res.json({ url });
     } catch (error) {
-      console.error('Upload endpoint error:', error);
+      console.error('Upload endpoint error:', error?.message || error);
       res.status(500).json({ error: 'Failed to process upload' });
     }
   });
+});
+
+// Global error handler to catch unhandled async errors
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err?.message || err);
+  res.status(500).json({ error: err?.message || 'Internal server error' });
 });
 
 app.get('/', (req, res) => {
