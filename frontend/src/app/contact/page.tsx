@@ -30,27 +30,26 @@ export default function ContactPage() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      {/* Header */}
-      <div className={styles.contactHeader}>
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.pageTitle}
-        >
-          Contact Us
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-          className={styles.pageSubtitle}
-        >
-          Reach out to us—we&apos;d love to hear from you!
-        </motion.p>
-      </div>
-
       <div className={styles.mainContainer}>
+        {/* Header */}
+        <div className={styles.contactHeader}>
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.pageTitle}
+          >
+            Contact Us
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+            className={styles.pageSubtitle}
+          >
+            Reach out to us—we&apos;d love to hear from you!
+          </motion.p>
+        </div>
         {/* Contact Info + Form */}
         <SectionReveal>
           <div className={styles.formGrid}>
