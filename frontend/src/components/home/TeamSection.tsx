@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import API_BASE from '@/lib/api';
 import styles from './TeamSection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function TeamSection() {
   const [team, setTeam] = useState<any[]>([]);
 
@@ -16,7 +18,8 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
           <motion.h2 
@@ -87,5 +90,6 @@ export default function TeamSection() {
         </motion.div>
       </div>
     </section>
+</SectionReveal>
   );
 }

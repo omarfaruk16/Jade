@@ -8,6 +8,8 @@ import Footer from '@/components/layout/Footer';
 import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './Promotion.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function PromotionPage() {
   const [promotions, setPromotions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +31,8 @@ export default function PromotionPage() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      <section className={styles.heroSection}>
+      <SectionReveal>
+<section className={styles.heroSection}>
         <motion.h1
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -47,6 +50,7 @@ export default function PromotionPage() {
           Exclusive offers and seasonal collections curated for modern living.
         </motion.p>
       </section>
+</SectionReveal>
 
       <SectionReveal>
         <div className={styles.contentContainer}>
@@ -68,7 +72,7 @@ export default function PromotionPage() {
                     <img src={promo.image} alt={promo.title} className={styles.promoImage} />
                   </div>
                   <div className={styles.promoInfo}>
-                    <h3 className={styles.promoTitle}>{promo.title}</h3>
+                    <TitleReveal><h3 className={styles.promoTitle}>{promo.title}</h3></TitleReveal>
                     <button className={styles.viewButton}>Get it now</button>
                   </div>
                 </motion.div>

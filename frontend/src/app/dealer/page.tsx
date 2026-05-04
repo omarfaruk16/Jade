@@ -13,6 +13,8 @@ import WhatsIncluded from '@/components/shared/WhatsIncluded';
 import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function DealerPage() {
   const [partners, setPartners] = useState<any[]>([]);
   const [formData, setFormData] = useState({
@@ -57,7 +59,8 @@ export default function DealerPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className={styles.hero}>
+      <SectionReveal>
+<section className={styles.hero}>
         <div className={styles.heroContent}>
           <motion.h1
             className={styles.title}
@@ -77,6 +80,7 @@ export default function DealerPage() {
           </motion.p>
         </div>
       </section>
+</SectionReveal>
 
       {/* Intro */}
       <SectionReveal>
@@ -95,7 +99,7 @@ export default function DealerPage() {
         <section className={styles.officeDesignDetailed}>
           <div className={styles.container}>
             <div className={styles.officeHeader}>
-              <h2 className={styles.officeTitle}>Office Design</h2>
+              <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
               <div className={styles.officeHeaderRight}>
                 <p>Learn more about our practice, or read<br />stories from our studio.</p>
                 <button className={styles.contactNowBtn}>Contact now</button>
@@ -157,7 +161,7 @@ export default function DealerPage() {
         <SectionReveal>
           <section className={styles.partnersSection}>
             <div className={styles.container}>
-              <h3 className={styles.sectionTitle}>Meet our export partners</h3>
+              <TitleReveal><h3 className={styles.sectionTitle}>Meet our export partners</h3></TitleReveal>
               <div className={styles.partnersGrid}>
                 {partners.map(p => (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -181,7 +185,7 @@ export default function DealerPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 1.2 }}
               >
-                <h2>Become a dealer</h2>
+                <TitleReveal><h2>Become a dealer</h2></TitleReveal>
                 <p>You can become a part of our world!</p>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/be_a_dealer_handshack.avif" alt="Handshake" className={styles.handshakeImage} />
@@ -196,7 +200,7 @@ export default function DealerPage() {
               >
                 {submitted ? (
                   <div className={styles.success}>
-                    <h3>Application Received!</h3>
+                    <TitleReveal><h3>Application Received!</h3></TitleReveal>
                     <p>Our team will review your application and contact you shortly.</p>
                     <button onClick={() => setSubmitted(false)} className={styles.submitBtn}>New Application</button>
                   </div>

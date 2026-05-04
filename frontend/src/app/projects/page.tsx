@@ -30,7 +30,8 @@ export default function ProjectsArchive() {
     <div className={styles.pageWrapper}>
       <Navbar />
       
-      <section className={styles.headerSection}>
+      <SectionReveal>
+<section className={styles.headerSection}>
         <div className={styles.icon}>
           <Target size={24} color="#333" />
         </div>
@@ -51,6 +52,7 @@ export default function ProjectsArchive() {
           With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
         </motion.p>
       </section>
+</SectionReveal>
 
       <div className={styles.gridControls}>
         <span className={styles.count}>({projects.length})</span>

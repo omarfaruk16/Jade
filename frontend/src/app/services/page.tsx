@@ -9,6 +9,8 @@ import Footer from '@/components/layout/Footer';
 import styles from './Services.module.css';
 
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ServicesPage() {
   const [parents, setParents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ export default function ServicesPage() {
       <Navbar />
       <div className={styles.indexHero}>
 
-        <h1>Our Services</h1>
+        <TitleReveal><h1>Our Services</h1></TitleReveal>
         <p>Select a service category below to explore what we offer.</p>
       </div>
       <div className={styles.indexGrid}>

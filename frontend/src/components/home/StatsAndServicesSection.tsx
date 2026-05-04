@@ -4,9 +4,14 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import styles from './StatsAndServicesSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function StatsAndServicesSection() {
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.topContainer}>
         <div className={styles.header}>
           <motion.h2 
@@ -43,7 +48,7 @@ export default function StatsAndServicesSection() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <h3>{stat.num}</h3>
+              <TitleReveal><h3>{stat.num}</h3></TitleReveal>
               <p>{stat.text}</p>
             </motion.div>
           ))}
@@ -69,7 +74,7 @@ export default function StatsAndServicesSection() {
             </div>
             <div className={styles.cardContent}>
               <div className={styles.cardHeader}>
-                <h3>{card.title}</h3>
+                <TitleReveal><h3>{card.title}</h3></TitleReveal>
                 <ArrowRight size={20} className={styles.arrow} />
               </div>
               <p>{card.desc}</p>
@@ -78,5 +83,6 @@ export default function StatsAndServicesSection() {
         ))}
       </div>
     </section>
+</SectionReveal>
   );
 }

@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import styles from './ProjectsSection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function ProjectsSection() {
   const targetRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -31,7 +33,8 @@ export default function ProjectsSection() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-55%"]);
 
   return (
-    <section ref={targetRef}>
+    <SectionReveal>
+<section ref={targetRef}>
       <div className={styles.stickySection}>
         <div className={styles.header}>
           <div className={styles.brandLogos}>
@@ -67,6 +70,7 @@ export default function ProjectsSection() {
         </motion.div>
       </div>
     </section>
+</SectionReveal>
   );
 }
 

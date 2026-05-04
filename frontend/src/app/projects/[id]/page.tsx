@@ -10,6 +10,8 @@ import Footer from '@/components/layout/Footer';
 import styles from './ProjectDetails.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ProjectDetails() {
   const params = useParams();
   const [project, setProject] = useState<any>(null);
@@ -45,7 +47,8 @@ export default function ProjectDetails() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      <section className={styles.hero}>
+      <SectionReveal>
+<section className={styles.hero}>
         <motion.img 
           src={project.coverImage} 
           alt={project.title} 
@@ -59,10 +62,11 @@ export default function ProjectDetails() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className={styles.title}>{project.title}</h1>
+          <TitleReveal><h1 className={styles.title}>{project.title}</h1></TitleReveal>
           <p className={styles.subtitle}>{project.subtitle}</p>
         </motion.div>
       </section>
+</SectionReveal>
 
       <div className={styles.contentContainer}>
         {/* Overview Section */}
@@ -187,7 +191,7 @@ export default function ProjectDetails() {
         <SectionReveal>
           <section style={{ paddingBottom: '6rem' }}>
             <div className={styles.relatedHeader}>
-              <h2>Related Projects</h2>
+              <TitleReveal><h2>Related Projects</h2></TitleReveal>
               <ChevronRight />
             </div>
             <div className={styles.relatedGrid}>

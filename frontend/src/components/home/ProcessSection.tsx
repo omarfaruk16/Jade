@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X } from 'lucide-react';
 import styles from './ProcessSection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function ProcessSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.container}>
         
         {/* LEFT SIDE: Video */}
@@ -122,6 +125,7 @@ export default function ProcessSection() {
         )}
       </AnimatePresence>
     </section>
+</SectionReveal>
   );
 }
 

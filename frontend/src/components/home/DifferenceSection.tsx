@@ -3,9 +3,14 @@
 import { motion } from 'framer-motion';
 import styles from './DifferenceSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function DifferenceSection() {
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.overlay}></div>
       <motion.div 
         className={styles.content}
@@ -14,8 +19,9 @@ export default function DifferenceSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className={styles.title}>We make the difference in your space.</h2>
+        <TitleReveal><h2 className={styles.title}>We make the difference in your space.</h2></TitleReveal>
       </motion.div>
     </section>
+</SectionReveal>
   );
 }

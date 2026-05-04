@@ -10,6 +10,8 @@ import Footer from '@/components/layout/Footer';
 import styles from './ServiceChild.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="6" cy="4.5" r="3.5" stroke="#111" strokeWidth="1.2"/>
@@ -114,7 +116,7 @@ export default function ServiceChildPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2 }}
         >
-          <h1 className={styles.heroTitle}>{data.name}</h1>
+          <TitleReveal><h1 className={styles.heroTitle}>{data.name}</h1></TitleReveal>
           {data.description && (
             <p className={styles.heroDesc}>{data.description}</p>
           )}
@@ -129,7 +131,7 @@ export default function ServiceChildPage() {
               className={styles.serviceItem}
             >
               <div className={styles.itemHeader}>
-                <h1 className={styles.itemTitle}>{item.title}</h1>
+                <TitleReveal><h1 className={styles.itemTitle}>{item.title}</h1></TitleReveal>
                 <div className={styles.itemHeaderRight}>
                   <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
                   <button className={styles.contactBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
@@ -236,7 +238,7 @@ export default function ServiceChildPage() {
           <div className={styles.contactInner}>
             <div>
               <p className={styles.contactLabel}>Get In Touch</p>
-              <h2 className={styles.contactTitle}>Interested in {data.name}?</h2>
+              <TitleReveal><h2 className={styles.contactTitle}>Interested in {data.name}?</h2></TitleReveal>
               <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
               <button className={styles.contactBtnLarge} onClick={() => window.location.href='/contact'}>Contact Us</button>
             </div>

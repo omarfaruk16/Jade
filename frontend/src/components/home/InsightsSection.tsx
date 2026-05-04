@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import styles from './InsightsSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const insights = [
   { id: 1, date: '12-05-23', title: 'Top interior design trends 2023' },
   { id: 2, date: '28-04-23', title: 'How to maximize small spaces' },
@@ -12,7 +16,8 @@ const insights = [
 
 export default function InsightsSection() {
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -62,7 +67,7 @@ export default function InsightsSection() {
             >
               <div className={styles.listContent}>
                 <span className={styles.date}>{item.date}</span>
-                <h3 className={styles.itemTitle}>{item.title}</h3>
+                <TitleReveal><h3 className={styles.itemTitle}>{item.title}</h3></TitleReveal>
               </div>
               <button className={styles.arrowBtn}>
                 <ArrowUpRight size={20} />
@@ -72,5 +77,6 @@ export default function InsightsSection() {
         </div>
       </div>
     </section>
+</SectionReveal>
   );
 }

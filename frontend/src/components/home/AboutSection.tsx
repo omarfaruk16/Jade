@@ -3,6 +3,10 @@
 import { motion } from 'framer-motion';
 import styles from './AboutSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const FourDotsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="4" r="2.5" fill="currentColor"/>
@@ -14,7 +18,8 @@ const FourDotsIcon = () => (
 
 export default function AboutSection() {
   return (
-    <section className={styles.aboutSection} id="about">
+    <SectionReveal>
+<section className={styles.aboutSection} id="about">
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -72,14 +77,14 @@ export default function AboutSection() {
         {/* 3. Text 1 (01 Royal Reverie) */}
         <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText1}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className={styles.cardNumber}><span>01</span> <FourDotsIcon /></div>
-          <h3 className={styles.cardTitle}>Royal Reverie in Every Cabinet</h3>
+          <TitleReveal><h3 className={styles.cardTitle}>Royal Reverie in Every Cabinet</h3></TitleReveal>
           <p className={styles.cardDesc}>Step into a home that feels like royalty. Every piece is crafted with regal elegance, blending timeless craftsmanship with luxurious beauty.</p>
         </motion.div>
 
         {/* 4. Text 2 (02 Whispered Elegance) */}
         <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText2}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className={styles.cardNumber}><span>02</span> <FourDotsIcon /></div>
-          <h3 className={styles.cardTitle}>Whispered Elegance in Timeless Wood</h3>
+          <TitleReveal><h3 className={styles.cardTitle}>Whispered Elegance in Timeless Wood</h3></TitleReveal>
           <p className={styles.cardDesc}>Each grain of wood tells a story of nature and heritage. Designed with intention, our work brings quiet beauty to every corner of your space.</p>
         </motion.div>
 
@@ -92,7 +97,7 @@ export default function AboutSection() {
         {/* 6. Text 3 (03 Dreamscape) */}
         <motion.div className={`${styles.card} ${styles.textCard} ${styles.cText3}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className={styles.cardNumber}><span>03</span> <FourDotsIcon /></div>
-          <h3 className={styles.cardTitle}>Dreamscape of Sculpted Spaces</h3>
+          <TitleReveal><h3 className={styles.cardTitle}>Dreamscape of Sculpted Spaces</h3></TitleReveal>
           <p className={styles.cardDesc}>Our designs transform spaces into sculptural experiences where light, texture, and form unite, creating a home that feels surreal and uniquely yours.</p>
         </motion.div>
 
@@ -111,22 +116,23 @@ export default function AboutSection() {
         transition={{ duration: 1.2, delay: 0.2 }}
       >
         <div className={styles.statItem}>
-          <h3>15+</h3>
+          <TitleReveal><h3>15+</h3></TitleReveal>
           <p>Years of market expertise.</p>
         </div>
         <div className={styles.statItem}>
-          <h3>2-7</h3>
+          <TitleReveal><h3>2-7</h3></TitleReveal>
           <p>Delivery Fast, reliable service.</p>
         </div>
         <div className={styles.statItem}>
-          <h3>1.6k+</h3>
+          <TitleReveal><h3>1.6k+</h3></TitleReveal>
           <p>Clients Exceptional service.</p>
         </div>
         <div className={styles.statItem}>
-          <h3>8k+</h3>
+          <TitleReveal><h3>8k+</h3></TitleReveal>
           <p>Projects Completed — Quality work.</p>
         </div>
       </motion.div>
     </section>
+</SectionReveal>
   );
 }

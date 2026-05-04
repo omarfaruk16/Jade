@@ -14,6 +14,8 @@ import WhatsIncluded from '@/components/shared/WhatsIncluded';
 import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ImportExportPage() {
 
 
@@ -22,7 +24,8 @@ export default function ImportExportPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <SectionReveal>
+<section className={styles.heroSection}>
         <div className={styles.heroContent}>
           <motion.h1 
             initial={{ opacity: 0, scale: 0.85 }}
@@ -43,6 +46,7 @@ export default function ImportExportPage() {
           </motion.p>
         </div>
       </section>
+</SectionReveal>
 
       <main className={styles.container}>
         {/* Intro Section (Insights) */}
@@ -67,7 +71,7 @@ export default function ImportExportPage() {
         <SectionReveal>
           <section className={styles.officeSection}>
              <div className={styles.officeHeader}>
-                <h2 className={styles.sectionTitle}>Office Design</h2>
+                <TitleReveal><h2 className={styles.sectionTitle}>Office Design</h2></TitleReveal>
                 <div className={styles.headerRightContent}>
                   <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
                   <button className={styles.contactBtn}>Contact now</button>
@@ -120,7 +124,7 @@ export default function ImportExportPage() {
               <span>Partners</span>
             </div>
             <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
-               <h3 className={styles.partnersTitle}>Our export import partners</h3>
+               <TitleReveal><h3 className={styles.partnersTitle}>Our export import partners</h3></TitleReveal>
                <div className={styles.logosRow}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="https://svgl.app/library/boltshift.svg" className={styles.logoItem} alt="Boltshift" />
@@ -143,7 +147,7 @@ export default function ImportExportPage() {
              <div className={styles.servicesTop}>
                <div>
                  <span className={styles.sectionLabel}>Process</span>
-                 <h2 className={styles.sectionTitle}>Design, Installation, and Support in Harmony</h2>
+                 <TitleReveal><h2 className={styles.sectionTitle}>Design, Installation, and Support in Harmony</h2></TitleReveal>
                </div>
                <button className={styles.moreDetailsBtn}>More Details</button>
              </div>
@@ -174,7 +178,7 @@ export default function ImportExportPage() {
              <div className={styles.servicesTop}>
                <div>
                  <span className={styles.sectionLabel}>Global Reach</span>
-                 <h2 className={styles.sectionTitle}>Insights that shape spaces</h2>
+                 <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
                </div>
                <button className={styles.moreDetailsBtn}>Details</button>
              </div>
@@ -183,19 +187,19 @@ export default function ImportExportPage() {
 
              <div className={styles.statsRow}>
                <div className={styles.statItem}>
-                 <h2>15+</h2>
+                 <TitleReveal><h2>15+</h2></TitleReveal>
                  <p>Years of Experience</p>
                </div>
                <div className={styles.statItem}>
-                 <h2>24/7</h2>
+                 <TitleReveal><h2>24/7</h2></TitleReveal>
                  <p>Support Channels Available</p>
                </div>
                <div className={styles.statItem}>
-                 <h2>1.8k+</h2>
+                 <TitleReveal><h2>1.8k+</h2></TitleReveal>
                  <p>Successful Shipments</p>
                </div>
                <div className={styles.statItem}>
-                 <h2>8k+</h2>
+                 <TitleReveal><h2>8k+</h2></TitleReveal>
                  <p>Active Partnership Network</p>
                </div>
              </div>

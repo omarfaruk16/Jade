@@ -6,6 +6,10 @@ import { Star } from 'lucide-react';
 import API_BASE from '@/lib/api';
 import styles from './TestimonialsSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const fallbackTestimonials = [
   { id: '1', name: 'Amelia Hart', role: 'Vale Studio', rating: 5, review: 'Their work brought our entire brand to life—subtle, thoughtful, and timeless. Every element felt carefully crafted, both visually and emotionally.', avatar: 'https://i.pravatar.cc/100?img=5' },
   { id: '2', name: 'Daniel Rees', role: 'Rees & Co', rating: 5, review: 'The team captured our vision better than we imagined. From mood boards to final space, everything felt clear, smooth, and perfectly on-brand.', avatar: 'https://i.pravatar.cc/100?img=8' },
@@ -38,16 +42,17 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <motion.div
         className={styles.header}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className={styles.title}>
+        <TitleReveal><h2 className={styles.title}>
           Don&apos;t just listen to us—see what our partners have to say.
-        </h2>
+        </h2></TitleReveal>
       </motion.div>
 
       {/* 4-column grid: 1 row, video is the 3rd item */}
@@ -141,5 +146,6 @@ export default function TestimonialsSection() {
 
       </div>
     </section>
+</SectionReveal>
   );
 }

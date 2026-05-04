@@ -7,6 +7,8 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './FaqSection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function FaqSection() {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -25,7 +27,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -115,6 +118,7 @@ export default function FaqSection() {
         </motion.div>
       </div>
     </section>
+</SectionReveal>
   );
 }
 

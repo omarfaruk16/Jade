@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ProductCategoryPage() {
   const { categorySlug } = useParams() as { categorySlug: string };
   const [category, setCategory] = useState<any>(null);
@@ -42,7 +44,7 @@ export default function ProductCategoryPage() {
             {/* Overlay */}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7))', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', border: '2px solid #fff', marginBottom: '1rem' }}></div>
-              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 600, marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>{product.title}</h2>
+              <TitleReveal><h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 600, marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>{product.title}</h2></TitleReveal>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1rem', marginBottom: '2rem' }}>{product.subtitle}</p>
               <button style={{ padding: '0.8rem 2rem', borderRadius: '9999px', background: '#fff', color: '#000', fontWeight: 600, border: 'none', cursor: 'pointer', fontSize: '1rem' }}>Buy now</button>
             </div>

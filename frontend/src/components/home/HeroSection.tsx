@@ -3,9 +3,14 @@
 import { motion } from 'framer-motion';
 import styles from './HeroSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function HeroSection() {
   return (
-    <section className={styles.heroWrapper}>
+    <SectionReveal>
+<section className={styles.heroWrapper}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/images/home-hero.webp" alt="Luxurious modern house exterior" className={styles.bgImage} />
       <div className={styles.overlay}></div>
@@ -20,7 +25,7 @@ export default function HeroSection() {
           # Bringing Spaces to Life
         </motion.p>
         
-        <h1 className={styles.title}>
+        <TitleReveal><h1 className={styles.title}>
           <div className={styles.lineOverflow}>
             <motion.span 
               className={styles.line}
@@ -51,7 +56,7 @@ export default function HeroSection() {
               Malaysia
             </motion.span>
           </div>
-        </h1>
+        </h1></TitleReveal>
 
         <motion.button 
           className={styles.ctaButton}
@@ -94,5 +99,6 @@ export default function HeroSection() {
         <img src="/images/award.png" alt="Award Excellence" className={styles.awardIcon} />
       </motion.div>
     </section>
+</SectionReveal>
   );
 }

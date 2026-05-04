@@ -7,6 +7,10 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './CategoriesSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function CategoriesSection() {
   const [categories, setCategories] = useState<any[]>([]);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
@@ -23,7 +27,8 @@ export default function CategoriesSection() {
   };
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.header}>
         <div className={styles.headerTop}>
           <motion.h2 
@@ -76,7 +81,7 @@ export default function CategoriesSection() {
                     <div className={styles.expandedInfo}>
                       <div className={styles.topRow}>
                         <div>
-                          <h3 className={styles.expandedTitle}>{cat.name}</h3>
+                          <TitleReveal><h3 className={styles.expandedTitle}>{cat.name}</h3></TitleReveal>
                           <p className={styles.expandedSubtitle}>{cat.subtitle || 'Elegant, livable spaces'}</p>
                         </div>
                         <button className={styles.iconBtn} onClick={() => toggle(index)}>
@@ -114,7 +119,7 @@ export default function CategoriesSection() {
                       <img src={cat.coverImage || '/images/home-hero.webp'} alt={cat.name} />
                     </div>
                     <div className={styles.collapsedInfo}>
-                      <h3 className={styles.collapsedTitle}>{cat.name}</h3>
+                      <TitleReveal><h3 className={styles.collapsedTitle}>{cat.name}</h3></TitleReveal>
                       <p className={styles.collapsedSubtitle}>{cat.subtitle || 'Elegant, livable spaces'}</p>
                     </div>
                     <button className={styles.iconBtn}>
@@ -128,6 +133,7 @@ export default function CategoriesSection() {
         })}
       </motion.div>
     </section>
+</SectionReveal>
   );
 }
 

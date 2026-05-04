@@ -3,6 +3,10 @@
 import { motion } from 'framer-motion';
 import styles from './LifestyleSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const articles = [
   {
     tag: 'INTERIOR',
@@ -35,14 +39,15 @@ const articles = [
 
 export default function LifestyleSection() {
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <motion.div 
         className={styles.header}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className={styles.title}>Craft, our spaces to represent modern lifestyle</h2>
+        <TitleReveal><h2 className={styles.title}>Craft, our spaces to represent modern lifestyle</h2></TitleReveal>
       </motion.div>
 
       <div className={styles.grid}>
@@ -60,7 +65,7 @@ export default function LifestyleSection() {
               <span className={styles.tag}>{article.tag}</span>
             </div>
             <div className={styles.content}>
-              <h3 className={styles.cardTitle}>{article.title}</h3>
+              <TitleReveal><h3 className={styles.cardTitle}>{article.title}</h3></TitleReveal>
               <div className={styles.meta}>
                 <div className={styles.author}>
                   <img src={article.authorImg} alt={article.authorName} />
@@ -77,5 +82,6 @@ export default function LifestyleSection() {
         ))}
       </div>
     </section>
+</SectionReveal>
   );
 }

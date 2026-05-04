@@ -13,6 +13,8 @@ import LogoMarquee from '@/components/common/LogoMarquee';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function AboutPage() {
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
@@ -145,7 +147,7 @@ export default function AboutPage() {
           <section className={styles.milestoneSection}>
             <div className={styles.milestoneHeader}>
               <span className={styles.label}>Summary</span>
-              <h2 className={styles.sectionTitle}>Our Historical Milestones</h2>
+              <TitleReveal><h2 className={styles.sectionTitle}>Our Historical Milestones</h2></TitleReveal>
             </div>
             
             <div className={styles.milestoneList}>
@@ -192,7 +194,7 @@ export default function AboutPage() {
         <SectionReveal>
           <section className={styles.philosophySection}>
             <div className={styles.philosophyLeft}>
-              <h2 className={styles.sectionTitle}>Design With Purpose,<br/>Built on Collaboration</h2>
+              <TitleReveal><h2 className={styles.sectionTitle}>Design With Purpose,<br/>Built on Collaboration</h2></TitleReveal>
               <p className={styles.philosophyText}>
                 We are a collective of interior designers aiming to elevate everyday spaces with a fine 
                 approach that marries light, organic forms, and rich, natural textures.
@@ -216,7 +218,7 @@ export default function AboutPage() {
         <SectionReveal>
           <section className={styles.clientVoicesSection}>
             <div className={styles.voicesHeader}>
-              <h2 className={styles.sectionTitleCenter}>Client Voices</h2>
+              <TitleReveal><h2 className={styles.sectionTitleCenter}>Client Voices</h2></TitleReveal>
               <p className={styles.sectionSubtitleCenter}>
                 Real feedback from the incredible people we've had the pleasure to design for.
               </p>

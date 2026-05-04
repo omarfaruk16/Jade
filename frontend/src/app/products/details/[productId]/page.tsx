@@ -10,6 +10,8 @@ import Footer from '@/components/layout/Footer';
 import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './ProductDetails.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ProductDetailsPage() {
   const { productId } = useParams() as { productId: string };
   const [product, setProduct] = useState<any>(null);
@@ -56,12 +58,12 @@ export default function ProductDetailsPage() {
           <SectionReveal>
             <section className={styles.section}>
               <p className={styles.sectionLabel}>Overview</p>
-              <h2 className={styles.sectionTitle}>{product.title}</h2>
+              <TitleReveal><h2 className={styles.sectionTitle}>{product.title}</h2></TitleReveal>
               {product.subtitle && <p className={styles.sectionSubtitle}>{product.subtitle}</p>}
               <div className={styles.descGrid}>
                 {product.descriptions.map((d: any, i: number) => (
                   <motion.div key={d.id} className={styles.descCard} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} transition={{duration:0.6,delay:i*0.1}} viewport={{once:true}}>
-                    <h3 className={styles.descCardTitle}>{d.title}</h3>
+                    <TitleReveal><h3 className={styles.descCardTitle}>{d.title}</h3></TitleReveal>
                     <p className={styles.descCardText}>{d.description}</p>
                   </motion.div>
                 ))}
@@ -75,7 +77,7 @@ export default function ProductDetailsPage() {
           <SectionReveal>
             <section className={styles.section}>
               <p className={styles.sectionLabel}>Explore</p>
-              <h2 className={styles.sectionTitle}>Types of {product.title}</h2>
+              <TitleReveal><h2 className={styles.sectionTitle}>Types of {product.title}</h2></TitleReveal>
               <div className={styles.typesGrid}>
                 {product.types.map((t: any, i: number) => (
                   <motion.div key={t.id} className={styles.typeCard} initial={{opacity:0,scale:0.95}} whileInView={{opacity:1,scale:1}} transition={{duration:0.5,delay:i*0.08}} viewport={{once:true}}>
@@ -95,7 +97,7 @@ export default function ProductDetailsPage() {
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
                   <p className={styles.sectionLabel}>Materials</p>
-                  <h2 className={styles.materialLeftTitle}>{mat.sectionTitle}</h2>
+                  <TitleReveal><h2 className={styles.materialLeftTitle}>{mat.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{mat.sectionDesc}</p>
                 </div>
                 <div className={styles.materialItemsGrid}>
@@ -119,7 +121,7 @@ export default function ProductDetailsPage() {
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
                   <p className={styles.sectionLabel}>Accessories</p>
-                  <h2 className={styles.materialLeftTitle}>{acc.sectionTitle}</h2>
+                  <TitleReveal><h2 className={styles.materialLeftTitle}>{acc.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{acc.sectionDesc}</p>
                 </div>
                 <div className={styles.materialItemsGrid}>
@@ -143,7 +145,7 @@ export default function ProductDetailsPage() {
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
                   <p className={styles.sectionLabel}>Appliances</p>
-                  <h2 className={styles.materialLeftTitle}>{app.sectionTitle}</h2>
+                  <TitleReveal><h2 className={styles.materialLeftTitle}>{app.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{app.sectionDesc}</p>
                 </div>
                 <div className={styles.materialItemsGrid}>
@@ -168,7 +170,7 @@ export default function ProductDetailsPage() {
           <div className={styles.contactInner}>
             <div>
               <p className={styles.sectionLabel} style={{color:'rgba(255,255,255,0.4)'}}>Get In Touch</p>
-              <h2 className={styles.contactTitle}>Interested in {product.title}?</h2>
+              <TitleReveal><h2 className={styles.contactTitle}>Interested in {product.title}?</h2></TitleReveal>
               <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
               <button className={styles.contactBtn} onClick={()=>window.location.href='/contact'}>Contact Us</button>
             </div>

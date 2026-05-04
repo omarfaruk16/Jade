@@ -6,6 +6,8 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './ProductsScrollSection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function ProductsScrollSection() {
   const [categories, setCategories] = useState<any[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,8 @@ export default function ProductsScrollSection() {
   }, [categories]);
 
   return (
-    <section className={styles.scrollContainer}>
+    <SectionReveal>
+<section className={styles.scrollContainer}>
       <div className={styles.stickySection}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
@@ -140,5 +143,6 @@ export default function ProductsScrollSection() {
         </div>
       </div>
     </section>
+</SectionReveal>
   );
 }

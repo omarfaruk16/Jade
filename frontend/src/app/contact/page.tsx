@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
 import FaqSection from '@/components/home/FaqSection';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [contact, setContact] = useState<any>(null);
@@ -85,7 +87,7 @@ export default function ContactPage() {
               <div className={styles.formCard}>
                 {submitted ? (
                   <div className={styles.formSuccess}>
-                     <h3>Message Sent!</h3>
+                     <TitleReveal><h3>Message Sent!</h3></TitleReveal>
                      <p>We will get back to you shortly.</p>
                   </div>
                 ) : (

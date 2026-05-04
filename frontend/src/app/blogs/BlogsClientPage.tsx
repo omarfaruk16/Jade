@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import API_BASE from '@/lib/api';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function BlogsClientPage() {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [email, setEmail] = useState('');
@@ -23,7 +27,8 @@ export default function BlogsClientPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#fff', paddingTop: '80px' }}>
       {/* Header */}
-      <section style={{ padding: '5rem 5% 3rem', textAlign: 'center' }}>
+      <SectionReveal>
+<section style={{ padding: '5rem 5% 3rem', textAlign: 'center' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }} style={{ marginBottom: '1rem' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.4 }}>
             <circle cx="12" cy="4" r="2" fill="black"/>
@@ -62,9 +67,11 @@ export default function BlogsClientPage() {
           </button>
         </motion.div>
       </section>
+</SectionReveal>
 
       {/* Blog Grid */}
-      <section style={{ padding: '0 5% 8rem' }}>
+      <SectionReveal>
+<section style={{ padding: '0 5% 8rem' }}>
         {blogs.length === 0 ? (
           <p style={{ textAlign: 'center', color: '#999', padding: '4rem 0' }}>No blog posts yet. Check back soon!</p>
         ) : (
@@ -93,7 +100,7 @@ export default function BlogsClientPage() {
 
                   {/* Title + arrow */}
                   <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.3, margin: 0 }}>{blog.title}</h3>
+                    <TitleReveal><h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.3, margin: 0 }}>{blog.title}</h3></TitleReveal>
                     <div style={{ width: 36, height: 36, background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginLeft: '1rem' }}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/>
@@ -106,6 +113,7 @@ export default function BlogsClientPage() {
           </div>
         )}
       </section>
+</SectionReveal>
 
       <style>{`
         .blog-card-img:hover { transform: scale(1.04); }

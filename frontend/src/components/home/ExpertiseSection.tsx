@@ -6,6 +6,10 @@ import { Plus, X } from 'lucide-react';
 import Link from 'next/link';
 import styles from './ExpertiseSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const expertiseItems = [
   { 
     id: '01', 
@@ -53,7 +57,8 @@ export default function ExpertiseSection() {
   };
 
   return (
-    <section className={styles.expertiseSection}>
+    <SectionReveal>
+<section className={styles.expertiseSection}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <motion.h2 
@@ -107,7 +112,7 @@ export default function ExpertiseSection() {
 
                     <div className={styles.expandedContent}>
                       <div className={styles.contentTop}>
-                        <h3 className={styles.itemTitle}>{item.title}</h3>
+                        <TitleReveal><h3 className={styles.itemTitle}>{item.title}</h3></TitleReveal>
                         <p className={styles.itemSub}>{item.sub}</p>
                       </div>
                       
@@ -146,7 +151,7 @@ export default function ExpertiseSection() {
                       <img src={item.img} alt={item.title} />
                     </div>
                     <div className={styles.content}>
-                      <h3 className={styles.itemTitle}>{item.title}</h3>
+                      <TitleReveal><h3 className={styles.itemTitle}>{item.title}</h3></TitleReveal>
                       <p className={styles.itemSub}>{item.sub}</p>
                     </div>
                     <div className={styles.iconBtnWrapper}>
@@ -162,5 +167,6 @@ export default function ExpertiseSection() {
         })}
       </div>
     </section>
+</SectionReveal>
   );
 }

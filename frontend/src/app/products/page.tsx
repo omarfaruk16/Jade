@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 export default function ProductsOverviewPage() {
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +51,7 @@ export default function ProductsOverviewPage() {
               
               {/* Overlay */}
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', padding: '2rem' }}>
-                <h2 style={{ color: '#fff', fontSize: '2rem', fontWeight: 600, marginBottom: '0.5rem' }}>{cat.name}</h2>
+                <TitleReveal><h2 style={{ color: '#fff', fontSize: '2rem', fontWeight: 600, marginBottom: '0.5rem' }}>{cat.name}</h2></TitleReveal>
                 <div style={{ padding: '0.5rem 1.5rem', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '0.9rem' }}>Explore Collection</div>
               </div>
             </Link>

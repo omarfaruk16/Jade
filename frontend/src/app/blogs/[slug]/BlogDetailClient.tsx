@@ -6,6 +6,8 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import dynamic from 'next/dynamic';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
 const MDPreview = dynamic(() => import('@uiw/react-md-editor').then(mod => mod.default.Markdown), { ssr: false });
 
 export default function BlogDetailClient({ slug }: { slug: string }) {
@@ -26,7 +28,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
     return (
       <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', paddingTop: '80px' }}>
         <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontSize: '3rem', fontWeight: 500, marginBottom: '1rem' }}>Blog not found</h1>
+          <TitleReveal><h1 style={{ fontSize: '3rem', fontWeight: 500, marginBottom: '1rem' }}>Blog not found</h1></TitleReveal>
           <Link href="/blogs" style={{ color: '#000', textDecoration: 'underline' }}>← Back to Blogs</Link>
         </div>
       </main>

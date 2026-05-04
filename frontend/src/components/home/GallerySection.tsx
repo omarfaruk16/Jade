@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import styles from './GallerySection.module.css';
 
+import SectionReveal from '@/components/layout/SectionReveal';
+
 const galleryImages = [
   '/images/slider-1.avif',
   '/images/slider-2.avif',
@@ -11,7 +13,8 @@ const galleryImages = [
 
 export default function GallerySection() {
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       <div className={styles.grid}>
         {galleryImages.map((src, idx) => (
           <motion.div 
@@ -27,5 +30,6 @@ export default function GallerySection() {
         ))}
       </div>
     </section>
+</SectionReveal>
   );
 }

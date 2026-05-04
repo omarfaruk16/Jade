@@ -7,6 +7,10 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './BlogsSection.module.css';
 
+import TitleReveal from '@/components/layout/TitleReveal';
+
+import SectionReveal from '@/components/layout/SectionReveal';
+
 export default function BlogsSection() {
   const [blogs, setBlogs] = useState<any[]>([]);
 
@@ -25,7 +29,8 @@ export default function BlogsSection() {
   const [featured, ...rest] = blogs;
 
   return (
-    <section className={styles.section}>
+    <SectionReveal>
+<section className={styles.section}>
       {/* Header Row */}
       <div className={styles.header}>
         <motion.h2
@@ -55,7 +60,7 @@ export default function BlogsSection() {
               <div className={styles.featuredOverlay} />
               <div className={styles.datePill}>{formatDate(featured.createdAt)}</div>
               <div className={styles.featuredBottom}>
-                <h3 className={styles.featuredTitle}>{featured.title}</h3>
+                <TitleReveal><h3 className={styles.featuredTitle}>{featured.title}</h3></TitleReveal>
                 <div className={styles.arrowCircle}>
                   <ArrowUpRight size={16} />
                 </div>
@@ -93,5 +98,6 @@ export default function BlogsSection() {
         </div>
       </div>
     </section>
+</SectionReveal>
   );
 }
