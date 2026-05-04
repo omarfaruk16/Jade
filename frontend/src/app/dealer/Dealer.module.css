@@ -419,13 +419,15 @@
 .formSplit {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: stretch;
 }
 
 .formInfo {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .formInfo h2 {
@@ -451,21 +453,23 @@
 .formCard {
   background: #fff;
   border: 1px solid #f0f0f0;
-  padding: 2rem;
-  border-radius: 24px;
+  padding: 1.25rem;
+  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0,0,0,0.02);
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .inputGroup {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -480,9 +484,9 @@
 .inputGroup input,
 .inputGroup select,
 .inputGroup textarea {
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.2s;
@@ -497,7 +501,7 @@
 }
 
 .inputGroup textarea {
-  min-height: 120px;
+  min-height: 100px;
   resize: vertical;
 }
 
@@ -506,8 +510,8 @@
   background: #000;
   color: #fff;
   border: none;
-  padding: 1.2rem;
-  border-radius: 12px;
+  padding: 1rem;
+  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -542,16 +546,17 @@
 
 @media (max-width: 768px) {
   .container {
-  width: 80%;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
   .title, .officeTitle {
     font-size: 2.5rem;
   }
   .formRow, .featureGridText, .featureGridQuotes {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   .handshakeImage {
     display: none;
