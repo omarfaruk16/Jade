@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import dynamic from 'next/dynamic';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
 import API_BASE from '@/lib/api';
@@ -106,7 +107,7 @@ export default function BlogsAdmin() {
         )}
       </div>
 
-      {modal && (
+      {modal && typeof document !== 'undefined' && createPortal(
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', zIndex: 1000, padding: '2rem', overflowY: 'auto' }}>
           <div style={{ background: '#111', borderRadius: '16px', padding: '2.5rem', width: '100%', maxWidth: '800px', position: 'relative', marginBottom: '2rem' }}>
             <button onClick={() => setModal(false)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><X size={18} /></button>
@@ -138,7 +139,8 @@ export default function BlogsAdmin() {
               </button>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

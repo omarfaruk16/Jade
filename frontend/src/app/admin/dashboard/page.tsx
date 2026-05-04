@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import API_BASE from '@/lib/api';
-import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box } from 'lucide-react';
+import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload } from 'lucide-react';
 import ServicesAdmin from './ServicesAdmin';
 import ProductsAdmin from './ProductsAdmin';
 import BlogsAdmin from './BlogsAdmin';
@@ -328,12 +329,17 @@ export default function AdminDashboard() {
       </main>
 
       {/* Modal Overlay */}
-      {isModalOpen && (
+      {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div className={styles.modalOverlay}>
           <div className={`${styles.modal} ${activeTab === 'projects' ? styles.wideModal : ''}`} style={{maxWidth: activeTab === 'projects' ? '900px' : '550px'}}>
             <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20}/></button>
-            <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700 }}>
-              {editingItem ? 'Edit' : 'Add New'} {activeTab.slice(0, -1)}
+            <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize' }}>
+              {editingItem ? 'Edit' : 'Add New'} {
+                activeTab === 'team' ? 'Team Member' : 
+                activeTab === 'faq' ? 'FAQ' : 
+                activeTab === 'dealerRequests' ? 'Dealer Request' :
+                activeTab.replace(/s$/, '')
+              }
             </h3>
             <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: activeTab === 'projects' ? '1fr 1fr' : '1fr', gap: '1.5rem' }}>
               {activeTab === 'projects' && (
@@ -348,9 +354,12 @@ export default function AdminDashboard() {
                   </div>
                   <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
                     <label>Cover Image {uploading && '(Uploading...)'}</label>
-                    <div style={{display:'flex', gap:'1rem'}}>
-                      <input value={projectData.coverImage} readOnly className={styles.input} style={{flex: 1}} />
-                      <input type="file" onChange={e => handleUpload(e, 'coverImage', 'projects')} />
+                    <div className={styles.fileInputContainer}>
+                      <input value={projectData.coverImage} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <label className={styles.fileInputLabel}>
+                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
+                        <input type="file" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'coverImage', 'projects')} />
+                      </label>
                     </div>
                   </div>
                   <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
@@ -367,9 +376,12 @@ export default function AdminDashboard() {
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Promotion Image {uploading && '(Uploading...)'}</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                      <input value={promotionData.image} readOnly className={styles.input} style={{flex: 1}} />
-                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'promotions')} />
+                    <div className={styles.fileInputContainer}>
+                      <input value={promotionData.image} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <label className={styles.fileInputLabel}>
+                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
+                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'image', 'promotions')} />
+                      </label>
                     </div>
                   </div>
                 </>
@@ -402,9 +414,12 @@ export default function AdminDashboard() {
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Photo {uploading && '(Uploading...)'}</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                      <input value={teamData.image} readOnly className={styles.input} style={{flex: 1}} />
-                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'image', 'team')} />
+                    <div className={styles.fileInputContainer}>
+                      <input value={teamData.image} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <label className={styles.fileInputLabel}>
+                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
+                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'image', 'team')} />
+                      </label>
                     </div>
                   </div>
                 </>
@@ -429,9 +444,12 @@ export default function AdminDashboard() {
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Logo {uploading && '(Uploading...)'}</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                      <input value={partnerData.logo} readOnly className={styles.input} style={{flex: 1}} />
-                      <input type="file" accept="image/*" onChange={e => handleUpload(e, 'logo', 'partners')} />
+                    <div className={styles.fileInputContainer}>
+                      <input value={partnerData.logo} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <label className={styles.fileInputLabel}>
+                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
+                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'logo', 'partners')} />
+                      </label>
                     </div>
                   </div>
                 </>
@@ -441,7 +459,8 @@ export default function AdminDashboard() {
               </button>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

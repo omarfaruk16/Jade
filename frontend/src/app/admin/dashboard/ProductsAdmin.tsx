@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import API_BASE from '@/lib/api';
 import { Plus, Trash2, Edit2, X, Bold, Italic, List, ChevronDown, ChevronUp } from 'lucide-react';
 import styles from './AdminDashboard.module.css';
@@ -227,7 +228,7 @@ export default function ProductsAdmin() {
       )}
 
 
-      {categoryModal&&(
+      {categoryModal&&typeof document !== 'undefined' && createPortal(
         <div style={overlayStyle}>
           <div style={{...modalStyle,maxWidth:500}}>
             <button onClick={()=>setCategoryModal(false)} style={{position:'absolute',top:16,right:16,background:'none',border:'none',color:'#fff',cursor:'pointer'}}><X/></button>
@@ -247,10 +248,11 @@ export default function ProductsAdmin() {
               <button onClick={saveCategory} disabled={uploading} style={{padding:'0.9rem',background:'#fff',color:'#000',border:'none',borderRadius:10,fontWeight:800,cursor:'pointer'}}>Save Category</button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
-      {productModal&&(
+      {productModal&&typeof document !== 'undefined' && createPortal(
         <div style={overlayStyle}>
           <div style={modalStyle}>
             <button onClick={()=>setProductModal(false)} style={{position:'absolute',top:16,right:16,background:'none',border:'none',color:'#fff',cursor:'pointer',zIndex:1}}><X/></button>
@@ -458,7 +460,8 @@ export default function ProductsAdmin() {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

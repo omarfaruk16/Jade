@@ -278,3 +278,36 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* File Upload Customization */
+.fileInputContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.fileInputLabel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.fileInputLabel:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hiddenFileInput {
+  display: none;
+}

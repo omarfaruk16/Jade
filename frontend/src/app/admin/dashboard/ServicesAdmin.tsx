@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import API_BASE from '@/lib/api';
 import { Plus, Trash2, Edit2, ChevronDown, ChevronRight, X, Bold, Italic, List } from 'lucide-react';
 import styles from './AdminDashboard.module.css';
@@ -335,7 +336,7 @@ export default function ServicesAdmin() {
       )}
 
       {/* ════════ PARENT MODAL ════════ */}
-      {parentModal && (
+      {parentModal && typeof document !== 'undefined' && createPortal(
         <div style={overlayStyle}>
           <div style={modalStyle}>
             <button onClick={() => setParentModal(false)} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X /></button>
@@ -346,11 +347,12 @@ export default function ServicesAdmin() {
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* ════════ CHILD MODAL ════════ */}
-      {childModal && (
+      {childModal && typeof document !== 'undefined' && createPortal(
         <div style={overlayStyle}>
           <div style={modalStyle}>
             <button onClick={() => setChildModal(false)} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X /></button>
@@ -378,11 +380,12 @@ export default function ServicesAdmin() {
 
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* ════════ ITEM MODAL ════════ */}
-      {itemModal && (
+      {itemModal && typeof document !== 'undefined' && createPortal(
         <div style={overlayStyle}>
           <div style={{ ...modalStyle, maxWidth: 860 }}>
             <button onClick={() => setItemModal(false)} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X /></button>
@@ -516,7 +519,8 @@ export default function ServicesAdmin() {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
