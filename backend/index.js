@@ -8,7 +8,7 @@ const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
-app.set('trust proxy', 1);
+app.set('trust proxy', 1); // Trust proxy headers from Nginx
 const PORT = process.env.PORT || 5001;
 
 // Security Middleware
@@ -37,6 +37,7 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests, please try again later.' },
+  skip: (req) => req.path === '/api/health', // Don't rate limit health check
 });
 app.use('/api/', limiter);
 
@@ -48,33 +49,50 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use('/uploads', express.static(uploadsDir));
 
-// Cloudinary Storage
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-
-// Cloudinary automatically configures itself if CLOUDINARY_URL is present in process.env.
-// No manual parsing is needed.
-
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'jade',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-  },
+// Multer Storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadsDir),
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
 });
 
-const upload = multer({ 
+const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|webp|gif/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    if (extname && mimetype) return cb(null, true);
+    cb(new Error('Only images (jpeg, jpg, png, webp, gif) are allowed'));
+  }
 });
 
 const auth = require('./middleware/auth');
 
-// Upload Endpoint (Protected)
-app.post('/api/upload', auth, upload.single('image'), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-  // Multer-storage-cloudinary automatically uploads and sets req.file.path to the URL
-  res.json({ url: req.file.path });
+// Upload Endpoint (Protected) - with error handling
+app.post('/api/upload', auth, (req, res, next) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      console.error('Multer error:', err);
+      return res.status(400).json({ error: err.message || 'Upload failed' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    try {
+      const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+      const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+      res.json({ url: imageUrl });
+    } catch (error) {
+      console.error('Upload endpoint error:', error);
+      res.status(500).json({ error: 'Failed to process upload' });
+    }
+  });
 });
 
 app.get('/', (req, res) => {
@@ -107,9 +125,6 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/blogs', blogRoutes);
 
-
-
-
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
@@ -117,4 +132,3 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
