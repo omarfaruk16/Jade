@@ -89,7 +89,12 @@ export default function AdminDashboard() {
     const fd = new FormData();
     fd.append('image', file);
     try {
-      const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd });
+      const token = localStorage.getItem('adminToken');
+      const res = await fetch(`${API_BASE}/upload`, {
+        method: 'POST',
+        body: fd,
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
       const data = await res.json();
       if (data.url) {
         if (tab === 'promotions') setPromotionData(prev => ({ ...prev, [field]: data.url }));
@@ -173,7 +178,7 @@ export default function AdminDashboard() {
     return dealerRequests;
   };
 
-  if (loading) return <div className={styles.dashboardWrapper} style={{justifyContent:'center', alignItems:'center'}}>Loading...</div>;
+  if (loading) return <div className={styles.dashboardWrapper} style={{ justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
 
   const tabs = [
     { id: 'projects', icon: Folder, label: 'Projects' },
@@ -198,7 +203,7 @@ export default function AdminDashboard() {
         </div>
         <nav className={styles.navGroup}>
           {tabs.map(tab => (
-            <button 
+            <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`${styles.navButton} ${activeTab === tab.id ? styles.activeNav : ''}`}
@@ -208,7 +213,7 @@ export default function AdminDashboard() {
             </button>
           ))}
         </nav>
-        <button 
+        <button
           className={styles.logoutBtn}
           onClick={() => { localStorage.removeItem('adminToken'); router.push('/admin'); }}
         >
@@ -241,15 +246,15 @@ export default function AdminDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div className={styles.inputGroup}>
                   <label>Business Phone</label>
-                  <input value={contactInfo.phone} onChange={e => setContactInfo({...contactInfo, phone: e.target.value})} className={styles.input} />
+                  <input value={contactInfo.phone} onChange={e => setContactInfo({ ...contactInfo, phone: e.target.value })} className={styles.input} />
                 </div>
                 <div className={styles.inputGroup}>
                   <label>Public Email</label>
-                  <input value={contactInfo.email} onChange={e => setContactInfo({...contactInfo, email: e.target.value})} className={styles.input} />
+                  <input value={contactInfo.email} onChange={e => setContactInfo({ ...contactInfo, email: e.target.value })} className={styles.input} />
                 </div>
                 <div className={styles.inputGroup}>
                   <label>Headquarters Address</label>
-                  <textarea value={contactInfo.address} onChange={e => setContactInfo({...contactInfo, address: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
+                  <textarea value={contactInfo.address} onChange={e => setContactInfo({ ...contactInfo, address: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
                 </div>
                 <button onClick={async () => {
                   const token = localStorage.getItem('adminToken');
@@ -267,7 +272,7 @@ export default function AdminDashboard() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                   <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Social Media Links</label>
-                  <button onClick={() => setContactInfo({...contactInfo, socials: [...contactInfo.socials, { name: '', url: '' }]})} className={styles.navButton} style={{padding: '0.4rem 0.8rem'}}>
+                  <button onClick={() => setContactInfo({ ...contactInfo, socials: [...contactInfo.socials, { name: '', url: '' }] })} className={styles.navButton} style={{ padding: '0.4rem 0.8rem' }}>
                     <PlusCircle size={16} /> Add Social
                   </button>
                 </div>
@@ -277,17 +282,17 @@ export default function AdminDashboard() {
                       <input placeholder="Name" value={social.name} onChange={e => {
                         const newSocials = [...contactInfo.socials];
                         newSocials[idx].name = e.target.value;
-                        setContactInfo({...contactInfo, socials: newSocials});
-                      }} className={styles.input} style={{flex: 1}} />
+                        setContactInfo({ ...contactInfo, socials: newSocials });
+                      }} className={styles.input} style={{ flex: 1 }} />
                       <input placeholder="URL" value={social.url} onChange={e => {
                         const newSocials = [...contactInfo.socials];
                         newSocials[idx].url = e.target.value;
-                        setContactInfo({...contactInfo, socials: newSocials});
-                      }} className={styles.input} style={{flex: 2}} />
+                        setContactInfo({ ...contactInfo, socials: newSocials });
+                      }} className={styles.input} style={{ flex: 2 }} />
                       <button onClick={() => {
                         const newSocials = contactInfo.socials.filter((_: any, i: number) => i !== idx);
-                        setContactInfo({...contactInfo, socials: newSocials});
-                      }} className={`${styles.actionBtn} ${styles.deleteBtn}`}><Trash2 size={18}/></button>
+                        setContactInfo({ ...contactInfo, socials: newSocials });
+                      }} className={`${styles.actionBtn} ${styles.deleteBtn}`}><Trash2 size={18} /></button>
                     </div>
                   ))}
                 </div>
@@ -314,9 +319,9 @@ export default function AdminDashboard() {
                       {activeTab === 'dealerRequests' && <td>{item.phone}</td>}
                       <td style={{ textAlign: 'right' }}>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                          {activeTab === 'projects' && <button onClick={() => router.push(`/projects/${item.id}`)} className={styles.actionBtn} title="View"><Eye size={18}/></button>}
-                          {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18}/></button>}
-                          <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18}/></button>
+                          {activeTab === 'projects' && <button onClick={() => router.push(`/projects/${item.id}`)} className={styles.actionBtn} title="View"><Eye size={18} /></button>}
+                          {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>}
+                          <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18} /></button>
                         </div>
                       </td>
                     </tr>
@@ -331,14 +336,14 @@ export default function AdminDashboard() {
       {/* Modal Overlay */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div className={styles.modalOverlay}>
-          <div className={`${styles.modal} ${activeTab === 'projects' ? styles.wideModal : ''}`} style={{maxWidth: activeTab === 'projects' ? '900px' : '550px'}}>
-            <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20}/></button>
+          <div className={`${styles.modal} ${activeTab === 'projects' ? styles.wideModal : ''}`} style={{ maxWidth: activeTab === 'projects' ? '900px' : '550px' }}>
+            <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20} /></button>
             <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize' }}>
               {editingItem ? 'Edit' : 'Add New'} {
-                activeTab === 'team' ? 'Team Member' : 
-                activeTab === 'faq' ? 'FAQ' : 
-                activeTab === 'dealerRequests' ? 'Dealer Request' :
-                activeTab.replace(/s$/, '')
+                activeTab === 'team' ? 'Team Member' :
+                  activeTab === 'faq' ? 'FAQ' :
+                    activeTab === 'dealerRequests' ? 'Dealer Request' :
+                      activeTab.replace(/s$/, '')
               }
             </h3>
             <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: activeTab === 'projects' ? '1fr 1fr' : '1fr', gap: '1.5rem' }}>
@@ -346,25 +351,25 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Project Title</label>
-                    <input required placeholder="Title" value={projectData.title} onChange={e => setProjectData({...projectData, title: e.target.value})} className={styles.input} />
+                    <input required placeholder="Title" value={projectData.title} onChange={e => setProjectData({ ...projectData, title: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Subtitle</label>
-                    <input required placeholder="Subtitle" value={projectData.subtitle} onChange={e => setProjectData({...projectData, subtitle: e.target.value})} className={styles.input} />
+                    <input required placeholder="Subtitle" value={projectData.subtitle} onChange={e => setProjectData({ ...projectData, subtitle: e.target.value })} className={styles.input} />
                   </div>
-                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
+                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2' }}>
                     <label>Cover Image {uploading && '(Uploading...)'}</label>
                     <div className={styles.fileInputContainer}>
-                      <input value={projectData.coverImage} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <input value={projectData.coverImage} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
                       <label className={styles.fileInputLabel}>
                         <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
-                        <input type="file" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'coverImage', 'projects')} />
+                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'coverImage', 'projects')} />
                       </label>
                     </div>
                   </div>
-                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2'}}>
+                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2' }}>
                     <label>Overview Description</label>
-                    <textarea required placeholder="Description" value={projectData.overviewDesc} onChange={e => setProjectData({...projectData, overviewDesc: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
+                    <textarea required placeholder="Description" value={projectData.overviewDesc} onChange={e => setProjectData({ ...projectData, overviewDesc: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
                   </div>
                 </>
               )}
@@ -372,12 +377,12 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Promotion Title</label>
-                    <input required value={promotionData.title} onChange={e => setPromotionData({...promotionData, title: e.target.value})} className={styles.input} />
+                    <input required value={promotionData.title} onChange={e => setPromotionData({ ...promotionData, title: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Promotion Image {uploading && '(Uploading...)'}</label>
                     <div className={styles.fileInputContainer}>
-                      <input value={promotionData.image} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <input value={promotionData.image} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
                       <label className={styles.fileInputLabel}>
                         <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
                         <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'image', 'promotions')} />
@@ -390,15 +395,15 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Reviewer Name</label>
-                    <input required value={testimonialData.name} onChange={e => setTestimonialData({...testimonialData, name: e.target.value})} className={styles.input} />
+                    <input required value={testimonialData.name} onChange={e => setTestimonialData({ ...testimonialData, name: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Role</label>
-                    <input value={testimonialData.role} onChange={e => setTestimonialData({...testimonialData, role: e.target.value})} className={styles.input} />
+                    <input value={testimonialData.role} onChange={e => setTestimonialData({ ...testimonialData, role: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Review Text</label>
-                    <textarea required value={testimonialData.review} onChange={e => setTestimonialData({...testimonialData, review: e.target.value})} className={styles.textarea} style={{minHeight: '120px'}} />
+                    <textarea required value={testimonialData.review} onChange={e => setTestimonialData({ ...testimonialData, review: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
                   </div>
                 </>
               )}
@@ -406,16 +411,16 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Member Name</label>
-                    <input required value={teamData.name} onChange={e => setTeamData({...teamData, name: e.target.value})} className={styles.input} />
+                    <input required value={teamData.name} onChange={e => setTeamData({ ...teamData, name: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Designation</label>
-                    <input value={teamData.designation} onChange={e => setTeamData({...teamData, designation: e.target.value})} className={styles.input} />
+                    <input value={teamData.designation} onChange={e => setTeamData({ ...teamData, designation: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Photo {uploading && '(Uploading...)'}</label>
                     <div className={styles.fileInputContainer}>
-                      <input value={teamData.image} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <input value={teamData.image} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
                       <label className={styles.fileInputLabel}>
                         <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
                         <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'image', 'team')} />
@@ -428,11 +433,11 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Question</label>
-                    <input required value={faqData.question} onChange={e => setFaqData({...faqData, question: e.target.value})} className={styles.input} />
+                    <input required value={faqData.question} onChange={e => setFaqData({ ...faqData, question: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Answer</label>
-                    <textarea required value={faqData.answer} onChange={e => setFaqData({...faqData, answer: e.target.value})} className={styles.textarea} style={{minHeight: '180px'}} />
+                    <textarea required value={faqData.answer} onChange={e => setFaqData({ ...faqData, answer: e.target.value })} className={styles.textarea} style={{ minHeight: '180px' }} />
                   </div>
                 </>
               )}
@@ -440,12 +445,12 @@ export default function AdminDashboard() {
                 <>
                   <div className={styles.inputGroup}>
                     <label>Partner Name</label>
-                    <input required value={partnerData.name} onChange={e => setPartnerData({...partnerData, name: e.target.value})} className={styles.input} />
+                    <input required value={partnerData.name} onChange={e => setPartnerData({ ...partnerData, name: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Logo {uploading && '(Uploading...)'}</label>
                     <div className={styles.fileInputContainer}>
-                      <input value={partnerData.logo} readOnly className={styles.input} style={{flex: 1}} placeholder="No file chosen" />
+                      <input value={partnerData.logo} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
                       <label className={styles.fileInputLabel}>
                         <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
                         <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'logo', 'partners')} />
@@ -465,4 +470,3 @@ export default function AdminDashboard() {
     </div>
   );
 }
-
