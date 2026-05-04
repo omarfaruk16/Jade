@@ -49,13 +49,19 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use('/uploads', express.static(uploadsDir));
 
-// Multer Storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadsDir),
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+// Cloudinary Storage
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+// Cloudinary automatically configures itself if CLOUDINARY_URL is present in process.env.
+// No manual parsing is needed.
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'jade',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+  },
 });
 
 const upload = multer({
@@ -85,9 +91,8 @@ app.post('/api/upload', auth, (req, res, next) => {
     }
 
     try {
-      const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
-      const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
-      res.json({ url: imageUrl });
+      // req.file.path contains the full Cloudinary URL
+      res.json({ url: req.file.path });
     } catch (error) {
       console.error('Upload endpoint error:', error);
       res.status(500).json({ error: 'Failed to process upload' });
