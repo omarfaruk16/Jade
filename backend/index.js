@@ -51,12 +51,8 @@ app.use('/uploads', express.static(uploadsDir));
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/@(.+)$/)[1] : null,
-  api_key: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/\/\/(.+):/)[1] : null,
-  api_secret: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/:(.+)@/)[1] : null
-});
+// Cloudinary automatically configures itself if CLOUDINARY_URL is present in process.env.
+// No manual parsing is needed.
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
