@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const multer = require('multer');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -38,11 +39,17 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Create uploads directory if it doesn't exist
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+app.use('/uploads', express.static(uploadsDir));
 
 // Multer Storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
     cb(null, uniqueSuffix + path.extname(file.originalname));
@@ -86,6 +93,7 @@ const partnerRoutes = require('./routes/partnerRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const productRoutes = require('./routes/productRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/projects', projectRoutes);
@@ -98,7 +106,6 @@ app.use('/api/partners', partnerRoutes);
 app.use('/api/dealer', dealerRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/products', productRoutes);
-const blogRoutes = require('./routes/blogRoutes');
 app.use('/api/blogs', blogRoutes);
 
 
