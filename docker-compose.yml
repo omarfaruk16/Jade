@@ -29,6 +29,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - BASE_URL=${BACKEND_URL}
       - FRONTEND_URL=${FRONTEND_URL}
+      - CLOUDINARY_URL=${CLOUDINARY_URL}
       - NODE_ENV=production
       - PORT=5001
     depends_on:

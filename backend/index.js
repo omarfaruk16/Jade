@@ -47,25 +47,28 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use('/uploads', express.static(uploadsDir));
 
-// Multer Storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadsDir),
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+// Cloudinary Storage
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/@(.+)$/)[1] : null,
+  api_key: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/\/\/(.+):/)[1] : null,
+  api_secret: process.env.CLOUDINARY_URL ? process.env.CLOUDINARY_URL.match(/:(.+)@/)[1] : null
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'jade',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+  },
 });
 
 const upload = multer({ 
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|webp|gif/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-    if (extname && mimetype) return cb(null, true);
-    cb(new Error('Only images (jpeg, jpg, png, webp, gif) are allowed'));
-  }
 });
 
 const auth = require('./middleware/auth');
@@ -73,9 +76,8 @@ const auth = require('./middleware/auth');
 // Upload Endpoint (Protected)
 app.post('/api/upload', auth, upload.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-  const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
-  const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
-  res.json({ url: imageUrl });
+  // Multer-storage-cloudinary automatically uploads and sets req.file.path to the URL
+  res.json({ url: req.file.path });
 });
 
 app.get('/', (req, res) => {
