@@ -143,67 +143,69 @@ export default function ImportExportPage() {
 
         {/* Harmony Section */}
         <SectionReveal>
-          <section className={styles.servicesSection}>
-             <div className={styles.servicesTop}>
-               <div>
-                 <span className={styles.sectionLabel}>Process</span>
+          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
+            <div className={styles.leftCol}>
+              <FourDotsIcon />
+              <span>Process</span>
+            </div>
+            <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
+               <div className={styles.servicesTop}>
                  <TitleReveal><h2 className={styles.sectionTitle}>Design, Installation, and Support in Harmony</h2></TitleReveal>
+                 <button className={styles.moreDetailsBtn}>More Details</button>
                </div>
-               <button className={styles.moreDetailsBtn}>More Details</button>
-             </div>
-             
-             <div className={styles.servicesCarousel}>
-               <div className={styles.serviceCard}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=600&q=80" alt="Service" className={styles.serviceImage} />
-                  <h5 className={styles.serviceTitle}>Interior Styling</h5>
+               
+               <div className={styles.accordionList}>
+                 {[
+                   { img: '/images/f1.png', text: 'The Art of Understanding brings clarity in every detail.' },
+                   { img: '/images/f2.png', text: 'The Craft of Perfection delivers flawless lasting results.' },
+                   { img: '/images/f3.png', text: 'The Promise of Forever ensures trust that never fades.' }
+                 ].map((item, idx) => (
+                   <div key={idx} className={styles.accordionItem}>
+                     <div className={styles.accordionItemLeft}>
+                       {/* eslint-disable-next-line @next/next/no-img-element */}
+                       <img src={item.img} alt="Accordion thumb" className={styles.accordionThumb} />
+                       <span className={styles.accordionText}>{item.text}</span>
+                     </div>
+                     <ChevronDown size={20} className={styles.accordionIcon} />
+                   </div>
+                 ))}
                </div>
-               <div className={styles.serviceCard}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&w=600&q=80" alt="Service" className={styles.serviceImage} />
-                  <h5 className={styles.serviceTitle}>Quality Assurance</h5>
-               </div>
-               <div className={styles.serviceCard}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Service" className={styles.serviceImage} />
-                  <h5 className={styles.serviceTitle}>On-site Installation</h5>
-               </div>
-             </div>
-          </section>
+            </div>
+          </div>
         </SectionReveal>
 
         {/* Insights Section */}
         <SectionReveal>
-          <section className={styles.insightsSection}>
-             <div className={styles.servicesTop}>
-               <div>
-                 <span className={styles.sectionLabel}>Global Reach</span>
+          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
+            <div className={styles.leftCol}></div>
+            <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
+               <div className={styles.servicesTop}>
                  <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
+                 <button className={styles.contactBtn}>Details</button>
                </div>
-               <button className={styles.moreDetailsBtn}>Details</button>
-             </div>
-             
-             <WorldMap />
+               
+               <WorldMap />
 
-             <div className={styles.statsRow}>
-               <div className={styles.statItem}>
-                 <TitleReveal><h2>15+</h2></TitleReveal>
-                 <p>Years of Experience</p>
+               <div className={styles.statsRow}>
+                 <div className={styles.statItem}>
+                   <TitleReveal><h2>15+</h2></TitleReveal>
+                   <p>Years of Experience</p>
+                 </div>
+                 <div className={styles.statItem}>
+                   <TitleReveal><h2>24/7</h2></TitleReveal>
+                   <p>Support Channels Available</p>
+                 </div>
+                 <div className={styles.statItem}>
+                   <TitleReveal><h2>1.8k+</h2></TitleReveal>
+                   <p>Successful Shipments</p>
+                 </div>
+                 <div className={styles.statItem}>
+                   <TitleReveal><h2>8k+</h2></TitleReveal>
+                   <p>Active Partnership Network</p>
+                 </div>
                </div>
-               <div className={styles.statItem}>
-                 <TitleReveal><h2>24/7</h2></TitleReveal>
-                 <p>Support Channels Available</p>
-               </div>
-               <div className={styles.statItem}>
-                 <TitleReveal><h2>1.8k+</h2></TitleReveal>
-                 <p>Successful Shipments</p>
-               </div>
-               <div className={styles.statItem}>
-                 <TitleReveal><h2>8k+</h2></TitleReveal>
-                 <p>Active Partnership Network</p>
-               </div>
-             </div>
-          </section>
+            </div>
+          </div>
         </SectionReveal>
 
         {/* Shared FAQ Section */}

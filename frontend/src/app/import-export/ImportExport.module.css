@@ -589,6 +589,54 @@
 
 
 
+/* Accordion List for Process */
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.accordionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.accordionItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.accordionThumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.accordionText {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.accordionIcon {
+  color: #666;
+  transition: transform 0.3s ease;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1200px) {
   .gridRow {
@@ -598,46 +646,11 @@
 }
 
 @media (max-width: 1024px) {
-  .gridRow {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  /* Reset wide column span — no ghost column on tablet/mobile */
-  .wideMiddleCol {
-    grid-column: auto;
-  }
-
-  .leftCol {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 0.5rem;
-    width: 100%;
-  }
-
-  .middleCol {
-    gap: 1.5rem;
-  }
-
-  .officeHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .headerRightContent {
-    align-items: flex-start;
-    text-align: left;
-    max-width: 100%;
-  }
-
   .quotesGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  .servicesCarousel,
   .statsRow {
     grid-template-columns: repeat(2, 1fr);
   }
