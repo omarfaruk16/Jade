@@ -200,6 +200,7 @@
 @media (max-width: 768px) {
   .jade-container {
     width: 90%;
+  }
   .jade-gap-section {
     gap: 4rem;
   }

@@ -138,7 +138,7 @@
 /* Mobile: 1 column */
 @media (max-width: 600px) {
   .section {
-    padding: 4rem 10%;
+    padding: 4rem 5%;
   }
 
   .grid {
