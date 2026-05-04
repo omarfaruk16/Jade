@@ -6,10 +6,9 @@
 }
 
 .container {
-  width: 100%;
-  max-width: 80%;
+  width: 80%;
   margin: 0 auto;
-  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Header Section */
@@ -474,9 +473,10 @@
 
 @media (max-width: 768px) {
   .container {
-    max-width: 95%;
-    padding: 0;
-  }
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
   .testimonialsGrid, .teamGrid {
     grid-template-columns: 1fr;
   }

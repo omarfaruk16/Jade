@@ -1,5 +1,5 @@
 .section {
-  padding: 6rem 5%;
+  padding: 6rem 10%;
   background-color: #ffffff;
   color: #1a1a1a;
 }
@@ -145,7 +145,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 4rem 5%;
+    padding: 4rem 10%;
   }
   .cardsContainer {
     grid-template-columns: 1fr;

@@ -5,10 +5,9 @@
 }
 
 .container {
-  width: 100%;
-  max-width: 80%;
+  width: 80%;
   margin: 0 auto;
-  padding: 0 2.5rem;
+  box-sizing: border-box;
 }
 
 /* Hero Section */
@@ -689,9 +688,10 @@
 
 @media (max-width: 768px) {
   .container {
-    max-width: 95%;
-    padding: 0;
-  }
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
   /* Grid rows — tight, no phantom gaps */
   .gridRow {

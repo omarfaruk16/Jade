@@ -180,10 +180,8 @@
 
 /* ── Universal Container (Applies same width globally) ── */
 .jade-container {
-  width: 100%;
-  max-width: 1400px; /* Universal width for the entire platform */
+  width: 80%;
   margin: 0 auto;
-  padding: 0 5%;
 }
 
 /* ── Universal Gaps (Applies identical spacing globally) ── */
@@ -201,8 +199,7 @@
 
 @media (max-width: 768px) {
   .jade-container {
-    padding: 0 1.5rem;
-  }
+    width: 90%;
   .jade-gap-section {
     gap: 4rem;
   }
