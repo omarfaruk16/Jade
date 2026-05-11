@@ -13,6 +13,7 @@ import BlogsSection from '@/components/home/BlogsSection';
 import FaqSection from '@/components/home/FaqSection';
 import TeamSection from '@/components/home/TeamSection';
 import DreamSection from '@/components/home/DreamSection';
+import PhilosophySection from '@/components/home/PhilosophySection';
 import SectionReveal from '@/components/layout/SectionReveal';
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <SectionReveal><AboutSection /></SectionReveal>
+        <SectionReveal><PhilosophySection /></SectionReveal>
         <SectionReveal><ProductsScrollSection /></SectionReveal>
         <SectionReveal><CategoriesSection /></SectionReveal>
         <SectionReveal><HarmonySection /></SectionReveal>
