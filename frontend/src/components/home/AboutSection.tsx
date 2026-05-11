@@ -20,6 +20,7 @@ export default function AboutSection() {
   return (
     <SectionReveal>
 <section className={styles.aboutSection} id="about">
+      <div className="jade-container">
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -132,6 +133,7 @@ export default function AboutSection() {
           <p>Projects Completed — Quality work.</p>
         </div>
       </motion.div>
+      </div>
     </section>
 </SectionReveal>
   );

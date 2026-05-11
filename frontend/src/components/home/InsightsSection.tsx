@@ -18,6 +18,7 @@ export default function InsightsSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -75,6 +76,7 @@ export default function InsightsSection() {
             </motion.div>
           ))}
         </div>
+      </div>
       </div>
     </section>
 </SectionReveal>

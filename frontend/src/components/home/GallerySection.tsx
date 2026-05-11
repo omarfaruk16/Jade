@@ -15,6 +15,7 @@ export default function GallerySection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.grid}>
         {galleryImages.map((src, idx) => (
           <motion.div 
@@ -28,6 +29,7 @@ export default function GallerySection() {
             <img src={src} alt={`Gallery ${idx + 1}`} />
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
 </SectionReveal>

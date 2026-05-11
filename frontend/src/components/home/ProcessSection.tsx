@@ -13,6 +13,7 @@ export default function ProcessSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.container}>
         
         {/* LEFT SIDE: Video */}
@@ -124,6 +125,7 @@ export default function ProcessSection() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </section>
 </SectionReveal>
   );

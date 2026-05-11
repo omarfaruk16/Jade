@@ -6,8 +6,10 @@
 }
 
 .container {
-  width: 80%;
+  width: 100%;
+  max-width: var(--container-max, 1400px);
   margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
   box-sizing: border-box;
 }
 
@@ -472,11 +474,6 @@
 }
 
 @media (max-width: 768px) {
-  .container {
-    width: 90%;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
   .testimonialsGrid, .teamGrid {
     grid-template-columns: 1fr;
   }

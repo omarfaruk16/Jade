@@ -72,9 +72,9 @@
 }
 
 .serviceItem {
-  max-width: 80%;
+  max-width: var(--container-max, 1400px);
   margin: 0 auto;
-  padding: 6rem 5vw;
+  padding: var(--space-xl, 80px) clamp(16px, 4vw, 48px);
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -435,9 +435,9 @@
 }
 
 .contactInner {
-  max-width: 80%;
+  max-width: var(--container-max, 1400px);
   margin: 0 auto;
-  padding: 0 5vw;
+  padding: 0 clamp(16px, 4vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;

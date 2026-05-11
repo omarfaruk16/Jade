@@ -1,5 +1,5 @@
 .section {
-  padding: 6rem 10%;
+  padding-block: var(--space-xl, 80px);
   background-color: #f9f9f9;
   color: #1a1a1a;
 }
@@ -157,13 +157,15 @@
   font-weight: 500;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1023px) {
+  .section { padding-block: var(--space-lg, 48px); }
   .content {
     flex-direction: column;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
   .header {
     flex-direction: column;
     align-items: flex-start;

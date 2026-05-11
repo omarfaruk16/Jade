@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './BlogsSection.module.css';
@@ -24,13 +24,14 @@ export default function BlogsSection() {
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
-  if (blogs.length === 0) return null;
+  if (!Array.isArray(blogs) || blogs.length === 0) return null;
 
   const [featured, ...rest] = blogs;
 
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       {/* Header Row */}
       <div className={styles.header}>
         <motion.h2
@@ -61,8 +62,8 @@ export default function BlogsSection() {
               <div className={styles.datePill}>{formatDate(featured.createdAt)}</div>
               <div className={styles.featuredBottom}>
                 <TitleReveal><h3 className={styles.featuredTitle}>{featured.title}</h3></TitleReveal>
-                <div className={styles.arrowCircle}>
-                  <ArrowUpRight size={16} />
+                <div className={styles.arrowCircleWhite}>
+                  <ChevronRight size={20} />
                 </div>
               </div>
             </Link>
@@ -78,24 +79,27 @@ export default function BlogsSection() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ duration: 1.2, delay: idx * 0.08 }}
             >
-              <div className={styles.fourDots}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
-                  <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
-                  <circle cx="6" cy="12" r="1.5" fill="currentColor"/>
-                  <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
-                </svg>
+              <Link href={`/blogs/${blog.slug}`} className={styles.listContentLeft}>
+                <div className={styles.fourDots}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+                    <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                    <circle cx="6" cy="12" r="1.5" fill="currentColor"/>
+                    <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div className={styles.listText}>
+                  <p className={styles.listDate}>{formatDate(blog.createdAt)}</p>
+                  <h4 className={styles.listTitle}>{blog.title}</h4>
+                </div>
+              </Link>
+              <div className={styles.listArrow}>
+                <ChevronRight size={20} />
               </div>
-              <Link href={`/blogs/${blog.slug}`} className={styles.listContent}>
-                <p className={styles.listDate}>{formatDate(blog.createdAt)}</p>
-                <h4 className={styles.listTitle}>{blog.title}</h4>
-              </Link>
-              <Link href={`/blogs/${blog.slug}`} className={styles.listArrow}>
-                <ArrowUpRight size={16} />
-              </Link>
             </motion.div>
           ))}
         </div>
+      </div>
       </div>
     </section>
 </SectionReveal>

@@ -20,7 +20,7 @@ export default function TeamSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
-      <div className={styles.container}>
+      <div className={`${styles.container} jade-container`}>
         <div className={styles.header}>
           <motion.h2 
             className={styles.title}
@@ -43,7 +43,7 @@ export default function TeamSection() {
         </div>
 
         <div className={styles.teamGrid}>
-          {team.length > 0 ? team.map((member, idx) => (
+          {Array.isArray(team) && team.length > 0 ? team.map((member, idx) => (
             <motion.div 
               key={member.id} 
               className={styles.teamMember}

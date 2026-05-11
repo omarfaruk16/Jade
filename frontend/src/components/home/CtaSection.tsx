@@ -15,6 +15,7 @@ export default function CtaSection() {
         <div className={styles.overlay} />
       </div>
 
+      <div className="jade-container">
       <div className={styles.content}>
         <motion.h2 
           className={styles.title}
@@ -64,6 +65,7 @@ export default function CtaSection() {
             </Link>
           </div>
         </motion.div>
+      </div>
       </div>
     </section>
 </SectionReveal>

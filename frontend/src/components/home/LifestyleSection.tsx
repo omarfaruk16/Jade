@@ -41,6 +41,7 @@ export default function LifestyleSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <motion.div 
         className={styles.header}
         initial={{ opacity: 0, y: 20 }}
@@ -80,6 +81,7 @@ export default function LifestyleSection() {
             </div>
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
 </SectionReveal>

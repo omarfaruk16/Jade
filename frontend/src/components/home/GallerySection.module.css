@@ -1,5 +1,5 @@
 .section {
-  padding: 0 10% 6rem 5%;
+  padding-block: var(--space-xl, 80px);
   background-color: #ffffff;
 }
 
@@ -27,13 +27,15 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1023px) {
+  .section { padding-block: var(--space-lg, 48px); }
   .grid {
     gap: 1rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
   .grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;

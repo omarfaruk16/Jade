@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import API_BASE from '@/lib/api';
 
+import { ChevronRight } from 'lucide-react';
+
 import TitleReveal from '@/components/layout/TitleReveal';
 
 import SectionReveal from '@/components/layout/SectionReveal';
@@ -24,6 +26,9 @@ export default function BlogsClientPage() {
     return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   };
 
+  const featuredBlog = blogs.length > 0 ? blogs[0] : null;
+  const restBlogs = blogs.length > 1 ? blogs.slice(1) : [];
+
   return (
     <main style={{ minHeight: '100vh', background: '#fff', paddingTop: '80px' }}>
       {/* Header */}
@@ -39,7 +44,7 @@ export default function BlogsClientPage() {
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 500, letterSpacing: '-0.03em', marginBottom: '1rem', lineHeight: 1.1 }}
+          style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 500, letterSpacing: '-0.03em', marginBottom: '1rem', lineHeight: 1.1, color: '#000' }}
         >
           Our Insights
         </motion.h1>
@@ -71,57 +76,91 @@ export default function BlogsClientPage() {
 
       {/* Blog Grid */}
       <SectionReveal>
-<section style={{ padding: '0 5% 8rem' }}>
-        {blogs.length === 0 ? (
-          <p style={{ textAlign: 'center', color: '#999', padding: '4rem 0' }}>No blog posts yet. Check back soon!</p>
-        ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {blogs.map((blog, idx) => (
-              <motion.div
-                key={blog.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: idx * 0.06 }}
-              >
-                <Link href={`/blogs/${blog.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }}>
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease', display: 'block' }}
-                    className="blog-card-img"
-                  />
-                  {/* Dark overlay */}
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.1) 100%)' }} />
+        <section style={{ padding: '0 0 8rem', background: '#f7f7f7' }}>
+          <div className="jade-container" style={{ paddingTop: '4rem' }}>
+            {blogs.length === 0 ? (
+              <p style={{ textAlign: 'center', color: '#999', padding: '4rem 0' }}>No blog posts yet. Check back soon!</p>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+                {/* Featured Blog */}
+                {featuredBlog && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2 }}
+                  >
+                    <Link href={`/blogs/${featuredBlog.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', borderRadius: '20px', overflow: 'hidden', minHeight: '600px', cursor: 'pointer' }}>
+                      <img
+                        src={featuredBlog.coverImage}
+                        alt={featuredBlog.title}
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                        className="blog-card-img"
+                      />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.1) 80%)' }} />
 
-                  {/* Date pill */}
-                  <div style={{ position: 'absolute', top: '1rem', left: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(8px)', borderRadius: '9999px', padding: '0.3rem 0.9rem', fontSize: '0.8rem', fontWeight: 600, color: '#111' }}>
-                    {formatDate(blog.createdAt)}
-                  </div>
+                      {/* Date pill */}
+                      <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(8px)', borderRadius: '9999px', padding: '0.4rem 1.2rem', fontSize: '0.85rem', fontWeight: 600, color: '#111' }}>
+                        {formatDate(featuredBlog.createdAt)}
+                      </div>
 
-                  {/* Title + arrow */}
-                  <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <TitleReveal><h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 500, lineHeight: 1.3, margin: 0 }}>{blog.title}</h3></TitleReveal>
-                    <div style={{ width: 36, height: 36, background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginLeft: '1rem' }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/>
-                      </svg>
-                    </div>
+                      {/* Title + arrow */}
+                      <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '2rem' }}>
+                        <TitleReveal><h3 style={{ color: '#fff', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 500, lineHeight: 1.2, margin: 0, maxWidth: '800px' }}>{featuredBlog.title}</h3></TitleReveal>
+                        <div style={{ width: 56, height: 56, background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: '#000', transition: 'transform 0.3s ease' }} className="arrow-circle-white">
+                          <ChevronRight size={28} />
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
+
+                {/* Rest of the Blogs */}
+                {restBlogs.length > 0 && (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
+                    {restBlogs.map((blog, idx) => (
+                      <motion.div
+                        key={blog.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: idx * 0.1 }}
+                      >
+                        <Link href={`/blogs/${blog.slug}`} className="blog-list-card" style={{ display: 'flex', flexDirection: 'column', padding: '2rem', background: '#fff', borderRadius: '16px', textDecoration: 'none', color: 'inherit', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', height: '100%', justifyContent: 'space-between', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                            <div style={{ color: '#111', display: 'flex' }}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+                                <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                                <circle cx="6" cy="12" r="1.5" fill="currentColor"/>
+                                <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
+                              </svg>
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                              <p style={{ fontSize: '0.9rem', color: '#555', margin: 0, fontWeight: 500 }}>{formatDate(blog.createdAt)}</p>
+                              <h4 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#000', margin: 0, lineHeight: 1.3 }}>{blog.title}</h4>
+                            </div>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '3rem' }}>
+                            <div className="blog-list-arrow" style={{ width: 48, height: 48, background: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', transition: 'transform 0.3s ease' }}>
+                              <ChevronRight size={24} />
+                            </div>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    ))}
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                )}
+              </div>
+            )}
           </div>
-        )}
-      </section>
-</SectionReveal>
+        </section>
+      </SectionReveal>
 
       <style>{`
-        .blog-card-img:hover { transform: scale(1.04); }
-        @media (max-width: 768px) {
-          div[style*="grid-template-columns: repeat(2, 1fr)"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
+        .blog-card-img:hover { transform: scale(1.02) !important; }
+        a:hover .arrow-circle-white { transform: scale(1.05); }
+        .blog-list-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06) !important; }
+        .blog-list-card:hover .blog-list-arrow { transform: scale(1.05); }
       `}</style>
     </main>
   );

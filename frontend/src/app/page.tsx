@@ -5,11 +5,14 @@ import HeroSection from '@/components/home/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
 import ProductsScrollSection from '@/components/home/ProductsScrollSection';
 import CategoriesSection from '@/components/home/CategoriesSection';
+import HarmonySection from '@/components/home/HarmonySection';
 import ProcessSection from '@/components/home/ProcessSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
+import AsSeenSection from '@/components/home/AsSeenSection';
 import BlogsSection from '@/components/home/BlogsSection';
 import FaqSection from '@/components/home/FaqSection';
 import TeamSection from '@/components/home/TeamSection';
+import DreamSection from '@/components/home/DreamSection';
 import SectionReveal from '@/components/layout/SectionReveal';
 
 export default function Home() {
@@ -21,11 +24,14 @@ export default function Home() {
         <SectionReveal><AboutSection /></SectionReveal>
         <SectionReveal><ProductsScrollSection /></SectionReveal>
         <SectionReveal><CategoriesSection /></SectionReveal>
-        <SectionReveal><ProcessSection /></SectionReveal>
+        <SectionReveal><HarmonySection /></SectionReveal>
         <SectionReveal><TestimonialsSection /></SectionReveal>
+        <SectionReveal><AsSeenSection /></SectionReveal>
         <SectionReveal><BlogsSection /></SectionReveal>
+        <SectionReveal><DreamSection /></SectionReveal>
         <SectionReveal><FaqSection /></SectionReveal>
         <SectionReveal><TeamSection /></SectionReveal>
+        
       </main>
       <Footer />
     </SmoothScroll>

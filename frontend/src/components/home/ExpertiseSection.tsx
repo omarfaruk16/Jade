@@ -59,6 +59,7 @@ export default function ExpertiseSection() {
   return (
     <SectionReveal>
 <section className={styles.expertiseSection}>
+      <div className="jade-container">
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <motion.h2 
@@ -165,6 +166,7 @@ export default function ExpertiseSection() {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
 </SectionReveal>

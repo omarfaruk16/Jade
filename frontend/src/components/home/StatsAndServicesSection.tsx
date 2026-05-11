@@ -12,6 +12,7 @@ export default function StatsAndServicesSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.topContainer}>
         <div className={styles.header}>
           <motion.h2 
@@ -81,6 +82,7 @@ export default function StatsAndServicesSection() {
             </div>
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
 </SectionReveal>

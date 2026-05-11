@@ -1,5 +1,6 @@
+/* ── Stats And Services Section ───────────────── */
 .section {
-  padding: 6rem 10%;
+  padding-block: var(--space-xl, 80px);
   background-color: #ffffff;
   color: #1a1a1a;
 }
@@ -134,23 +135,14 @@
   line-height: 1.5;
 }
 
-@media (max-width: 992px) {
-  .header {
-    flex-direction: column;
-  }
-  .cardsContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 1023px) {
+  .section { padding-block: var(--space-lg, 48px); }
+  .header { flex-direction: column; }
+  .cardsContainer { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding: 4rem 5%;
-  }
-  .cardsContainer {
-    grid-template-columns: 1fr;
-  }
-  .statsContainer {
-    gap: 1.5rem;
-  }
+@media (max-width: 767px) {
+  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
+  .cardsContainer { grid-template-columns: 1fr; }
+  .statsContainer { gap: 1.5rem; }
 }

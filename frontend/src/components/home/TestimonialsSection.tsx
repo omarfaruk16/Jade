@@ -44,6 +44,7 @@ export default function TestimonialsSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <motion.div
         className={styles.header}
         initial={{ opacity: 0, y: 20 }}
@@ -144,6 +145,7 @@ export default function TestimonialsSection() {
           </motion.div>
         ))}
 
+      </div>
       </div>
     </section>
 </SectionReveal>

@@ -29,6 +29,7 @@ export default function CategoriesSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.header}>
         <div className={styles.headerTop}>
           <motion.h2 
@@ -58,7 +59,7 @@ export default function CategoriesSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        {categories.map((cat, index) => {
+        {Array.isArray(categories) && categories.map((cat, index) => {
           const isExpanded = expandedIndex === index;
           const displayNum = (index + 1).toString().padStart(2, '0');
 
@@ -132,6 +133,7 @@ export default function CategoriesSection() {
           );
         })}
       </motion.div>
+      </div>
     </section>
 </SectionReveal>
   );

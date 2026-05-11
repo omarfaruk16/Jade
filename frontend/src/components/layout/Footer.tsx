@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerInner}>
+      <div className="jade-container">
         <div className={styles.footerGrid}>
           {/* Brand Column */}
           <div className={styles.brandCol}>

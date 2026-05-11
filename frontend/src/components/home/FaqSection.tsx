@@ -29,6 +29,7 @@ export default function FaqSection() {
   return (
     <SectionReveal>
 <section className={styles.section}>
+      <div className="jade-container">
       <div className={styles.header}>
         <motion.h2 
           className={styles.title}
@@ -56,7 +57,7 @@ export default function FaqSection() {
 
       <div className={styles.container}>
         <div className={styles.leftContent}>
-          {faqs.map((faq, index) => {
+          {Array.isArray(faqs) && faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <motion.div 
@@ -116,6 +117,7 @@ export default function FaqSection() {
             </Link>
           </div>
         </motion.div>
+      </div>
       </div>
     </section>
 </SectionReveal>

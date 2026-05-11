@@ -1,12 +1,13 @@
+/* ── Team Section ──────────────────────────────── */
 .section {
-  padding: 6rem 10%;
+  padding-block: var(--space-xl, 80px);
   background-color: #f7f7f7;
 }
 
 .container {
   background: #ffffff;
   border-radius: 24px;
-  padding: 5rem 0; /* Remove horizontal padding to use section width */
+  padding-block: var(--space-xl, 80px);
 }
 
 .header {
@@ -15,7 +16,6 @@
   align-items: flex-start;
   margin-bottom: 4rem;
   gap: 4rem;
-  padding: 0 4rem; /* Add padding back to header/grid only */
 }
 
 .title {
@@ -41,7 +41,6 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 1.2rem;
   margin-bottom: 4rem;
-  padding: 0 4rem; /* Add padding back to grid only */
 }
 
 .teamMember {
@@ -112,7 +111,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 1rem 4rem 0 4rem;
 }
 
 .footerHeadline {
@@ -148,37 +146,27 @@
 }
 
 @media (max-width: 1200px) {
-  .teamGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .teamGrid { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 992px) {
-  .container {
-    padding: 3rem 0;
-  }
-  .header, .teamGrid, .footer {
-    padding: 0 2rem;
-  }
+@media (max-width: 1023px) {
+  .section { padding-block: var(--space-lg, 48px); }
+  .container { padding-block: var(--space-lg, 48px); }
   .header {
     flex-direction: column;
     gap: 2rem;
   }
-  .teamGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .teamGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px) {
-  .teamGrid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 767px) {
+  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
+  .container { padding-block: calc(var(--space-lg, 48px) * 0.75); }
+  .teamGrid { grid-template-columns: 1fr; }
   .footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
   }
-  .title {
-    font-size: 2.2rem;
-  }
+  .title { font-size: 2.2rem; }
 }

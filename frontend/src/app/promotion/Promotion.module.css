@@ -26,9 +26,10 @@
 }
 
 .contentContainer {
-  max-width: 80%;
+  width: 100%;
+  max-width: var(--container-max, 1400px);
   margin: 0 auto;
-  padding: 0 4rem;
+  padding-inline: clamp(16px, 4vw, 48px);
 }
 
 .promotionGrid {
@@ -104,10 +105,6 @@
 }
 
 @media (max-width: 768px) {
-  .contentContainer {
-    max-width: 95%;
-    padding: 0;
-  }
   .promotionGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;

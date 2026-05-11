@@ -1,7 +1,8 @@
+/* ── Expertise Section ─────────────────────────── */
 .expertiseSection {
   background-color: #0A0A0A;
   color: #fff;
-  padding: 8rem 10%;
+  padding-block: var(--space-xl, 80px);
 }
 
 .header {
@@ -9,7 +10,6 @@
   justify-content: space-between;
   align-items: flex-start;
   margin: 0 auto 4rem auto;
-  max-width: 1400px;
 }
 
 .headerLeft {
@@ -36,7 +36,6 @@
 .list {
   display: flex;
   flex-direction: column;
-  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -70,9 +69,7 @@
   transition: background 0.3s ease;
 }
 
-.collapsed:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
+.collapsed:hover { background: rgba(255, 255, 255, 0.03); }
 
 .thumbnail {
   width: 120px;
@@ -88,9 +85,7 @@
   transition: transform 0.5s ease;
 }
 
-.collapsed:hover .thumbnail img {
-  transform: scale(1.1);
-}
+.collapsed:hover .thumbnail img { transform: scale(1.1); }
 
 .content {
   display: flex;
@@ -129,9 +124,7 @@
   transition: all 0.3s ease;
 }
 
-.iconBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+.iconBtn:hover { background: rgba(255, 255, 255, 0.2); }
 
 /* Expanded layout */
 .expanded {
@@ -210,11 +203,9 @@
   white-space: nowrap;
 }
 
-.learnMoreBtn:hover {
-  opacity: 0.8;
-}
+.learnMoreBtn:hover { opacity: 0.8; }
 
-/* Responsive */
+/* ── Tablet ────────────────────────────────────── */
 @media (max-width: 1200px) {
   .expanded {
     grid-template-columns: 60px 380px 1fr 140px;
@@ -222,7 +213,8 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
+  .expertiseSection { padding-block: var(--space-lg, 48px); }
   .collapsed {
     grid-template-columns: 50px 120px 1fr 50px;
     gap: 1.5rem;
@@ -236,18 +228,13 @@
     justify-content: space-between;
     align-items: center;
   }
-  .expandedImageWrapper {
-    height: 300px;
-  }
-  .number {
-    display: none;
-  }
+  .expandedImageWrapper { height: 300px; }
+  .number { display: none; }
 }
 
-@media (max-width: 600px) {
-  .expertiseSection {
-    padding: 4rem 5%;
-  }
+/* ── Mobile ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  .expertiseSection { padding-block: calc(var(--space-lg, 48px) * 0.75); }
   .collapsed {
     grid-template-columns: 1fr;
     gap: 1.5rem;

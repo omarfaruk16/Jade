@@ -45,6 +45,7 @@ export default function ProductsScrollSection() {
     <SectionReveal>
 <section className={styles.scrollContainer}>
       <div className={styles.stickySection}>
+        <div className="jade-container">
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <motion.p 
@@ -105,9 +106,10 @@ export default function ProductsScrollSection() {
             </div>
           </div>
         </div>
+        </div>
 
         <div className={styles.cardsWrapper} ref={scrollRef}>
-          {categories.map((cat, idx) => {
+          {Array.isArray(categories) && categories.map((cat, idx) => {
             // Using placeholder dates to match exact design in screenshot
             const dates = ["Jun 11, 2025", "Jun 4, 2025", "Jun 13, 2025", "Jul 1, 2025"];
             return (
