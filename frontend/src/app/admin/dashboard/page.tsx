@@ -402,6 +402,20 @@ export default function AdminDashboard() {
                     <input value={testimonialData.role} onChange={e => setTestimonialData({ ...testimonialData, role: e.target.value })} className={styles.input} />
                   </div>
                   <div className={styles.inputGroup}>
+                    <label>Avatar {uploading && '(Uploading...)'}</label>
+                    <div className={styles.fileInputContainer}>
+                      <input value={testimonialData.avatar} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
+                      <label className={styles.fileInputLabel}>
+                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
+                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'avatar', 'testimonials')} />
+                      </label>
+                    </div>
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Rating (1-5)</label>
+                    <input type="number" min="1" max="5" value={testimonialData.rating} onChange={e => setTestimonialData({ ...testimonialData, rating: Number(e.target.value) })} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup}>
                     <label>Review Text</label>
                     <textarea required value={testimonialData.review} onChange={e => setTestimonialData({ ...testimonialData, review: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
                   </div>
