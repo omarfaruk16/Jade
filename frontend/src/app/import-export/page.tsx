@@ -220,10 +220,10 @@ export default function ImportExportPage() {
 }
 
 const FourDotsIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginBottom: 12 }}>
-    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
-    <circle cx="16" cy="8" r="1.5" fill="currentColor"/>
-    <circle cx="8" cy="16" r="1.5" fill="currentColor"/>
-    <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="8" cy="3" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
+    <circle cx="3" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="13" cy="8" r="1.5" fill="currentColor"/>
   </svg>
 );

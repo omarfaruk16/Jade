@@ -49,20 +49,19 @@
 /* ── Layout Grid (3-Column) ── */
 .gridRow {
   display: grid;
-  grid-template-columns: 160px 1.2fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 180px 1.1fr 1fr;
+  gap: 4rem;
   align-items: flex-start;
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 .leftCol {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: #111;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: capitalize;
+  font-size: 1.05rem;
+  font-weight: 400;
 }
 
 .middleCol {
@@ -88,7 +87,7 @@
 }
 
 .introText {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   line-height: 1.3;
   color: #111;
   font-weight: 400;
@@ -136,45 +135,49 @@
 .officeHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3.5rem;
+  align-items: flex-start;
+  margin-bottom: 5rem;
   gap: 4rem;
 }
 
 .sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: clamp(3rem, 8vw, 8.5rem);
   font-weight: 500;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   margin: 0;
-  line-height: 1;
+  line-height: 0.9;
+  color: #000;
 }
 
 .headerRightContent {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1.5rem;
-  max-width: 350px;
+  gap: 1.8rem;
+  max-width: 280px;
   text-align: right;
+  padding-top: 1rem;
 }
 
 .headerDesc {
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.5;
+  font-size: 1.25rem;
+  color: #111;
+  line-height: 1.2;
   margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .contactBtn {
   background: #000;
   color: #fff;
   border: none;
-  padding: 0.8rem 2rem;
+  padding: 1.1rem 3.2rem;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contactBtn:hover {
@@ -185,26 +188,28 @@
 .conceptItem {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
 }
 
 .conceptItem h4 {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin: 0;
+  color: #000;
 }
 
 .conceptItem p {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  color: #333;
+  line-height: 1.45;
   margin: 0;
+  max-width: 600px;
 }
 
 .officeImgSide {
   width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: 12px;
+  aspect-ratio: 1.1 / 1;
+  border-radius: 20px;
   object-fit: cover;
 }
 
@@ -606,13 +611,13 @@
   padding: 1.5rem;
   border-radius: 12px;
   background: #fff;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .accordionItem:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .accordionItemLeft {

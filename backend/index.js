@@ -63,7 +63,7 @@ if (hasCloudinary) {
     cloudinary,
     params: {
       folder: 'jade',
-      allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+      allowed_formats: ['avif','jpg', 'jpeg', 'png', 'webp', 'gif'],
     },
   });
   console.log('Using Cloudinary storage');
