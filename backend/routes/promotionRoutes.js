@@ -1,7 +1,6 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const auth = require('../middleware/auth');
-
 const router = express.Router();
 const prisma = new PrismaClient();
 
@@ -21,6 +20,19 @@ router.get('/', async (req, res) => {
 router.post('/', auth, async (req, res) => {
   try {
     const promotion = await prisma.promotion.create({ data: req.body });
+    res.json(promotion);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// PUT update promotion (Protected)
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const promotion = await prisma.promotion.update({
+      where: { id: req.params.id },
+      data: req.body
+    });
     res.json(promotion);
   } catch (e) {
     res.status(500).json({ error: e.message });
