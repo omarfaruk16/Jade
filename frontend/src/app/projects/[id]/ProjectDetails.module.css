@@ -18,17 +18,21 @@
 
 .coverImage {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   z-index: 1;
 }
 
 .heroOverlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.32);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32);
   z-index: 2;
 }
 
@@ -52,10 +56,12 @@
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.9;
+  margin: 0 auto;
+  word-break: break-word;
 }
 
 /* ── Layout Container ── */
@@ -90,7 +96,7 @@
 }
 
 .aboutLabel {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #000;
   display: flex;
@@ -109,7 +115,7 @@
 
 .metaItem label {
   display: block;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.6rem;
   color: #000;
@@ -190,14 +196,14 @@
 }
 
 .processItem h4 {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.6rem;
   color: #000;
 }
 
 .processItem p {
-  font-size: 0.97rem;
+  font-size: 1rem;
   line-height: 1.75;
   color: #444;
 }
@@ -242,11 +248,13 @@
 
 /* ── Responsive ── */
 @media (max-width: 1200px) {
+
   .overviewSection,
   .processSection {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
   }
+
   .leftColumn {
     grid-column: span 2;
     margin-bottom: -1rem;
@@ -254,18 +262,22 @@
 }
 
 @media (max-width: 900px) {
+
   .overviewSection,
   .processSection {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     margin-bottom: 5rem;
   }
+
   .leftColumn {
     grid-column: span 1;
   }
+
   .relatedGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   /* Gallery stays 2-per-row on tablet */
   .galleryImg {
     height: 280px;
@@ -277,20 +289,25 @@
     height: 70vh;
     border-radius: 0 0 20px 20px;
   }
+
   .metaGrid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem 1.5rem;
   }
+
   /* Gallery goes 1-per-row on mobile */
   .galleryGrid {
     grid-template-columns: 1fr;
   }
+
   .galleryImg {
     height: 260px;
   }
+
   .relatedGrid {
     grid-template-columns: 1fr;
   }
+
   .overviewImage,
   .processImage {
     border-radius: 14px;

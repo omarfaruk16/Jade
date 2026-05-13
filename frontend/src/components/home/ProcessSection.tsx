@@ -57,7 +57,7 @@ export default function ProcessSection() {
               Every dream home begins with questions: Will this design fit my life? Will it be installed flawlessly? Will it last? At Jade, we remove doubt with clarity, precision, and lasting support — a journey from vision to peace of mind.
             </div>
             <div className={styles.buttonWrapper}>
-              <button className={styles.quoteBtn}>Get a Quote</button>
+              <button className={styles.quoteBtn} onClick={() => window.location.href='/contact'}>Get a Quote</button>
             </div>
           </motion.div>
 

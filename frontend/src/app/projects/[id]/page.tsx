@@ -208,7 +208,7 @@ export default function ProjectDetails() {
                     >
                       <span className={styles.stepNumber}>{String(i + 1).padStart(2, '0')}</span>
                       <div>
-                        <h4>{step.title}</h4>
+                        <TitleReveal><h4>{step.title}</h4></TitleReveal>
                         <p>{step.desc}</p>
                       </div>
                     </motion.div>

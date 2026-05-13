@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Target, Filter } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import SectionReveal from '@/components/layout/SectionReveal';
+import TitleReveal from '@/components/layout/TitleReveal';
 import styles from './ProjectsArchive.module.css';
 
 export default function ProjectsArchive() {
@@ -35,14 +36,7 @@ export default function ProjectsArchive() {
         <div className={styles.icon}>
           <Target size={24} color="#333" />
         </div>
-        <motion.h1 
-          className={styles.title}
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Selected Projects
-        </motion.h1>
+        <TitleReveal><h1 className={styles.title}>Selected Projects</h1></TitleReveal>
         <motion.p 
           className={styles.subtitle}
           initial={{ opacity: 0 }}

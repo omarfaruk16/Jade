@@ -14,17 +14,19 @@ import TitleReveal from '@/components/layout/TitleReveal';
 
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="6" cy="4.5" r="3.5" stroke="#111" strokeWidth="1.2"/>
-    <path d="M6 8V13.5" stroke="#111" strokeWidth="1.2"/>
+    <circle cx="6" cy="4.5" r="3.5" stroke="#111" strokeWidth="1.2" />
+    <path d="M6 8V13.5" stroke="#111" strokeWidth="1.2" />
   </svg>
 );
 
 const QuoteIcon = () => (
   <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor"/>
-    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor"/>
+    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor" />
+    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor" />
   </svg>
 );
+
+
 
 export default function ServiceChildPage() {
   const { slug } = useParams() as { slug: string };
@@ -47,7 +49,7 @@ export default function ServiceChildPage() {
     fetch(`${API_BASE}/contact`)
       .then(r => r.json())
       .then(setContact)
-      .catch(() => {});
+      .catch(() => { });
   }, [slug]);
 
   useEffect(() => {
@@ -92,8 +94,8 @@ export default function ServiceChildPage() {
           </div>
           <div className={styles.subNavLinks}>
             {data.items.map((item: any, idx: number) => (
-              <button 
-                key={item.id} 
+              <button
+                key={item.id}
                 onClick={() => scrollTo(item.id)}
                 className={`${styles.subNavBtn} ${activeItem === item.id ? styles.subNavBtnActive : ''}`}
               >
@@ -106,11 +108,11 @@ export default function ServiceChildPage() {
         </div>
       </div>
 
-      <div 
-        className={styles.heroSection} 
+      <div
+        className={styles.heroSection}
         style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})` }}
       >
-        <motion.div 
+        <motion.div
           className={styles.heroOverlay}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,13 +135,14 @@ export default function ServiceChildPage() {
               <div className={styles.itemHeader}>
                 <TitleReveal><h1 className={styles.itemTitle}>{item.title}</h1></TitleReveal>
                 <div className={styles.itemHeaderRight}>
-                  <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br/>stories from our studio.</p>
-                  <button className={styles.contactBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
+                  <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br />stories from our studio.</p>
+                  <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
                 </div>
               </div>
 
               {/* Row 1: About service */}
-              <div className={styles.gridRow}>
+              <SectionReveal>
+                <div className={styles.gridRow}>
                 <div className={styles.leftCol}>
                   <PinIcon />
                   <span>About service</span>
@@ -147,8 +150,8 @@ export default function ServiceChildPage() {
                 <div className={styles.middleCol}>
                   <p className={styles.aboutText}>{item.about}</p>
                   {item.keyLine && (
-                    <div className={styles.quoteBoxOrange} style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '8px', color: '#fff', fontSize: '14px', lineHeight: '1.6' }}>
-                      <div className={styles.quoteWrap} style={{ marginBottom: '1rem', color: '#fff' }}><QuoteIcon /></div>
+                    <div className={`${styles.quoteBox} ${styles.quoteBoxOrange}`}>
+                      <div className={styles.quoteWrap}><QuoteIcon /></div>
                       <span>{item.keyLine}</span>
                     </div>
                   )}
@@ -158,42 +161,46 @@ export default function ServiceChildPage() {
                     <img src={item.imageUrl} alt={item.title} className={styles.aboutImage} />
                   )}
                 </div>
-              </div>
+                </div>
+              </SectionReveal>
 
               {/* Row 2: Overview */}
               {(item.overviewCategory || item.overviewBestFor || item.overviewStyleApproach) && (
-                <div className={styles.gridRow}>
+                <SectionReveal>
+                  <div className={styles.gridRow}>
                   <div className={styles.leftCol}>
                     <PinIcon />
                     <span>Overview</span>
                   </div>
-                  <div className={styles.middleCol} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+                  <div className={styles.overviewGrid}>
                     {item.overviewCategory && (
-                      <div>
-                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Category</h4>
-                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewCategory}</p>
+                      <div className={styles.overviewItem}>
+                        <TitleReveal><h4>Category</h4></TitleReveal>
+                        <p>{item.overviewCategory}</p>
                       </div>
                     )}
                     {item.overviewBestFor && (
-                      <div>
-                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Best For</h4>
-                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewBestFor}</p>
+                      <div className={styles.overviewItem}>
+                        <TitleReveal><h4>Best For</h4></TitleReveal>
+                        <p>{item.overviewBestFor}</p>
                       </div>
                     )}
                   </div>
-                  <div className={styles.rightCol} style={{ justifyContent: 'flex-start' }}>
+                  <div className={styles.rightCol}>
                     {item.overviewStyleApproach && (
-                      <div>
-                        <h4 style={{ fontSize: '14px', fontWeight: '700', marginBottom: '8px' }}>Style Approach</h4>
-                        <p style={{ fontSize: '14px', color: '#333' }}>{item.overviewStyleApproach}</p>
+                      <div className={styles.overviewItem}>
+                        <TitleReveal><h4>Style Approach</h4></TitleReveal>
+                        <p>{item.overviewStyleApproach}</p>
                       </div>
                     )}
                   </div>
-                </div>
+                  </div>
+                </SectionReveal>
               )}
 
               {/* Row 3: Features */}
-              <div className={styles.gridRow}>
+              <SectionReveal>
+                <div className={styles.gridRow}>
                 <div className={styles.leftCol}>
                   <PinIcon />
                   <span>Features</span>
@@ -201,8 +208,8 @@ export default function ServiceChildPage() {
                 <div className={styles.includedMiddleCol}>
                   {item.whatsIncluded?.map((w: any, idx: number) => (
                     <div key={w.id} className={styles.includedBlock}>
-                      <h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4>
-                      <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description) }} />
+                      <TitleReveal><h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4></TitleReveal>
+                      <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description || '') }} />
                     </div>
                   ))}
                 </div>
@@ -212,20 +219,23 @@ export default function ServiceChildPage() {
                     return (
                       <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
                         <div className={styles.quoteWrap}><QuoteIcon /></div>
-                        <span>{q}</span>
+                        <p>{q}</p>
                       </div>
                     );
                   })}
                 </div>
-              </div>
+                </div>
+              </SectionReveal>
 
               {/* Gallery Row */}
               {item.gallery?.length > 0 && (
-                <div className={styles.galleryRow}>
+                <SectionReveal>
+                  <div className={styles.galleryRow}>
                   {item.gallery.map((g: any) => (
                     <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
                   ))}
                 </div>
+                </SectionReveal>
               )}
             </section>
           </SectionReveal>
@@ -240,7 +250,7 @@ export default function ServiceChildPage() {
               <p className={styles.contactLabel}>Get In Touch</p>
               <TitleReveal><h2 className={styles.contactTitle}>Interested in {data.name}?</h2></TitleReveal>
               <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
-              <button className={styles.contactBtnLarge} onClick={() => window.location.href='/contact'}>Contact Us</button>
+              <button className={styles.contactBtnLarge} onClick={() => window.location.href = '/contact'}>Contact Us</button>
             </div>
             <div className={styles.contactDetails}>
               {contact?.phone && <div className={styles.contactItem}><h4>Call Us</h4><p>{contact.phone}</p></div>}

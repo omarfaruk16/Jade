@@ -118,7 +118,7 @@ export default function DealerPage() {
               <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
               <div className={styles.officeHeaderRight}>
                 <p>Learn more about our practice, or read<br />stories from our studio.</p>
-                <button className={styles.contactNowBtn}>Contact now</button>
+                <button className={styles.contactNowBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
               </div>
             </div>
 

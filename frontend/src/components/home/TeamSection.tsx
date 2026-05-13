@@ -86,7 +86,7 @@ export default function TeamSection() {
             <h4 className={styles.footerHeadline}>Join us in shaping better spaces</h4>
             <p className={styles.footerSubtext}>Bring your talent, creativity, and passion let&apos;s build something extraordinary together.</p>
           </div>
-          <button className={styles.joinBtn}>Join us now</button>
+          <button className={styles.joinBtn} onClick={() => window.location.href='/contact'}>Join us now</button>
         </motion.div>
       </div>
     </section>

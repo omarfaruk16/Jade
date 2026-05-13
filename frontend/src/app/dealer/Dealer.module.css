@@ -448,9 +448,11 @@
 }
 
 .formInfo h2 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1rem;
   font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .formInfo p {
@@ -501,12 +503,21 @@
 .inputGroup input,
 .inputGroup select,
 .inputGroup textarea {
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.8rem 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.2s;
+  max-width: 100%;
+}
+
+.inputGroup select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .inputGroup input:focus,
