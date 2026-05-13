@@ -99,9 +99,15 @@ export default function ServicesAdmin() {
   const upload = async (file: File): Promise<string> => {
     setUploading(true);
     const fd = new FormData(); fd.append('image', file);
-    const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd });
+    const t = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : '';
+    const res = await fetch(`${API_BASE}/upload`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${t}` },
+      body: fd
+    });
     const data = await res.json();
     setUploading(false);
+    if (!res.ok) throw new Error(data.error || 'Upload failed');
     return data.url || '';
   };
 
@@ -134,11 +140,12 @@ export default function ServicesAdmin() {
   const uploadChildImage = async (e: any) => {
     const file = e.target.files[0];
     if (!file) return;
-    const fData = new FormData();
-    fData.append('image', file);
-    const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fData });
-    const d = await res.json();
-    setChildForm({ ...childForm, coverImage: d.url });
+    try {
+      const url = await upload(file);
+      setChildForm(prev => ({ ...prev, coverImage: url }));
+    } catch (err: any) {
+      alert('Image upload failed: ' + err.message);
+    }
   };
 
   // ── Child CRUD ──────────────────────────────────────────────────────────────

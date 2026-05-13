@@ -2,7 +2,6 @@
   background: #ffffff;
   min-height: 100vh;
   color: #000;
-  padding-bottom: 8rem;
 }
 
 .container {
@@ -22,11 +21,13 @@
 }
 
 .pageTitle {
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   margin: 0 auto 1.5rem;
   max-width: 900px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .pageSubtitle {

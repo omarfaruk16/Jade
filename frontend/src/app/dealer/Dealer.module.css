@@ -30,14 +30,19 @@
   z-index: 10;
   text-align: center;
   color: #fff;
+  padding: 0 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .title {
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(2.2rem, 7vw, 6rem);
   font-weight: 500;
   margin-bottom: 1rem;
   letter-spacing: -0.04em;
   color: #fff;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .subtitle {
@@ -47,11 +52,12 @@
   color: #fff;
   max-width: 600px;
   margin: 0 auto;
+  word-break: break-word;
 }
 
 /* Intro Section */
 .intro {
-  padding: 6rem 0;
+  padding: 8rem 0;
 }
 
 .introGrid {
@@ -120,7 +126,7 @@
 
 /* Office Design Detailed Section */
 .officeDesignDetailed {
-  padding: 4rem 0;
+  padding: 8rem 0;
   background: #f8f8f8;
   color: #000;
 }
@@ -253,7 +259,7 @@
 
 /* FAQ Card Section */
 .faqCardSection {
-  padding: 6rem 0 4rem;
+  padding: 8rem 0;
   background: #f8f8f8;
 }
 
@@ -376,7 +382,7 @@
 
 /* Partners Section */
 .partnersSection {
-  padding: 4rem 0;
+  padding: 8rem 0;
   background: #fcfcfc;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -421,7 +427,7 @@
 
 /* Form Section */
 .dealerFormSection {
-  padding: 4rem 0;
+  padding: 8rem 0;
   background: #fff;
 }
 
@@ -584,6 +590,11 @@
   .featureRow {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  .introInfo p {
+    font-size: 1.1rem;
+    line-height: 1.6;
   }
 
   .handshakeImage {

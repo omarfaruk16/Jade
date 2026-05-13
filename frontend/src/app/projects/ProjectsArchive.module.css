@@ -18,10 +18,12 @@
 }
 
 .title {
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   margin-bottom: 1.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .container {
