@@ -5,8 +5,7 @@ import API_BASE from '@/lib/api';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './Dealer.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
 import CeoBadge from '@/components/shared/CeoBadge';
 import WhatsIncluded from '@/components/shared/WhatsIncluded';
@@ -15,8 +14,14 @@ import '@/app/jade-shared.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 
+interface Partner {
+  id: string;
+  logo: string;
+  name: string;
+}
+
 export default function DealerPage() {
-  const [partners, setPartners] = useState<any[]>([]);
+  const [partners, setPartners] = useState<Partner[]>([]);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -86,9 +91,20 @@ export default function DealerPage() {
       <SectionReveal>
         <section className={styles.intro}>
           <div className={styles.container}>
-            <div className={styles.introInfo}>
-              <p>The inspiration from Scandinavian aesthetics, emphasizing simplicity, functionality, and natural beauty. The design combines neutral color palettes—such as whites, grays, and soft pastels—with warm wooden accents to create a cozy and inviting atmosphere.</p>
-              <CeoBadge />
+            <div className={styles.featureRow}>
+              <div className={styles.featureLabel}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                </svg>
+                <span>Insights</span>
+              </div>
+              <div className={styles.introInfo}>
+                <p>The inspiration from Scandinavian aesthetics, emphasizing simplicity, functionality, and natural beauty. The design combines neutral color palettes—such as whites, grays, and soft pastels—with warm wooden accents to create a cozy and inviting atmosphere.</p>
+                <CeoBadge />
+              </div>
             </div>
           </div>
         </section>
@@ -146,6 +162,34 @@ export default function DealerPage() {
                 <span>What&apos;s included</span>
               </div>
               <WhatsIncluded />
+            </div>
+
+            {/* Partners Section (New) */}
+            <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', borderTop: '1px solid #eee' }}>
+              <div className={styles.featureLabel}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                </svg>
+                <span>Partners</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <TitleReveal><h3 style={{ fontSize: '1.2rem', fontWeight: 600, margin: 0 }}>Our export import partners</h3></TitleReveal>
+                <div className={styles.partnersGrid}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="https://svgl.app/library/boltshift.svg" className={styles.partnerLogo} alt="Boltshift" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="https://svgl.app/library/logoipsum.svg" className={styles.partnerLogo} alt="Logoipsum" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="https://svgl.app/library/extrahop.svg" className={styles.partnerLogo} alt="Extrahop" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="https://svgl.app/library/framer.svg" className={styles.partnerLogo} alt="Framer" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="https://svgl.app/library/vercel_wordmark_dark.svg" className={styles.partnerLogo} alt="Vercel" />
+                </div>
+              </div>
             </div>
           </div>
         </section>

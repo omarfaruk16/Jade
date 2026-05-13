@@ -13,8 +13,8 @@ export default function TitleReveal({ children, className, delay = 0 }: TitleRev
   return (
     <motion.div
       className={className}
-      initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }}
-      whileInView={{ clipPath: 'inset(0 0 0 0)', opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.85 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ 
         duration: 1.2, 

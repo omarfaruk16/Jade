@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 // Shared SVG quote icon
 const QuoteSvg = () => (
   <svg className="jade-quote-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 28C10 21.373 15.373 16 22 16V20C17.582 20 14 23.582 14 28V36H22V28H10ZM26 28C26 21.373 31.373 16 38 16V20C33.582 20 30 23.582 30 28V36H38V28H26Z" fill="currentColor"/>
+    <path d="M10 28C10 21.373 15.373 16 22 16V20C17.582 20 14 23.582 14 28V36H22V28H10ZM26 28C26 21.373 31.373 16 38 16V20C33.582 20 30 23.582 30 28V36H38V28H26Z" fill="currentColor" />
   </svg>
 );
 

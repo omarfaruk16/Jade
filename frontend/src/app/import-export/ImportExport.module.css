@@ -1,5 +1,5 @@
 .pageWrapper {
-  background: #fff;
+  background: #f5f5f5;
   min-height: 100vh;
   color: #000;
 }
@@ -49,7 +49,7 @@
 /* ── Layout Grid (3-Column) ── */
 .gridRow {
   display: grid;
-  grid-template-columns: 180px 1.1fr 1fr;
+  grid-template-columns: 180px 1fr 1fr;
   gap: 4rem;
   align-items: flex-start;
   padding: 3rem 0;
@@ -59,9 +59,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #111;
-  font-size: 1.05rem;
-  font-weight: 400;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  align-self: flex-start;
 }
 
 .middleCol {
@@ -87,12 +88,11 @@
 }
 
 .introText {
-  font-size: 1.4rem;
-  line-height: 1.3;
-  color: #111;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: #444;
+  font-weight: 500;
+  margin-bottom: 2rem;
 }
 
 .profileBadge {
@@ -141,12 +141,21 @@
 }
 
 .sectionTitle {
-  font-size: clamp(3rem, 8vw, 8.5rem);
-  font-weight: 500;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
   margin: 0;
-  line-height: 0.9;
+  line-height: 1;
   color: #000;
+}
+
+/* Used specifically for the giant "Office Design" display heading */
+
+
+.officeTitle {
+  font-size: 4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .headerRightContent {
@@ -160,20 +169,19 @@
 }
 
 .headerDesc {
-  font-size: 1.25rem;
-  color: #111;
-  line-height: 1.2;
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
   margin: 0;
   font-weight: 400;
-  letter-spacing: -0.01em;
 }
 
 .contactBtn {
   background: #000;
   color: #fff;
   border: none;
-  padding: 1.1rem 3.2rem;
-  border-radius: 999px;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
@@ -193,15 +201,16 @@
 
 .conceptItem h4 {
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
   margin: 0;
   color: #000;
 }
 
 .conceptItem p {
-  font-size: 1.15rem;
-  color: #333;
-  line-height: 1.45;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.7;
   margin: 0;
   max-width: 600px;
 }
@@ -213,36 +222,38 @@
   object-fit: cover;
 }
 
-/* Quotes Section */
+/* Quotes Section — now handled by jade-shared.css (jade-quotes-grid)
+   Keep the 4-col override here for the import-export page */
 .quotesGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
 }
 
 .quoteCard {
-  background: #fbfbfb;
-  padding: 2rem;
-  border-radius: 12px;
+  background: #fff;
+  padding: 2rem 1.75rem;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .quoteCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 .quoteIcon {
-  width: 36px;
-  height: 36px;
-  color: #ff5c35;
+  width: 32px;
+  height: 32px;
+  color: #E05C3A;
   flex-shrink: 0;
 }
 
 .quoteText {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: #333;
   margin: 0;
@@ -250,7 +261,7 @@
 }
 
 .quoteCardColored {
-  background: #ff5c35;
+  background: #E05C3A;
   color: #fff;
 }
 
@@ -331,6 +342,31 @@
 .insightsSection {
   padding: 8rem 0;
   background: #fff;
+}
+
+/* Full-width insights section — map spans full container */
+.fullInsightsSection {
+  padding: 6rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.insightsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0;
+  gap: 2rem;
+}
+
+.insightsHeaderRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  text-align: right;
+  max-width: 260px;
+  flex-shrink: 0;
+  padding-bottom: 0.25rem;
 }
 
 .mapWrapper {
@@ -420,21 +456,24 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  border-top: 1px solid #eee;
-  padding-top: 4rem;
+  border-top: 1px solid #ddd;
+  padding-top: 3rem;
+  margin-top: 1rem;
 }
 
 .statItem h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
+  color: #000;
 }
 
 .statItem p {
   font-size: 0.85rem;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* FAQ Section — matches homepage design */
@@ -596,7 +635,94 @@
 
 
 
-/* Accordion List for Process */
+/* ── Harmony / Process Section ── */
+.harmonySection {
+  padding: 7rem 0 4rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.harmonySectionTitle {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #000;
+  margin: 0 0 4rem 0;
+  max-width: 650px;
+}
+
+.harmonyIntro {
+  display: grid;
+  grid-template-columns: 180px 1fr auto;
+  gap: 2rem 4rem;
+  align-items: start;
+  margin-bottom: 5rem;
+}
+
+.resonateLabel {
+  font-size: 0.9rem;
+  color: #999;
+  padding-top: 0.2rem;
+}
+
+.harmonyDesc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #444;
+  margin: 0;
+}
+
+/* Process Cards — 3 columns with vertical dividers */
+.processCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #d8d8d8;
+}
+
+.processCard {
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border-right: 1px solid #d8d8d8;
+}
+
+.processCard:first-child {
+  padding-left: 0;
+}
+
+.processCard:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.processCard:not(:first-child) {
+  padding-left: 2.5rem;
+}
+
+.processCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.processThumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.processText {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #333;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Legacy accordion styles kept for safety */
 .accordionList {
   display: flex;
   flex-direction: column;
@@ -614,10 +740,6 @@
   border: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.accordionItem:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .accordionItemLeft {
@@ -639,16 +761,20 @@
   color: #333;
 }
 
-.accordionIcon {
-  color: #666;
-  transition: transform 0.3s ease;
-}
-
 /* ── Responsive ── */
 @media (max-width: 1200px) {
   .gridRow {
-    grid-template-columns: 140px 1.2fr 1fr;
+    grid-template-columns: 140px 1fr 1fr;
     gap: 2rem;
+  }
+
+  .harmonyIntro {
+    grid-template-columns: 140px 1fr auto;
+    gap: 2rem;
+  }
+
+  .harmonySectionTitle {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
   }
 }
 
@@ -665,6 +791,58 @@
   .logosRow {
     gap: 1.5rem;
     flex-wrap: wrap;
+  }
+
+  /* Harmony — stack on tablet */
+  .harmonySection {
+    padding: 5rem 0 3rem;
+  }
+
+  .insightsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .insightsHeaderRight {
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .fullInsightsSection {
+    padding: 4rem 0;
+  }
+
+  .harmonyIntro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .harmonyIntro .contactBtn {
+    justify-self: flex-end;
+  }
+
+  .processCards {
+    grid-template-columns: 1fr;
+    border-top: none;
+    gap: 1.5rem;
+  }
+
+  .processCard {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .processCard:last-child {
+    border-bottom: none;
+  }
+
+  .processCard:not(:first-child) {
+    padding-left: 1.5rem;
   }
 
   .faqContainer {
@@ -711,8 +889,87 @@
   /* Grid rows — tight, no phantom gaps */
   .gridRow {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 3rem;
     padding: 1.5rem 0;
+  }
+
+  /* Harmony mobile */
+  .harmonySection {
+    padding: 3rem 0 2rem;
+  }
+
+  .insightsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .insightsHeaderRight {
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .officeHeader {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .headerRightContent {
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .fullInsightsSection {
+    padding: 3rem 0;
+  }
+
+  .harmonySectionTitle {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .officeTitle {
+    font-size: 2.5rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .harmonyIntro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .processCards {
+    grid-template-columns: 1fr;
+  }
+
+  .processCard {
+    padding: 1.5rem 0;
+    gap: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+  .processCard:last-child {
+    border-bottom: none;
+  }
+
+  .processCard:not(:first-child) {
+    padding-left: 0;
+  }
+
+  .processThumb {
+    width: 44px;
+    height: 44px;
   }
 
   .wideMiddleCol {

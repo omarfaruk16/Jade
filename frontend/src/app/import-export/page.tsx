@@ -1,12 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import API_BASE from '@/lib/api';
+
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './ImportExport.module.css';
-import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import WorldMap from '@/components/home/WorldMap';
 import SectionReveal from '@/components/layout/SectionReveal';
 import CeoBadge from '@/components/shared/CeoBadge';
@@ -41,8 +39,8 @@ export default function ImportExportPage() {
             transition={{ duration: 1.5, delay: 0.3 }}
             className={styles.heroSubtitle}
           >
-            Authentic design pieces sourced from around the globe, 
-            bringing architecture and interior excellence to your doorstep.
+            We&apos;re a design-driven team creating spaces with purpose,
+            personality, and precision—built through collaboration.
           </motion.p>
         </div>
       </section>
@@ -56,7 +54,7 @@ export default function ImportExportPage() {
               <FourDotsIcon />
               <span>Insights</span>
             </div>
-            <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
+            <div className={styles.wideMiddleCol}>
               <p className={styles.introText}>
                 The inspiration from Scandinavian aesthetics, emphasizing simplicity, 
                 functionality, and natural beauty. The design combines neutral color palettes—such as 
@@ -70,8 +68,8 @@ export default function ImportExportPage() {
         {/* Office Design Section */}
         <SectionReveal>
           <section className={styles.officeSection}>
-             <div className={styles.officeHeader}>
-                <TitleReveal><h2 className={styles.sectionTitle}>Office Design</h2></TitleReveal>
+              <div className={styles.officeHeader}>
+                <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
                 <div className={styles.headerRightContent}>
                   <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
                   <button className={styles.contactBtn}>Contact now</button>
@@ -143,69 +141,70 @@ export default function ImportExportPage() {
 
         {/* Harmony Section */}
         <SectionReveal>
-          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
-            <div className={styles.leftCol}>
-              <FourDotsIcon />
-              <span>Process</span>
+          <section className={styles.harmonySection}>
+            <TitleReveal>
+              <h2 className={styles.harmonySectionTitle}>Design, Installation, and Support in Harmony</h2>
+            </TitleReveal>
+            <div className={styles.harmonyIntro}>
+              <span className={styles.resonateLabel}>(Resonate)</span>
+              <p className={styles.harmonyDesc}>
+                Every dream home begins with questions: Will this design fit my life? Will it be installed
+                flawlessly? Will it last? At Jade, we remove doubt with clarity, precision, and lasting
+                support — a journey from vision to peace of mind.
+              </p>
+              <button className={styles.contactBtn}>Get a Quote</button>
             </div>
-            <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
-               <div className={styles.servicesTop}>
-                 <TitleReveal><h2 className={styles.sectionTitle}>Design, Installation, and Support in Harmony</h2></TitleReveal>
-                 <button className={styles.moreDetailsBtn}>More Details</button>
-               </div>
-               
-               <div className={styles.accordionList}>
-                 {[
-                   { img: '/images/f1.png', text: 'The Art of Understanding brings clarity in every detail.' },
-                   { img: '/images/f2.png', text: 'The Craft of Perfection delivers flawless lasting results.' },
-                   { img: '/images/f3.png', text: 'The Promise of Forever ensures trust that never fades.' }
-                 ].map((item, idx) => (
-                   <div key={idx} className={styles.accordionItem}>
-                     <div className={styles.accordionItemLeft}>
-                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                       <img src={item.img} alt="Accordion thumb" className={styles.accordionThumb} />
-                       <span className={styles.accordionText}>{item.text}</span>
-                     </div>
-                     <ChevronDown size={20} className={styles.accordionIcon} />
-                   </div>
-                 ))}
-               </div>
+            <div className={styles.processCards}>
+              {[
+                { img: '/images/f1.png', text: 'The Art of Understanding brings clarity in every detail.' },
+                { img: '/images/f2.png', text: 'The Craft of Perfection delivers flawless lasting results.' },
+                { img: '/images/f3.png', text: 'The Promise of Forever ensures trust that never fades.' }
+              ].map((item, idx) => (
+                <div key={idx} className={styles.processCard}>
+                  <div className={styles.processCardHeader}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={item.img} alt="Process thumbnail" className={styles.processThumb} />
+                    <FourDotsIcon />
+                  </div>
+                  <p className={styles.processText}>{item.text}</p>
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
         </SectionReveal>
 
         {/* Insights Section */}
         <SectionReveal>
-          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
-            <div className={styles.leftCol}></div>
-            <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
-               <div className={styles.servicesTop}>
-                 <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
-                 <button className={styles.contactBtn}>Details</button>
-               </div>
-               
-               <WorldMap />
-
-               <div className={styles.statsRow}>
-                 <div className={styles.statItem}>
-                   <TitleReveal><h2>15+</h2></TitleReveal>
-                   <p>Years of Experience</p>
-                 </div>
-                 <div className={styles.statItem}>
-                   <TitleReveal><h2>24/7</h2></TitleReveal>
-                   <p>Support Channels Available</p>
-                 </div>
-                 <div className={styles.statItem}>
-                   <TitleReveal><h2>1.8k+</h2></TitleReveal>
-                   <p>Successful Shipments</p>
-                 </div>
-                 <div className={styles.statItem}>
-                   <TitleReveal><h2>8k+</h2></TitleReveal>
-                   <p>Active Partnership Network</p>
-                 </div>
-               </div>
+          <section className={styles.fullInsightsSection}>
+            <div className={styles.insightsHeader}>
+              <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
+              <div className={styles.insightsHeaderRight}>
+                <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
+                <button className={styles.contactBtn}>View all</button>
+              </div>
             </div>
-          </div>
+
+            <WorldMap />
+
+            <div className={styles.statsRow}>
+              <div className={styles.statItem}>
+                <TitleReveal><h2>15+</h2></TitleReveal>
+                <p>Years of market expertise.</p>
+              </div>
+              <div className={styles.statItem}>
+                <TitleReveal><h2>2-7</h2></TitleReveal>
+                <p>Delivery Fast, reliable service.</p>
+              </div>
+              <div className={styles.statItem}>
+                <TitleReveal><h2>1.6k+</h2></TitleReveal>
+                <p>Clients Exceptional service.</p>
+              </div>
+              <div className={styles.statItem}>
+                <TitleReveal><h2>8k+</h2></TitleReveal>
+                <p>Projects Completed — Quality work.</p>
+              </div>
+            </div>
+          </section>
         </SectionReveal>
 
         {/* Shared FAQ Section */}

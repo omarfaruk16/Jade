@@ -16,8 +16,17 @@ const fallbackTestimonials = [
   { id: '3', name: 'Sophie Lang', role: 'Atelier Nine', rating: 5, review: 'We felt heard and understood at every step. Their design choices not only impressed—but told our story in ways we never could with words.', avatar: 'https://i.pravatar.cc/100?img=9' },
 ];
 
+interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  rating: number;
+  review: string;
+  avatar: string;
+}
+
 export default function TestimonialsSection() {
-  const [testimonials, setTestimonials] = useState<any[]>(fallbackTestimonials);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
 
   useEffect(() => {
     fetch(`${API_BASE}/testimonials`)
@@ -103,6 +112,7 @@ export default function TestimonialsSection() {
             loop
             muted
             playsInline
+            suppressHydrationWarning
             className={styles.videoBg}
           />
           <div className={styles.videoOverlay} />
@@ -116,7 +126,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* Text review card 3 */}
-        {testimonials.slice(2, 3).map((item, idx) => (
+        {testimonials.slice(2, 3).map((item) => (
           <motion.div
             key={item.id}
             className={styles.card}

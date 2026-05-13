@@ -15,7 +15,7 @@
 /* Hero Section */
 .hero {
   height: 60vh;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -26,21 +26,27 @@
 }
 
 .heroContent {
-  max-width: 800px;
-  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 300;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
+  color: #fff;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  opacity: 0.9;
   line-height: 1.6;
+  opacity: 0.9;
+  color: #fff;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Intro Section */
@@ -56,10 +62,11 @@
 }
 
 .introInfo p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   line-height: 1.8;
   color: #444;
   margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 .founder {
@@ -163,7 +170,7 @@
 
 .featureRow {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 180px 1fr;
   gap: 4rem;
   margin-bottom: 3rem;
 }
@@ -209,7 +216,7 @@
   background: #fff;
   padding: 3rem 2.5rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .quoteOrange {
@@ -287,7 +294,7 @@
 .faqItemCard {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   border: 1px solid #eee;
 }
@@ -338,7 +345,7 @@
   left: 0;
   width: 100%;
   padding: 4rem 2rem 2rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
   color: #fff;
 }
 
@@ -449,7 +456,7 @@
   flex: 1;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .formCard {
@@ -457,7 +464,7 @@
   border: 1px solid #f0f0f0;
   padding: 1.25rem;
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -499,7 +506,7 @@
 .inputGroup textarea:focus {
   outline: none;
   border-color: #000;
-  box-shadow: 0 0 0 4px rgba(0,0,0,0.03);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03);
 }
 
 .inputGroup textarea {
@@ -539,11 +546,21 @@
   margin-bottom: 2rem;
 }
 
+@media (max-width: 1200px) {
+  .featureRow {
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 1024px) {
-  .introGrid, .faqSplitCard, .featureRow {
+
+  .introGrid,
+  .faqSplitCard {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
   .formSplit {
     grid-template-columns: 1fr 1.5fr;
     gap: 2rem;
@@ -551,22 +568,39 @@
 }
 
 @media (max-width: 768px) {
-  .title, .officeTitle {
+
+  .officeTitle {
     font-size: 2.5rem;
   }
-  .formRow, .featureGridText, .featureGridQuotes {
+
+  .formRow,
+  .featureGridText,
+  .featureGridQuotes,
+  .formSplit {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
+  .featureRow {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
   .handshakeImage {
     display: none;
   }
+
   .officeHeader {
     flex-direction: column;
     gap: 2rem;
   }
+
   .officeHeaderRight {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .partnersGrid {
+    gap: 1.5rem;
   }
 }

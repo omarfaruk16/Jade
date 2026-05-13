@@ -31,20 +31,23 @@
 ════════════════════════════════════════════════ */
 .jade-section {
   width: 100%;
-  padding-block: var(--space-xl);       /* 80px */
+  padding-block: var(--space-xl);
+  /* 80px */
 }
 
 /* Tablet */
 @media (max-width: 1023px) {
   .jade-section {
-    padding-block: var(--space-lg);     /* 48px */
+    padding-block: var(--space-lg);
+    /* 48px */
   }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   .jade-section {
-    padding-block: calc(var(--space-lg) * 0.75); /* ~36px */
+    padding-block: calc(var(--space-lg) * 0.75);
+    /* ~36px */
   }
 }
 
@@ -158,14 +161,14 @@
 .jade-quotes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .jade-quote-card {
   background: #fff;
   padding: 2.5rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -181,8 +184,13 @@
   color: #fff;
 }
 
-.jade-quote-card.orange .jade-quote-icon { color: #fff; }
-.jade-quote-card.orange .jade-quote-text { color: #fff; }
+.jade-quote-card.orange .jade-quote-icon {
+  color: #fff;
+}
+
+.jade-quote-card.orange .jade-quote-text {
+  color: #fff;
+}
 
 .jade-quote-icon {
   width: 40px;
@@ -202,23 +210,34 @@
 /* ════════════════════════════════════════════════
    7.  RESPONSIVE OVERRIDES
 ════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .jade-quotes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 767px) {
   .jade-quotes-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+
   .jade-quote-card {
     padding: 1.5rem;
     border-radius: 12px;
     gap: 1rem;
   }
+
   .jade-quote-icon {
     width: 28px;
     height: 28px;
   }
+
   .jade-quote-text {
     font-size: 0.95rem;
   }
+
   .jade-founder-badge {
     margin-top: 1.25rem;
   }
