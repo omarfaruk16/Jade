@@ -8,6 +8,7 @@ import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, H
 import ServicesAdmin from './ServicesAdmin';
 import ProductsAdmin from './ProductsAdmin';
 import BlogsAdmin from './BlogsAdmin';
+import ProjectsAdmin from './ProjectsAdmin';
 import styles from './AdminDashboard.module.css';
 
 export default function AdminDashboard() {
@@ -25,11 +26,7 @@ export default function AdminDashboard() {
   const [editingItem, setEditingItem] = useState<any>(null);
   const router = useRouter();
 
-  const [projectData, setProjectData] = useState({
-    title: '', subtitle: '', coverImage: '', date: '', category: '', client: '', timeline: '',
-    overviewDesc: '', overviewImage: '', processImage: '',
-    p1Title: '', p1Desc: '', p2Title: '', p2Desc: '', p3Title: '', p3Desc: '', galleryJson: '[]'
-  });
+  // projectData removed — handled by ProjectsAdmin component
 
   const [promotionData, setPromotionData] = useState({ title: '', image: '' });
   const [testimonialData, setTestimonialData] = useState({ name: '', role: '', review: '', avatar: '', rating: 5 });
@@ -108,10 +105,7 @@ export default function AdminDashboard() {
   };
 
   const handleOpenModal = (item: any = null) => {
-    if (activeTab === 'projects') {
-      if (item) { setEditingItem(item); setProjectData({ ...item }); }
-      else { setEditingItem(null); setProjectData({ title: '', subtitle: '', coverImage: '', date: '', category: '', client: '', timeline: '', overviewDesc: '', overviewImage: '', processImage: '', p1Title: '', p1Desc: '', p2Title: '', p2Desc: '', p3Title: '', p3Desc: '', galleryJson: '[]' }); }
-    } else if (activeTab === 'promotions') {
+    if (activeTab === 'promotions') {
       if (item) { setEditingItem(item); setPromotionData({ title: item.title, image: item.image }); }
       else { setEditingItem(null); setPromotionData({ title: '', image: '' }); }
     } else if (activeTab === 'testimonials') {
@@ -138,8 +132,7 @@ export default function AdminDashboard() {
     const url = editingItem ? `${API_BASE}/${endpoint}/${editingItem.id}` : `${API_BASE}/${endpoint}`;
 
     let bodyData;
-    if (activeTab === 'projects') bodyData = projectData;
-    else if (activeTab === 'promotions') bodyData = promotionData;
+    if (activeTab === 'promotions') bodyData = promotionData;
     else if (activeTab === 'testimonials') bodyData = { ...testimonialData, rating: Number(testimonialData.rating) };
     else if (activeTab === 'team') bodyData = teamData;
     else if (activeTab === 'faq') bodyData = faqData;
@@ -169,7 +162,6 @@ export default function AdminDashboard() {
   };
 
   const getActiveArray = () => {
-    if (activeTab === 'projects') return projects;
     if (activeTab === 'promotions') return promotions;
     if (activeTab === 'testimonials') return testimonials;
     if (activeTab === 'team') return team;
@@ -227,7 +219,7 @@ export default function AdminDashboard() {
           <h1 className={styles.title}>
             {tabs.find(t => t.id === activeTab)?.label} Management
           </h1>
-          {activeTab !== 'contact' && activeTab !== 'dealerRequests' && activeTab !== 'services' && activeTab !== 'products' && activeTab !== 'blogs' && (
+          {activeTab !== 'contact' && activeTab !== 'dealerRequests' && activeTab !== 'services' && activeTab !== 'products' && activeTab !== 'blogs' && activeTab !== 'projects' && (
             <button onClick={() => handleOpenModal()} className={styles.addNewBtn}>
               <Plus size={20} /> Add New
             </button>
@@ -235,7 +227,9 @@ export default function AdminDashboard() {
         </header>
 
         <div className={styles.card}>
-          {activeTab === 'services' ? (
+          {activeTab === 'projects' ? (
+            <ProjectsAdmin />
+          ) : activeTab === 'services' ? (
             <ServicesAdmin />
           ) : activeTab === 'products' ? (
             <ProductsAdmin />
@@ -303,7 +297,7 @@ export default function AdminDashboard() {
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th>{activeTab === 'faq' ? 'Question' : activeTab === 'dealerRequests' ? 'Dealer Name' : (activeTab === 'projects' || activeTab === 'promotions' ? 'Title' : 'Name')}</th>
+                    <th>{activeTab === 'faq' ? 'Question' : activeTab === 'dealerRequests' ? 'Dealer Name' : (activeTab === 'promotions' ? 'Title' : 'Name')}</th>
                     {activeTab === 'dealerRequests' && <th>Email</th>}
                     {activeTab === 'dealerRequests' && <th>Phone</th>}
                     <th style={{ textAlign: 'right' }}>Actions</th>
@@ -313,13 +307,12 @@ export default function AdminDashboard() {
                   {getActiveArray().map(item => (
                     <tr key={item.id}>
                       <td style={{ fontWeight: 500 }}>
-                        {activeTab === 'faq' ? item.question : activeTab === 'dealerRequests' ? item.fullName : (activeTab === 'projects' || activeTab === 'promotions' ? item.title : item.name)}
+                        {activeTab === 'faq' ? item.question : activeTab === 'dealerRequests' ? item.fullName : (activeTab === 'promotions' ? item.title : item.name)}
                       </td>
                       {activeTab === 'dealerRequests' && <td>{item.email}</td>}
                       {activeTab === 'dealerRequests' && <td>{item.phone}</td>}
                       <td style={{ textAlign: 'right' }}>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                          {activeTab === 'projects' && <button onClick={() => router.push(`/projects/${item.id}`)} className={styles.actionBtn} title="View"><Eye size={18} /></button>}
                           {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>}
                           <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18} /></button>
                         </div>
@@ -333,10 +326,10 @@ export default function AdminDashboard() {
         </div>
       </main>
 
-      {/* Modal Overlay */}
+      {/* Modal Overlay — for non-project tabs */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div className={styles.modalOverlay}>
-          <div className={`${styles.modal} ${activeTab === 'projects' ? styles.wideModal : ''}`} style={{ maxWidth: activeTab === 'projects' ? '900px' : '550px' }}>
+          <div className={styles.modal} style={{ maxWidth: '550px' }}>
             <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20} /></button>
             <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize' }}>
               {editingItem ? 'Edit' : 'Add New'} {

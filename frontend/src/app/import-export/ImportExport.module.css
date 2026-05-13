@@ -36,16 +36,17 @@
 }
 
 .heroTitle {
-  font-size: clamp(2.2rem, 7vw, 6rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 500;
-  letter-spacing: -0.04em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   margin-bottom: 1rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .heroSubtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto;
@@ -66,7 +67,7 @@
   align-items: center;
   gap: 12px;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   align-self: flex-start;
 }
@@ -141,15 +142,15 @@
 .officeHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 5rem;
   gap: 4rem;
 }
 
 .sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   margin: 0;
   line-height: 1;
   color: #000;
@@ -159,9 +160,11 @@
 
 
 .officeTitle {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.02em;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .headerRightContent {
@@ -169,14 +172,14 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 1.8rem;
-  max-width: 280px;
+  max-width: 380px;
   text-align: right;
   padding-top: 1rem;
 }
 
 .headerDesc {
   color: #666;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   margin: 0;
   font-weight: 400;
@@ -359,7 +362,7 @@
 .insightsHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 0;
   gap: 2rem;
 }
@@ -370,7 +373,7 @@
   align-items: flex-end;
   gap: 1rem;
   text-align: right;
-  max-width: 260px;
+  max-width: 380px;
   flex-shrink: 0;
   padding-bottom: 0.25rem;
 }
@@ -648,9 +651,9 @@
 }
 
 .harmonySectionTitle {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 1.1;
   color: #000;
   margin: 0 0 4rem 0;
@@ -780,7 +783,7 @@
   }
 
   .harmonySectionTitle {
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
   }
 }
 
@@ -944,7 +947,8 @@
   }
 
   .sectionTitle {
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 500;
     letter-spacing: -0.02em;
   }
 
@@ -959,18 +963,19 @@
   }
 
   .processCard {
-    padding: 1.5rem 0;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     gap: 1.5rem;
     border-right: none;
     border-bottom: 1px solid #d8d8d8;
   }
 
   .processCard:last-child {
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     border-bottom: none;
   }
 
-  .processCard:not(:first-child) {
-    padding-left: 0;
+  .processCard:first-child {
+    padding: 1.5rem;
   }
 
   .processThumb {
@@ -984,7 +989,6 @@
 
   .leftCol {
     padding: 0.6rem 0;
-    font-size: 0.78rem;
     gap: 8px;
     border-bottom: 1px solid #eee;
     margin-bottom: 0.75rem;
@@ -1041,7 +1045,7 @@
   }
 
   .headerDesc {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .contactBtn {
@@ -1050,11 +1054,11 @@
   }
 
   .conceptItem h4 {
-    font-size: 0.92rem;
+    font-size: 1.2rem;
   }
 
   .conceptItem p {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .officeImgSide {
@@ -1132,14 +1136,6 @@
     font-size: 0.75rem;
   }
 
-  /* Hero */
-  .heroTitle {
-    font-size: 2.5rem;
-  }
-
-  .heroSubtitle {
-    font-size: 0.95rem;
-  }
 
   .introText {
     font-size: 1.1rem;

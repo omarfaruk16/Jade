@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 
+/* ── Hero ── */
 .hero {
   height: 90vh;
   position: relative;
@@ -17,21 +18,17 @@
 
 .coverImage {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   object-fit: cover;
   z-index: 1;
 }
 
 .heroOverlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.32);
   z-index: 2;
 }
 
@@ -58,8 +55,10 @@
   font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  opacity: 0.85;
 }
 
+/* ── Layout Container ── */
 .contentContainer {
   width: 100%;
   max-width: var(--container-max, 1400px);
@@ -67,8 +66,9 @@
   padding-inline: clamp(16px, 4vw, 48px);
 }
 
-/* Meta Grid Section */
-.overviewSection {
+/* ── Overview / Process Section 3-col grid ── */
+.overviewSection,
+.processSection {
   display: grid;
   grid-template-columns: 180px 1fr 1fr;
   gap: 4rem;
@@ -76,9 +76,17 @@
   align-items: start;
 }
 
+.leftColumn {
+  /* sticky label column */
+}
+
 .middleColumn {
   display: flex;
   flex-direction: column;
+}
+
+.rightColumn {
+  width: 100%;
 }
 
 .aboutLabel {
@@ -91,6 +99,7 @@
   white-space: nowrap;
 }
 
+/* ── Meta Grid ── */
 .metaGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -100,9 +109,9 @@
 
 .metaItem label {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
   color: #000;
 }
 
@@ -119,133 +128,87 @@
   max-width: 600px;
 }
 
-.rightColumn {
-  width: 100%;
-  position: relative;
-}
-
-.overviewImage {
-  width: 100%;
-  height: auto;
-  border-radius: 24px;
-  display: block;
-}
-
-/* Gallery Section */
-.gallerySection {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 8rem;
-}
-
-.galleryRow {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-.galleryMain {
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-.galleryImg {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-/* Process Section */
-.processSection {
-  display: grid;
-  grid-template-columns: 180px 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 8rem;
-  align-items: start;
-}
-
-.processList {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.processItem h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-  color: #000;
-}
-
-.processItem p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #444;
-}
-
+.overviewImage,
 .processImage {
   width: 100%;
   height: auto;
   border-radius: 24px;
   display: block;
+  object-fit: cover;
 }
 
-/* Related */
+/* ── Gallery — 2-per-row desktop/tablet, 1 mobile ── */
+.gallerySection {
+  margin-bottom: 8rem;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.galleryItem {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.galleryImg {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.galleryImg:hover {
+  transform: scale(1.02);
+}
+
+/* ── Process Steps ── */
+.processList {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.processItem {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.stepNumber {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #bbb;
+  letter-spacing: 0.06em;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+
+.processItem h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #000;
+}
+
+.processItem p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #444;
+}
+
+/* ── Related ── */
 .relatedHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
-}
-
-@media (max-width: 1200px) {
-  .overviewSection, .processSection {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-  .leftColumn {
-    grid-column: span 2;
-    margin-bottom: 1rem;
-  }
-  .rightColumn {
-    grid-column: span 1;
-  }
-}
-
-@media (max-width: 768px) {
-  .overviewSection, .processSection {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 5rem;
-  }
-  .leftColumn, .middleColumn, .rightColumn {
-    grid-column: span 1;
-  }
-  .metaGrid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .galleryRow {
-    grid-template-columns: 1fr;
-  }
-  .overviewImage, .processImage {
-    border-radius: 16px;
-  }
-}
-
-/* Related */
-.relatedHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid #eaeaea;
 }
 
@@ -263,10 +226,11 @@
 
 .relatedCard img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 1rem;
+  display: block;
 }
 
 .relatedFooter {
@@ -276,14 +240,59 @@
   font-size: 0.9rem;
 }
 
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .overviewSection,
+  .processSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .leftColumn {
+    grid-column: span 2;
+    margin-bottom: -1rem;
+  }
+}
+
 @media (max-width: 900px) {
-  .overviewSection, .processSection {
+  .overviewSection,
+  .processSection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+  }
+  .leftColumn {
+    grid-column: span 1;
+  }
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Gallery stays 2-per-row on tablet */
+  .galleryImg {
+    height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    height: 70vh;
+    border-radius: 0 0 20px 20px;
+  }
+  .metaGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+  /* Gallery goes 1-per-row on mobile */
+  .galleryGrid {
     grid-template-columns: 1fr;
   }
-  .galleryRow {
-    grid-template-columns: 1fr;
+  .galleryImg {
+    height: 260px;
   }
   .relatedGrid {
     grid-template-columns: 1fr;
+  }
+  .overviewImage,
+  .processImage {
+    border-radius: 14px;
   }
 }

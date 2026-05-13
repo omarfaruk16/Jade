@@ -23,28 +23,28 @@ export default function ImportExportPage() {
 
       {/* Hero Section */}
       <SectionReveal>
-<section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.heroTitle}
-          >
-            Worldwide Export Import
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.3 }}
-            className={styles.heroSubtitle}
-          >
-            We&apos;re a design-driven team creating spaces with purpose,
-            personality, and precision—built through collaboration.
-          </motion.p>
-        </div>
-      </section>
-</SectionReveal>
+        <section className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              className={styles.heroTitle}
+            >
+              Worldwide Export Import
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.3 }}
+              className={styles.heroSubtitle}
+            >
+              We&apos;re a design-driven team creating spaces with purpose,
+              personality, and precision—built through collaboration.
+            </motion.p>
+          </div>
+        </section>
+      </SectionReveal>
 
       <main className={styles.container}>
         {/* Intro Section (Insights) */}
@@ -56,8 +56,8 @@ export default function ImportExportPage() {
             </div>
             <div className={styles.wideMiddleCol}>
               <p className={styles.introText}>
-                The inspiration from Scandinavian aesthetics, emphasizing simplicity, 
-                functionality, and natural beauty. The design combines neutral color palettes—such as 
+                The inspiration from Scandinavian aesthetics, emphasizing simplicity,
+                functionality, and natural beauty. The design combines neutral color palettes—such as
                 whites, grays, and soft pastels—with warm wooden accents to create a cozy and inviting atmosphere.
               </p>
               <CeoBadge />
@@ -68,36 +68,36 @@ export default function ImportExportPage() {
         {/* Office Design Section */}
         <SectionReveal>
           <section className={styles.officeSection}>
-              <div className={styles.officeHeader}>
-                <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
-                <div className={styles.headerRightContent}>
-                  <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
-                  <button className={styles.contactBtn}>Contact now</button>
+            <div className={styles.officeHeader}>
+              <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
+              <div className={styles.headerRightContent}>
+                <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
+                <button className={styles.contactBtn}>Contact now</button>
+              </div>
+            </div>
+
+            <div className={styles.gridRow}>
+              <div className={styles.leftCol}>
+                <FourDotsIcon />
+                <span>About service</span>
+              </div>
+
+              <div className={styles.middleCol}>
+                <div className={styles.conceptItem}>
+                  <h4>Concept Development</h4>
+                  <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
                 </div>
-             </div>
-             
-             <div className={styles.gridRow}>
-               <div className={styles.leftCol}>
-                 <FourDotsIcon />
-                 <span>About service</span>
-               </div>
-               
-               <div className={styles.middleCol}>
-                  <div className={styles.conceptItem}>
-                    <h4>Concept Development</h4>
-                    <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
-                  </div>
-                  <div className={styles.conceptItem}>
-                    <h4>Concept Development</h4>
-                    <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
-                  </div>
-               </div>
-               
-               <div className={styles.rightCol}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/import-export-righy.avif" alt="Modern Office Detail" className={styles.officeImgSide} />
-               </div>
-             </div>
+                <div className={styles.conceptItem}>
+                  <h4>Concept Development</h4>
+                  <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
+                </div>
+              </div>
+
+              <div className={styles.rightCol}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/import-export-righy.avif" alt="Modern Office Detail" className={styles.officeImgSide} />
+              </div>
+            </div>
           </section>
         </SectionReveal>
 
@@ -122,19 +122,19 @@ export default function ImportExportPage() {
               <span>Partners</span>
             </div>
             <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
-               <TitleReveal><h3 className={styles.partnersTitle}>Our export import partners</h3></TitleReveal>
-               <div className={styles.logosRow}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://svgl.app/library/boltshift.svg" className={styles.logoItem} alt="Boltshift" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://svgl.app/library/logoipsum.svg" className={styles.logoItem} alt="Logoipsum" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://svgl.app/library/extrahop.svg" className={styles.logoItem} alt="Extrahop" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://svgl.app/library/framer.svg" className={styles.logoItem} alt="Framer" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="https://svgl.app/library/vercel_wordmark_dark.svg" className={styles.logoItem} alt="Vercel" />
-               </div>
+              <TitleReveal><h3 className={styles.partnersTitle}>Our export import partners</h3></TitleReveal>
+              <div className={styles.logosRow}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://svgl.app/library/boltshift.svg" className={styles.logoItem} alt="Boltshift" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://svgl.app/library/logoipsum.svg" className={styles.logoItem} alt="Logoipsum" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://svgl.app/library/extrahop.svg" className={styles.logoItem} alt="Extrahop" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://svgl.app/library/framer.svg" className={styles.logoItem} alt="Framer" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://svgl.app/library/vercel_wordmark_dark.svg" className={styles.logoItem} alt="Vercel" />
+              </div>
             </div>
           </div>
         </SectionReveal>
@@ -207,11 +207,12 @@ export default function ImportExportPage() {
           </section>
         </SectionReveal>
 
-        {/* Shared FAQ Section */}
-        <SectionReveal>
-          <FaqSection />
-        </SectionReveal>
       </main>
+      
+      {/* Shared FAQ Section */}
+      <SectionReveal>
+        <FaqSection />
+      </SectionReveal>
 
       <Footer />
     </div>
@@ -220,9 +221,9 @@ export default function ImportExportPage() {
 
 const FourDotsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="8" cy="3" r="1.5" fill="currentColor"/>
-    <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
-    <circle cx="3" cy="8" r="1.5" fill="currentColor"/>
-    <circle cx="13" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="3" r="1.5" fill="currentColor" />
+    <circle cx="8" cy="13" r="1.5" fill="currentColor" />
+    <circle cx="3" cy="8" r="1.5" fill="currentColor" />
+    <circle cx="13" cy="8" r="1.5" fill="currentColor" />
   </svg>
 );

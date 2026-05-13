@@ -13,11 +13,12 @@
 }
 
 .title {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.02em;
+  font-weight: 500;
   margin: 0;
-  max-width: 500px;
+
 }
 
 .headerRight {
@@ -55,7 +56,9 @@
   transition: box-shadow 0.3s ease;
 }
 
-.faqItem:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04); }
+.faqItem:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
 
 .faqQuestion {
   width: 100%;
@@ -72,9 +75,19 @@
   cursor: pointer;
 }
 
-.icon { color: #666; flex-shrink: 0; margin-left: 1rem; }
-.faqAnswer { overflow: hidden; }
-.answerInner { padding: 0 1.5rem 1.5rem 1.5rem; }
+.icon {
+  color: #666;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.faqAnswer {
+  overflow: hidden;
+}
+
+.answerInner {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
 
 .faqAnswer p {
   color: #555;
@@ -103,7 +116,7 @@
   bottom: 1.5rem;
   left: 1.5rem;
   right: 1.5rem;
-  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.85) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -121,7 +134,11 @@
   color: #fff;
 }
 
-.contactLeft p { margin: 0; font-size: 1.05rem; font-weight: 400; }
+.contactLeft p {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+}
 
 .contactBtn {
   background: #fff;
@@ -135,10 +152,15 @@
   transition: opacity 0.3s ease;
 }
 
-.contactBtn:hover { opacity: 0.8; }
+.contactBtn:hover {
+  opacity: 0.8;
+}
 
 @media (max-width: 1023px) {
-  .section { padding-block: var(--space-lg, 48px); }
+  .section {
+    padding-block: var(--space-lg, 48px);
+  }
+
   .floatingContact {
     flex-direction: column;
     align-items: flex-start;
@@ -148,15 +170,38 @@
 }
 
 @media (max-width: 767px) {
-  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
+  .section {
+    padding-block: calc(var(--space-lg, 48px) * 0.75);
+  }
+
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
   }
-  .headerRight { text-align: left; flex-direction: row-reverse; justify-content: flex-end; }
-  .container { grid-template-columns: 1fr; }
-  .rightContent { min-height: 450px; margin-top: 1rem; }
-  .floatingContact { left: 1rem; right: 1rem; bottom: 1rem; }
-  .faqQuestion { font-size: 1rem; }
+
+  .headerRight {
+    text-align: left;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .rightContent {
+    min-height: 450px;
+    margin-top: 1rem;
+  }
+
+  .floatingContact {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .faqQuestion {
+    font-size: 1rem;
+  }
 }

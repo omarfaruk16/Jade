@@ -17,7 +17,7 @@
 }
 
 .pageTitle {
-  font-size: clamp(2.2rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
@@ -26,7 +26,7 @@
 }
 
 .pageSubtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #000;
   font-weight: 400;
 }
@@ -51,7 +51,7 @@
 }
 
 .infoItem h4 {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-transform: none;
@@ -90,7 +90,7 @@
   background: #fff;
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
 }
 
@@ -106,7 +106,8 @@
   color: #666;
 }
 
-.formGroup input, .formGroup textarea {
+.formGroup input,
+.formGroup textarea {
   width: 100%;
   padding: 1rem;
   border: 1px solid #eee;
@@ -118,7 +119,8 @@
   transition: all 0.3s ease;
 }
 
-.formGroup input:focus, .formGroup textarea:focus {
+.formGroup input:focus,
+.formGroup textarea:focus {
   border-color: #000;
   background: #fff;
 }
@@ -260,18 +262,22 @@
     grid-template-columns: 1fr;
     gap: 4rem;
   }
+
   .faqSplit {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
   .faqImageColumn {
     height: 400px;
   }
+
   .faqHeader {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
   }
+
   .faqSubtitle {
     text-align: left;
     max-width: 100%;
@@ -283,9 +289,11 @@
     max-width: 95%;
     padding: 8rem 0 2rem;
   }
+
   .infoGrid {
     grid-template-columns: 1fr;
   }
+
   .faqSection {
     margin-top: 6rem;
   }

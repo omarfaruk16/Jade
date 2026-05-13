@@ -311,3 +311,16 @@
 .hiddenFileInput {
   display: none;
 }
+
+/* Section headings inside project admin form */
+.sectionHeading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #34d399;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+}
+

@@ -5,6 +5,17 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const prisma = new PrismaClient();
 
+// Helper: ensure JSON string fields are properly stored
+const sanitizeProject = (data) => {
+  if (Array.isArray(data.galleryJson)) {
+    data.galleryJson = JSON.stringify(data.galleryJson);
+  }
+  if (Array.isArray(data.processStepsJson)) {
+    data.processStepsJson = JSON.stringify(data.processStepsJson);
+  }
+  return data;
+};
+
 // GET all projects (public)
 router.get('/', async (req, res) => {
   const projects = await prisma.project.findMany({
@@ -25,12 +36,7 @@ router.get('/:id', async (req, res) => {
 // POST new project (protected)
 router.post('/', auth, async (req, res) => {
   try {
-    // ensuring galleryJson is a string
-    const data = req.body;
-    if (Array.isArray(data.galleryJson)) {
-      data.galleryJson = JSON.stringify(data.galleryJson);
-    }
-
+    const data = sanitizeProject({ ...req.body });
     const project = await prisma.project.create({ data });
     res.json(project);
   } catch (error) {
@@ -41,11 +47,7 @@ router.post('/', auth, async (req, res) => {
 // PUT update project (protected)
 router.put('/:id', auth, async (req, res) => {
   try {
-    const data = req.body;
-    if (Array.isArray(data.galleryJson)) {
-      data.galleryJson = JSON.stringify(data.galleryJson);
-    }
-    
+    const data = sanitizeProject({ ...req.body });
     const project = await prisma.project.update({
       where: { id: req.params.id },
       data

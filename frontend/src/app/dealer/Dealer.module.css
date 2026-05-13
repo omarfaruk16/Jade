@@ -36,17 +36,18 @@
 }
 
 .title {
-  font-size: clamp(2.2rem, 7vw, 6rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 500;
+  line-height: 1.1;
   margin-bottom: 1rem;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   color: #fff;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   opacity: 0.9;
   color: #fff;
@@ -57,7 +58,7 @@
 
 /* Intro Section */
 .intro {
-  padding: 8rem 0;
+  padding: 3.5rem 0;
 }
 
 .introGrid {
@@ -126,7 +127,7 @@
 
 /* Office Design Detailed Section */
 .officeDesignDetailed {
-  padding: 8rem 0;
+  padding: 3rem 0;
   background: #f8f8f8;
   color: #000;
 }
@@ -154,7 +155,7 @@
 
 .officeHeaderRight p {
   color: #666;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -189,7 +190,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #000;
   align-self: flex-start;
@@ -202,13 +203,14 @@
 }
 
 .conceptBlock h4 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
 
 .conceptBlock p {
   color: #444;
+  font-size: 1rem;
   line-height: 1.7;
 }
 

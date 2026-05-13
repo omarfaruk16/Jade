@@ -30,7 +30,7 @@ model Project {
   // Meta
   date            String
   category        String
-  client          String
+  spacePlan       String   @default("")
   timeline        String
   overviewDesc    String   // long text
   overviewImage   String
@@ -38,14 +38,18 @@ model Project {
   // Gallery (Stored as a stringified JSON array, e.g., '["url1", "url2", "url3"]')
   galleryJson     String   @default("[]")
 
-  // Process Section
-  processImage    String
-  p1Title         String
-  p1Desc          String
-  p2Title         String
-  p2Desc          String
-  p3Title         String
-  p3Desc          String
+  // Process Section - image + dynamic steps as JSON array [{title, desc}]
+  processImage    String   @default("")
+  processStepsJson String  @default("[]")
+
+  // Legacy fields (kept for backward compat)
+  client          String   @default("")
+  p1Title         String   @default("")
+  p1Desc          String   @default("")
+  p2Title         String   @default("")
+  p2Desc          String   @default("")
+  p3Title         String   @default("")
+  p3Desc          String   @default("")
 }
 
 model Promotion {
