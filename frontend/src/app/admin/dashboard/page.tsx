@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import API_BASE from '@/lib/api';
-import { X, Edit2, Trash2, Eye, Plus, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload } from 'lucide-react';
+import { X, Edit2, Trash2, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload } from 'lucide-react';
 import ServicesAdmin from './ServicesAdmin';
 import ProductsAdmin from './ProductsAdmin';
 import BlogsAdmin from './BlogsAdmin';
@@ -13,7 +13,6 @@ import styles from './AdminDashboard.module.css';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'services' | 'products' | 'blogs'>('projects');
-  const [projects, setProjects] = useState<any[]>([]);
   const [promotions, setPromotions] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
@@ -25,8 +24,6 @@ export default function AdminDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const router = useRouter();
-
-  // projectData removed — handled by ProjectsAdmin component
 
   const [promotionData, setPromotionData] = useState({ title: '', image: '' });
   const [testimonialData, setTestimonialData] = useState({ name: '', role: '', review: '', avatar: '', rating: 5 });
@@ -47,8 +44,7 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const [projRes, promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes] = await Promise.all([
-        fetch(`${API_BASE}/projects`),
+      const [promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes] = await Promise.all([
         fetch(`${API_BASE}/promotions`),
         fetch(`${API_BASE}/testimonials`),
         fetch(`${API_BASE}/team`),
@@ -64,7 +60,6 @@ export default function AdminDashboard() {
         return;
       }
 
-      setProjects(await projRes.json());
       setPromotions(await promRes.json());
       setTestimonials(await testRes.json());
       setTeam(await teamRes.json());
@@ -98,7 +93,6 @@ export default function AdminDashboard() {
         else if (tab === 'testimonials') setTestimonialData(prev => ({ ...prev, [field]: data.url }));
         else if (tab === 'team') setTeamData(prev => ({ ...prev, [field]: data.url }));
         else if (tab === 'partners') setPartnerData(prev => ({ ...prev, [field]: data.url }));
-        else setProjectData(prev => ({ ...prev, [field]: data.url }));
       }
     } catch (err) { console.error(err); }
     finally { setUploading(false); }
@@ -219,9 +213,10 @@ export default function AdminDashboard() {
           <h1 className={styles.title}>
             {tabs.find(t => t.id === activeTab)?.label} Management
           </h1>
-          {activeTab !== 'contact' && activeTab !== 'dealerRequests' && activeTab !== 'services' && activeTab !== 'products' && activeTab !== 'blogs' && activeTab !== 'projects' && (
+          {/* Projects, Services, Products, Blogs handle their own addition UI */}
+          {!['contact', 'dealerRequests', 'services', 'products', 'blogs', 'projects'].includes(activeTab) && (
             <button onClick={() => handleOpenModal()} className={styles.addNewBtn}>
-              <Plus size={20} /> Add New
+              <PlusCircle size={20} /> Add New
             </button>
           )}
         </header>
@@ -339,33 +334,7 @@ export default function AdminDashboard() {
                       activeTab.replace(/s$/, '')
               }
             </h3>
-            <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: activeTab === 'projects' ? '1fr 1fr' : '1fr', gap: '1.5rem' }}>
-              {activeTab === 'projects' && (
-                <>
-                  <div className={styles.inputGroup}>
-                    <label>Project Title</label>
-                    <input required placeholder="Title" value={projectData.title} onChange={e => setProjectData({ ...projectData, title: e.target.value })} className={styles.input} />
-                  </div>
-                  <div className={styles.inputGroup}>
-                    <label>Subtitle</label>
-                    <input required placeholder="Subtitle" value={projectData.subtitle} onChange={e => setProjectData({ ...projectData, subtitle: e.target.value })} className={styles.input} />
-                  </div>
-                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2' }}>
-                    <label>Cover Image {uploading && '(Uploading...)'}</label>
-                    <div className={styles.fileInputContainer}>
-                      <input value={projectData.coverImage} readOnly className={styles.input} style={{ flex: 1 }} placeholder="No file chosen" />
-                      <label className={styles.fileInputLabel}>
-                        <Upload size={18} style={{ marginRight: '8px' }} /> Choose File
-                        <input type="file" accept="image/*" className={styles.hiddenFileInput} onChange={e => handleUpload(e, 'coverImage', 'projects')} />
-                      </label>
-                    </div>
-                  </div>
-                  <div className={styles.inputGroup} style={{ gridColumn: 'span 2' }}>
-                    <label>Overview Description</label>
-                    <textarea required placeholder="Description" value={projectData.overviewDesc} onChange={e => setProjectData({ ...projectData, overviewDesc: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
-                  </div>
-                </>
-              )}
+            <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
               {activeTab === 'promotions' && (
                 <>
                   <div className={styles.inputGroup}>
@@ -466,7 +435,7 @@ export default function AdminDashboard() {
                   </div>
                 </>
               )}
-              <button type="submit" disabled={uploading} className={styles.saveBtn} style={{ gridColumn: 'span ' + (activeTab === 'projects' ? 2 : 1) }}>
+              <button type="submit" disabled={uploading} className={styles.saveBtn}>
                 {uploading ? 'Uploading...' : 'Save Changes'}
               </button>
             </form>

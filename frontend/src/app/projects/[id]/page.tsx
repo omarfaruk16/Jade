@@ -5,7 +5,9 @@ import { useParams } from 'next/navigation';
 import API_BASE from '@/lib/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
+
 import Footer from '@/components/layout/Footer';
 import styles from './ProjectDetails.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
@@ -22,21 +24,21 @@ export default function ProjectDetails() {
   const [loading, setLoading] = useState(true);
   const [gallery, setGallery] = useState<string[]>([]);
   const [processSteps, setProcessSteps] = useState<ProcessStep[]>([]);
+  const [relatedProjects, setRelatedProjects] = useState<any[]>([]);
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   useEffect(() => {
+    // Fetch current project
     fetch(`${API_BASE}/projects/${params.id}`)
       .then(res => res.json())
       .then(data => {
         if (!data.error) {
-          // Parse gallery
           let g: string[] = [];
           try { g = JSON.parse(data.galleryJson || '[]'); } catch { g = []; }
           setGallery(g);
 
-          // Parse process steps — prefer processStepsJson, fall back to legacy p1/p2/p3
           let steps: ProcessStep[] = [];
           try { steps = JSON.parse(data.processStepsJson || '[]'); } catch { steps = []; }
           if (!steps.length) {
@@ -50,6 +52,17 @@ export default function ProjectDetails() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
+    // Fetch related projects
+    fetch(`${API_BASE}/projects`)
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          const filtered = data.filter((p: any) => p.id !== params.id).slice(0, 3);
+          setRelatedProjects(filtered);
+        }
+      })
+      .catch(err => console.error(err));
   }, [params.id]);
 
   if (loading) return (
@@ -220,31 +233,30 @@ export default function ProjectDetails() {
           </SectionReveal>
         )}
 
-        {/* ── Related Projects (static placeholder) ── */}
-        <SectionReveal>
-          <section style={{ paddingBottom: '6rem' }}>
-            <div className={styles.relatedHeader}>
-              <TitleReveal><h2>Related Projects</h2></TitleReveal>
-              <ChevronRight />
-            </div>
-            <div className={styles.relatedGrid}>
-              {[
-                { t: 'Modern Nest', d: 'Aug, 2024', img: '/images/f3.png' },
-                { t: 'Light Haven', d: 'Sept, 2024', img: '/images/f2.png' },
-                { t: 'Oak Cabin', d: 'Jan, 2025', img: '/images/f1.png' },
-              ].map((rel, i) => (
-                <div key={i} className={styles.relatedCard}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={rel.img} alt={rel.t} />
-                  <div className={styles.relatedFooter}>
-                    <span>{rel.t}</span>
-                    <span style={{ color: '#666' }}>{rel.d}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </SectionReveal>
+        {/* ── Related Projects ── */}
+        {relatedProjects.length > 0 && (
+          <SectionReveal>
+            <section style={{ paddingBottom: '6rem' }}>
+              <div className={styles.relatedHeader}>
+                <TitleReveal><h2>Related Projects</h2></TitleReveal>
+                <ChevronRight />
+              </div>
+              <div className={styles.relatedGrid}>
+                {relatedProjects.map((rel, i) => (
+                  <Link href={`/projects/${rel.id}`} key={i} className={styles.relatedCard}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={rel.coverImage} alt={rel.title} />
+                    <div className={styles.relatedFooter}>
+                      <span>{rel.title}</span>
+                      <span style={{ color: '#666' }}>{rel.date}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </SectionReveal>
+        )}
+
 
       </div>
       <Footer />
