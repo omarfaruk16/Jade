@@ -12,7 +12,7 @@ import ProjectsAdmin from './ProjectsAdmin';
 import styles from './AdminDashboard.module.css';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'services' | 'products' | 'blogs'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'contactMessages' | 'services' | 'products' | 'blogs'>('projects');
   const [promotions, setPromotions] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
