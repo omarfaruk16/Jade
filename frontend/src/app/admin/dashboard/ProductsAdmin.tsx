@@ -20,7 +20,7 @@ function RichEditor({ value, onChange }: { value: string; onChange: (v: string) 
         <button type="button" style={b()} onMouseDown={e=>{e.preventDefault();cmd('italic')}}><Italic size={13}/></button>
         <button type="button" style={b()} onMouseDown={e=>{e.preventDefault();cmd('insertUnorderedList')}}>• List</button>
       </div>
-      <div ref={ref} contentEditable suppressContentEditableWarning onInput={()=>{ if(ref.current) onChange(ref.current.innerHTML); }} style={{ minHeight:80, padding:'10px 14px', background:'rgba(0,0,0,0.2)', color:'#fff', outline:'none', fontSize:14, lineHeight:1.6 }}/>
+      <div ref={ref} contentEditable suppressContentEditableWarning onInput={()=>{ if(ref.current) onChange(ref.current.innerHTML); }} className={styles.richEditorContent} style={{ minHeight: 80, padding: '10px 14px', background: 'rgba(0,0,0,0.3)', color: '#ffffff', outline: 'none', fontSize: 14, lineHeight: 1.6, caretColor: '#ffffff' }}/>
     </div>
   );
 }

@@ -41,7 +41,8 @@ function RichEditor({ value, onChange }: { value: string; onChange: (v: string) 
         contentEditable
         suppressContentEditableWarning
         onInput={() => { if (ref.current) onChange(ref.current.innerHTML); }}
-        style={{ minHeight: 100, padding: '12px 16px', background: 'rgba(0,0,0,0.2)', color: '#fff', outline: 'none', fontSize: 14, lineHeight: 1.6 }}
+        className={styles.richEditorContent}
+        style={{ minHeight: 100, padding: '12px 16px', background: 'rgba(0,0,0,0.3)', color: '#ffffff', outline: 'none', fontSize: 14, lineHeight: 1.6, caretColor: '#ffffff' }}
       />
     </div>
   );
