@@ -68,4 +68,42 @@ router.put('/', auth, async (req, res) => {
   }
 });
 
+// ─── Contact Messages ────────────────────────────────────────────────────────
+
+// POST a new contact message (Public)
+router.post('/messages', async (req, res) => {
+  const { fullName, email, message } = req.body;
+  try {
+    const newMsg = await prisma.contactMessage.create({
+      data: { fullName, email, message }
+    });
+    res.status(201).json(newMsg);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// GET all contact messages (Protected)
+router.get('/messages', auth, async (req, res) => {
+  try {
+    const messages = await prisma.contactMessage.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(messages);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// DELETE a contact message (Protected)
+router.delete('/messages/:id', auth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.contactMessage.delete({ where: { id } });
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 module.exports = router;

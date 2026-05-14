@@ -185,8 +185,6 @@ export default function ServiceChildPage() {
                         <p>{item.overviewBestFor}</p>
                       </div>
                     )}
-                  </div>
-                  <div className={styles.rightCol}>
                     {item.overviewStyleApproach && (
                       <div className={styles.overviewItem}>
                         <TitleReveal><h4>Style Approach</h4></TitleReveal>

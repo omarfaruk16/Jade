@@ -19,6 +19,7 @@ export default function AdminDashboard() {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [partners, setPartners] = useState<any[]>([]);
   const [dealerRequests, setDealerRequests] = useState<any[]>([]);
+  const [contactMessages, setContactMessages] = useState<any[]>([]);
   const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', address: '', socials: [] });
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,14 +45,15 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const [promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes] = await Promise.all([
+      const [promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes, msgRes] = await Promise.all([
         fetch(`${API_BASE}/promotions`),
         fetch(`${API_BASE}/testimonials`),
         fetch(`${API_BASE}/team`),
         fetch(`${API_BASE}/faq`),
         fetch(`${API_BASE}/contact`),
         fetch(`${API_BASE}/partners`),
-        fetch(`${API_BASE}/dealer/requests`, { headers: { 'Authorization': `Bearer ${token}` } })
+        fetch(`${API_BASE}/dealer/requests`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE}/contact/messages`, { headers: { 'Authorization': `Bearer ${token}` } })
       ]);
 
       if (dealRes.status === 401 || dealRes.status === 403) {
@@ -67,6 +69,7 @@ export default function AdminDashboard() {
       setContactInfo(await contactRes.json());
       setPartners(await partRes.json());
       setDealerRequests(await dealRes.json());
+      setContactMessages(await msgRes.json());
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -114,7 +117,7 @@ export default function AdminDashboard() {
     } else if (activeTab === 'partners') {
       if (item) { setEditingItem(item); setPartnerData({ name: item.name, logo: item.logo }); }
       else { setEditingItem(null); setPartnerData({ name: '', logo: '' }); }
-    } else if (activeTab === 'dealerRequests') {
+    } else if (activeTab === 'dealerRequests' || activeTab === 'contactMessages') {
       setEditingItem(item);
     }
     setIsModalOpen(true);
@@ -148,7 +151,10 @@ export default function AdminDashboard() {
     if (!confirm('Are you sure?')) return;
     const token = localStorage.getItem('adminToken');
     try {
-      const endpointPath = tab === 'dealerRequests' ? 'dealer/requests' : tab;
+      let endpointPath = tab;
+      if (tab === 'dealerRequests') endpointPath = 'dealer/requests';
+      if (tab === 'contactMessages') endpointPath = 'contact/messages';
+      
       await fetch(`${API_BASE}/${endpointPath}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -163,6 +169,7 @@ export default function AdminDashboard() {
     if (activeTab === 'team') return team;
     if (activeTab === 'faq') return faqs;
     if (activeTab === 'partners') return partners;
+    if (activeTab === 'contactMessages') return contactMessages;
     return dealerRequests;
   };
 
@@ -174,8 +181,9 @@ export default function AdminDashboard() {
     { id: 'testimonials', icon: MessageSquare, label: 'Voices' },
     { id: 'team', icon: Users, label: 'Team' },
     { id: 'faq', icon: HelpCircle, label: 'FAQ' },
-    { id: 'contact', icon: Settings, label: 'Contact' },
+    { id: 'contact', icon: Settings, label: 'Contact Settings' },
     { id: 'partners', icon: Users, label: 'Partners' },
+    { id: 'contactMessages', icon: MessageSquare, label: 'Contact Messages' },
     { id: 'dealerRequests', icon: MessageSquare, label: 'Dealer Request' },
     { id: 'services', icon: Layers, label: 'Services' },
     { id: 'products', icon: Box, label: 'Products' },
@@ -294,8 +302,8 @@ export default function AdminDashboard() {
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th>{activeTab === 'faq' ? 'Question' : activeTab === 'dealerRequests' ? 'Dealer Name' : (activeTab === 'promotions' ? 'Title' : 'Name')}</th>
-                    {activeTab === 'dealerRequests' && <th>Email</th>}
+                    <th>{activeTab === 'faq' ? 'Question' : activeTab === 'dealerRequests' ? 'Dealer Name' : activeTab === 'contactMessages' ? 'Name' : (activeTab === 'promotions' ? 'Title' : 'Name')}</th>
+                    {(activeTab === 'dealerRequests' || activeTab === 'contactMessages') && <th>Email</th>}
                     {activeTab === 'dealerRequests' && <th>Phone</th>}
                     <th style={{ textAlign: 'right' }}>Actions</th>
                   </tr>
@@ -304,14 +312,14 @@ export default function AdminDashboard() {
                   {getActiveArray().map(item => (
                     <tr key={item.id}>
                       <td style={{ fontWeight: 500 }}>
-                        {activeTab === 'faq' ? item.question : activeTab === 'dealerRequests' ? item.fullName : (activeTab === 'promotions' ? item.title : item.name)}
+                        {activeTab === 'faq' ? item.question : activeTab === 'dealerRequests' ? item.fullName : activeTab === 'contactMessages' ? item.fullName : (activeTab === 'promotions' ? item.title : item.name)}
                       </td>
-                      {activeTab === 'dealerRequests' && <td>{item.email}</td>}
+                      {(activeTab === 'dealerRequests' || activeTab === 'contactMessages') && <td>{item.email}</td>}
                       {activeTab === 'dealerRequests' && <td>{item.phone}</td>}
                       <td style={{ textAlign: 'right' }}>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                          {activeTab === 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="View"><Eye size={18} /></button>}
-                          {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>}
+                          {(activeTab === 'dealerRequests' || activeTab === 'contactMessages') && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="View"><Eye size={18} /></button>}
+                          {(activeTab !== 'dealerRequests' && activeTab !== 'contactMessages') && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>}
                           <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18} /></button>
                         </div>
                       </td>
@@ -330,11 +338,12 @@ export default function AdminDashboard() {
           <div className={styles.modal} style={{ maxWidth: '550px' }}>
             <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20} /></button>
             <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize' }}>
-              {editingItem ? 'Edit' : 'Add New'} {
+              {editingItem && (activeTab === 'dealerRequests' || activeTab === 'contactMessages') ? 'View' : editingItem ? 'Edit' : 'Add New'} {
                 activeTab === 'team' ? 'Team Member' :
                   activeTab === 'faq' ? 'FAQ' :
                     activeTab === 'dealerRequests' ? 'Dealer Request' :
-                      activeTab.replace(/s$/, '')
+                      activeTab === 'contactMessages' ? 'Contact Message' :
+                        activeTab.replace(/s$/, '')
               }
             </h3>
             <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
@@ -451,7 +460,15 @@ export default function AdminDashboard() {
                   <div><strong style={{ color: '#fff' }}>Date:</strong> {new Date(editingItem.createdAt).toLocaleString()}</div>
                 </div>
               )}
-              {activeTab !== 'dealerRequests' && (
+              {activeTab === 'contactMessages' && editingItem && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.5' }}>
+                  <div><strong style={{ color: '#fff' }}>Full Name:</strong> {editingItem.fullName}</div>
+                  <div><strong style={{ color: '#fff' }}>Email:</strong> {editingItem.email}</div>
+                  <div><strong style={{ color: '#fff' }}>Date:</strong> {new Date(editingItem.createdAt).toLocaleString()}</div>
+                  {editingItem.message && <div><strong style={{ color: '#fff' }}>Message:</strong> <p style={{ marginTop: '0.5rem', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px' }}>{editingItem.message}</p></div>}
+                </div>
+              )}
+              {(activeTab !== 'dealerRequests' && activeTab !== 'contactMessages') && (
                 <button type="submit" disabled={uploading} className={styles.saveBtn}>
                   {uploading ? 'Uploading...' : 'Save Changes'}
                 </button>

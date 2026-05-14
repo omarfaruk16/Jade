@@ -13,7 +13,10 @@ import TitleReveal from '@/components/layout/TitleReveal';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState<any>(null);
+
+  const [formData, setFormData] = useState({ fullName: '', email: '', message: '' });
 
   useEffect(() => {
     fetch(`${API_BASE}/contact`)
@@ -22,10 +25,25 @@ export default function ContactPage() {
       .catch(err => console.error(err));
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/contact/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ fullName: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 4000);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -94,17 +112,17 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
                       <label>Full Name</label>
-                      <input type="text" placeholder="Jane Smith" required />
+                      <input type="text" placeholder="Jane Smith" required value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} />
                     </div>
                     <div className={styles.formGroup}>
                       <label>Email</label>
-                      <input type="email" placeholder="jane@example.com" required />
+                      <input type="email" placeholder="jane@example.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
                     </div>
                     <div className={styles.formGroup}>
                       <label>Message</label>
-                      <textarea placeholder="Type something..." required />
+                      <textarea placeholder="Type something..." required value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} />
                     </div>
-                    <button type="submit" className={styles.submitBtn}>Submit</button>
+                    <button type="submit" className={styles.submitBtn} disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
                   </form>
                 )}
               </div>
