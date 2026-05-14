@@ -379,8 +379,14 @@ export default function ServicesAdmin() {
               <div><label style={lbl}>Short Description</label><textarea style={{...inp, height: '80px', resize: 'vertical'}} value={childForm.description} onChange={e => setChildForm({ ...childForm, description: e.target.value })} placeholder="e.g. We're a design-driven team..." /></div>
               <div>
                 <label style={lbl}>Hero Cover Image</label>
-                {childForm.coverImage && <img src={childForm.coverImage} alt="Cover" style={{ width: 100, height: 60, objectFit: 'cover', borderRadius: 4, marginBottom: 8, display: 'block' }} />}
-                <input type="file" onChange={uploadChildImage} />
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <input style={{ ...inp, flex: 1, fontSize: 11 }} value={childForm.coverImage} readOnly placeholder="Upload or paste URL" />
+                  <label style={{ padding: '0.6rem 1rem', background: '#1a1a1c', border: '1px solid #333', borderRadius: 8, color: '#fff', cursor: 'pointer', fontSize: 12, whiteSpace: 'nowrap' }}>
+                    {uploading ? 'Uploading…' : 'Choose File'}
+                    <input type="file" accept="image/*" style={{ display: 'none' }} onChange={uploadChildImage} />
+                  </label>
+                  {childForm.coverImage && <img src={childForm.coverImage} alt="Cover" style={{ width: 60, height: 45, objectFit: 'cover', borderRadius: 6 }} />}
+                </div>
               </div>
               <button onClick={saveChild} style={{ padding: '1rem', background: '#fff', color: '#000', border: 'none', borderRadius: 10, fontWeight: 800, cursor: 'pointer', marginTop: 8 }}>Save</button>
 

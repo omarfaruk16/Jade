@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import API_BASE from '@/lib/api';
-import { X, Edit2, Trash2, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload } from 'lucide-react';
+import { X, Edit2, Trash2, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload, Eye } from 'lucide-react';
 import ServicesAdmin from './ServicesAdmin';
 import ProductsAdmin from './ProductsAdmin';
 import BlogsAdmin from './BlogsAdmin';
@@ -114,6 +114,8 @@ export default function AdminDashboard() {
     } else if (activeTab === 'partners') {
       if (item) { setEditingItem(item); setPartnerData({ name: item.name, logo: item.logo }); }
       else { setEditingItem(null); setPartnerData({ name: '', logo: '' }); }
+    } else if (activeTab === 'dealerRequests') {
+      setEditingItem(item);
     }
     setIsModalOpen(true);
   };
@@ -308,6 +310,7 @@ export default function AdminDashboard() {
                       {activeTab === 'dealerRequests' && <td>{item.phone}</td>}
                       <td style={{ textAlign: 'right' }}>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                          {activeTab === 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="View"><Eye size={18} /></button>}
                           {activeTab !== 'dealerRequests' && <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>}
                           <button onClick={() => handleDelete(item.id, activeTab)} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18} /></button>
                         </div>
@@ -435,9 +438,24 @@ export default function AdminDashboard() {
                   </div>
                 </>
               )}
-              <button type="submit" disabled={uploading} className={styles.saveBtn}>
-                {uploading ? 'Uploading...' : 'Save Changes'}
-              </button>
+              {activeTab === 'dealerRequests' && editingItem && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.5' }}>
+                  <div><strong style={{ color: '#fff' }}>Full Name:</strong> {editingItem.fullName}</div>
+                  <div><strong style={{ color: '#fff' }}>Email:</strong> {editingItem.email}</div>
+                  <div><strong style={{ color: '#fff' }}>Phone:</strong> {editingItem.phone}</div>
+                  <div><strong style={{ color: '#fff' }}>Business Name:</strong> {editingItem.businessName}</div>
+                  <div><strong style={{ color: '#fff' }}>Location:</strong> {editingItem.location}</div>
+                  <div><strong style={{ color: '#fff' }}>Budget:</strong> {editingItem.budget}</div>
+                  <div><strong style={{ color: '#fff' }}>Interest:</strong> {editingItem.interest}</div>
+                  {editingItem.message && <div><strong style={{ color: '#fff' }}>Message:</strong> {editingItem.message}</div>}
+                  <div><strong style={{ color: '#fff' }}>Date:</strong> {new Date(editingItem.createdAt).toLocaleString()}</div>
+                </div>
+              )}
+              {activeTab !== 'dealerRequests' && (
+                <button type="submit" disabled={uploading} className={styles.saveBtn}>
+                  {uploading ? 'Uploading...' : 'Save Changes'}
+                </button>
+              )}
             </form>
           </div>
         </div>,
