@@ -63,7 +63,7 @@
 
 /* ── Section Wrapper ── */
 .section {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 5rem 5%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -282,7 +282,7 @@
 }
 
 .contactInner {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 5rem 5%;
   display: grid;

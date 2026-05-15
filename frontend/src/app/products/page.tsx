@@ -32,7 +32,7 @@ export default function ProductsOverviewPage() {
     <div style={{ background: '#000', minHeight: '100vh' }}>
       <Navbar />
 
-      <div style={{ paddingTop: '120px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', maxWidth: '1400px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
+      <div style={{ paddingTop: '120px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', maxWidth: '1600px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
         <motion.h1 
           initial={{ opacity: 0, scale: 0.85 }} 
           animate={{ opacity: 1, scale: 1 }} 

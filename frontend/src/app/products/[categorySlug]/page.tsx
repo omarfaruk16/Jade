@@ -35,7 +35,7 @@ export default function ProductCategoryPage() {
     <div style={{ background: '#000', minHeight: '100vh' }}>
       <Navbar />
 
-      <div style={{ paddingTop: '100px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '1400px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem' }}>
+      <div style={{ paddingTop: '100px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '1600px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem' }}>
         {category.products?.map((product: any) => (
           <div key={product.id} style={{ position: 'relative', width: '100%', height: '500px', borderRadius: '16px', overflow: 'hidden', cursor: 'pointer' }} onClick={() => router.push(`/products/details/${product.id}`)}>
             {/* Background Image */}

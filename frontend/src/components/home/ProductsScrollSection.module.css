@@ -71,7 +71,7 @@
 .cardsWrapper {
   display: flex;
   overflow-x: auto;
-  padding-inline: clamp(16px, 4vw, 48px);
+  padding-inline: clamp(24px, 6vw, 48px);
   gap: 2rem;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;

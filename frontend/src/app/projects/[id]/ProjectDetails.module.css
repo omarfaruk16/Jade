@@ -67,9 +67,9 @@
 /* ── Layout Container ── */
 .contentContainer {
   width: 100%;
-  max-width: var(--container-max, 1400px);
+  max-width: var(--container-max, 1600px);
   margin: 0 auto;
-  padding-inline: clamp(16px, 4vw, 48px);
+  padding-inline: clamp(24px, 6vw, 48px);
 }
 
 /* ── Overview / Process Section 3-col grid ── */

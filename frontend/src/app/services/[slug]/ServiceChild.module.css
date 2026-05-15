@@ -74,9 +74,9 @@
 }
 
 .serviceItem {
-  max-width: var(--container-max, 1400px);
+  max-width: var(--container-max, 1600px);
   margin: 0 auto;
-  padding: var(--space-xl, 80px) clamp(16px, 4vw, 48px);
+  padding: var(--space-xl, 80px) clamp(24px, 6vw, 48px);
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -122,21 +122,21 @@
 }
 
 .contactBtn {
-  background: linear-gradient(135deg, #34d399, #10b981);
+  background: #000000;
   color: #fff;
   border: none;
   padding: 0.8rem 1.8rem;
   border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .contactBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* ── Grid Row ── */
@@ -418,6 +418,7 @@
   letter-spacing: -0.02em;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .subNavLogo span:first-child {
@@ -519,7 +520,7 @@
 }
 
 .contactInner {
-  max-width: var(--container-max, 1400px);
+  max-width: var(--container-max, 1600px);
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 60px);
   display: grid;
@@ -634,6 +635,15 @@
 }
 
 @media (max-width: 768px) {
+  .subNavWrapper {
+    padding: 0 1rem;
+    top: 1rem;
+  }
+
+  .subNav {
+    padding: 0.5rem 1.2rem;
+  }
+
   .contactSection {
     padding: 6rem 0;
   }

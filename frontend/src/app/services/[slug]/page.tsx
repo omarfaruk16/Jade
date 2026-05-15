@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
@@ -89,9 +90,9 @@ export default function ServiceChildPage() {
       {/* Floating Sticky Sub-navigation */}
       <div className={`${styles.subNavWrapper} ${showSubNav ? styles.subNavVisible : ''}`}>
         <div className={styles.subNav}>
-          <div className={styles.subNavLogo}>
+          <Link href="/" className={styles.subNavLogo}>
             <span>J</span><span>ade</span>
-          </div>
+          </Link>
           <div className={styles.subNavLinks}>
             {data.items.map((item: any, idx: number) => (
               <button
