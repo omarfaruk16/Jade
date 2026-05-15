@@ -390,4 +390,8 @@
   .section {
     padding: 3.5rem 5%;
   }
+
+  .page {
+    padding: 3rem 0rem;
+  }
 }
