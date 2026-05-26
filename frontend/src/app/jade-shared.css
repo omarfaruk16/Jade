@@ -31,23 +31,20 @@
 ════════════════════════════════════════════════ */
 .jade-section {
   width: 100%;
-  padding-block: var(--space-xl);
-  /* 80px */
+  padding-block: 100px;
 }
 
 /* Tablet */
 @media (max-width: 1023px) {
   .jade-section {
-    padding-block: var(--space-lg);
-    /* 48px */
+    padding-block: 80px;
   }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   .jade-section {
-    padding-block: calc(var(--space-lg) * 0.75);
-    /* ~36px */
+    padding-block: 60px;
   }
 }
 
@@ -81,19 +78,48 @@
 }
 
 /* ════════════════════════════════════════════════
-   4.  SHARED TYPOGRAPHY
-════════════════════════════════════════════════ */
+    4.  SHARED TYPOGRAPHY
+    ════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════
+    Framer Site Typography Scale (Geist)
+    Desktop (≥1200px):
+      H1: 80px w500 ls:-0.07em lh:1.1em
+      H2: 56px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+      H4: 28px w400 ls:-0.06em lh:1.2em
+      H5: 20px w400 ls:0em lh:1.2em (bold uses Inter)
+      Body: 14px w400 ls:0em lh:150%
+      Body-lg: 16px w400 ls:-0.04em lh:150%
+      Body-xl: 18px w400 ls:0em lh:1.2em (Inter for bold)
+    Tablet (810-1199px):
+      H1: 64px w500 ls:-0.05em lh:1.1em
+      H2: 38px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+    Mobile (<810px):
+      H1: 48px w500 ls:-0.05em lh:1.1em
+      H2: 32px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+    ════════════════════════════════════════════════ */
 .jade-page-title {
   font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
   margin-bottom: 1.5rem;
 }
 
+@media (min-width: 1200px) {
+  .jade-page-title {
+    font-size: 80px;
+    letter-spacing: -0.07em;
+  }
+}
+
 .jade-page-subtitle {
-  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
-  line-height: 1.7;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 150%;
   opacity: 0.88;
   max-width: 640px;
   margin: 0 auto;
@@ -103,25 +129,26 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.4em;
   color: #666;
   margin-bottom: 0.75rem;
 }
 
 .jade-section-title {
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.06em;
+  line-height: 1.2em;
   margin: 0;
 }
 
 .jade-section-text {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0em;
   color: #555;
 }
 

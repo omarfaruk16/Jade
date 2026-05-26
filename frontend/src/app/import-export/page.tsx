@@ -24,11 +24,12 @@ export default function ImportExportPage() {
       {/* Hero Section */}
       <SectionReveal>
         <section className={styles.heroSection}>
-          <div className={styles.heroContent}>
+          <div className={styles.heroContainer}>
+            <div className={styles.heroContent}>
             <motion.h1
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0.001, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
               className={styles.heroTitle}
             >
               Worldwide Export Import
@@ -42,6 +43,7 @@ export default function ImportExportPage() {
               We&apos;re a design-driven team creating spaces with purpose,
               personality, and precision—built through collaboration.
             </motion.p>
+            </div>
           </div>
         </section>
       </SectionReveal>

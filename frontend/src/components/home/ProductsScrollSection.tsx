@@ -57,7 +57,7 @@ export default function ProductsScrollSection() {
                     initial={{ clipPath: 'inset(0 100% 0 0)' }}
                     whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1], delay: idx * 0.15 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: idx * 0.15 }}
                   >
                     <img src={cat.image || '/images/home-hero.webp'} alt={cat.name} className={styles.cardImage} />
                   </motion.div>

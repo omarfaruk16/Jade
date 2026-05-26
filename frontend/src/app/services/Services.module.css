@@ -1,6 +1,6 @@
 .indexPage {
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
   background: #fff;
   padding: 6rem 4rem;
 }
@@ -14,17 +14,22 @@
   margin-bottom: 3rem;
 }
 
-.indexHero h1 {
-  font-size: 3rem;
-  font-weight: 800;
+.indexHero h1,
+.pageTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
   color: #111;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
   margin-bottom: 0.75rem;
 }
 
 .indexHero p {
   color: #777;
-  font-size: 1rem;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 150%;
 }
 
 .indexGrid {

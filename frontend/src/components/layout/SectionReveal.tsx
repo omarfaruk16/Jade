@@ -10,12 +10,14 @@ interface SectionRevealProps {
 export default function SectionReveal({ children }: SectionRevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 100 }}
+      initial={{ opacity: 0.001, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ 
-        duration: 1.2, 
-        ease: [0.21, 1, 0.36, 1] // Custom quintic ease-out for premium feel
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        type: "spring",
+        stiffness: 160,
+        damping: 30,
+        mass: 1
       }}
     >
       {children}

@@ -41,7 +41,7 @@ export default function ServicesPage() {
       <Navbar />
       <div className={styles.indexHero}>
 
-        <TitleReveal><h1>Our Services</h1></TitleReveal>
+        <TitleReveal><h1 className={styles.pageTitle}>Our Services</h1></TitleReveal>
         <p>Select a service category below to explore what we offer.</p>
       </div>
       <div className={styles.indexGrid}>

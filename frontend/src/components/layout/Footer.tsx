@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './Footer.module.css';
 
@@ -42,6 +44,21 @@ export default function Footer() {
         <div className={styles.middleRow}>
           <p className={styles.phoneNumbers}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
           <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>jadekitchen@yahoo.com</a>
+        </div>
+
+        {/* NEWSLETTER */}
+        <div className={styles.newsletter}>
+          <p className={styles.newsletterTitle}>Newsletter</p>
+          <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className={styles.newsletterInput}
+            />
+            <button type="submit" className={styles.newsletterButton}>
+              Subscribe
+            </button>
+          </form>
         </div>
 
         {/* MOBILE ONLY ADDRESS (Shows before Bottom Row on Mobile) */}

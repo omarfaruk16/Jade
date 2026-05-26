@@ -2,14 +2,26 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 800px;
+  min-height: 600px;
   overflow: hidden;
   display: flex;
-  padding: 0px 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: #f7f7f7;
+}
+
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  isolation: isolate;
 }
 
 .bgImage {
@@ -19,9 +31,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2;
+  z-index: 0;
   transform: scale(1.05);
-  /* Slight scale for potential parallax or breathing animation */
   animation: breathe 20s ease-in-out infinite alternate;
 }
 
@@ -42,7 +53,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.6));
-  z-index: -1;
+  z-index: 1;
 }
 
 .content {
@@ -50,61 +61,63 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  gap: 60px;
+  padding: 24px;
+  max-width: 560px;
 }
 
-.hashtag {
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 2.5rem;
-  max-width: 800px;
+.titleWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
+}
+
+.hashtag {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.4em;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.title {
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 1.1em;
+  letter-spacing: -0.05em;
+  max-width: 560px;
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
-}
-
-.lineOverflow {
-  overflow: hidden;
-  display: flex;
-}
-
-.line {
-  display: inline-block;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  text-align: center;
 }
 
 .ctaButton {
   background: #ffffff;
-  color: #000000;
+  color: #0000ee;
   border: none;
-  border-radius: 9999px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 100px;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: normal;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s, opacity 0.3s;
+  height: 48px;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
 }
 
 /* Bottom widgets */
 .bottomLeftWidget {
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 24px;
+  left: 24px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -131,8 +144,11 @@
 
 .trustText {
   text-align: left;
-  font-size: 0.85rem;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.4em;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .trustText strong {
@@ -142,8 +158,8 @@
 
 .bottomRightWidget {
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 24px;
+  right: 24px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -151,8 +167,9 @@
 }
 
 .awardsLabel {
-  font-size: 0.9rem;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .awardIcon {
@@ -175,21 +192,27 @@
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 809px) {
   .title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+
+  .content {
+    gap: 40px;
+    padding: 16px;
   }
 
   .bottomLeftWidget {
     bottom: 7.5rem;
-    left: 1.5rem;
+    left: 1rem;
     right: auto;
   }
 
   .bottomRightWidget {
     bottom: 1.5rem;
-    left: 1.5rem;
-    right: 1.5rem;
+    left: 1rem;
+    right: 1rem;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;

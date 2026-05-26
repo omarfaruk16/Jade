@@ -6,24 +6,34 @@
 }
 
 .headerSection {
-  padding: 10rem 4rem 4rem 4rem;
+  padding: 150px 24px 140px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.icon {
-  margin-bottom: 1rem;
-}
-
 .title {
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 500;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
   margin-bottom: 1.5rem;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 150%;
+  color: #555;
+  max-width: 500px;
+}
+
+.icon {
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -32,13 +42,6 @@
   margin: 0 auto;
   padding-inline: clamp(24px, 6vw, 48px);
   box-sizing: border-box;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  color: #555;
-  max-width: 500px;
-  line-height: 1.6;
 }
 
 .gridControls {
@@ -115,15 +118,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.95rem;
   padding: 0 0.5rem;
 }
 
 .cardTitle {
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 1.2em;
 }
 
 .cardDate {
+  font-size: 14px;
+  letter-spacing: 0em;
   color: #666;
 }
 

@@ -93,7 +93,7 @@
   font-weight: 500;
   line-height: 1.15;
   margin-bottom: 3rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.06em;
 }
 
 /* Text Row */
@@ -112,8 +112,9 @@
 }
 
 .textBody {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0em;
   color: #444;
   flex: 1;
 }
@@ -166,8 +167,9 @@
 }
 
 .cardText {
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.5;
+  letter-spacing: 0em;
   color: #555;
   margin: 0;
 }

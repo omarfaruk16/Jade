@@ -41,9 +41,9 @@ export default function ProductDetailsPage() {
         <motion.div className={styles.heroOverlay} initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:1.2,delay:0.2}}>
           <motion.h1 
             className={styles.heroTitle}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0.001, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
           >
             {product.title}
           </motion.h1>

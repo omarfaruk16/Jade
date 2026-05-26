@@ -29,11 +29,12 @@
 }
 
 .heroSub {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  letter-spacing: 0em;
   color: #777;
   max-width: 550px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 /* Category Tabs */
@@ -137,7 +138,7 @@
 
 .productName {
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
@@ -181,10 +182,12 @@
 }
 
 .showcaseDesc {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  letter-spacing: 0em;
   opacity: 0.8;
   max-width: 500px;
   margin: 0 auto 2rem;
+  line-height: 1.5;
 }
 
 .showcaseBtn {

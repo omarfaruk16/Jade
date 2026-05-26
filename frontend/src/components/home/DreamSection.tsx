@@ -32,7 +32,7 @@ export default function DreamSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
               We’re set to build your dream just say the word.
             </motion.h2>
@@ -42,7 +42,7 @@ export default function DreamSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.15 }}
+              transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               The impact of our craft is carried by those we’ve partnered with. Genuine collaborations, lasting outcomes and spaces that truly connect.
             </motion.p>
@@ -54,7 +54,7 @@ export default function DreamSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Top row of card */}
             <div className={styles.cardHeader}>

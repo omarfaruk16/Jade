@@ -3,7 +3,7 @@
   background: #050505;
   color: #fff;
   display: flex;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .sidebar {

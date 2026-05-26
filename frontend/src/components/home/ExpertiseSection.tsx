@@ -67,6 +67,7 @@ export default function ExpertiseSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             Our expertise
           </motion.h2>
@@ -75,7 +76,7 @@ export default function ExpertiseSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             We offer a full spectrum of interior design — each tailored to elevate spaces with clarity and timeless aesthetic value.
           </motion.p>

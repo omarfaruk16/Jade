@@ -24,16 +24,17 @@ export default function InsightsSection() {
           className={styles.title}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Insights & Resources
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Insights & Resources
         </motion.h2>
         <motion.div 
           className={styles.subtitleWrapper}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className={styles.subtitle}>Explore our recent news and insights</p>
           <button className={styles.viewAllBtn}>View All</button>
@@ -46,6 +47,7 @@ export default function InsightsSection() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <img src="/images/f3.png" alt="Staircase interior" />
           <div className={styles.imageOverlay}>
@@ -64,7 +66,7 @@ export default function InsightsSection() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className={styles.listContent}>
                 <span className={styles.date}>{item.date}</span>

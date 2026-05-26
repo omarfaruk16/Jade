@@ -24,7 +24,7 @@
   font-weight: 500;
   line-height: 1.2;
   max-width: 800px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.06em;
 }
 
 .moreBtn {
@@ -67,7 +67,9 @@
 
 .statBox p {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
 }
 
 .cardsContainer {
@@ -131,7 +133,8 @@
 .cardContent p {
   margin-top: 1rem;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 14px;
+  letter-spacing: 0em;
   line-height: 1.5;
 }
 

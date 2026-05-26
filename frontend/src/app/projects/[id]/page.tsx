@@ -89,24 +89,26 @@ export default function ProjectDetails() {
 
       {/* ── Hero / Cover ── */}
       <SectionReveal>
-        <section className={styles.hero}>
-          <motion.img
-            src={project.coverImage}
-            alt={project.title}
-            className={styles.coverImage}
-            style={{ y }}
-          />
-          <div className={styles.heroOverlay} />
-          <motion.div
-            className={styles.heroContent}
-            initial={{ opacity: 0, scale: 0.88 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <TitleReveal><h1 className={styles.title}>{project.title}</h1></TitleReveal>
-            {project.subtitle && <p className={styles.subtitle}>{project.subtitle}</p>}
-          </motion.div>
-        </section>
+        <div className={styles.heroWrapper}>
+          <section className={styles.hero}>
+            <motion.img
+              src={project.coverImage}
+              alt={project.title}
+              className={styles.coverImage}
+              style={{ y }}
+            />
+            <div className={styles.heroOverlay} />
+            <motion.div
+              className={styles.heroContent}
+              initial={{ opacity: 0.001, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
+            >
+              <TitleReveal><h1 className={styles.title}>{project.title}</h1></TitleReveal>
+              {project.subtitle && <p className={styles.subtitle}>{project.subtitle}</p>}
+            </motion.div>
+          </section>
+        </div>
       </SectionReveal>
 
       <div className={styles.contentContainer}>
@@ -151,7 +153,7 @@ export default function ProjectDetails() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={project.overviewImage} alt="Overview" className={styles.overviewImage} />
@@ -171,7 +173,7 @@ export default function ProjectDetails() {
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.9, delay: (i % 2) * 0.15 }}
+                    transition={{ duration: 1.2, delay: (i % 2) * 0.15, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={url} alt={`Gallery ${i + 1}`} className={styles.galleryImg} />
@@ -204,7 +206,7 @@ export default function ProjectDetails() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: i * 0.1 }}
+                      transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <span className={styles.stepNumber}>{String(i + 1).padStart(2, '0')}</span>
                       <div>
@@ -223,7 +225,7 @@ export default function ProjectDetails() {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.2 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={project.processImage} alt="Process" className={styles.processImage} />

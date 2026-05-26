@@ -46,7 +46,7 @@ export default function HarmonySection() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <img src="/images/bg-2.avif" alt="Jade interior showcase" className={styles.mediaImg} />
               <div className={styles.mediaOverlay}>
@@ -65,7 +65,7 @@ export default function HarmonySection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.1 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 Design, Installation, and Support in Harmony
               </motion.h2>
@@ -76,7 +76,7 @@ export default function HarmonySection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.1, delay: 0.1 }}
+                transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className={styles.metaLabel}>(Resonate)</span>
                 <p className={styles.metaText}>
@@ -97,7 +97,7 @@ export default function HarmonySection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: i * 0.1 }}
+                    transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <div className={styles.featureImgRow}>
                       <img src={f.img} alt={f.label} className={styles.featureImg} />

@@ -34,7 +34,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle at top left, #111, #000)', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle at top left, #111, #000)', color: '#fff', fontFamily: 'Geist, sans-serif' }}>
       <div style={{ position: 'absolute', top: '10%', left: '10%', width: '300px', height: '300px', background: 'rgba(52, 211, 153, 0.05)', filter: 'blur(100px)', borderRadius: '50%' }}></div>
       <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: 'rgba(251, 146, 60, 0.05)', filter: 'blur(100px)', borderRadius: '50%' }}></div>
       

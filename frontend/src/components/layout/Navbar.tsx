@@ -25,6 +25,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [servicesData, setServicesData] = useState<any[]>([]);
   const [productsData, setProductsData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all([
@@ -33,7 +34,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
     ]).then(([sData, pData]) => {
       setServicesData(sData);
       setProductsData(pData);
-    }).catch(console.error);
+    }).catch(console.error)
+    .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -72,24 +74,39 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   transition={{ duration: 0.2 }}
                 >
                   <div className={styles.megaMenuLeft}>
-                    {servicesData.map((parent: any) => (
-                      <div key={parent.id} className={styles.megaMenuGroup}>
-                        <div className={styles.megaMenuParent}>{parent.name}</div>
-                        {parent.children.map((child: any) => (
-                          <Link key={child.id} href={`/services/${child.slug}`} className={styles.megaMenuChild} onClick={() => setShowServices(false)}>
-                            {child.name}
-                          </Link>
+                    {loading ? (
+                      <>
+                        {[1, 2, 3].map((i) => (
+                          <div key={i} className={styles.megaMenuGroup}>
+                            <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+                            <div className={`${styles.skeleton} ${styles.skeletonText}`} />
+                            <div className={`${styles.skeleton} ${styles.skeletonText}`} style={{ width: '90px' }} />
+                          </div>
                         ))}
-                      </div>
-                    ))}
+                      </>
+                    ) : servicesData.length === 0 ? (
+                      <div className={styles.noDataMessage}>No services available</div>
+                    ) : (
+                      servicesData.map((parent: any) => (
+                        <div key={parent.id} className={styles.megaMenuGroup}>
+                          <div className={styles.megaMenuParent}>{parent.name}</div>
+                          {parent.children.map((child: any) => (
+                            <Link key={child.id} href={`/services/${child.slug}`} className={styles.megaMenuChild} onClick={() => setShowServices(false)}>
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      ))
+                    )}
                   </div>
                   <div className={styles.megaMenuRight}>
-                    {/* Hero image for megamenu */}
-                    <img 
-                      src={servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"} 
-                      alt="Service Feature" 
-                      className={styles.megaMenuImg} 
-                    />
+                    {!loading && servicesData.length > 0 && (
+                      <img 
+                        src={servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"} 
+                        alt="Service Feature" 
+                        className={styles.megaMenuImg} 
+                      />
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -113,17 +130,25 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {productsData.map((cat: any) => (
-                    <Link key={cat.id} href={`/products/${cat.slug}`} className={styles.productCategoryCard} onClick={() => setShowProducts(false)}>
-                      <img src={cat.image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=500"} alt={cat.name} className={styles.productCategoryImg} />
-                      <div className={styles.productCategoryInfo}>
-                        <span className={styles.productCategoryTitle}>{cat.name}</span>
-                        <div className={styles.productCategoryBtn}>
-                          <ChevronRight size={16} />
+                  {loading ? (
+                    [1, 2, 3, 4].map((i) => (
+                      <div key={i} className={`${styles.skeleton} ${styles.skeletonCard}`} />
+                    ))
+                  ) : productsData.length === 0 ? (
+                    <div className={styles.noDataMessage}>No products available</div>
+                  ) : (
+                    productsData.map((cat: any) => (
+                      <Link key={cat.id} href={`/products/${cat.slug}`} className={styles.productCategoryCard} onClick={() => setShowProducts(false)}>
+                        <img src={cat.image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=500"} alt={cat.name} className={styles.productCategoryImg} />
+                        <div className={styles.productCategoryInfo}>
+                          <span className={styles.productCategoryTitle}>{cat.name}</span>
+                          <div className={styles.productCategoryBtn}>
+                            <ChevronRight size={16} />
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    ))
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -169,7 +194,12 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                       exit={{ height: 0, opacity: 0 }}
                       style={{ overflow: 'hidden' }}
                     >
-                      {servicesData.map((parent: any) => (
+                      {loading ? (
+                        <div className={styles.noDataMessage}>Loading services...</div>
+                      ) : servicesData.length === 0 ? (
+                        <div className={styles.noDataMessage}>No services available</div>
+                      ) : (
+                        servicesData.map((parent: any) => (
 
                         <div key={parent.id} className={styles.mobileServiceParentGroup}>
                           <div className={styles.mobileServiceParent}>{parent.name}</div>
@@ -184,7 +214,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                             </Link>
                           ))}
                         </div>
-                      ))}
+                        ))
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -59,6 +59,7 @@ export default function TestimonialsSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <TitleReveal><h2 className={styles.title}>
           Don&apos;t just listen to us—see what our partners have to say.
@@ -76,7 +77,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
+            transition={{ delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.stars}>
               {[...Array(item.rating || 5)].map((_, i) => (
@@ -104,7 +105,7 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <video
             src="/images/client-video.mp4"
@@ -133,7 +134,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.stars}>
               {[...Array(item.rating || 5)].map((_, i) => (

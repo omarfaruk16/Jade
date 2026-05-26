@@ -22,6 +22,7 @@ export default function CtaSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           We’re set to build your dream just<br />say the word.
         </motion.h2>
@@ -31,7 +32,7 @@ export default function CtaSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           The impact of our craft is carried by those we’ve partnered<br />
           with. Genuine collaborations, lasting outcomes and spaces<br />
@@ -43,7 +44,7 @@ export default function CtaSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className={styles.cardHeader}>
             <div className={styles.userInfo}>

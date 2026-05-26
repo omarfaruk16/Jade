@@ -20,6 +20,7 @@ export default function StatsAndServicesSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             We offer full scale architectural services based on local landscape
           </motion.h2>
@@ -28,7 +29,7 @@ export default function StatsAndServicesSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             More about Jade Studio
           </motion.button>
@@ -47,7 +48,7 @@ export default function StatsAndServicesSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <TitleReveal><h3>{stat.num}</h3></TitleReveal>
               <p>{stat.text}</p>
@@ -68,7 +69,7 @@ export default function StatsAndServicesSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: idx * 0.2 }}
+            transition={{ duration: 1.2, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.imageWrapper}>
               <img src={card.img} alt={card.title} />

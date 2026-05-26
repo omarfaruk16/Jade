@@ -41,7 +41,7 @@ export default function ProjectsArchive() {
           className={styles.subtitle}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
+          transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
         </motion.p>
@@ -63,13 +63,13 @@ export default function ProjectsArchive() {
             <div style={{ textAlign: 'center', width: '100%', gridColumn: 'span 3', padding: '4rem' }}>Loading architecture...</div>
           ) : (
             projects.map((p, i) => (
-              <Link href={`/projects/${p.id}`} key={p.id} passHref legacyBehavior>
-                <motion.a 
+              <Link href={`/projects/${p.id}`} key={p.id} className={styles.projectCard}>
+                <motion.div 
                   className={styles.projectCard}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.2, delay: i * 0.1 }}
+                  transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className={styles.imageWrapper}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -79,7 +79,7 @@ export default function ProjectsArchive() {
                     <span className={styles.cardTitle}>{p.title}</span>
                     <span className={styles.cardDate}>{p.date}</span>
                   </div>
-                </motion.a>
+                </motion.div>
               </Link>
             ))
           )}

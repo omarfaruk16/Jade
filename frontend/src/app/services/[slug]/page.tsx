@@ -109,21 +109,21 @@ export default function ServiceChildPage() {
         </div>
       </div>
 
-      <div
-        className={styles.heroSection}
-        style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})` }}
-      >
-        <motion.div
-          className={styles.heroOverlay}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-        >
-          <TitleReveal><h1 className={styles.heroTitle}>{data.name}</h1></TitleReveal>
-          {data.description && (
-            <p className={styles.heroDesc}>{data.description}</p>
-          )}
-        </motion.div>
+      <div className={styles.heroSection}>
+        <div className={styles.heroContainer} style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className={styles.heroOverlay}></div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 5vw' }}
+          >
+            <TitleReveal><h1 className={styles.heroTitle}>{data.name}</h1></TitleReveal>
+            {data.description && (
+              <p className={styles.heroDesc}>{data.description}</p>
+            )}
+          </motion.div>
+        </div>
       </div>
 
       <div className={styles.page}>

@@ -1,10 +1,15 @@
 .pageWrapper {
-  background: #fcfcfc;
+  background: #f7f7f7;
   color: #000;
   min-height: 100vh;
 }
 
 /* ── Hero ── */
+.heroWrapper {
+  padding: 6px;
+  margin-bottom: 6rem;
+}
+
 .hero {
   height: 90vh;
   position: relative;
@@ -12,8 +17,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: 6rem;
-  border-radius: 0 0 32px 32px;
+  border-radius: 12px;
 }
 
 .coverImage {
@@ -287,7 +291,6 @@
 @media (max-width: 640px) {
   .hero {
     height: 70vh;
-    border-radius: 0 0 20px 20px;
   }
 
   .metaGrid {

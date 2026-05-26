@@ -36,19 +36,29 @@
 }
 
 .title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 500;
+  letter-spacing: -0.05em;
   line-height: 1.1;
   margin-bottom: 1rem;
-  letter-spacing: -0.03em;
-  color: #fff;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.5em;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subtitle {
   font-size: 1.2rem;
   line-height: 1.6;
+  letter-spacing: -0.04em;
   opacity: 0.9;
   color: #fff;
   max-width: 600px;
@@ -69,7 +79,7 @@
 }
 
 .introInfo p {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: #444;
   margin-bottom: 2rem;
@@ -91,6 +101,7 @@
 
 .founder h4 {
   font-size: 1.1rem;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -102,10 +113,13 @@
 .officeInfo h3 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .officeInfo p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #666;
   margin-bottom: 2rem;
 }
@@ -140,9 +154,9 @@
 }
 
 .officeTitle {
-  font-size: 4rem;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.06em;
 }
 
 .officeHeaderRight {
@@ -154,9 +168,10 @@
 }
 
 .officeHeaderRight p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
 }
 
 .contactNowBtn {
@@ -205,13 +220,14 @@
 .conceptBlock h4 {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .conceptBlock p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #444;
-  font-size: 1rem;
-  line-height: 1.7;
 }
 
 .featureGridQuotes {
@@ -237,8 +253,9 @@
 }
 
 .quoteCard p {
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #666;
 }
 
@@ -275,7 +292,7 @@
 .faqTitleCard {
   font-size: 3rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.06em;
 }
 
 .faqSubtitleCard {
@@ -363,7 +380,7 @@
 
 .faqOverlay h4 {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 1.5rem;
 }
 
@@ -391,9 +408,10 @@
 }
 
 .sectionTitle {
-  font-size: 0.9rem;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
   color: #888;
   margin-bottom: 2.5rem;
 }
@@ -456,7 +474,9 @@
 }
 
 .formInfo p {
-  font-size: 1.2rem;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #666;
   margin-bottom: 3rem;
 }
@@ -561,6 +581,9 @@
 }
 
 .success p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
   color: #666;
   margin-bottom: 2rem;
 }

@@ -13,13 +13,15 @@ export default function TitleReveal({ children, className, delay = 0 }: TitleRev
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, scale: 0.85 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0.001, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        duration: 1.2, 
-        delay: delay,
-        ease: [0.21, 1, 0.36, 1] 
+      transition={{
+        type: "spring",
+        stiffness: 160,
+        damping: 30,
+        mass: 1,
+        delay: delay
       }}
     >
       {children}

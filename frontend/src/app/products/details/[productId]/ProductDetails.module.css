@@ -58,7 +58,7 @@
 
 .page {
   color: #111;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 /* ── Section Wrapper ── */

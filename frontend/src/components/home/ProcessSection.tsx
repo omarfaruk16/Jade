@@ -22,6 +22,7 @@ export default function ProcessSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className={styles.videoWrapper} onClick={() => setIsVideoOpen(true)}>
             <img src="/images/video-cover-image.avif" alt="Video cover" className={styles.videoCover} />
@@ -41,6 +42,7 @@ export default function ProcessSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             Design, Installation, and Support in Harmony
           </motion.h2>
@@ -50,7 +52,7 @@ export default function ProcessSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.textLabel}>(Resonate)</div>
             <div className={styles.textBody}>
@@ -82,7 +84,7 @@ export default function ProcessSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 + (idx * 0.1) }}
+                transition={{ duration: 1.2, delay: 0.2 + (idx * 0.1), ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className={styles.cardHeader}>
                   <img src={card.img} alt="Card Thumbnail" className={styles.cardThumb} />

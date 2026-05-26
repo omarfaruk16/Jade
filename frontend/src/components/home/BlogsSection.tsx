@@ -37,7 +37,7 @@ export default function BlogsSection() {
         <motion.h2
           className={styles.title}
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           Insights that shape spaces
         </motion.h2>
@@ -54,7 +54,7 @@ export default function BlogsSection() {
           <motion.div
             className={styles.featuredCard}
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <Link href={`/blogs/${featured.slug}`} className={styles.featuredLink}>
               <img src={featured.coverImage} alt={featured.title} className={styles.featuredImg} />
@@ -77,7 +77,7 @@ export default function BlogsSection() {
               key={blog.id}
               className={styles.listItem}
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: idx * 0.08 }}
+              transition={{ duration: 1.2, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link href={`/blogs/${blog.slug}`} className={styles.listContentLeft}>
                 <div className={styles.fourDots}>

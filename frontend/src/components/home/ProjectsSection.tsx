@@ -46,16 +46,14 @@ export default function ProjectsSection() {
 
         <motion.div style={{ x: isMobile ? 0 : x }} className={styles.projectsWrapper}>
           {projects.map((project) => (
-            <Link href={`/projects/${project.id}`} key={project.id} passHref legacyBehavior>
-              <a className={styles.projectCard}>
+            <Link href={`/projects/${project.id}`} key={project.id} className={styles.projectCard}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={project.coverImage} alt={project.title} />
                 <div className={styles.cardFooter}>
                   <span className={styles.cardTitle}>{project.title}</span>
                   <span className={styles.cardDate}>{project.date}</span>
                 </div>
-              </a>
-            </Link>
+              </Link>
           ))}
           {/* Fallback if no db projects */}
           {projects.length === 0 && (

@@ -15,10 +15,8 @@
 .title {
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  font-weight: 500;
+  letter-spacing: -0.06em;
   margin: 0;
-
 }
 
 .headerRight {
@@ -29,8 +27,9 @@
 }
 
 .subtitle {
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.5;
+  letter-spacing: 0em;
   color: #333;
   margin: 0;
 }
@@ -73,6 +72,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  letter-spacing: -0.05em;
 }
 
 .icon {
@@ -91,8 +91,9 @@
 
 .faqAnswer p {
   color: #555;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0em;
   margin: 0;
 }
 

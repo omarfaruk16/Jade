@@ -2,8 +2,7 @@
   background: #000;
   color: #fff;
   padding: 4rem 4rem 2rem;
-  position: sticky;
-  bottom: 0;
+  position: relative;
   z-index: 0;
 }
 
@@ -30,8 +29,9 @@
 }
 
 .logo {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
+  letter-spacing: -0.05em;
   text-decoration: none;
   display: inline-block;
 }
@@ -39,8 +39,10 @@
 .jadeOrange { color: #f97316; }
 
 .tagline {
-  font-size: 1.1rem;
-  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 150%;
   color: #ddd;
   max-width: 280px;
   margin: 0;
@@ -56,7 +58,10 @@
 .navLinks a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.4em;
   transition: opacity 0.2s;
 }
 .navLinks a:hover {
@@ -75,22 +80,84 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 8rem 0;
+  margin: 6rem 0 3rem;
+}
+
+/* NEWSLETTER */
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.newsletterTitle {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  color: #aaa;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.newsletterForm {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.newsletterInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  padding: 0.5rem 0;
+}
+
+.newsletterInput::placeholder {
+  color: #555;
+}
+
+.newsletterButton {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: opacity 0.2s;
+}
+
+.newsletterButton:hover {
+  opacity: 0.7;
 }
 
 .phoneNumbers {
-  font-size: 0.85rem;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
   color: #aaa;
   margin-bottom: 1rem;
-  letter-spacing: 0.05em;
 }
 
 .emailText {
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 500;
   color: #fff;
   text-decoration: none;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
   transition: opacity 0.2s;
 }
 .emailText:hover {
@@ -102,7 +169,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: flex-end;
-  font-size: 0.85rem;
+  font-size: 14px;
+  letter-spacing: 0em;
   color: #aaa;
 }
 
@@ -211,10 +279,20 @@
   .emailText {
     font-size: 1.8rem;
   }
+
+  .newsletter {
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 0;
+  }
+  
+  .newsletterForm {
+    max-width: 100%;
+  }
   
   .mobileAddress {
     display: block;
-    font-size: 0.85rem;
+    font-size: 14px;
     color: #aaa;
     line-height: 1.6;
     margin-bottom: -2rem; /* Bring it closer to bottom row */

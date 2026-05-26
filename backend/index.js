@@ -17,7 +17,7 @@ app.use(helmet({
 }));
 
 // CORS: allow only the frontend origin (set FRONTEND_URL in .env)
-const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || 'http://localhost:3000').split(',');
+const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || 'http://localhost:3001').split(',');
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, curl, server-to-server)
