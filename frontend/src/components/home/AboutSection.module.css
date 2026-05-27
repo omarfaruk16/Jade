@@ -33,10 +33,10 @@
 }
 
 .subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: #555;
   line-height: 1.6;
-  max-width: 480px;
+  max-width: 550px;
 }
 
 .getToKnowBtn {
@@ -155,11 +155,12 @@
 }
 
 .cardDesc {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #666;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-top: auto;
 }
+
 
 /* Grid placement */
 .cImg1 {

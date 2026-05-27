@@ -52,7 +52,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.6));
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -63,7 +63,7 @@
   align-items: center;
   gap: 60px;
   padding: 24px;
-  max-width: 560px;
+  max-width: 900px;
 }
 
 .titleWrapper {
@@ -74,7 +74,7 @@
 }
 
 .hashtag {
-  font-size: 14px;
+  font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 1.4em;
@@ -83,11 +83,11 @@
 }
 
 .title {
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
-  line-height: 1.1em;
-  letter-spacing: -0.05em;
-  max-width: 560px;
+  line-height: 1.05em;
+  letter-spacing: -0.07em;
+  max-width: 900px;
   color: #ffffff;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
   text-align: center;
@@ -95,22 +95,23 @@
 
 .ctaButton {
   background: #ffffff;
-  color: #0000ee;
+  color: #000000;
   border: none;
   border-radius: 100px;
-  padding: 12px 20px;
-  font-size: 12px;
-  font-weight: 400;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: normal;
   line-height: normal;
   cursor: pointer;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   height: 48px;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .ctaButton:hover {
-  transform: scale(1.02);
+  background-color: #f3f4f6;
+  transform: translateY(-1px);
 }
 
 /* Bottom widgets */

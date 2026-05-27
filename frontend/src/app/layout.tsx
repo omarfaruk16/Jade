@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font';
+import { GeistSans } from 'geist/font/sans';
 import "./globals.css";
 import "./jade-shared.css";
 

@@ -37,7 +37,13 @@
   margin: 0;
 }
 
-html,
+html {
+  width: 100%;
+  background: var(--background);
+  /* NOTE: overflow-x should only be on body, not html,
+     otherwise position:fixed children can be clipped in Firefox/Safari */
+}
+
 body {
   width: 100%;
   overflow-x: hidden;

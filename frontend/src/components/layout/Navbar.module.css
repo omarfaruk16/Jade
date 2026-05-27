@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 16px 24px;
+  padding: 25px;
   pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
@@ -20,20 +20,20 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1480px;
+  max-width: none;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 100px;
-  padding: 12px 24px;
+  background: rgba(18, 14, 12, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 14px 32px;
   pointer-events: auto;
-  box-shadow: none;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   text-decoration: none;
@@ -54,14 +54,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 .rightNav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 
 .dropdownContainer {
@@ -70,12 +70,23 @@
   align-items: center;
 }
 
+.dropdownContainer::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -15px;
+  right: -15px;
+  height: 35px;
+  background: transparent;
+  z-index: 10;
+}
+
 .navLink {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0em;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.2em;
   display: flex;
   align-items: center;
@@ -93,36 +104,45 @@
 .navLink .icon {
   width: 14px;
   height: 14px;
-  opacity: 0.7;
-  transition: transform 0.2s;
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navLink:hover .icon {
+  transform: translate(2px, -2px);
+  opacity: 1;
 }
 
 /* Megamenu Styles */
 .megaMenu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 16px;
-  width: 85vw;
+  position: fixed;
+  top: 92px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
   max-width: 1200px;
-  background: #2a221b;
+  height: 360px;
+  background: rgba(28, 24, 21, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 550px 1fr;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   cursor: default;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 200;
 }
 
 .megaMenuLeft {
   padding: 2.5rem;
-  background: #251e18;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-height: 500px;
+  background: rgba(24, 20, 18, 0.98);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -155,7 +175,6 @@
 .megaMenuRight {
   position: relative;
   height: 100%;
-  min-height: 400px;
 }
 
 .megaMenuImg {
@@ -166,29 +185,32 @@
 }
 
 .megaMenuProducts {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 16px;
-  width: 85vw;
-  max-width: 1000px;
-  background: #2a221b;
+  position: fixed;
+  top: 92px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(28, 24, 21, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  padding: 1rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  padding: 1.25rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   cursor: default;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 200;
 }
 
 .productCategoryCard {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1/1;
   text-decoration: none;
   display: block;
 }
@@ -238,7 +260,7 @@
   color: #000;
   border: none;
   border-radius: 100px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0em;

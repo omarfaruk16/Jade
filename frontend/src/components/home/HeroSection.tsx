@@ -28,7 +28,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.3 }}
             >
-              The Best Interior Company in Malaysia
+              The Best Interior<br />Company in<br />Malaysia
             </motion.h1>
           </div>
 

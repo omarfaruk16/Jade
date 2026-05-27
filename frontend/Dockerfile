@@ -31,4 +31,5 @@ COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
 
 # Use Next.js standalone server entry point
-CMD ["node", "server.js"]
+CMD ["node", "app/server.js"]
+
