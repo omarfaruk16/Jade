@@ -1,9 +1,8 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // Helper: slugify
 const slugify = (str) =>
@@ -205,6 +204,7 @@ router.put('/items/:id', auth, async (req, res) => {
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
 
+// DELETE service item (Protected)
 router.delete('/items/:id', auth, async (req, res) => {
   try {
     await prisma.serviceItem.delete({ where: { id: req.params.id } });

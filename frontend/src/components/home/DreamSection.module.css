@@ -45,12 +45,13 @@
 }
 
 .title {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.06em;
-  max-width: 700px;
-  margin: 0;
+ flex: 1.2;
+ font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+ font-weight: 500;
+ line-height: 1.1;
+ letter-spacing: -0.05em;
+ margin: 0;
+ max-width: 800px;
 }
 
 .description {
@@ -108,18 +109,18 @@
 }
 
 .profileName {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 500;
   margin: 0 0 0.1rem;
   letter-spacing: -0.05em;
-  color: #111;
+  color: #000000;
 }
 
 .profileRole {
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.5;
-  color: #777;
+  color: #000000;
   margin: 0;
 }
 
@@ -135,8 +136,8 @@
 }
 
 .cardDesc {
-  font-size: 14px;
-  color: #333;
+  font-size: 1rem;
+  color: #000000;
   line-height: 1.5;
   letter-spacing: 0em;
   margin: 0;

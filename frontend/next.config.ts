@@ -6,17 +6,17 @@ const nextConfig: NextConfig = {
     root: "..",
   },
   env: {
-    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'djtrqqnll',
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
   },
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "**",
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "images.unsplash.com",
       },
     ],
   },

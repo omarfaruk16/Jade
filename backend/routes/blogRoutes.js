@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../prisma');
+const auth = require('../middleware/auth');
 
-// Get all blogs
+// GET all blogs (Public)
 router.get('/', async (req, res) => {
   try {
     const blogs = await prisma.blog.findMany({
@@ -15,10 +15,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get recent blogs (e.g. for homepage)
+// GET recent blogs — limit clamped to max 20 to prevent full-table dumps (Public)
 router.get('/recent', async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 4;
+    const rawLimit = parseInt(req.query.limit);
+    const limit = isNaN(rawLimit) ? 4 : Math.min(Math.max(rawLimit, 1), 20);
     const blogs = await prisma.blog.findMany({
       take: limit,
       orderBy: { createdAt: 'desc' }
@@ -29,7 +30,7 @@ router.get('/recent', async (req, res) => {
   }
 });
 
-// Get blog by slug
+// GET blog by slug (Public)
 router.get('/:slug', async (req, res) => {
   try {
     const blog = await prisma.blog.findUnique({
@@ -44,15 +45,19 @@ router.get('/:slug', async (req, res) => {
   }
 });
 
-// Create a blog
-router.post('/', async (req, res) => {
+// Create a blog (Protected — auth required)
+router.post('/', auth, async (req, res) => {
   try {
     const { title, coverImage, description } = req.body;
-    
+
+    if (!title || typeof title !== 'string' || !title.trim()) {
+      return res.status(400).json({ error: 'Title is required' });
+    }
+
     // Generate slug from title
     let slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    
-    // Check if slug exists
+
+    // Ensure slug uniqueness
     const existing = await prisma.blog.findUnique({ where: { slug } });
     if (existing) {
       slug = `${slug}-${Date.now()}`;
@@ -60,10 +65,10 @@ router.post('/', async (req, res) => {
 
     const blog = await prisma.blog.create({
       data: {
-        title,
+        title: title.trim(),
         slug,
-        coverImage,
-        description
+        coverImage: coverImage || null,
+        description: description || ''
       }
     });
     res.status(201).json(blog);
@@ -72,13 +77,16 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a blog
-router.put('/:id', async (req, res) => {
+// Update a blog (Protected — auth required)
+router.put('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
     const { title, coverImage, description } = req.body;
 
-    let updateData = { title, coverImage, description };
+    const updateData = {};
+    if (title !== undefined) updateData.title = title;
+    if (coverImage !== undefined) updateData.coverImage = coverImage;
+    if (description !== undefined) updateData.description = description;
 
     if (title) {
       let slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -99,8 +107,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a blog
-router.delete('/:id', async (req, res) => {
+// Delete a blog (Protected — auth required)
+router.delete('/:id', auth, async (req, res) => {
   try {
     await prisma.blog.delete({
       where: { id: req.params.id }

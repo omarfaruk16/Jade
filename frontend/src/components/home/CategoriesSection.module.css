@@ -3,11 +3,13 @@
   padding-block: var(--space-xl, 80px);
   background-color: #050505;
   color: #ffffff;
+  margin: 0px 6px;
+  border-radius: 10px;
 }
 
 .header {
   margin-bottom: 6rem;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 .headerTop {
@@ -15,6 +17,7 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+   
 }
 
 .cornerIcon { opacity: 0.8; }
@@ -30,7 +33,7 @@
   color: #a0a0a0;
   font-size: 1.1rem;
   line-height: 1.6;
-  max-width: 450px;
+  max-width: 500px;
 }
 
 .list {
@@ -41,6 +44,11 @@
 .rowWrapper {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
+}
+
+.dots{
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Collapsed Row */

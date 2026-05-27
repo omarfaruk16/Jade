@@ -1,9 +1,8 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // GET all testimonials (Public)
 router.get('/', async (req, res) => {
@@ -20,7 +19,19 @@ router.get('/', async (req, res) => {
 // POST new testimonial (Protected)
 router.post('/', auth, async (req, res) => {
   try {
-    const testimonial = await prisma.testimonial.create({ data: req.body });
+    const { name, role, review, avatar, rating } = req.body;
+    if (!name || !review) {
+      return res.status(400).json({ error: 'Name and Review are required' });
+    }
+    const testimonial = await prisma.testimonial.create({
+      data: {
+        name,
+        role,
+        review,
+        avatar,
+        rating: rating !== undefined ? parseInt(rating, 10) : undefined
+      }
+    });
     res.json(testimonial);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -30,9 +41,17 @@ router.post('/', auth, async (req, res) => {
 // PUT update testimonial (Protected)
 router.put('/:id', auth, async (req, res) => {
   try {
+    const { name, role, review, avatar, rating } = req.body;
+    const data = {};
+    if (name !== undefined) data.name = name;
+    if (role !== undefined) data.role = role;
+    if (review !== undefined) data.review = review;
+    if (avatar !== undefined) data.avatar = avatar;
+    if (rating !== undefined) data.rating = parseInt(rating, 10);
+
     const testimonial = await prisma.testimonial.update({
       where: { id: req.params.id },
-      data: req.body
+      data
     });
     res.json(testimonial);
   } catch (e) {

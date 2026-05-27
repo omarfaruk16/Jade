@@ -5,7 +5,6 @@ import styles from './AboutSection.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 
-import SectionReveal from '@/components/layout/SectionReveal';
 
 const FourDotsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +17,6 @@ const FourDotsIcon = () => (
 
 export default function AboutSection() {
   return (
-    <SectionReveal>
       <section className={styles.aboutSection} id="about">
         <div className="jade-container">
           <div className={styles.header}>
@@ -29,7 +27,7 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              Jade blends calm and character<br />
+              Jade blends calm and character -
               creating beautifully crafted interiors.
             </motion.h2>
             <motion.div
@@ -135,6 +133,5 @@ export default function AboutSection() {
           </motion.div>
         </div>
       </section>
-    </SectionReveal>
   );
 }

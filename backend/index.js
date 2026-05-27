@@ -125,16 +125,11 @@ app.post('/api/upload', auth, (req, res, next) => {
   });
 });
 
-// Global error handler to catch unhandled async errors
-app.use((err, req, res, next) => {
-  console.error('Unhandled error:', err?.message || err);
-  res.status(500).json({ error: err?.message || 'Internal server error' });
-});
-
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Jade API' });
 });
 
+// ── Routes ──────────────────────────────────────────────────────────────────
 const adminRoutes = require('./routes/adminRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const promotionRoutes = require('./routes/promotionRoutes');
@@ -163,6 +158,12 @@ app.use('/api/blogs', blogRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Global error handler — MUST be after all routes to catch errors from them
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err?.message || err);
+  res.status(500).json({ error: err?.message || 'Internal server error' });
 });
 
 app.listen(PORT, () => {

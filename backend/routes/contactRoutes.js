@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 // GET contact info (Public)
@@ -39,6 +38,27 @@ router.get('/', async (req, res) => {
 // UPDATE contact info (Protected)
 router.put('/', auth, async (req, res) => {
   const { phone, email, address, socials } = req.body;
+
+  // Basic validation
+  if (typeof phone !== 'string' || phone.length > 50) {
+    return res.status(400).json({ error: 'Phone must be a string up to 50 characters.' });
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (typeof email !== 'string' || !emailRegex.test(email) || email.length > 100) {
+    return res.status(400).json({ error: 'A valid email is required (up to 100 characters).' });
+  }
+  if (typeof address !== 'string' || address.length > 255) {
+    return res.status(400).json({ error: 'Address must be a string up to 255 characters.' });
+  }
+  if (!Array.isArray(socials)) {
+    return res.status(400).json({ error: 'Socials must be an array.' });
+  }
+  for (const s of socials) {
+    if (!s || typeof s.name !== 'string' || typeof s.url !== 'string') {
+      return res.status(400).json({ error: 'Each social must have a valid string name and url.' });
+    }
+  }
+
   try {
     const contact = await prisma.contactSettings.upsert({
       where: { id: 'default' },
@@ -73,9 +93,26 @@ router.put('/', auth, async (req, res) => {
 // POST a new contact message (Public)
 router.post('/messages', async (req, res) => {
   const { fullName, email, message } = req.body;
+
+  // Input Validation
+  if (typeof fullName !== 'string' || !fullName.trim() || fullName.length > 100) {
+    return res.status(400).json({ error: 'Full name must be a string between 1 and 100 characters.' });
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (typeof email !== 'string' || !emailRegex.test(email) || email.length > 100) {
+    return res.status(400).json({ error: 'A valid email is required (up to 100 characters).' });
+  }
+  if (typeof message !== 'string' || !message.trim() || message.length > 2000) {
+    return res.status(400).json({ error: 'Message must be a string between 1 and 2000 characters.' });
+  }
+
   try {
     const newMsg = await prisma.contactMessage.create({
-      data: { fullName, email, message }
+      data: {
+        fullName: fullName.trim(),
+        email: email.trim(),
+        message: message.trim()
+      }
     });
     res.status(201).json(newMsg);
   } catch (e) {

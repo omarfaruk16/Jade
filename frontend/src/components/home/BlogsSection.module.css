@@ -14,14 +14,14 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: -0.06em;
-  line-height: 1.15;
-  flex: 1;
-  max-width: 480px;
+ flex: 1.2;
+ font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+ font-weight: 500;
+ line-height: 1.1;
+ letter-spacing: -0.05em;
+ margin: 0;
+max-width: 800px;
 }
-
 .headerRight {
   display: flex;
   flex-direction: column;
@@ -30,8 +30,8 @@
 }
 
 .subtitle {
-  font-size: 14px;
-  color: #666;
+  font-size: 1rem;
+  color: #000000;
   line-height: 1.5;
   letter-spacing: 0em;
   text-align: right;
@@ -44,7 +44,7 @@
   border: none;
   border-radius: 9999px;
   padding: 0.75rem 2rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;

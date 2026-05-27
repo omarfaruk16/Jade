@@ -10,6 +10,7 @@ import styles from './CategoriesSection.module.css';
 import TitleReveal from '@/components/layout/TitleReveal';
 
 import SectionReveal from '@/components/layout/SectionReveal';
+import { style } from 'framer-motion/client';
 
 export default function CategoriesSection() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -41,7 +42,10 @@ export default function CategoriesSection() {
           >
             Our expertise
           </motion.h2>
-          <FourDotsIcon />
+          <div className={styles.dots}>
+            <FourDotsIcon />
+          </div>
+          
         </div>
         <motion.p 
           className={styles.subtitle}

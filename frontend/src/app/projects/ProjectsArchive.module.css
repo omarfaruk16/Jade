@@ -14,7 +14,7 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.05em;
   line-height: 1.1em;
@@ -24,12 +24,13 @@
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 150%;
   color: #555;
   max-width: 500px;
+  padding: 0px 2rem;
 }
 
 .icon {
@@ -48,6 +49,8 @@
   padding: 0 4rem;
   margin-bottom: 3rem;
   display: flex;
+  max-width: 1600px;
+  margin: 0 auto;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
@@ -82,8 +85,10 @@
 }
 
 .projectsGrid {
-  padding: 0 4rem;
+  padding: 0 1rem;
   display: grid;
+  max-width: 1600px;
+  margin: 0 auto;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
@@ -138,6 +143,13 @@
   .projectsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .imageWrapper {
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
 }
 
 @media (max-width: 768px) {
@@ -149,6 +161,9 @@
     align-items: flex-start;
     gap: 1.5rem;
   }
+  .imageWrapper {
+  max-height: 250px;
+}
   .projectsGrid {
     grid-template-columns: 1fr;
   }

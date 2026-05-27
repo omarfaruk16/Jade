@@ -1,10 +1,9 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 const router = express.Router();
-const prisma = new PrismaClient();
 
-// GET all promotions
+// GET all promotions (Public)
 router.get('/', async (req, res) => {
   try {
     const promotions = await prisma.promotion.findMany({
@@ -16,22 +15,33 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST new promotion (Protected)
+// POST new promotion (Protected — whitelisted fields only)
 router.post('/', auth, async (req, res) => {
   try {
-    const promotion = await prisma.promotion.create({ data: req.body });
+    const { title, image } = req.body;
+    if (!title || typeof title !== 'string' || !title.trim()) {
+      return res.status(400).json({ error: 'Title is required' });
+    }
+    const promotion = await prisma.promotion.create({
+      data: { title: title.trim(), image: image || null }
+    });
     res.json(promotion);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// PUT update promotion (Protected)
+// PUT update promotion (Protected — whitelisted fields only)
 router.put('/:id', auth, async (req, res) => {
   try {
+    const { title, image } = req.body;
+    const updateData = {};
+    if (title !== undefined) updateData.title = title;
+    if (image !== undefined) updateData.image = image;
+
     const promotion = await prisma.promotion.update({
       where: { id: req.params.id },
-      data: req.body
+      data: updateData
     });
     res.json(promotion);
   } catch (e) {

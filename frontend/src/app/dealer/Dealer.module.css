@@ -36,7 +36,7 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.05em;
   line-height: 1.1;
@@ -46,19 +46,10 @@
 }
 
 .subtitle {
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 0em;
-  line-height: 1.5em;
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.subtitle {
   font-size: 1.2rem;
-  line-height: 1.6;
+  font-weight: 400;
   letter-spacing: -0.04em;
+  line-height: 1.6;
   opacity: 0.9;
   color: #fff;
   max-width: 600px;
@@ -79,11 +70,12 @@
 }
 
 .introInfo p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #444;
-  margin-bottom: 2rem;
-  font-weight: 500;
+  font-size: 1.7rem;
+ line-height: 1.7;
+ color: #444;
+ font-weight: 400;
+ letter-spacing: -0.04em;
+ margin-bottom: 2rem;
 }
 
 .founder {
@@ -154,9 +146,12 @@
 }
 
 .officeTitle {
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+ font-weight: 500;
+ line-height: 1.1;
+ letter-spacing: -0.05em;
+ margin: 0;
+max-width: 800px;
 }
 
 .officeHeaderRight {
@@ -168,7 +163,7 @@
 }
 
 .officeHeaderRight p {
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.5;
   color: #666;
@@ -180,7 +175,7 @@
   border: none;
   border-radius: 50px;
   padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;

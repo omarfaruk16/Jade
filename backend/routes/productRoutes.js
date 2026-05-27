@@ -1,13 +1,10 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
-// ════════════════════════════════════════════════════════
-//  PRODUCT CATEGORIES
-// ════════════════════════════════════════════════════════
+// ─── PRODUCT CATEGORIES ──────────────────────────────────────────────────────
 
 router.get('/categories', async (req, res) => {
   try {
@@ -86,9 +83,7 @@ router.delete('/categories/:id', auth, async (req, res) => {
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
 
-// ════════════════════════════════════════════════════════
-//  PRODUCTS
-// ════════════════════════════════════════════════════════
+// ─── PRODUCTS ────────────────────────────────────────────────────────────────
 
 const fullProductInclude = {
   category: true,

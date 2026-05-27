@@ -1,9 +1,8 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // GET all team members (Public)
 router.get('/', async (req, res) => {
@@ -20,7 +19,13 @@ router.get('/', async (req, res) => {
 // POST new team member (Protected)
 router.post('/', auth, async (req, res) => {
   try {
-    const teamMember = await prisma.teamMember.create({ data: req.body });
+    const { name, designation, image } = req.body;
+    if (!name || !image) {
+      return res.status(400).json({ error: 'Name and Image are required' });
+    }
+    const teamMember = await prisma.teamMember.create({
+      data: { name, designation, image }
+    });
     res.json(teamMember);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -30,9 +35,15 @@ router.post('/', auth, async (req, res) => {
 // PUT update team member (Protected)
 router.put('/:id', auth, async (req, res) => {
   try {
+    const { name, designation, image } = req.body;
+    const data = {};
+    if (name !== undefined) data.name = name;
+    if (designation !== undefined) data.designation = designation;
+    if (image !== undefined) data.image = image;
+
     const teamMember = await prisma.teamMember.update({
       where: { id: req.params.id },
-      data: req.body
+      data
     });
     res.json(teamMember);
   } catch (e) {

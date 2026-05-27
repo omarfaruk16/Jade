@@ -58,8 +58,17 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const productsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const closeAllMenus = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current);
+    setShowServices(false);
+    setShowProducts(false);
+  };
+
   const handleServicesEnter = () => {
     if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current);
+    setShowProducts(false);
     setShowServices(true);
   };
 
@@ -69,6 +78,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
 
   const handleProductsEnter = () => {
     if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current);
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setShowServices(false);
     setShowProducts(true);
   };
 
@@ -98,16 +109,16 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       <nav className={styles.navbar}>
 
         <div className={styles.leftNav}>
-          <Link href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
             <span>J</span><span>ade</span>
           </Link>
-          <Link href="/import-export" className={`${styles.navLink} hidden md:flex`}>
+          <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
             Export/Import <ArrowUpRight className={styles.icon} />
           </Link>
-          <Link href="/dealer" className={`${styles.navLink} hidden md:flex`}>
+          <Link href="/dealer" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
             Be a dealer <ArrowUpRight className={styles.icon} />
           </Link>
-          <Link href="/promotion" className={`${styles.navLink} hidden md:flex`}>
+          <Link href="/promotion" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
             Promotion <ArrowUpRight className={styles.icon} />
           </Link>
         </div>
@@ -134,11 +145,11 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
           </div>
 
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className={styles.navLink}>
+            <Link key={link.name} href={link.href} className={styles.navLink} onMouseEnter={closeAllMenus}>
               {link.name}
             </Link>
           ))}
-          <button className={styles.ctaButton}>Book a Call</button>
+          <button className={styles.ctaButton} onMouseEnter={closeAllMenus}>Book a Call</button>
         </div>
 
         <button className={styles.mobileMenuBtn} onClick={toggleMenu} aria-label="Toggle Menu">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import API_BASE from '@/lib/api';
@@ -33,16 +33,7 @@ export default function AdminDashboard() {
   const [partnerData, setPartnerData] = useState({ name: '', logo: '' });
   const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/admin');
-      return;
-    }
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const token = localStorage.getItem('adminToken');
       const [promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes, msgRes] = await Promise.all([
@@ -75,7 +66,16 @@ export default function AdminDashboard() {
       console.error(e);
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      router.push('/admin');
+      return;
+    }
+    fetchData();
+  }, [fetchData, router]);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: string, tab: string) => {
     const file = e.target.files?.[0];

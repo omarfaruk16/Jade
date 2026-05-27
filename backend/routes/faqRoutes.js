@@ -1,9 +1,8 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // GET all FAQs (Public)
 router.get('/', async (req, res) => {
@@ -20,7 +19,13 @@ router.get('/', async (req, res) => {
 // POST new FAQ (Protected)
 router.post('/', auth, async (req, res) => {
   try {
-    const faq = await prisma.fAQ.create({ data: req.body });
+    const { question, answer } = req.body;
+    if (!question || !answer) {
+      return res.status(400).json({ error: 'Question and Answer are required' });
+    }
+    const faq = await prisma.fAQ.create({
+      data: { question, answer }
+    });
     res.json(faq);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -30,9 +35,14 @@ router.post('/', auth, async (req, res) => {
 // PUT update FAQ (Protected)
 router.put('/:id', auth, async (req, res) => {
   try {
+    const { question, answer } = req.body;
+    const data = {};
+    if (question !== undefined) data.question = question;
+    if (answer !== undefined) data.answer = answer;
+
     const faq = await prisma.fAQ.update({
       where: { id: req.params.id },
-      data: req.body
+      data
     });
     res.json(faq);
   } catch (e) {

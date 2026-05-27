@@ -51,10 +51,9 @@
 }
 
 .title {
-  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.03em;
-  margin-bottom: 1rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -80,7 +79,7 @@
 .overviewSection,
 .processSection {
   display: grid;
-  grid-template-columns: 180px 1fr 1fr;
+  grid-template-columns: 180px 3fr 2fr;
   gap: 4rem;
   margin-bottom: 8rem;
   align-items: start;
@@ -98,7 +97,9 @@
 .rightColumn {
   width: 100%;
 }
-
+.rightColumn img{
+  max-height: 400px;
+}
 .aboutLabel {
   font-size: 1.2rem;
   font-weight: 500;

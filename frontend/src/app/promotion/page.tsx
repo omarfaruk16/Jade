@@ -39,7 +39,7 @@ export default function PromotionPage() {
           transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
           className={styles.pageTitle}
         >
-          Special Promotions
+          Ongoing Promotions
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -47,7 +47,7 @@ export default function PromotionPage() {
           transition={{ duration: 1.5, delay: 0.3 }}
           className={styles.pageSubtitle}
         >
-          Exclusive offers and seasonal collections curated for modern living.
+         With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
         </motion.p>
       </section>
 </SectionReveal>

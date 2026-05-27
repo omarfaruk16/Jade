@@ -19,20 +19,20 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  max-width: 600px;
-  color: #000;
-  margin: 0;
+ flex: 1.2;
+ font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+ font-weight: 500;
+ line-height: 1.1;
+ letter-spacing: -0.05em;
+ margin: 0;
+ max-width: 800px;
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #666;
+  font-size: 1rem;
+  color: #000000;
   line-height: 1.6;
-  max-width: 320px;
+  max-width: 500px;
   margin: 0;
 }
 
@@ -114,15 +114,15 @@
 }
 
 .footerHeadline {
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
   color: #000;
 }
 
 .footerSubtext {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 1rem;
+  color: #000000;
   max-width: 400px;
   margin: 0;
 }
@@ -132,7 +132,7 @@
   color: #fff;
   padding: 0.8rem 2rem;
   border-radius: 999px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   border: none;
   cursor: pointer;

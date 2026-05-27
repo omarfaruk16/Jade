@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../prisma');
 const auth = require('../middleware/auth');
 
 // GET all partners (Public)
@@ -19,6 +18,9 @@ router.get('/', async (req, res) => {
 // CREATE partner (Protected)
 router.post('/', auth, async (req, res) => {
   const { name, logo } = req.body;
+  if (!name || !logo) {
+    return res.status(400).json({ error: 'Name and Logo are required' });
+  }
   try {
     const partner = await prisma.partner.create({
       data: { name, logo }

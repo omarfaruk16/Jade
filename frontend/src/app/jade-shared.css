@@ -171,15 +171,15 @@
 }
 
 .jade-founder-name {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   display: block;
   color: #111;
 }
 
 .jade-founder-role {
-  font-size: 0.82rem;
-  color: #888;
+  font-size: 1rem;
+  color: #000000;
 }
 
 /* ════════════════════════════════════════════════
@@ -187,13 +187,13 @@
 ════════════════════════════════════════════════ */
 .jade-quotes-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
 }
 
 .jade-quote-card {
   background: #fff;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   display: flex;
@@ -227,7 +227,7 @@
 }
 
 .jade-quote-text {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.65;
   color: #333;
   margin: 0;

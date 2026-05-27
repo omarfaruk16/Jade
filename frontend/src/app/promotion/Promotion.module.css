@@ -8,34 +8,30 @@
 .heroSection {
   padding: 12rem 4rem 6rem 4rem;
   text-align: center;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .pageTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.05em;
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .pageSubtitle {
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.5em;
   color: #555;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.pageSubtitle {
-  font-size: 14px;
-  letter-spacing: 0em;
-  color: #666;
-  line-height: 1.5;
-}
 
 .contentContainer {
   width: 100%;

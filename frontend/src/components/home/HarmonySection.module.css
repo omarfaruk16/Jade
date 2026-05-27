@@ -124,16 +124,16 @@
 
 .metaLabel {
   flex: 0 0 auto;
-  font-size: 0.8rem;
-  color: #777;
+  font-size: 1rem;
+  color: #282828;
   padding-top: 0.2rem;
   white-space: nowrap;
 }
 
 .metaText {
   flex: 1;
-  font-size: 0.95rem;
-  color: #555;
+  font-size: 1rem;
+  color: #282828;
   line-height: 1.7;
   margin: 0;
 }
@@ -208,7 +208,7 @@
 }
 
 .featureLabel {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #444;
   line-height: 1.6;
   padding: 1rem 1.2rem 1.5rem;
