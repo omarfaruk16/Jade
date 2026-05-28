@@ -54,8 +54,8 @@
 }
 
 .navButton:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  background: rgba(240, 92, 70, 0.12);
+  color: #F05C46;
 }
 
 .activeNav {
