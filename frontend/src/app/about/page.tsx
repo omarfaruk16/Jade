@@ -39,12 +39,6 @@ export default function AboutPage() {
 
   const visibleIndices = getVisibleIndices();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [activeIndex]); // Re-bind whenever activeIndex changes to reset the 2s timer if user clicks
 
   useEffect(() => {
     fetch(`${API_BASE}/testimonials`)
