@@ -337,7 +337,7 @@ export default function AdminDashboard() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal} style={{ maxWidth: '550px' }}>
             <button onClick={() => setIsModalOpen(false)} className={styles.closeModal}><X size={20} /></button>
-            <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize' }}>
+            <h3 style={{ marginBottom: '2.5rem', fontSize: '1.8rem', fontWeight: 700, textTransform: 'capitalize', color: '#fff' }}>
               {editingItem && (activeTab === 'dealerRequests' || activeTab === 'contactMessages') ? 'View' : editingItem ? 'Edit' : 'Add New'} {
                 activeTab === 'team' ? 'Team Member' :
                   activeTab === 'faq' ? 'FAQ' :
