@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import ScaleBlur from './ScaleBlur';
 
 const DiamondStarIcon = () => (
   <span className={styles.diamondStar}>❖</span>
@@ -38,7 +39,9 @@ export default function Footer() {
         {/* MIDDLE ROW */}
         <div className={styles.middleRow}>
           <p className={styles.phoneNumbers}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
-          <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>jadekitchen@yahoo.com</a>
+          <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
+            <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
+          </a>
         </div>
 
         {/* BOTTOM ROW */}
@@ -65,6 +68,14 @@ export default function Footer() {
             </div>
           </div>
 
+        </div>
+
+        {/* DEVELOPED BY BRAND SIGNATURE */}
+        <div className={styles.developerSignature}>
+          <span>Developed by:</span>
+          <a href="https://1spotsolution.com" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
+            <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
+          </a>
         </div>
 
       </div>

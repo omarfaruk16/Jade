@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${GeistSans.variable}`}>
+      <body className={`${GeistSans.variable}`} suppressHydrationWarning>
         {children}
       </body>
     </html>

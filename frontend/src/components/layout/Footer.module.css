@@ -294,3 +294,54 @@
     margin-top: 0.5rem;
   }
 }
+
+.developerSignature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.devLogoLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.devLogo {
+  height: 24px;
+  width: auto;
+  opacity: 0.5;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(1) brightness(0.8);
+}
+
+.devLogoLink:hover .devLogo {
+  opacity: 1;
+  filter: grayscale(0) brightness(1.1);
+  transform: scale(1.05);
+}
+
+.emailBlur {
+  display: inline-flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .developerSignature {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    font-size: 13px;
+    gap: 8px;
+  }
+  
+  .devLogo {
+    height: 20px;
+  }
+}
+

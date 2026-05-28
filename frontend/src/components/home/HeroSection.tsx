@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styles from './HeroSection.module.css';
+import ScaleBlur from '../layout/ScaleBlur';
 
 export default function HeroSection() {
   return (
@@ -23,14 +24,13 @@ export default function HeroSection() {
             </motion.p>
             
             <div style={{ overflow: 'hidden' }}>
-              <motion.h1 
-                className={styles.title}
-                initial={{ opacity: 0, y: 120 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-              >
-                The Best Interior<br />Company in<br />Malaysia
-              </motion.h1>
+              <h1 className={styles.title}>
+                <ScaleBlur text="The Best Interior" stagger={0.03} />
+                <br />
+                <ScaleBlur text="Company in" stagger={0.03} />
+                <br />
+                <ScaleBlur text="Malaysia" stagger={0.03} />
+              </h1>
             </div>
           </div>
 
