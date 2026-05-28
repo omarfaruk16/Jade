@@ -10,6 +10,7 @@ import styles from './Services.module.css';
 
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 export default function ServicesPage() {
   const [parents, setParents] = useState<any[]>([]);
@@ -41,7 +42,7 @@ export default function ServicesPage() {
       <Navbar />
       <div className={styles.indexHero}>
 
-        <TitleReveal><h1 className={styles.pageTitle}>Our Services</h1></TitleReveal>
+        <h1 className={styles.pageTitle}><ScaleBlur text="Our Services" stagger={0.05} /></h1>
         <p>Select a service category below to explore what we offer.</p>
       </div>
       <div className={styles.indexGrid}>

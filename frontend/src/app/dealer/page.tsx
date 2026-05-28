@@ -13,6 +13,7 @@ import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 interface Partner {
   id: string;
@@ -67,14 +68,9 @@ export default function DealerPage() {
       <SectionReveal>
 <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <motion.h1
-            className={styles.title}
-            initial={{ opacity: 0.001, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-          >
-            Worldwide Export Import
-          </motion.h1>
+          <h1 className={styles.title}>
+            <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
+          </h1>
           <motion.p
             className={styles.subtitle}
             initial={{ opacity: 0 }}

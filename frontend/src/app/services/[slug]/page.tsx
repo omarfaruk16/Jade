@@ -12,6 +12,7 @@ import styles from './ServiceChild.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +119,7 @@ export default function ServiceChildPage() {
             transition={{ duration: 1.2, delay: 0.2 }}
             style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 5vw' }}
           >
-            <TitleReveal><h1 className={styles.heroTitle}>{data.name}</h1></TitleReveal>
+            <h1 className={styles.heroTitle}><ScaleBlur text={data.name} stagger={0.04} /></h1>
             {data.description && (
               <p className={styles.heroDesc}>{data.description}</p>
             )}

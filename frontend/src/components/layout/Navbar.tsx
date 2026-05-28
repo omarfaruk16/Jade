@@ -92,10 +92,21 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       fetch(`${API_BASE}/services`).then(r => r.json()),
       fetch(`${API_BASE}/products/categories`).then(r => r.json())
     ]).then(([services, products]) => {
-      setServicesData(services);
-      setProductsData(products);
-      if (services?.[0]?.children?.[0]?.items?.[0]?.imageUrl) {
-        setHoveredServiceImage(services[0].children[0].items[0].imageUrl);
+      if (Array.isArray(services)) {
+        setServicesData(services);
+        if (services?.[0]?.children?.[0]?.items?.[0]?.imageUrl) {
+          setHoveredServiceImage(services[0].children[0].items[0].imageUrl);
+        }
+      } else {
+        console.error("Expected services array but got:", services);
+        setServicesData([]);
+      }
+
+      if (Array.isArray(products)) {
+        setProductsData(products);
+      } else {
+        console.error("Expected products array but got:", products);
+        setProductsData([]);
       }
       setLoading(false);
     }).catch(err => {

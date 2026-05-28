@@ -8,6 +8,7 @@ import styles from './About.module.css';
 import { CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 import TeamSection from '@/components/home/TeamSection';
 import LogoMarquee from '@/components/common/LogoMarquee';
 
@@ -61,14 +62,9 @@ export default function AboutPage() {
         <SectionReveal>
           <div className={styles.heroOuterWrapper}>
           <section className={styles.headerSection}>
-            <motion.h1 
-              className={styles.pageTitle}
-              initial={{ opacity: 0.001, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-            >
-              About Us
-            </motion.h1>
+            <h1 className={styles.pageTitle}>
+              <ScaleBlur text="About Us" stagger={0.05} />
+            </h1>
             <p className={styles.pageSubtitle}>
               Jade spaces blends high-end design principles with timeless materials
               and luxury living, ensuring every corner offers both inspiration and relaxation.

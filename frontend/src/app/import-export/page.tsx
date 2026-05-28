@@ -13,6 +13,7 @@ import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 export default function ImportExportPage() {
 
@@ -26,14 +27,9 @@ export default function ImportExportPage() {
         <section className={styles.heroSection}>
           <div className={styles.heroContainer}>
             <div className={styles.heroContent}>
-            <motion.h1
-              initial={{ opacity: 0.001, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-              className={styles.heroTitle}
-            >
-              Worldwide Export Import
-            </motion.h1>
+            <h1 className={styles.heroTitle}>
+              <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
+            </h1>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

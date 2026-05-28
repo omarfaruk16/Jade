@@ -10,6 +10,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 import FaqSection from '@/components/home/FaqSection';
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -53,14 +54,9 @@ export default function ContactPage() {
       <div className={styles.mainContainer}>
         {/* Header */}
         <div className={styles.contactHeader}>
-          <motion.h1
-            initial={{ opacity: 0.001, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-            className={styles.pageTitle}
-          >
-            Contact Us
-          </motion.h1>
+          <h1 className={styles.pageTitle}>
+            <ScaleBlur text="Contact Us" stagger={0.05} />
+          </h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

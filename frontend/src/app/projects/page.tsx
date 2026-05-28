@@ -8,6 +8,7 @@ import { Target, Filter } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import SectionReveal from '@/components/layout/SectionReveal';
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 import styles from './ProjectsArchive.module.css';
 
 export default function ProjectsArchive() {
@@ -18,7 +19,12 @@ export default function ProjectsArchive() {
     fetch(`${API_BASE}/projects`)
       .then(res => res.json())
       .then(data => {
-        setProjects(data);
+        if (Array.isArray(data)) {
+          setProjects(data);
+        } else {
+          console.error("Expected projects array but got:", data);
+          setProjects([]);
+        }
         setLoading(false);
       })
       .catch((e) => {
@@ -36,7 +42,7 @@ export default function ProjectsArchive() {
         <div className={styles.icon}>
           <Target size={24} color="#333" />
         </div>
-        <TitleReveal><h1 className={styles.title}>Selected Projects</h1></TitleReveal>
+        <h1 className={styles.title}><ScaleBlur text="Selected Projects" stagger={0.04} /></h1>
         <motion.p 
           className={styles.subtitle}
           initial={{ opacity: 0 }}

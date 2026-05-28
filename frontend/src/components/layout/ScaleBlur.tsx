@@ -8,8 +8,8 @@ interface ScaleBlurProps {
   className?: string;
 }
 
-export default function ScaleBlur({ text, stagger = 0.05, className = "" }: ScaleBlurProps) {
-  const chars = (str: string) => str.split("");
+export default function ScaleBlur({ text = "", stagger = 0.05, className = "" }: ScaleBlurProps) {
+  const chars = (str: string) => (str || "").split("");
 
   return (
     <motion.span 

@@ -12,6 +12,7 @@ import Footer from '@/components/layout/Footer';
 import styles from './ProjectDetails.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 interface ProcessStep {
   title: string;
@@ -104,7 +105,7 @@ export default function ProjectDetails() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
             >
-              <TitleReveal><h1 className={styles.title}>{project.title}</h1></TitleReveal>
+              <h1 className={styles.title}><ScaleBlur text={project.title} stagger={0.04} /></h1>
               {project.subtitle && <p className={styles.subtitle}>{project.subtitle}</p>}
             </motion.div>
           </section>

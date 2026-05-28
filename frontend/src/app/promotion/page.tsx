@@ -9,6 +9,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './Promotion.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
+import ScaleBlur from '@/components/layout/ScaleBlur';
 
 export default function PromotionPage() {
   const [promotions, setPromotions] = useState<any[]>([]);
@@ -18,7 +19,12 @@ export default function PromotionPage() {
     fetch(`${API_BASE}/promotions`)
       .then(res => res.json())
       .then(data => {
-        setPromotions(data);
+        if (Array.isArray(data)) {
+          setPromotions(data);
+        } else {
+          console.error("Expected promotions array but got:", data);
+          setPromotions([]);
+        }
         setLoading(false);
       })
       .catch(err => {
@@ -33,14 +39,9 @@ export default function PromotionPage() {
 
       <SectionReveal>
 <section className={styles.heroSection}>
-        <motion.h1
-          initial={{ opacity: 0.001, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-          className={styles.pageTitle}
-        >
-          Ongoing Promotions
-        </motion.h1>
+        <h1 className={styles.pageTitle}>
+          <ScaleBlur text="Ongoing Promotions" stagger={0.04} />
+        </h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
