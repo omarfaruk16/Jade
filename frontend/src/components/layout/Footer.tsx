@@ -66,16 +66,14 @@ export default function Footer() {
             <div className={styles.mobileDiamondIcon}>
               <DiamondStarIcon />
             </div>
+            <div className={styles.developerSignature}>
+              <span>Developed by:</span>
+              <a href="https://1spotsolution.com" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
+                <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
+              </a>
+            </div>
           </div>
 
-        </div>
-
-        {/* DEVELOPED BY BRAND SIGNATURE */}
-        <div className={styles.developerSignature}>
-          <span>Developed by:</span>
-          <a href="https://1spotsolution.com" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
-            <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
-          </a>
         </div>
 
       </div>

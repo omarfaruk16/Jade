@@ -178,7 +178,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100px;
+  width: auto;
+  min-width: 250px;
 }
 
 .mobileDiamondIcon {
@@ -285,8 +286,12 @@
 
   .bottomRight {
     order: 3;
-    width: auto;
-    justify-content: flex-start;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1rem;
+    margin-top: 1rem;
   }
 
   .mobileDiamondIcon {
@@ -302,10 +307,6 @@
   gap: 12px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
-  margin-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 2rem;
-  width: 100%;
 }
 
 .devLogoLink {
@@ -314,17 +315,19 @@
 }
 
 .devLogo {
-  height: 24px;
+  height: 36px;
   width: auto;
-  opacity: 0.5;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: grayscale(1) brightness(0.8);
+  opacity: 0.85;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .devLogoLink:hover .devLogo {
   opacity: 1;
-  filter: grayscale(0) brightness(1.1);
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
 }
 
 .emailBlur {
@@ -334,14 +337,14 @@
 
 @media (max-width: 768px) {
   .developerSignature {
-    margin-top: 1rem;
-    padding-top: 1.5rem;
     font-size: 13px;
     gap: 8px;
   }
   
   .devLogo {
-    height: 20px;
+    height: 28px;
+    padding: 4px 8px;
+    border-radius: 6px;
   }
 }
 
