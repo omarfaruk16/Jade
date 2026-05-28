@@ -4,10 +4,9 @@ import { useEffect, useState } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Target, Filter } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import SectionReveal from '@/components/layout/SectionReveal';
-import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
 import styles from './ProjectsArchive.module.css';
 
@@ -36,23 +35,28 @@ export default function ProjectsArchive() {
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
-      
+
       <SectionReveal>
-<section className={styles.headerSection}>
-        <div className={styles.icon}>
-          <Target size={24} color="#333" />
-        </div>
-        <h1 className={styles.title}><ScaleBlur text="Selected Projects" stagger={0.04} /></h1>
-        <motion.p 
-          className={styles.subtitle}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
-          With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
-        </motion.p>
-      </section>
-</SectionReveal>
+        <section className={styles.headerSection}>
+          <div className={styles.icon}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="6" r="2.5" fill="#000" />
+              <circle cx="12" cy="18" r="2.5" fill="#000" />
+              <circle cx="6" cy="12" r="2.5" fill="#000" />
+              <circle cx="18" cy="12" r="2.5" fill="#000" />
+            </svg>
+          </div>
+          <h1 className={styles.title}><ScaleBlur text="Selected Projects" stagger={0.04} /></h1>
+          <motion.p
+            className={styles.subtitle}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
+            With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
+          </motion.p>
+        </section>
+      </SectionReveal>
 
       <div className={styles.gridControls}>
         <span className={styles.count}>({projects.length})</span>
@@ -70,7 +74,7 @@ export default function ProjectsArchive() {
           ) : (
             projects.map((p, i) => (
               <Link href={`/projects/${p.id}`} key={p.id} className={styles.projectCard}>
-                <motion.div 
+                <motion.div
                   className={styles.projectCard}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
