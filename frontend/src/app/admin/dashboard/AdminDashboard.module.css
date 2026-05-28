@@ -28,7 +28,7 @@
 }
 
 .logo span:first-child { color: #34d399; }
-.logo span:last-child { color: #fb923c; }
+.logo span:last-child { color: #F05C46; }
 
 .navGroup {
   display: flex;
@@ -59,9 +59,9 @@
 }
 
 .activeNav {
-  background: rgba(255, 255, 255, 0.1);
+  background: #F05C46;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(240, 92, 70, 0.3);
 }
 
 .logoutBtn {

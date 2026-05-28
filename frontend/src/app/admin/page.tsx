@@ -48,9 +48,10 @@ export default function AdminLogin() {
         border: '1px solid rgba(255, 255, 255, 0.08)',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(52, 211, 153, 0.1)', borderRadius: '20px' }}>
-            <Lock size={32} color="#34d399" />
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', position: 'relative' }}>
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px', background: 'rgba(240, 92, 70, 0.12)', filter: 'blur(30px)', borderRadius: '50%' }}></div>
+          <div style={{ fontSize: '3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.05rem', letterSpacing: '-0.04em', position: 'relative', zIndex: 1 }}>
+            <span style={{ color: '#34d399' }}>J</span><span style={{ color: '#F05C46' }}>ade</span>
           </div>
         </div>
         
@@ -86,7 +87,38 @@ export default function AdminLogin() {
           />
         </div>
         
-        <button type="submit" style={{ width: '100%', padding: '1.1rem', background: '#fff', color: '#000', border: 'none', borderRadius: '14px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', transition: 'transform 0.2s' }}>
+        <button 
+          type="submit" 
+          style={{ 
+            width: '100%', 
+            padding: '1.1rem', 
+            background: '#F05C46', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '14px', 
+            fontWeight: 700, 
+            fontSize: '1rem', 
+            cursor: 'pointer', 
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            boxShadow: '0 4px 14px rgba(240, 92, 70, 0.3)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = '#e04b35';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(240, 92, 70, 0.5)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = '#F05C46';
+            e.currentTarget.style.boxShadow = '0 4px 14px rgba(240, 92, 70, 0.3)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          onMouseDown={e => {
+            e.currentTarget.style.transform = 'translateY(0) scale(0.98)';
+          }}
+          onMouseUp={e => {
+            e.currentTarget.style.transform = 'translateY(-2px) scale(1)';
+          }}
+        >
           Sign In
         </button>
 
