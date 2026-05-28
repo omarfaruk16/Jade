@@ -6,6 +6,7 @@ import { Play, X } from 'lucide-react';
 import styles from './ProcessSection.module.css';
 
 import SectionReveal from '@/components/layout/SectionReveal';
+import TitleReveal from '@/components/layout/TitleReveal';
 
 export default function ProcessSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -37,22 +38,18 @@ export default function ProcessSection() {
 
         {/* RIGHT SIDE */}
         <div className={styles.rightColumn}>
-          <motion.h2 
-            className={styles.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Design, Installation, and Support in Harmony
-          </motion.h2>
+          <TitleReveal>
+            <h2 className={styles.title}>
+              Design, Installation, and Support in Harmony
+            </h2>
+          </TitleReveal>
           
           <motion.div 
             className={styles.textRow}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className={styles.textLabel}>(Resonate)</div>
             <div className={styles.textBody}>

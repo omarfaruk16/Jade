@@ -33,15 +33,9 @@ export default function CategoriesSection() {
       <div className="jade-container">
       <div className={styles.header}>
         <div className={styles.headerTop}>
-          <motion.h2 
-            className={styles.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Our expertise
-          </motion.h2>
+          <TitleReveal>
+            <h2 className={styles.title}>Our expertise</h2>
+          </TitleReveal>
           <div className={styles.dots}>
             <FourDotsIcon />
           </div>
@@ -49,10 +43,10 @@ export default function CategoriesSection() {
         </div>
         <motion.p 
           className={styles.subtitle}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           We offer a full spectrum of interior design — each tailored to elevate spaces with clarity and timeless aesthetic value.
         </motion.p>

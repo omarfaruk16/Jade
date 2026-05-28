@@ -15,28 +15,30 @@ export default function HeroSection() {
           <div className={styles.titleWrapper}>
             <motion.p 
               className={styles.hashtag}
-              initial={{ opacity: 0.001, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.2 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             >
               # Bringing Spaces to Life
             </motion.p>
             
-            <motion.h1 
-              className={styles.title}
-              initial={{ opacity: 0.001, y: 20, scale: 1.05 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.3 }}
-            >
-              The Best Interior<br />Company in<br />Malaysia
-            </motion.h1>
+            <div style={{ overflow: 'hidden' }}>
+              <motion.h1 
+                className={styles.title}
+                initial={{ opacity: 0, y: 120 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+              >
+                The Best Interior<br />Company in<br />Malaysia
+              </motion.h1>
+            </div>
           </div>
 
           <motion.button 
             className={styles.ctaButton}
-            initial={{ opacity: 0.001, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
             onClick={() => window.location.href='/contact'}
           >
             Let&apos;s Talk Concepts
@@ -45,9 +47,9 @@ export default function HeroSection() {
 
         <motion.div 
           className={styles.bottomLeftWidget}
-          initial={{ opacity: 0.001, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.7 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
         >
           <div className={styles.avatars}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,9 +67,9 @@ export default function HeroSection() {
 
         <motion.div 
           className={styles.bottomRightWidget}
-          initial={{ opacity: 0.001, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 160, damping: 30, delay: 0.8 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
         >
           <span className={styles.awardsLabel}>Awards:</span>
           {/* Award Excellence widget */}

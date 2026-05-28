@@ -6,6 +6,7 @@ import API_BASE from '@/lib/api';
 import styles from './TeamSection.module.css';
 
 import SectionReveal from '@/components/layout/SectionReveal';
+import TitleReveal from '@/components/layout/TitleReveal';
 
 export default function TeamSection() {
   const [team, setTeam] = useState<any[]>([]);
@@ -22,21 +23,17 @@ export default function TeamSection() {
 <section className={styles.section}>
       <div className={`${styles.container} jade-container`}>
         <div className={styles.header}>
-          <motion.h2 
-            className={styles.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Meet the Team Behind Your Dream Space
-          </motion.h2>
+          <TitleReveal>
+            <h2 className={styles.title}>
+              Meet the Team Behind Your Dream Space
+            </h2>
+          </TitleReveal>
           <motion.p 
             className={styles.subtitle}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             Great design is a collaborative journey. Our team works closely to deliver thoughtful, seamless results that go beyond your expectations.
           </motion.p>

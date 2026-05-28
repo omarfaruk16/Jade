@@ -72,13 +72,11 @@ export default function BlogsSection() {
       <div className="jade-container">
       {/* Header Row */}
       <div className={styles.header}>
-        <motion.h2
-          className={styles.title}
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Insights that shape spaces
-        </motion.h2>
+        <TitleReveal>
+          <h2 className={styles.title}>
+            Insights that shape spaces
+          </h2>
+        </TitleReveal>
         <div className={styles.headerRight}>
           <p className={styles.subtitle}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
           <Link href="/blogs" className={styles.viewAllBtn}>View all</Link>

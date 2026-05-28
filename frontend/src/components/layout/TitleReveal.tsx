@@ -11,20 +11,19 @@ interface TitleRevealProps {
 
 export default function TitleReveal({ children, className, delay = 0 }: TitleRevealProps) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0.001, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        type: "spring",
-        stiffness: 160,
-        damping: 30,
-        mass: 1,
-        delay: delay
-      }}
-    >
-      {children}
-    </motion.div>
+    <div className={className} style={{ overflow: 'hidden' }}>
+      <motion.div
+        initial={{ opacity: 0, y: '100%' }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{
+          duration: 1.1,
+          ease: [0.22, 1, 0.36, 1],
+          delay: delay
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }

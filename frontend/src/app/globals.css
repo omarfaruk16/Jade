@@ -61,6 +61,7 @@ body {
 h1, h2, h3, h4, h5, h6, .jade-page-title, .jade-section-title {
   font-family: var(--font-geist-sans), 'Geist', sans-serif !important;
   font-weight: 500;
+  line-height: 1.1 !important;
 }
 
 p, span, div, a, button, input, textarea {

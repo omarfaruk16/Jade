@@ -20,22 +20,18 @@ export default function AboutSection() {
       <section className={styles.aboutSection} id="about">
         <div className="jade-container">
           <div className={styles.header}>
-            <motion.h2
-              className={styles.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Jade blends calm and character -
-              creating beautifully crafted interiors.
-            </motion.h2>
+            <TitleReveal>
+              <h2 className={styles.title}>
+                Jade blends calm and character -
+                creating beautifully crafted interiors.
+              </h2>
+            </TitleReveal>
             <motion.div
               className={styles.headerRight}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className={styles.subtitle}>
                 At Jade, we craft interiors that blend calm elegance with bold character using premium materials and timeless design to create spaces that feel as good as they look.
