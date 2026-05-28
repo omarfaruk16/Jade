@@ -25,11 +25,11 @@ export default function HeroSection() {
             
             <div style={{ overflow: 'hidden' }}>
               <h1 className={styles.title}>
-                <ScaleBlur text="The Best Interior" stagger={0.03} />
+                <ScaleBlur text="The Best Interior" stagger={0.03} delay={0} />
                 <br />
-                <ScaleBlur text="Company in" stagger={0.03} />
+                <ScaleBlur text="Company in" stagger={0.03} delay={0.5} />
                 <br />
-                <ScaleBlur text="Malaysia" stagger={0.03} />
+                <ScaleBlur text="Malaysia" stagger={0.03} delay={0.8} />
               </h1>
             </div>
           </div>

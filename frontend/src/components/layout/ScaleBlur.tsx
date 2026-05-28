@@ -6,9 +6,10 @@ interface ScaleBlurProps {
   text: string;
   stagger?: number;
   className?: string;
+  delay?: number;
 }
 
-export default function ScaleBlur({ text = "", stagger = 0.05, className = "" }: ScaleBlurProps) {
+export default function ScaleBlur({ text = "", stagger = 0.05, className = "", delay = 0 }: ScaleBlurProps) {
   const chars = (str: string) => (str || "").split("");
 
   return (
@@ -17,7 +18,7 @@ export default function ScaleBlur({ text = "", stagger = 0.05, className = "" }:
       initial="hidden" 
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      variants={{ visible: { transition: { staggerChildren: stagger } } }}
+      variants={{ visible: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
     >
       {chars(text).map((c, i) => (
         <motion.span 
