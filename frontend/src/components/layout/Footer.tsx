@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        
+
         {/* TOP ROW */}
         <div className={styles.topRow}>
           <div className={styles.brandInfo}>
@@ -23,16 +23,21 @@ export default function Footer() {
               We transform your vision into<br />beautifully crafted spaces.
             </p>
           </div>
-          
+
           <div className={styles.navLinks}>
             <Link href="/">Home</Link>
             <Link href="/projects">Projects</Link>
             <Link href="/about">About us</Link>
             <Link href="/contact">Contact</Link>
           </div>
-          
+
           <div className={styles.topRightIcon}>
-            <DiamondStarIcon />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="4" r="2.5" fill="currentColor" />
+              <circle cx="12" cy="20" r="2.5" fill="currentColor" />
+              <circle cx="4" cy="12" r="2.5" fill="currentColor" />
+              <circle cx="20" cy="12" r="2.5" fill="currentColor" />
+            </svg>
           </div>
         </div>
 
@@ -46,7 +51,7 @@ export default function Footer() {
 
         {/* BOTTOM ROW */}
         <div className={styles.bottomRow}>
-          
+
           <div className={styles.bottomLeft}>
             <div className={styles.policyLinks}>
               <Link href="/privacy">Privacy Policy</Link>
@@ -54,21 +59,26 @@ export default function Footer() {
             </div>
             <p className={styles.copyright}>© 2025 All rights Reserved</p>
           </div>
-          
+
           <div className={styles.address}>
             <p>No.17 Jalan USJ 1/33 Taman</p>
             <p>Perindustrian Subang Permai, 47500</p>
             <p>Subang Jaya Selangor.</p>
           </div>
-          
+
           {/* Mobile only elements or placeholder */}
           <div className={styles.bottomRight}>
             <div className={styles.mobileDiamondIcon}>
-              <DiamondStarIcon />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="4" r="2.5" fill="currentColor" />
+                <circle cx="12" cy="20" r="2.5" fill="currentColor" />
+                <circle cx="4" cy="12" r="2.5" fill="currentColor" />
+                <circle cx="20" cy="12" r="2.5" fill="currentColor" />
+              </svg>
             </div>
             <div className={styles.developerSignature}>
               <span>Developed by:</span>
-              <a href="https://1spotsolution.com" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
+              <a href="https://onespotsolution.online/" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
                 <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
               </a>
             </div>

@@ -135,7 +135,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
         </div>
 
         <div className={styles.rightNav}>
-          <div 
+          <div
             className={styles.dropdownContainer}
             onMouseEnter={handleServicesEnter}
             onMouseLeave={handleServicesLeave}
@@ -145,7 +145,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             </Link>
           </div>
 
-          <div 
+          <div
             className={styles.dropdownContainer}
             onMouseEnter={handleProductsEnter}
             onMouseLeave={handleProductsLeave}
@@ -171,7 +171,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       {/* Services Mega Menu — hoisted to navbarWrapper level for full-width positioning */}
       <AnimatePresence>
         {showServices && (
-          <motion.div 
+          <motion.div
             className={styles.megaMenu}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,10 +198,10 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   <div key={parent.id} className={styles.megaMenuGroup}>
                     <div className={styles.megaMenuParent}>{parent.name}</div>
                     {parent.children.map((child: any) => (
-                      <Link 
-                        key={child.id} 
-                        href={`/services/${child.slug}`} 
-                        className={styles.megaMenuChild} 
+                      <Link
+                        key={child.id}
+                        href={`/services/${child.slug}`}
+                        className={styles.megaMenuChild}
                         onClick={() => setShowServices(false)}
                         onMouseEnter={() => {
                           handleServicesEnter();
@@ -219,10 +219,10 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             </div>
             <div className={styles.megaMenuRight}>
               {!loading && servicesData.length > 0 && (
-                <img 
-                  src={hoveredServiceImage || servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"} 
-                  alt="Service Feature" 
-                  className={styles.megaMenuImg} 
+                <img
+                  src={hoveredServiceImage || servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"}
+                  alt="Service Feature"
+                  className={styles.megaMenuImg}
                 />
               )}
             </div>
@@ -233,7 +233,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       {/* Products Mega Menu — hoisted to navbarWrapper level for full-width positioning */}
       <AnimatePresence>
         {showProducts && (
-          <motion.div 
+          <motion.div
             className={styles.megaMenuProducts}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -268,7 +268,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             className={styles.mobileMenu}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -277,15 +277,15 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
           >
             <div className={styles.mobileLinks}>
               <div className={styles.mobileServiceWrapper}>
-                <div 
-                  className={styles.mobileServiceHeader} 
+                <div
+                  className={styles.mobileServiceHeader}
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                 >
                   Services <ChevronDown className={styles.icon} style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
                 </div>
                 <AnimatePresence>
                   {mobileServicesOpen && (
-                    <motion.div 
+                    <motion.div
                       className={styles.mobileServiceList}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
@@ -299,33 +299,34 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                       ) : (
                         servicesData.map((parent: any) => (
 
-                        <div key={parent.id} className={styles.mobileServiceParentGroup}>
-                          <div className={styles.mobileServiceParent}>{parent.name}</div>
-                          {parent.children.map((child: any) => (
-                            <Link 
-                              key={child.id} 
-                              href={`/services/${child.slug}`} 
-                              className={styles.mobileServiceChild}
-                              onClick={toggleMenu}
-                            >
-                              {child.name}
-                            </Link>
-                          ))}
-                        </div>
+                          <div key={parent.id} className={styles.mobileServiceParentGroup}>
+                            <div className={styles.mobileServiceParent}>{parent.name}</div>
+                            {parent.children.map((child: any) => (
+                              <Link
+                                key={child.id}
+                                href={`/services/${child.slug}`}
+                                className={styles.mobileServiceChild}
+                                onClick={toggleMenu}
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </div>
                         ))
                       )}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-
+              <Link href="/import-export" onClick={toggleMenu}>Export / Import</Link>
+              <Link href="/dealer" onClick={toggleMenu}>Be a Dealer</Link>
+              <Link href="/promotion" onClick={toggleMenu}>Promotion</Link>
               <Link href="/products" onClick={toggleMenu}>Products</Link>
 
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>
-              <Link href="/promotion" onClick={toggleMenu}>Promotion</Link>
+
               <Link href="/about" onClick={toggleMenu}>About us</Link>
-              <Link href="/import-export" onClick={toggleMenu}>Export / Import</Link>
-              <Link href="/dealer" onClick={toggleMenu}>Be a Dealer</Link>
+
               <Link href="/contact" onClick={toggleMenu}>Contact</Link>
               <button className={styles.ctaButtonMobile} onClick={toggleMenu}>Book a Call</button>
             </div>

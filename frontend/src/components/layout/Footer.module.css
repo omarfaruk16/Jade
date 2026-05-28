@@ -315,11 +315,11 @@
 }
 
 .devLogo {
-  height: 36px;
+  height: 40px;
   width: auto;
   opacity: 0.85;
   background-color: #ffffff;
-  padding: 6px 12px;
+  padding: 6px 8px;
   border-radius: 8px;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
