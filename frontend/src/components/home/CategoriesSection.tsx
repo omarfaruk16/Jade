@@ -1,149 +1,136 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X } from 'lucide-react';
-import Link from 'next/link';
-import API_BASE from '@/lib/api';
-import styles from './CategoriesSection.module.css';
-
-import TitleReveal from '@/components/layout/TitleReveal';
-
+import { useState, useEffect } from "react";
+import styles from "./CategoriesSection.module.css";
 import SectionReveal from '@/components/layout/SectionReveal';
-import { style } from 'framer-motion/client';
+import API_BASE from '@/lib/api';
+
+const defaultServices = [
+  {
+    id: "01",
+    title: "Residential Interior Design",
+    subtitle: "Elegant, livable spaces",
+    image: "/images/bg-2.avif",
+    number: "80+",
+    label: "Tailored home environments",
+    desc: "We create refined, functional interiors that reflect your lifestyle—balancing comfort, sophistication, and thoughtful material choices.",
+  },
+  {
+    id: "02",
+    title: "Commercial Interior Design",
+    subtitle: "Branded environments that work",
+    image: "/images/home-2.avif",
+    number: "50+",
+    label: "Commercial spaces",
+    desc: "We design productive, premium business environments for offices, showrooms, restaurants, and retail spaces.",
+  },
+  {
+    id: "03",
+    title: "Custom Furniture & OEM Solutions",
+    subtitle: "Structural design with depth",
+    image: "/images/home-3.avif",
+    number: "120+",
+    label: "Custom furniture pieces",
+    desc: "From concept to production, we create furniture solutions tailored to your space and brand identity.",
+  },
+];
 
 export default function CategoriesSection() {
-  const [categories, setCategories] = useState<any[]>([]);
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [services, setServices] = useState(defaultServices);
 
   useEffect(() => {
-    fetch(`${API_BASE}/services/children`)
-      .then(res => res.json())
-      .then(data => setCategories(data))
-      .catch(console.error);
+    const fetchServices = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/services/children`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            setServices(data.map((c: any, index: number) => ({
+              id: String(index + 1).padStart(2, '0'),
+              title: c.name,
+              subtitle: c.subtitle || "",
+              image: c.coverImage || "",
+              number: c.statsNumber || "",
+              label: c.statsText ? c.statsText.replace(/^\/\s*/, '') : "",
+              desc: c.description || "",
+            })));
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch services", err);
+      }
+    };
+    fetchServices();
   }, []);
-
-  const toggle = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
 
   return (
     <SectionReveal>
-<section className={styles.section}>
-      <div className="jade-container">
-      <div className={styles.header}>
-        <div className={styles.headerTop}>
-          <TitleReveal>
-            <h2 className={styles.title}>Our expertise</h2>
-          </TitleReveal>
-          <div className={styles.dots}>
-            <FourDotsIcon />
+      <section className={styles.expertiseSection}>
+        <div className={styles.expertiseContainer}>
+          <div className={styles.expertiseHeader}>
+            <h2>Our expertise</h2>
+            <p>
+              We offer a full spectrum of interior design — each tailored to
+              elevate spaces with clarity and timeless aesthetic value.
+            </p>
           </div>
-          
-        </div>
-        <motion.p 
-          className={styles.subtitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-        >
-          We offer a full spectrum of interior design — each tailored to elevate spaces with clarity and timeless aesthetic value.
-        </motion.p>
-      </div>
 
-      <motion.div 
-        className={styles.list}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      >
-        {Array.isArray(categories) && categories.map((cat, index) => {
-          const isExpanded = expandedIndex === index;
-          const displayNum = (index + 1).toString().padStart(2, '0');
+          <div className={styles.expertiseList}>
+            {services.map((item, index) => {
+              const isOpen = openIndex === index;
 
-          return (
-            <div key={cat.id} className={styles.rowWrapper}>
-              <AnimatePresence mode="wait">
-                {isExpanded ? (
-                  <motion.div 
-                    key="expanded"
-                    className={styles.expandedRow}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <span className={styles.number}>{displayNum}</span>
-                    <div className={styles.largeThumb}>
-                      <img src={cat.coverImage || '/images/home-hero.webp'} alt={cat.name} />
+              return (
+                <div
+                  key={item.id}
+                  className={`${styles.expertiseItem} ${isOpen ? styles.active : ""} ${styles.mobileOpen}`}
+                >
+                  <div className={styles.itemGrid}>
+                    <span className={styles.itemNumber}>{item.id}</span>
+
+                    {item.image ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className={styles.itemImage}
+                      />
+                    ) : (
+                      <div className={styles.itemImage} />
+                    )}
+
+                    <div className={styles.itemContent}>
+                      <h3>{item.title}</h3>
+                      <p>{item.subtitle}</p>
+
+                      <div className={`${styles.itemDetails} ${isOpen ? styles.detailsOpen : ""}`}>
+                        <h4>{item.number}</h4>
+                        <strong>/ {item.label}</strong>
+                        <p>{item.desc}</p>
+                      </div>
                     </div>
-                    <div className={styles.expandedInfo}>
-                      <div className={styles.topRow}>
-                        <div>
-                          <TitleReveal><h3 className={styles.expandedTitle}>{cat.name}</h3></TitleReveal>
-                          <p className={styles.expandedSubtitle}>{cat.subtitle || 'Elegant, livable spaces'}</p>
-                        </div>
-                        <button className={styles.iconBtn} onClick={() => toggle(index)}>
-                          <X size={20} />
-                        </button>
-                      </div>
-                      
-                      <div className={styles.middleRow}>
-                        <h4 className={styles.statsNumber}>{cat.statsNumber || '80+'}</h4>
-                        <p className={styles.statsText}>{cat.statsText || '/ Tailored home environments'}</p>
-                      </div>
 
-                      <div className={styles.bottomRow}>
-                        <p className={styles.description}>
-                          {cat.description || 'We create refined, functional interiors that reflect your lifestyle—balancing comfort, sophistication, and thoughtful material choices.'}
-                        </p>
-                        <Link href={`/services/${cat.slug}`} className={styles.learnMoreBtn}>
+                    <div className={styles.itemAction}>
+                      <button
+                        className={styles.toggleBtn}
+                        onClick={() => setOpenIndex(isOpen ? null : index)}
+                      >
+                        {isOpen ? "×" : "+"}
+                      </button>
+
+                      {(isOpen || true) && (
+                        <button className={`${styles.learnBtn} ${isOpen ? styles.btnOpen : ""}`}>
                           Learn more
-                        </Link>
-                      </div>
+                        </button>
+                      )}
                     </div>
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    key="collapsed"
-                    className={styles.collapsedRow}
-                    onClick={() => toggle(index)}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <span className={styles.number}>{displayNum}</span>
-                    <div className={styles.smallThumb}>
-                      <img src={cat.coverImage || '/images/home-hero.webp'} alt={cat.name} />
-                    </div>
-                    <div className={styles.collapsedInfo}>
-                      <TitleReveal><h3 className={styles.collapsedTitle}>{cat.name}</h3></TitleReveal>
-                      <p className={styles.collapsedSubtitle}>{cat.subtitle || 'Elegant, livable spaces'}</p>
-                    </div>
-                    <button className={styles.iconBtn}>
-                      <Plus size={20} />
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
-      </motion.div>
-      </div>
-    </section>
-</SectionReveal>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </SectionReveal>
   );
 }
-
-const FourDotsIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.cornerIcon}>
-    <circle cx="12" cy="4" r="2" fill="white"/>
-    <circle cx="12" cy="20" r="2" fill="white"/>
-    <circle cx="4" cy="12" r="2" fill="white"/>
-    <circle cx="20" cy="12" r="2" fill="white"/>
-  </svg>
-);

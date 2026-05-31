@@ -48,8 +48,10 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
-    transform: translateX(-25%); /* Shift by 1/4 of total width since we have 4 identical sets */
+    transform: translateX(-25%);
+    /* Shift by 1/4 of total width since we have 4 identical sets */
   }
 }
 
@@ -57,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
+  height: 20px;
 }
 
 .logoImage {
@@ -73,16 +75,20 @@
     padding: 1.5rem;
     gap: 1.5rem;
   }
+
   .label {
     padding-right: 0;
   }
+
   .marqueeWrapper {
     width: 100%;
   }
+
   .marquee {
     gap: 2.5rem;
     padding-left: 0;
   }
+
   .logoItem {
     height: 24px;
   }

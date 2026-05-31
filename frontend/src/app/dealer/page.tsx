@@ -273,7 +273,7 @@ export default function DealerPage() {
                       <input type="text" placeholder="City, Country" required value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
                     </div>
 
-                    <div className={styles.formRow}>
+
                       <div className={styles.inputGroup}>
                         <label>Budget of your deal</label>
                         <select required value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})}>
@@ -292,7 +292,6 @@ export default function DealerPage() {
                           <option value="Others">Others</option>
                         </select>
                       </div>
-                    </div>
 
                     <div className={styles.inputGroup}>
                       <label>Message</label>

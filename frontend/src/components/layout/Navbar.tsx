@@ -119,10 +119,11 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
     <div className={`${styles.navbarWrapper} ${!visible ? styles.navbarHidden : ''}`}>
       <nav className={styles.navbar}>
 
+        <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
+          <span>J</span><span>ade</span>
+        </Link>
+
         <div className={styles.leftNav}>
-          <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
-            <span>J</span><span>ade</span>
-          </Link>
           <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
             Export/Import <ArrowUpRight className={styles.icon} />
           </Link>
@@ -276,6 +277,10 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             transition={{ duration: 0.3 }}
           >
             <div className={styles.mobileLinks}>
+
+              <Link href="/import-export" onClick={toggleMenu}>Export / Import</Link>
+              <Link href="/dealer" onClick={toggleMenu}>Be a Dealer</Link>
+              <Link href="/promotion" onClick={toggleMenu}>Promotion</Link>
               <div className={styles.mobileServiceWrapper}>
                 <div
                   className={styles.mobileServiceHeader}
@@ -318,9 +323,6 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   )}
                 </AnimatePresence>
               </div>
-              <Link href="/import-export" onClick={toggleMenu}>Export / Import</Link>
-              <Link href="/dealer" onClick={toggleMenu}>Be a Dealer</Link>
-              <Link href="/promotion" onClick={toggleMenu}>Promotion</Link>
               <Link href="/products" onClick={toggleMenu}>Products</Link>
 
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>

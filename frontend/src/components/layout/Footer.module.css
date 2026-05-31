@@ -2,7 +2,8 @@
   background: #000000;
   color: #ffffff;
   padding: 6rem 24px 3rem;
-  position: relative;
+  min-height: 100vh;
+  position: sticky;
   z-index: 10;
   overflow: hidden;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;

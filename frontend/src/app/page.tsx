@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer';
 import SmoothScroll from '@/components/layout/SmoothScroll';
 import HeroSection from '@/components/home/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
-import ProductsScrollSection from '@/components/home/ProductsScrollSection';
+import ProjectsSection from '@/components/home/ProjectsSection';
 import CategoriesSection from '@/components/home/CategoriesSection';
 import HarmonySection from '@/components/home/HarmonySection';
 import ProcessSection from '@/components/home/ProcessSection';
@@ -24,7 +24,7 @@ export default function Home() {
         <HeroSection />
         <SectionReveal><AboutSection /></SectionReveal>
         <SectionReveal><PhilosophySection /></SectionReveal>
-        <SectionReveal><ProductsScrollSection /></SectionReveal>
+        <ProjectsSection />
         <SectionReveal><CategoriesSection /></SectionReveal>
         <SectionReveal><HarmonySection /></SectionReveal>
         <SectionReveal><TestimonialsSection /></SectionReveal>
@@ -33,7 +33,6 @@ export default function Home() {
         <SectionReveal><DreamSection /></SectionReveal>
         <SectionReveal><FaqSection /></SectionReveal>
         <SectionReveal><TeamSection /></SectionReveal>
-        
       </main>
       <Footer />
     </SmoothScroll>

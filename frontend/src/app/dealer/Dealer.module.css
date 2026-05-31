@@ -14,7 +14,7 @@
 
 /* Hero Section */
 .hero {
-  height: 60vh;
+  height: 85vh;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
   background-size: cover;
   background-position: center;
@@ -456,10 +456,10 @@ max-width: 800px;
 }
 
 .formInfo {
+  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
 }
 
 .formInfo h2 {
@@ -488,12 +488,10 @@ max-width: 800px;
 
 .formCard {
   background: #fff;
-  border: 1px solid #f0f0f0;
-  padding: 1.25rem;
+  padding: 0 1.25rem;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
   box-sizing: border-box;
 }

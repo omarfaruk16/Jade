@@ -15,9 +15,8 @@
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   width: 100%;
   max-width: none;
@@ -30,6 +29,7 @@
   padding: 14px 32px;
   pointer-events: auto;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  gap: 0;
 }
 
 .logo {
@@ -55,6 +55,7 @@
   flex-direction: row;
   align-items: center;
   gap: 32px;
+  padding-left: 150px;
 }
 
 .rightNav {
@@ -62,6 +63,7 @@
   flex-direction: row;
   align-items: center;
   gap: 28px;
+  justify-content: flex-end;
 }
 
 .dropdownContainer {
@@ -91,14 +93,31 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   cursor: pointer;
-  padding: 0;
+  padding: 2px 0;
   white-space: nowrap;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: width 0.25s ease;
 }
 
 .navLink:hover {
   color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.navLink:hover::after {
+  width: 100%;
 }
 
 .navLink .icon {
@@ -116,23 +135,22 @@
 /* Megamenu Styles */
 .megaMenu {
   position: fixed;
-  top: 86px;
+  top: 100px;
   left: 25px;
+  padding: 10px;
   right: 25px;
-  margin: 0 auto;
   width: calc(100% - 50px);
-  max-width: 1200px;
-  height: 360px;
-  background: rgba(28, 24, 21, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 24px;
+  height: 470px;
+  background: rgba(16, 13, 11, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
   display: grid;
-  grid-template-columns: 550px 1fr;
+  grid-template-columns: 1fr 3fr;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   cursor: default;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   z-index: 200;
   pointer-events: auto;
 }
@@ -149,44 +167,51 @@
 }
 
 .megaMenuLeft {
-  padding: 2.5rem;
-  background: rgba(24, 20, 18, 0.98);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  height: 100%;
+  padding: 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 }
 
 .megaMenuGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+}
+
+.megaMenuGroup + .megaMenuGroup {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .megaMenuParent {
-  font-size: 0.9rem;
-  color: #cca471;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: rgb(156, 155, 155);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.85rem;
+  text-transform: none;
 }
 
 .megaMenuChild {
-  color: #aaa;
+  color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
-  font-size: 1.05rem;
-  transition: color 0.2s;
-  padding: 0.3rem 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0.3rem 0 0.3rem 1rem;
+  display: block;
+  position: relative;
+  transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
 .megaMenuChild:hover {
   color: #fff;
+  padding-left: 1.4rem;
 }
 
 .megaMenuRight {
   position: relative;
-  height: 100%;
+  overflow: hidden;
 }
 
 .megaMenuImg {
@@ -194,29 +219,35 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 14px;
+  transition: transform 0.5s ease;
+}
+
+.megaMenuRight:hover .megaMenuImg {
+  transform: scale(1.04);
 }
 
 .megaMenuProducts {
   position: fixed;
-  top: 86px;
+  top: 100px;
   left: 25px;
   right: 25px;
-  margin: 0 auto;
   width: calc(100% - 50px);
-  max-width: 1200px;
-  background: rgba(28, 24, 21, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 24px;
+  height: 420px;
+  background: rgba(16, 13, 11, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding: 1.25rem;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  gap: 0.6rem;
+  padding: 0.6rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   cursor: default;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   z-index: 200;
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .megaMenuProducts::before {
@@ -232,9 +263,9 @@
 
 .productCategoryCard {
   position: relative;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  aspect-ratio: 1/1;
+  height: 100%;
   text-decoration: none;
   display: block;
 }
@@ -243,7 +274,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .productCategoryCard:hover .productCategoryImg {
@@ -255,8 +286,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1.4rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -264,19 +295,25 @@
 
 .productCategoryTitle {
   color: #fff;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .productCategoryBtn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.productCategoryCard:hover .productCategoryBtn {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(2px);
 }
 
 .ctaButton {
@@ -469,7 +506,7 @@
     display: none;
   }
 
-  .leftNav a:not(.logo) {
+  .leftNav {
     display: none;
   }
 
@@ -478,6 +515,8 @@
   }
 
   .navbar {
+    display: flex;
+    justify-content: space-between;
     border-radius: 20px;
     padding: 12px 16px 12px 24px;
     height: auto;

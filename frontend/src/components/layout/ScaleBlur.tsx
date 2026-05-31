@@ -15,7 +15,7 @@ const charVariants = {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as const },
+    transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] },
   },
 };
 
@@ -48,7 +48,6 @@ export default function ScaleBlur({ text = "", stagger = 0.05, className = "", d
               {c}
             </motion.span>
           ))}
-          {/* Add an animated space between words (not after the last word) */}
           {wi < words.length - 1 && (
             <motion.span
               style={{ display: "inline-block", width: "0.3em" }}

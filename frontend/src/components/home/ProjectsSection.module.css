@@ -1,6 +1,5 @@
 .scrollContainer {
   height: 300vh;
-  /* creates the sticky scroll area */
   position: relative;
   background: #fdfdfd;
 }
@@ -13,82 +12,121 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 2rem;
 }
 
-.header {
-  padding: 0 4rem;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 2rem;
-}
-
-.brandLogos {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  opacity: 0.6;
-}
-
-.brandLogos span {
-  font-weight: bold;
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
+.carouselViewport {
+  overflow: hidden;
 }
 
 .projectsWrapper {
   display: flex;
-  padding: 0 4rem;
-  gap: 2rem;
-  /* Will be translated by framer-motion */
+  gap: 1.5rem;
+  will-change: transform;
 }
 
+/* Each card: ~44vw wide, no max-width cap — matches reference layout */
 .projectCard {
-  min-width: 60vw;
-  max-width: 900px;
-  height: 65vh;
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
+  min-width: 44vw;
   flex-shrink: 0;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
 }
 
-.projectCard img {
+/* Image fills fixed height, not aspect-ratio — matches the tall portrait-ish look */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.projectCard:hover img {
-  transform: scale(1.03);
+.projectCard:hover .cardImage {
+  transform: scale(1.04);
 }
 
-.cardFooter {
+/* Arrow appears in top-right corner on card hover */
+.hoverArrow {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-  color: white;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5) rotate(-30deg);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.projectCard:hover .hoverArrow {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Footer: title left, date right — sits below the image */
+.cardFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 0.2rem;
 }
 
+/* Title: underline slides in from left on hover */
 .cardTitle {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 500;
+  color: #1a1a1a;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: letter-spacing 0.3s ease;
+}
+
+.cardTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #1a1a1a;
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.projectCard:hover .cardTitle::after {
+  transform: translateX(0);
+}
+
+.projectCard:hover .cardTitle {
+  letter-spacing: 0.02em;
 }
 
 .cardDate {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 0.85rem;
+  color: #999;
 }
 
+/* ── Mobile ─────────────────────────────────────── */
 @media (max-width: 768px) {
   .scrollContainer {
     height: auto;
@@ -97,23 +135,29 @@
   .stickySection {
     position: relative;
     height: auto;
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.25rem;
+    overflow: visible;
+  }
+
+  .carouselViewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carouselViewport::-webkit-scrollbar {
+    display: none;
   }
 
   .projectsWrapper {
-    flex-direction: column;
-    padding: 0;
-    gap: 2rem;
+    width: max-content;
   }
 
   .projectCard {
-    width: 100%;
-    min-width: 100%;
-    height: 400px;
+    min-width: 82vw;
   }
 
-  .header {
-    padding: 0;
-    justify-content: flex-start;
+  .imageWrapper {
+    height: 52vw;
   }
 }

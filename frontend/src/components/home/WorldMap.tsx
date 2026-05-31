@@ -40,12 +40,12 @@ export default function WorldMap() {
     <div className={styles.mapWrapper}>
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ scale: 135, center: [10, 15] }}
+        projectionConfig={{ scale: 127, center: [10,30] }}
         style={{ width: '100%', height: 'auto', display: 'block' }}
-        viewBox="0 0 800 460"
+        viewBox="0 0 800 520"
       >
         {/* White map background */}
-        <rect x="0" y="0" width="800" height="460" fill="#f5f5f5" />
+        <rect x="0" y="0" width="800" height="520" fill="#f5f5f5" />
 
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
