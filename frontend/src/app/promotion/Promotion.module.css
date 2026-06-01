@@ -82,7 +82,7 @@
 }
 
 .promoInfo {
-  padding: 1.2rem;
+  padding: 1.2rem .5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,6 +138,6 @@
   }
 
   .heroSection {
-    padding: 4rem 1.5rem 3rem 1.5rem;
+    padding: 6rem 1.5rem 3rem 1.5rem;
   }
 }
