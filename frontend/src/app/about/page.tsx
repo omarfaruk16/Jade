@@ -151,31 +151,61 @@ export default function AboutPage() {
             <div className={styles.milestoneList}>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   ❖ Designing Across Borders
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                     <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                     <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                     <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                   </svg>
+                   Designing Across Borders
                  </div>
                  <span className={styles.year}>2025</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   ❖ Rebranded with a Clearer Vision
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                     <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                     <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                     <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                   </svg>
+                   Rebranded with a Clearer Vision
                  </div>
                  <span className={styles.year}>2024</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   ❖ Building a Strong Team
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                     <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                     <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                     <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                   </svg>
+                   Building a Strong Team
                  </div>
                  <span className={styles.year}>2023</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   ❖ Expanded to Commercial Design
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                     <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                     <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                     <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                   </svg>
+                   Expanded to Commercial Design
                  </div>
                  <span className={styles.year}>2022</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   ❖ Completed 50+ Projects
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="12" cy="6" r="2.5" fill="#000"/>
+                     <circle cx="12" cy="18" r="2.5" fill="#000"/>
+                     <circle cx="6" cy="12" r="2.5" fill="#000"/>
+                     <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                   </svg>
+                   Completed 50+ Projects
                  </div>
                  <span className={styles.year}>2021</span>
               </div>
