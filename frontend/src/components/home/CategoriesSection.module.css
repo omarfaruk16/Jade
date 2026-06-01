@@ -39,14 +39,14 @@
 
 .itemGrid {
   display: grid;
-  grid-template-columns: 50px 1fr 2fr 180px;
+  grid-template-columns: 50px auto 2fr 180px;
   gap: 32px;
   align-items: stretch;
   transition: grid-template-columns 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .expertiseItem.active .itemGrid {
-  grid-template-columns: 50px 1fr 2fr 180px;
+  grid-template-columns: 50px auto 2fr 180px;
 }
 
 .itemNumber {
@@ -56,14 +56,16 @@
 }
 
 .itemImage {
-  width: 150px;
+  width: 9rem;
+  height: 6rem;
   object-fit: cover;
   border-radius: 8px;
-  transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .expertiseItem.active .itemImage {
-  width: 100%;
+  width: 9rem;
+  height: 6rem;
 }
 
 .itemContent h3 {
@@ -150,12 +152,12 @@
   }
 
   .itemGrid {
-    grid-template-columns: 40px 250px 1fr 100px;
+    grid-template-columns: 40px auto 1fr 100px;
     gap: 16px;
   }
 
   .expertiseItem.active .itemGrid {
-    grid-template-columns: 40px 1fr 3fr 100px;
+    grid-template-columns: 40px auto 1fr 100px;
   }
 }
 
@@ -179,7 +181,8 @@
   .itemImage,
   .expertiseItem.active .itemImage {
     width: 100%;
-    height: 220px;
+    height: auto;
+    aspect-ratio: 9 / 6;
   }
 
   .itemImage {
@@ -223,7 +226,8 @@
   .mobileOpen .itemImage {
     display: block !important;
     width: 100%;
-    height: 220px;
+    height: auto;
+    aspect-ratio: 9 / 6;
   }
 
   .mobileOpen .learnBtn {
