@@ -43,12 +43,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* MIDDLE EMAIL ROW */}
-        <div className={styles.emailContainer}>
-          <p className={styles.phoneNumbers}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
-          <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
-            <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
-          </a>
+        {/* MIDDLE SECTION */}
+        <div className={styles.middleSection}>
+          {/* PHONE NUMBERS ALIGNED WITH RIGHT COLUMN */}
+          <div className={styles.gridRow}>
+            <div className={styles.colLeft}></div>
+            <div className={styles.colRight}>
+              <p className={styles.phoneNumbers}>
+                <ScaleBlur text="+603 8021 5168 | +6019 644 9447" className={styles.phoneBlur} />
+              </p>
+            </div>
+          </div>
+
+          {/* MIDDLE EMAIL ROW */}
+          <div className={styles.emailContainer}>
+            <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
+              <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
+            </a>
+          </div>
         </div>
 
         {/* BOTTOM ROW */}
