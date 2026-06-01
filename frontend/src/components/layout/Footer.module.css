@@ -157,7 +157,7 @@
 }
 
 .emailText {
-  font-size: clamp(3rem, 6vw, 80px);
+  font-size: clamp(2rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.1;

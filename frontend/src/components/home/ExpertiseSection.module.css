@@ -318,11 +318,8 @@
   }
 
   .mobileLearnMoreBtn {
-    display: inline-flex;
+    display: block;
     width: fit-content;
     margin-top: 1.8rem;
-    align-self: flex-start;
-    margin-right: auto;
-    margin-left: 0;
   }
 }

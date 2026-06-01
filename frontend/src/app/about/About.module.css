@@ -29,7 +29,7 @@
 /* Header Section */
 .heroOuterWrapper {
   padding: 6px;
-  background: #f7f7f7;
+  background: #ffffff;
 }
 
 .headerSection {
@@ -567,4 +567,7 @@
     align-items: flex-start;
     gap: 1rem;
   }
+  .headerSection {
+  padding-top: 4rem;
+}
 }
