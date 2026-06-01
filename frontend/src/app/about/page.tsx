@@ -137,44 +137,45 @@ export default function AboutPage() {
         {/* Milestones Section */}
         <SectionReveal>
           <section className={styles.milestoneSection}>
-            <div className={styles.milestoneHeader}>
-              <span className={styles.label}>Summary</span>
-              <TitleReveal><h2 className={styles.sectionTitle}>Our Historical Milestones</h2></TitleReveal>
+            <div className={styles.milestoneTop}>
+              <div className={styles.milestoneHeader}>
+                <span className={styles.label}>Our history</span>
+                <TitleReveal><h2 className={styles.sectionTitle}>Our Historical Milestones</h2></TitleReveal>
+              </div>
+              
+              <p className={styles.milestoneIntro}>
+                Our process is thoughtful, collaborative, and built around you. From the first conversation to the final detail, we blend creativity with strategy.
+              </p>
             </div>
             
             <div className={styles.milestoneList}>
-              <p className={styles.milestoneIntro}>
-                We create thoughtful, collaborative spaces that bring together diverse teams
-                and foster creativity across borders and disciplines.
-              </p>
-              
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   <span className={styles.diamondIcon}></span> Designing Across Borders
+                   ❖ Designing Across Borders
                  </div>
                  <span className={styles.year}>2025</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   <span className={styles.diamondIcon}></span> Rebranded with a Clearer Vision
+                   ❖ Rebranded with a Clearer Vision
                  </div>
                  <span className={styles.year}>2024</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   <span className={styles.diamondIcon}></span> Building a Strong Team
+                   ❖ Building a Strong Team
                  </div>
                  <span className={styles.year}>2023</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   <span className={styles.diamondIcon}></span> Expanded to Commercial Design
+                   ❖ Expanded to Commercial Design
                  </div>
                  <span className={styles.year}>2022</span>
               </div>
               <div className={styles.milestoneItem}>
                  <div className={styles.milestoneText}>
-                   <span className={styles.diamondIcon}></span> Completed 50+ Projects
+                   ❖ Completed 50+ Projects
                  </div>
                  <span className={styles.year}>2021</span>
               </div>
