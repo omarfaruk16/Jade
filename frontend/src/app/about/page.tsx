@@ -217,21 +217,30 @@ export default function AboutPage() {
         <SectionReveal>
           <section className={styles.philosophySection}>
             <div className={styles.philosophyLeft}>
-              <TitleReveal><h2 className={styles.sectionTitle}>Design With Purpose,<br/>Built on Collaboration</h2></TitleReveal>
-              <p className={styles.philosophyText}>
-                We are a collective of interior designers aiming to elevate everyday spaces with a fine 
-                approach that marries light, organic forms, and rich, natural textures.
-              </p>
+              <div>
+                <TitleReveal><h2 className={styles.sectionTitle}>Design With Purpose,<br/>Built on Collaboration</h2></TitleReveal>
+                <p className={styles.philosophyText}>
+                  We're more than a design studio—we're partners in bringing spaces to life. Our approach is rooted in thoughtful strategy, creative exploration, and a commitment to meaningful results.
+                </p>
+              </div>
               <ul className={styles.featureList}>
-                 <li><CheckCircle2 size={18}/> We collaborate with our trusted partners to achieve the best.</li>
-                 <li><CheckCircle2 size={18}/> Our mission is to transform environments into bespoke sanctuaries.</li>
+                 <li>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> 
+                   <span>We collaborate with our trusted partners to achieve the best.</span>
+                 </li>
+                 <li>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg> 
+                   <span>Our mission is to transform environments into bespoke sanctuaries.</span>
+                 </li>
               </ul>
             </div>
             <div className={styles.philosophyRight}>
-              <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wood paneling" className={styles.philImgTop} />
-              <div className={styles.philBottomRow}>
-                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass doors" className={styles.philImgLeft}/>
-                <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vase and chair" className={styles.philImgRight}/>
+              <div className={styles.philColLeft}>
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wood paneling" className={styles.philImgSmall} />
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass doors" className={styles.philImgSmall} />
+              </div>
+              <div className={styles.philColRight}>
+                <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vase and chair" className={styles.philImgTall} />
               </div>
             </div>
           </section>
