@@ -179,7 +179,7 @@
   flex-direction: column;
   gap: 3rem;
   padding: 6rem 0 2rem;
-  background: #f7f7f7;
+  background: #ffffff;
 }
 
 .milestoneTop {
@@ -568,6 +568,6 @@
     gap: 1rem;
   }
   .headerSection {
-  padding-top: 4rem;
+  padding-top: 6rem;
 }
 }
