@@ -11,6 +11,7 @@ const FALLBACK_PROJECTS = [
   { id: 2, title: 'Coastal Retreat', coverImage: '/images/home-hero.webp', date: 'Jun 13, 2025' },
   { id: 3, title: 'Modern Nest', coverImage: '/images/f1.png', date: 'Jun 4, 2025' },
   { id: 4, title: 'The Greenhouse', coverImage: '/images/home-hero.webp', date: 'Jun 1, 2025' },
+  { id: 5, title: 'Desert Light', coverImage: '/images/f1.png', date: 'May 20, 2025' },
 ];
 
 export default function ProjectsSection() {
@@ -37,7 +38,7 @@ export default function ProjectsSection() {
     offset: ['start start', 'end end'],
   });
 
-  // Dynamically compute how far to translate based on actual content overflow
+  // Translate the strip so that the last card aligns to the right edge
   const x = useTransform(scrollYProgress, (p) => {
     if (isMobile) return 0;
     const el = viewportRef.current;
@@ -49,11 +50,18 @@ export default function ProjectsSection() {
   const displayProjects = projects.length > 0 ? projects : FALLBACK_PROJECTS;
 
   return (
-    <section className={styles.scrollContainer} ref={containerRef}>
+    /* The tall scroll container creates the scroll-driven animation on desktop.
+       On mobile it collapses to auto height. */
+    <section
+      className={styles.scrollContainer}
+      ref={containerRef}
+    >
       <div className={styles.stickySection}>
 
+
+        {/* Carousel viewport — clips the moving strip */}
         <div className={styles.carouselViewport} ref={viewportRef}>
-          <motion.div style={{ x }} className={styles.projectsWrapper}>
+          <motion.div style={isMobile ? {} : { x }} className={styles.projectsWrapper}>
             {displayProjects.map((project) => (
               <Link
                 href={`/projects/${project.id}`}

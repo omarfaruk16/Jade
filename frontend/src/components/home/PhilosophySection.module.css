@@ -1,5 +1,4 @@
 .section {
-  padding-block: 5rem;
   background: #ffffff;
   border-top: 1px solid #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
@@ -52,8 +51,15 @@
 }
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-25%); } /* Since we repeated the array 4 times */
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-25%);
+  }
+
+  /* Since we repeated the array 4 times */
 }
 
 .logoItem {
@@ -80,7 +86,7 @@
     align-items: flex-start;
     gap: 2.5rem;
   }
-  
+
   .textSide {
     max-width: 100%;
   }
