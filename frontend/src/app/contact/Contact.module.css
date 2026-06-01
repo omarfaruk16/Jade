@@ -297,8 +297,7 @@
     grid-template-columns: 1fr;
   }
 
-  .infoSide,
-  .contactHeader {
+  .infoSide {
     padding: 0rem 1rem;
   }
 

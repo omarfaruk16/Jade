@@ -2,7 +2,6 @@
   background: #fbfbfb;
   min-height: 100vh;
   color: #000;
-  padding-bottom: 8rem;
 }
 
 .heroSection {
@@ -83,7 +82,7 @@
 }
 
 .promoInfo {
-  padding: 1.2rem 1.5rem;
+  padding: 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -130,7 +129,15 @@
     height: 400px;
   }
 
+  .promoInfo {
+    padding: 1.2rem 0;
+  }
+
   .promoTitle {
     font-size: 1.2rem;
+  }
+
+  .heroSection {
+    padding: 4rem 1.5rem 3rem 1.5rem;
   }
 }

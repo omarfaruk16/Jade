@@ -208,4 +208,8 @@
   .faqQuestion {
     font-size: 1rem;
   }
+
+  .dotsContainer {
+    display: none;
+  }
 }

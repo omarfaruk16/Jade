@@ -1181,6 +1181,11 @@
     line-height: 1.6;
   }
 
+  .contactBtnContainer {
+    justify-self: flex-start;
+    align-self: flex-start;
+  }
+
   /* FAQ mobile */
   .faqSection {
     padding: 4rem 0;

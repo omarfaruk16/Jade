@@ -145,6 +145,10 @@
   right: 1rem;
 }
 
+.mobileOnlyNav {
+  display: none;
+}
+
 .sliderDots {
   position: absolute;
   bottom: 1.5rem;
@@ -539,18 +543,24 @@
     grid-template-columns: 1fr;
   }
 
+  .milestoneTop {
+    align-items: flex-start;
+  }
+
   .heroImagesGrid {
-    /* To keep it one line but allow horizontal scroll on very small devices */
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    overflow: hidden;
+    justify-content: center;
     gap: 1rem;
     padding-bottom: 1rem;
   }
 
-  .heroImagesGrid::-webkit-scrollbar {
+  .desktopOnlyNav {
     display: none;
+  }
+
+  .mobileOnlyNav {
+    display: flex;
   }
 
   .imageCol {
@@ -567,7 +577,24 @@
     align-items: flex-start;
     gap: 1rem;
   }
+
   .headerSection {
-  padding-top: 6rem;
-}
+    padding-top: 6rem;
+  }
+
+  .milestoneSection {
+    padding: 0;
+  }
+
+  .milestoneText {
+    font-size: 1rem;
+  }
+
+  .year {
+    font-size: 1rem;
+  }
+
+  .clientVoicesSection {
+    padding: 2rem 0;
+  }
 }

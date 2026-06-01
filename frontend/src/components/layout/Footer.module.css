@@ -274,6 +274,7 @@
 
   .emailContainer {
     margin: 1rem 0;
+    align-items: flex-start;
   }
 
   .address {

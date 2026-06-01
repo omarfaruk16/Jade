@@ -53,6 +53,13 @@ export default function AboutPage() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex(p => (p + 1) % heroMedia.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroMedia.length]);
+
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
@@ -100,31 +107,39 @@ export default function AboutPage() {
                       </motion.div>
                     </AnimatePresence>
 
-                    {/* Left Arrow on Left Image */}
+                    {/* Left Arrow on Left Image (Desktop) */}
                     {isLeft && (
-                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft}`} onClick={handlePrev}>
+                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft} ${styles.desktopOnlyNav}`} onClick={handlePrev}>
                         <ChevronLeft size={24} />
                       </button>
                     )}
 
-                    {/* Right Arrow on Right Image */}
+                    {/* Right Arrow on Right Image (Desktop) */}
                     {isRight && (
-                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight}`} onClick={handleNext}>
+                      <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight} ${styles.desktopOnlyNav}`} onClick={handleNext}>
                         <ChevronRight size={24} />
                       </button>
                     )}
 
-                    {/* Dots on Center Image */}
+                    {/* Center Image UI */}
                     {isCenter && (
-                      <div className={styles.sliderDots}>
-                        {heroMedia.map((_, dotIdx) => (
-                          <span 
-                            key={dotIdx} 
-                            className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
-                            onClick={() => setActiveIndex(dotIdx)}
-                          />
-                        ))}
-                      </div>
+                      <>
+                        <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft} ${styles.mobileOnlyNav}`} onClick={handlePrev}>
+                          <ChevronLeft size={24} />
+                        </button>
+                        <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight} ${styles.mobileOnlyNav}`} onClick={handleNext}>
+                          <ChevronRight size={24} />
+                        </button>
+                        <div className={styles.sliderDots}>
+                          {heroMedia.map((_, dotIdx) => (
+                            <span 
+                              key={dotIdx} 
+                              className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
+                              onClick={() => setActiveIndex(dotIdx)}
+                            />
+                          ))}
+                        </div>
+                      </>
                     )}
                   </div>
                 );
