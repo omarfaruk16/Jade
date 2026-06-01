@@ -45,6 +45,7 @@ export default function Footer() {
 
         {/* MIDDLE EMAIL ROW */}
         <div className={styles.emailContainer}>
+          <p className={styles.phoneNumbers}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
           <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
             <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
           </a>
@@ -62,7 +63,6 @@ export default function Footer() {
           
           <div className={styles.colRightBottom}>
             <div className={styles.addressSection}>
-              <p className={styles.phoneNumbers} style={{ marginBottom: '2rem' }}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
               <div className={styles.address}>
                 <p>No.17 Jalan USJ 1/33 Taman</p>
                 <p>Perindustrian Subang Permai, 47500</p>
