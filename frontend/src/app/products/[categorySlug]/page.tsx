@@ -35,9 +35,9 @@ export default function ProductCategoryPage() {
     <div style={{ background: '#000', minHeight: '100vh' }}>
       <Navbar />
 
-      <div style={{ paddingTop: '100px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '1600px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem' }}>
+      <div style={{ paddingTop: '100px', display: 'flex', flexDirection: 'column', gap: '0', width: '100%' }}>
         {category.products?.map((product: any) => (
-          <div key={product.id} style={{ position: 'relative', width: '100%', height: '500px', borderRadius: '16px', overflow: 'hidden', cursor: 'pointer' }} onClick={() => router.push(`/products/details/${product.id}`)}>
+          <div key={product.id} style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden', cursor: 'pointer' }} onClick={() => router.push(`/products/details/${product.id}`)}>
             {/* Background Image */}
             <img src={product.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"} alt={product.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             

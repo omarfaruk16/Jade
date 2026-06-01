@@ -145,24 +145,29 @@ export default function ServiceChildPage() {
               {/* Row 1: About service */}
               <SectionReveal>
                 <div className={styles.gridRow}>
-                <div className={styles.leftCol}>
-                  <PinIcon />
-                  <span>About service</span>
-                </div>
-                <div className={styles.middleCol}>
-                  <p className={styles.aboutText}>{item.about}</p>
-                  {item.keyLine && (
-                    <div className={`${styles.quoteBox} ${styles.quoteBoxOrange}`}>
-                      <div className={styles.quoteWrap}><QuoteIcon /></div>
-                      <span>{item.keyLine}</span>
-                    </div>
-                  )}
-                </div>
-                <div className={styles.rightCol}>
-                  {item.imageUrl && (
-                    <img src={item.imageUrl} alt={item.title} className={styles.aboutImage} />
-                  )}
-                </div>
+                  <div className={styles.leftCol}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    <span>About service</span>
+                  </div>
+                  <div className={styles.middleCol}>
+                    <p className={styles.aboutText}>{item.about}</p>
+                    {item.keyLine && (
+                      <div className={`${styles.quoteBox} ${styles.quoteBoxOrange}`}>
+                        <div className={styles.quoteWrap}><QuoteIcon /></div>
+                        <span>{item.keyLine}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.rightCol}>
+                    {item.imageUrl && (
+                      <img src={item.imageUrl} alt={item.title} className={styles.aboutImage} />
+                    )}
+                  </div>
                 </div>
               </SectionReveal>
 
@@ -170,30 +175,35 @@ export default function ServiceChildPage() {
               {(item.overviewCategory || item.overviewBestFor || item.overviewStyleApproach) && (
                 <SectionReveal>
                   <div className={styles.gridRow}>
-                  <div className={styles.leftCol}>
-                    <PinIcon />
-                    <span>Overview</span>
-                  </div>
-                  <div className={styles.overviewGrid}>
-                    {item.overviewCategory && (
-                      <div className={styles.overviewItem}>
-                        <TitleReveal><h4>Category</h4></TitleReveal>
-                        <p>{item.overviewCategory}</p>
-                      </div>
-                    )}
-                    {item.overviewBestFor && (
-                      <div className={styles.overviewItem}>
-                        <TitleReveal><h4>Best For</h4></TitleReveal>
-                        <p>{item.overviewBestFor}</p>
-                      </div>
-                    )}
-                    {item.overviewStyleApproach && (
-                      <div className={styles.overviewItem}>
-                        <TitleReveal><h4>Style Approach</h4></TitleReveal>
-                        <p>{item.overviewStyleApproach}</p>
-                      </div>
-                    )}
-                  </div>
+                    <div className={styles.leftCol}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="6" r="2.5" fill="#000" />
+                        <circle cx="12" cy="18" r="2.5" fill="#000" />
+                        <circle cx="6" cy="12" r="2.5" fill="#000" />
+                        <circle cx="18" cy="12" r="2.5" fill="#000" />
+                      </svg>
+                      <span>Overview</span>
+                    </div>
+                    <div className={styles.overviewGrid}>
+                      {item.overviewCategory && (
+                        <div className={styles.overviewItem}>
+                          <TitleReveal><h4>Category</h4></TitleReveal>
+                          <p>{item.overviewCategory}</p>
+                        </div>
+                      )}
+                      {item.overviewBestFor && (
+                        <div className={styles.overviewItem}>
+                          <TitleReveal><h4>Best For</h4></TitleReveal>
+                          <p>{item.overviewBestFor}</p>
+                        </div>
+                      )}
+                      {item.overviewStyleApproach && (
+                        <div className={styles.overviewItem}>
+                          <TitleReveal><h4>Style Approach</h4></TitleReveal>
+                          <p>{item.overviewStyleApproach}</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </SectionReveal>
               )}
@@ -201,29 +211,34 @@ export default function ServiceChildPage() {
               {/* Row 3: Features */}
               <SectionReveal>
                 <div className={styles.gridRow}>
-                <div className={styles.leftCol}>
-                  <PinIcon />
-                  <span>Features</span>
-                </div>
-                <div className={styles.includedMiddleCol}>
-                  {item.whatsIncluded?.map((w: any, idx: number) => (
-                    <div key={w.id} className={styles.includedBlock}>
-                      <TitleReveal><h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4></TitleReveal>
-                      <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description || '') }} />
-                    </div>
-                  ))}
-                </div>
-                <div className={styles.includedRightCol}>
-                  {JSON.parse(item.featureQuotesJson || '[]').map((q: string, idx: number, arr: string[]) => {
-                    const isLast = idx === arr.length - 1;
-                    return (
-                      <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
-                        <div className={styles.quoteWrap}><QuoteIcon /></div>
-                        <p>{q}</p>
+                  <div className={styles.leftCol}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    <span>Features</span>
+                  </div>
+                  <div className={styles.includedMiddleCol}>
+                    {item.whatsIncluded?.map((w: any, idx: number) => (
+                      <div key={w.id} className={styles.includedBlock}>
+                        <TitleReveal><h4 className={styles.includedTitle}>{idx + 1}. {w.title}</h4></TitleReveal>
+                        <div className={styles.includedDesc} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(w.description || '') }} />
                       </div>
-                    );
-                  })}
-                </div>
+                    ))}
+                  </div>
+                  <div className={styles.includedRightCol}>
+                    {JSON.parse(item.featureQuotesJson || '[]').map((q: string, idx: number, arr: string[]) => {
+                      const isLast = idx === arr.length - 1;
+                      return (
+                        <div key={idx} className={`${styles.quoteBox} ${isLast ? styles.quoteBoxOrange : styles.quoteBoxWhite}`}>
+                          <div className={styles.quoteWrap}><QuoteIcon /></div>
+                          <p>{q}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </SectionReveal>
 
@@ -231,10 +246,10 @@ export default function ServiceChildPage() {
               {item.gallery?.length > 0 && (
                 <SectionReveal>
                   <div className={styles.galleryRow}>
-                  {item.gallery.map((g: any) => (
-                    <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
-                  ))}
-                </div>
+                    {item.gallery.map((g: any) => (
+                      <img key={g.id} src={g.url} alt="" className={styles.galleryImage} />
+                    ))}
+                  </div>
                 </SectionReveal>
               )}
             </section>
