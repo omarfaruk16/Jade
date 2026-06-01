@@ -47,7 +47,7 @@ export default function ProductCategoryPage() {
               <circle cx="18" cy="12" r="2.5" fill="#fff" />
             </svg>
           </div>
-          <h1 style={{ color: '#fff', fontSize: '4rem', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.04em' }}>
+          <h1 style={{ color: '#fff', fontSize: 'clamp(2.2rem, 3.8vw, 3.8rem)', fontWeight: 500, marginBottom: '1rem', letterSpacing: '-0.04em' }}>
             <ScaleBlur text={category.name || "Products"} stagger={0.04} />
           </h1>
           <motion.p
