@@ -39,9 +39,14 @@
 
 .itemGrid {
   display: grid;
-  grid-template-columns: 50px 360px 1fr 180px;
+  grid-template-columns: 50px 250px 1fr 180px;
   gap: 32px;
   align-items: stretch;
+  transition: grid-template-columns 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.expertiseItem.active .itemGrid {
+  grid-template-columns: 50px 1fr 3fr 180px;
 }
 
 .itemNumber {
@@ -51,16 +56,15 @@
 }
 
 .itemImage {
-  width: 140px;
-  height: 88px;
+  width: 100%;
+  height: 160px;
   object-fit: cover;
   border-radius: 8px;
-  transition: 0.4s ease;
+  transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .expertiseItem.active .itemImage {
-  width: 360px;
-  height: 220px;
+  height: 320px;
 }
 
 .itemContent h3 {
@@ -74,13 +78,20 @@
 }
 
 .itemDetails {
-  margin-top: 55px;
+  margin-top: 0;
   max-width: 520px;
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.4s ease, 
+              margin-top 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .detailsOpen {
-  display: block;
+  margin-top: 55px;
+  max-height: 400px;
+  opacity: 1;
 }
 
 .itemDetails h4 {
@@ -132,8 +143,22 @@
   display: block;
 }
 
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .expertiseContainer {
+    padding: 60px 5%;
+  }
+  .itemGrid {
+    grid-template-columns: 40px 250px 1fr 100px;
+    gap: 16px;
+  }
+  .expertiseItem.active .itemGrid {
+    grid-template-columns: 40px 1fr 3fr 100px;
+  }
+}
+
 /* Mobile */
-@media (max-width: 900px) {
+@media (max-width: 767px) {
   .expertiseContainer {
     padding: 50px 24px;
   }
@@ -182,7 +207,10 @@
 
   /* Force open all items on mobile */
   .mobileOpen .itemDetails {
-    display: block !important;
+    margin-top: 24px !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
   }
 
   .mobileOpen .toggleBtn {
