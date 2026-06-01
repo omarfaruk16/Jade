@@ -24,7 +24,7 @@ export default function Home() {
         <HeroSection />
         <SectionReveal><AboutSection /></SectionReveal>
         <SectionReveal><PhilosophySection /></SectionReveal>
-        <ProjectsSection />
+        <SectionReveal><ProjectsSection /></SectionReveal>
         <SectionReveal><CategoriesSection /></SectionReveal>
         <SectionReveal><HarmonySection /></SectionReveal>
         <SectionReveal><TestimonialsSection /></SectionReveal>

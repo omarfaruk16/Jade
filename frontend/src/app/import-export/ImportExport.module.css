@@ -21,7 +21,7 @@
   justify-content: center;
   text-align: center;
   color: #fff;
-  padding:6px;
+  padding: 6px;
   margin-bottom: 4rem;
 }
 
@@ -113,9 +113,10 @@
   justify-content: flex-end;
 }
 
-.rightCol img{
+.rightCol img {
   max-height: 300px;
 }
+
 /* Intro Section */
 .introSection {
   padding: 8rem 0;
@@ -188,12 +189,12 @@
 
 
 .officeTitle {
-  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
- font-weight: 500;
- line-height: 1.1;
- letter-spacing: -0.05em;
- margin: 0;
-max-width: 800px;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
 }
 
 .headerRightContent {
@@ -688,7 +689,7 @@ max-width: 800px;
 }
 
 .harmonySectionTitle {
-  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 1.1;

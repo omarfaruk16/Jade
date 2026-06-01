@@ -38,7 +38,7 @@
 }
 
 .title {
-font-size: clamp(3rem, 6vw, 80px);
+  font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.05em;
   line-height: 1.1;
@@ -73,11 +73,11 @@ font-size: clamp(3rem, 6vw, 80px);
 
 .introInfo p {
   font-size: 1.7rem;
- line-height: 1.7;
- color: #444;
- font-weight: 400;
- letter-spacing: -0.04em;
- margin-bottom: 2rem;
+  line-height: 1.7;
+  color: #444;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
 }
 
 .founder {
@@ -148,12 +148,12 @@ font-size: clamp(3rem, 6vw, 80px);
 }
 
 .officeTitle {
-  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
- font-weight: 500;
- line-height: 1.1;
- letter-spacing: -0.05em;
- margin: 0;
-max-width: 800px;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
 }
 
 .officeHeaderRight {
@@ -456,7 +456,7 @@ max-width: 800px;
 }
 
 .formInfo {
-  
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;

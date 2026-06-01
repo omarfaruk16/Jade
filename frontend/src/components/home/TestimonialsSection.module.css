@@ -6,16 +6,18 @@
   color: #000;
 }
 
-.header { margin-bottom: 4rem; }
+.header {
+  margin-bottom: 4rem;
+}
 
 .title {
- flex: 1.2;
- font-size: clamp(2.5rem, 3.5vw, 3.5rem);
- font-weight: 500;
- line-height: 1.1;
- letter-spacing: -0.05em;
- margin: 0;
- max-width: 800px;
+  flex: 1.2;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
 }
 
 /* Grid Layout */
@@ -61,7 +63,7 @@
 .videoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
   z-index: 1;
 }
 
@@ -130,6 +132,7 @@
   .section {
     padding-block: var(--space-lg, 48px);
   }
+
   .grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -140,13 +143,16 @@
   .section {
     padding-block: calc(var(--space-lg, 48px) * 0.75);
   }
+
   .grid {
     grid-template-columns: 1fr;
   }
+
   .card {
     min-height: auto;
     height: auto;
   }
+
   .videoCard {
     min-height: 500px;
     height: auto;

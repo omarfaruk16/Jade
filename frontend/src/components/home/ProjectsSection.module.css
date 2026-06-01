@@ -2,6 +2,7 @@
   height: 300vh;
   position: relative;
   background: #fdfdfd;
+  border: 2px solid red;
 }
 
 .stickySection {
@@ -123,7 +124,7 @@
 
 .cardDate {
   font-size: 0.85rem;
-  color: #999;
+  color: #000000;
 }
 
 /* ── Mobile ─────────────────────────────────────── */

@@ -45,13 +45,13 @@
 }
 
 .title {
- flex: 1.2;
- font-size: clamp(2.5rem, 3.5vw, 3.5rem);
- font-weight: 500;
- line-height: 1.1;
- letter-spacing: -0.05em;
- margin: 0;
- max-width: 800px;
+  flex: 1.2;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
 }
 
 .description {
@@ -80,7 +80,7 @@
   margin-top: 6rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .cardHeader {

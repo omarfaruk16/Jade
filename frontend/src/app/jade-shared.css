@@ -46,6 +46,10 @@
   .jade-section {
     padding-block: 60px;
   }
+
+  .jade-container {
+    padding-inline: 15px;
+  }
 }
 
 /* ════════════════════════════════════════════════

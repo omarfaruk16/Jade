@@ -19,13 +19,13 @@
 }
 
 .title {
- flex: 1.2;
- font-size: clamp(2.5rem, 3.5vw, 3.5rem);
- font-weight: 500;
- line-height: 1.1;
- letter-spacing: -0.05em;
- margin: 0;
- max-width: 800px;
+  flex: 1.2;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
 }
 
 .subtitle {
@@ -77,7 +77,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 100%);
   color: white;
 }
 
@@ -102,9 +102,17 @@
 }
 
 @keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }
 
 .footer {
@@ -146,27 +154,58 @@
 }
 
 @media (max-width: 1200px) {
-  .teamGrid { grid-template-columns: repeat(3, 1fr); }
+  .teamGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 1023px) {
-  .section { padding-block: var(--space-lg, 48px); }
-  .container { padding-block: var(--space-lg, 48px); }
+  .section {
+    padding-block: var(--space-lg, 48px);
+  }
+
+  .container {
+    padding-block: var(--space-lg, 48px);
+  }
+
   .header {
     flex-direction: column;
     gap: 2rem;
   }
-  .teamGrid { grid-template-columns: repeat(2, 1fr); }
+
+  .teamGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 767px) {
-  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
-  .container { padding-block: calc(var(--space-lg, 48px) * 0.75); }
-  .teamGrid { grid-template-columns: 1fr; }
+  .section {
+    padding-block: calc(var(--space-lg, 48px) * 0.75);
+  }
+
+  .container {
+    padding-block: calc(var(--space-lg, 48px) * 0.75);
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .imageWrapper {
+    height: 300px;
+  }
+
+  .imageWrapper img {
+    object-position: top;
+  }
+
   .footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
   }
-  .title { font-size: 2.2rem; }
+
+  .title {
+    font-size: 2.2rem;
+  }
 }
