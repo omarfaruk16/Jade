@@ -97,22 +97,39 @@ router.get('/children', async (req, res) => {
 
 router.post('/children', auth, async (req, res) => {
   try {
-    const { name, parentId, description, coverImage, subtitle, statsNumber, statsText } = req.body;
+    const { name, parentId, description, coverImage, subtitle, statsNumber, statsText, order } = req.body;
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const item = await prisma.serviceChildCategory.create({
-      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText }
+      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
     });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
 
+router.put('/children/reorder', auth, async (req, res) => {
+  try {
+    const { ids } = req.body;
+    if (!Array.isArray(ids)) return res.status(400).json({ error: 'ids must be an array' });
+    
+    await prisma.$transaction(
+      ids.map((id, index) =>
+        prisma.serviceChildCategory.update({
+          where: { id },
+          data: { order: index }
+        })
+      )
+    );
+    res.json({ success: true });
+  } catch (e) { res.status(400).json({ error: e.message }); }
+});
+
 router.put('/children/:id', auth, async (req, res) => {
   try {
-    const { name, parentId, description, coverImage, subtitle, statsNumber, statsText } = req.body;
+    const { name, parentId, description, coverImage, subtitle, statsNumber, statsText, order } = req.body;
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const item = await prisma.serviceChildCategory.update({
       where: { id: req.params.id },
-      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText }
+      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
     });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }

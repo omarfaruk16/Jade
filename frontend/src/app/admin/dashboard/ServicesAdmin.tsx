@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import API_BASE from '@/lib/api';
-import { Plus, Trash2, Edit2, ChevronDown, ChevronRight, X, Bold, Italic, List } from 'lucide-react';
+import { Plus, Trash2, Edit2, ChevronDown, ChevronRight, X, Bold, Italic, List, ArrowUp, ArrowDown } from 'lucide-react';
 import styles from './AdminDashboard.module.css';
 
 const API = `${API_BASE}/services`;
@@ -170,6 +170,35 @@ export default function ServicesAdmin() {
     } catch (e: any) { alert('Error deleting child: ' + e.message); }
   };
 
+  const reorderChild = async (parentId: string, childId: string, direction: 'up' | 'down') => {
+    const siblings = children
+      .filter(c => c.parentId === parentId)
+      .sort((a: any, b: any) => a.order - b.order);
+    const idx = siblings.findIndex((c: any) => c.id === childId);
+    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (swapIdx < 0 || swapIdx >= siblings.length) return;
+    const reordered = [...siblings];
+    [reordered[idx], reordered[swapIdx]] = [reordered[swapIdx], reordered[idx]];
+    const ids = reordered.map((c: any) => c.id);
+    try {
+      const res = await fetch(`${API}/children/reorder`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids })
+      });
+      if (!res.ok) throw new Error(await res.text());
+      // Update local state optimistically
+      setChildren(prev => {
+        const updated = [...prev];
+        reordered.forEach((c: any, i: number) => {
+          const found = updated.findIndex(x => x.id === c.id);
+          if (found !== -1) updated[found] = { ...updated[found], order: i };
+        });
+        return updated.sort((a: any, b: any) => a.order - b.order);
+      });
+    } catch (e: any) { alert('Error reordering: ' + e.message); }
+  };
+
   // ── Item CRUD ───────────────────────────────────────────────────────────────
   const saveItem = async () => {
     try {
@@ -289,13 +318,32 @@ export default function ServicesAdmin() {
           {parents.map(p => (
             <div key={p.id} style={{ marginBottom: '1.5rem' }}>
               <div style={{ color: '#666', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>{p.name}</div>
-              {children.filter(c => c.parentId === p.id).map(c => (
+{children
+                .filter(c => c.parentId === p.id)
+                .sort((a: any, b: any) => a.order - b.order)
+                .map((c, idx, arr) => (
                 <div key={c.id} style={{ ...card, marginLeft: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <span style={{ color: '#fff', fontWeight: 600 }}>{c.name}</span>
-                      <span style={{ color: '#555', fontSize: 11, marginLeft: 12 }}>/{c.slug}</span>
-                      <span style={{ color: '#555', fontSize: 12, marginLeft: 12 }}>{items.filter(i => i.childCategoryId === c.id).length} items</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <button
+                          onClick={() => reorderChild(p.id, c.id, 'up')}
+                          disabled={idx === 0}
+                          style={{ padding: '3px 5px', background: idx === 0 ? '#111' : '#1a1a1c', color: idx === 0 ? '#444' : '#fff', border: '1px solid #333', borderRadius: 4, cursor: idx === 0 ? 'not-allowed' : 'pointer', lineHeight: 1 }}
+                          title="Move up"
+                        ><ArrowUp size={11} /></button>
+                        <button
+                          onClick={() => reorderChild(p.id, c.id, 'down')}
+                          disabled={idx === arr.length - 1}
+                          style={{ padding: '3px 5px', background: idx === arr.length - 1 ? '#111' : '#1a1a1c', color: idx === arr.length - 1 ? '#444' : '#fff', border: '1px solid #333', borderRadius: 4, cursor: idx === arr.length - 1 ? 'not-allowed' : 'pointer', lineHeight: 1 }}
+                          title="Move down"
+                        ><ArrowDown size={11} /></button>
+                      </div>
+                      <div>
+                        <span style={{ color: '#fff', fontWeight: 600 }}>{c.name}</span>
+                        <span style={{ color: '#555', fontSize: 11, marginLeft: 12 }}>/{c.slug}</span>
+                        <span style={{ color: '#555', fontSize: 12, marginLeft: 12 }}>{items.filter(i => i.childCategoryId === c.id).length} items</span>
+                      </div>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button onClick={() => openChildModal(c)} style={{ padding: '6px 10px', background: '#1a1a1c', color: '#fff', border: '1px solid #333', borderRadius: 6, cursor: 'pointer' }}><Edit2 size={14} /></button>
