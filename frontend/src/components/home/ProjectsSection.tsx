@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import API_BASE from '@/lib/api';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
 import styles from './ProjectsSection.module.css';
 
 const FALLBACK_PROJECTS = [
@@ -15,53 +16,91 @@ const FALLBACK_PROJECTS = [
 ];
 
 export default function ProjectsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [projects, setProjects] = useState<any[]>([]);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'start',
+      dragFree: true,
+    },
+    [
+      AutoScroll({
+        playOnInit: true,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+        speed: 1,
+      }),
+    ]
+  );
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     fetch(`${API_BASE}/projects`)
       .then(res => res.json())
       .then(data => setProjects(Array.isArray(data) ? data : []))
       .catch(() => setProjects([]));
-
-    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
+  const onScroll = useCallback((api: any) => {
+    const progress = Math.max(0, Math.min(1, api.scrollProgress()));
+    setScrollProgress(progress * 100);
+  }, []);
 
-  // Translate the strip so that the last card aligns to the right edge
-  const x = useTransform(scrollYProgress, (p) => {
-    if (isMobile) return 0;
-    const el = viewportRef.current;
-    if (!el) return 0;
-    const overflow = el.scrollWidth - el.offsetWidth;
-    return -p * overflow;
-  });
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onScroll(emblaApi);
+    emblaApi.on('scroll', onScroll);
+    emblaApi.on('reInit', onScroll);
+
+    return () => {
+      emblaApi.off('scroll', onScroll);
+      emblaApi.off('reInit', onScroll);
+    };
+  }, [emblaApi, onScroll]);
+
+  const handlePrev = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const handleNext = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
 
   const displayProjects = projects.length > 0 ? projects : FALLBACK_PROJECTS;
 
   return (
-    /* The tall scroll container creates the scroll-driven animation on desktop.
-       On mobile it collapses to auto height. */
-    <section
-      className={styles.scrollContainer}
-      ref={containerRef}
-    >
+    <section className={styles.scrollContainer}>
       <div className={styles.stickySection}>
+        <div className={styles.sectionHeader}>
 
+          <div className={styles.carouselArrows}>
+            <button
+              onClick={handlePrev}
+              className={styles.arrowBtn}
+              aria-label="Previous Project"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              onClick={handleNext}
+              className={styles.arrowBtn}
+              aria-label="Next Project"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-        {/* Carousel viewport — clips the moving strip */}
-        <div className={styles.carouselViewport} ref={viewportRef}>
-          <motion.div style={isMobile ? {} : { x }} className={styles.projectsWrapper}>
+        <div className={styles.carouselViewport} ref={emblaRef}>
+          <div className={styles.projectsWrapper}>
             {displayProjects.map((project) => (
               <Link
                 href={`/projects/${project.id}`}
@@ -93,7 +132,14 @@ export default function ProjectsSection() {
                 </div>
               </Link>
             ))}
-          </motion.div>
+          </div>
+        </div>
+
+        <div className={styles.progressBarContainer}>
+          <div
+            className={styles.progressBar}
+            style={{ transform: `scaleX(${scrollProgress / 100})` }}
+          />
         </div>
       </div>
     </section>
