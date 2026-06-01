@@ -148,7 +148,7 @@
   object-fit: cover;
 }
 
-/* ── Gallery — 2-per-row desktop/tablet, 1 mobile ── */
+/* ── Gallery — 2 per row, then 1 full-width, repeating ── */
 .gallerySection {
   margin-bottom: 8rem;
 }
@@ -159,17 +159,26 @@
   gap: 1.5rem;
 }
 
+/*
+  Items at positions 3, 6, 9… (1-indexed) are the full-width ones.
+  In a 2-col grid every 3rd item starting at 3rd (3n in 1-indexed = 3n+0 in 0-indexed)
+  We use nth-child(3n) which matches children 3, 6, 9...
+*/
+.galleryItem:nth-child(3n) {
+  grid-column: 1 / -1;
+}
+
 .galleryItem {
   overflow: hidden;
   border-radius: 20px;
 }
 
+/* Images follow their natural aspect ratio */
 .galleryImg {
   width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 20px;
+  height: auto;
   display: block;
+  border-radius: 20px;
   transition: transform 0.6s ease;
 }
 
@@ -283,10 +292,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Gallery stays 2-per-row on tablet */
-  .galleryImg {
-    height: 280px;
-  }
+  /* Gallery stays 2-per-row on tablet, images keep natural ratio */
 }
 
 @media (max-width: 640px) {
@@ -304,8 +310,9 @@
     grid-template-columns: 1fr;
   }
 
-  .galleryImg {
-    height: 260px;
+  /* On mobile all items go full width, reset the 3n span */
+  .galleryItem:nth-child(3n) {
+    grid-column: auto;
   }
 
   .relatedGrid {
