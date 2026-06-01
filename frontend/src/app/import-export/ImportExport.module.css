@@ -14,7 +14,7 @@
 
 /* Hero Section */
 .heroSection {
-  height: 85vh;
+  height: 90vh;
   background: #f7f7f7;
   display: flex;
   align-items: center;
@@ -125,7 +125,7 @@
 .introText {
   font-size: 1.7rem;
   line-height: 1.7;
-  color: #444;
+  color: #000000;
   font-weight: 400;
   letter-spacing: -0.04em;
   margin-bottom: 2rem;
@@ -153,7 +153,7 @@
 
 .profileName {
   font-weight: 700;
-  color: #111;
+  color: #000000;
   display: block;
 }
 
@@ -165,7 +165,6 @@
 /* Office Design Section */
 .officeSection {
   padding: 8rem 0;
-  border-top: 1px solid #eee;
 }
 
 .officeHeader {
@@ -208,7 +207,7 @@
 }
 
 .headerDesc {
-  color: #666;
+  color: #000000;
   font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.5;
@@ -219,11 +218,11 @@
 .contactBtn {
   background: #000;
   color: #fff;
-  border: none;
   padding: 12px 20px;
   border-radius: 100px;
   font-size: 1rem;
   font-weight: 400;
+  width: fit-content;
   letter-spacing: normal;
   line-height: normal;
   cursor: pointer;
@@ -254,7 +253,7 @@
 .conceptItem p {
   font-size: 1rem;
   letter-spacing: 0em;
-  color: #444;
+  color: #000000;
   line-height: 1.5;
   margin: 0;
   max-width: 600px;
@@ -300,7 +299,7 @@
 .quoteText {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #333;
+  color: #000000;
   margin: 0;
   font-weight: 400;
 }
@@ -392,7 +391,6 @@
 /* Full-width insights section — map spans full container */
 .fullInsightsSection {
   padding: 6rem 0;
-  border-top: 1px solid #e0e0e0;
 }
 
 .insightsHeader {
@@ -501,7 +499,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  border-top: 1px solid #ddd;
   padding-top: 3rem;
   margin-top: 1rem;
 }
@@ -517,7 +514,7 @@
 .statItem p {
   font-size: 14px;
   letter-spacing: 0em;
-  color: #666;
+  color: #000;
   line-height: 1.5;
   margin: 0;
 }
@@ -554,7 +551,7 @@
 .faqSubtitle {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #333;
+  color: #000;
   margin: 0;
 }
 
@@ -592,7 +589,7 @@
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.04em;
-  color: #111;
+  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -601,7 +598,7 @@
 }
 
 .faqIcon {
-  color: #666;
+  color: #000;
   flex-shrink: 0;
   margin-left: 1rem;
 }
@@ -615,7 +612,7 @@
 }
 
 .faqAnswerInner p {
-  color: #555;
+  color: #000;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -685,7 +682,6 @@
 /* ── Harmony / Process Section ── */
 .harmonySection {
   padding: 7rem 0 4rem;
-  border-top: 1px solid #e0e0e0;
 }
 
 .harmonySectionTitle {
@@ -695,12 +691,11 @@
   line-height: 1.1;
   color: #000;
   margin: 0 0 4rem 0;
-  max-width: 650px;
 }
 
 .harmonyIntro {
   display: grid;
-  grid-template-columns: 180px 1fr auto;
+  grid-template-columns: 180px 1fr 1fr;
   gap: 2rem 4rem;
   align-items: start;
   margin-bottom: 5rem;
@@ -720,11 +715,16 @@
   margin: 0;
 }
 
+.contactBtnContainer {
+  justify-self: end;
+  align-self: center;
+  width: fit-content;
+}
+
 /* Process Cards — 3 columns with vertical dividers */
 .processCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid #d8d8d8;
 }
 
 .processCard {
@@ -732,7 +732,6 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  border-right: 1px solid #d8d8d8;
 }
 
 .processCard:first-child {
@@ -766,7 +765,7 @@
   font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.55;
-  color: #333;
+  color: #000;
   margin: 0;
   font-weight: 400;
 }
@@ -807,7 +806,7 @@
 .accordionText {
   font-size: 1.05rem;
   font-weight: 500;
-  color: #333;
+  color: #000;
 }
 
 /* ── Responsive ── */

@@ -106,7 +106,7 @@
   padding: 0.3rem 0.9rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #111;
+  color: #000;
 }
 
 .featuredBottom {
@@ -172,7 +172,7 @@
 }
 
 .fourDots {
-  color: #111;
+  color: #000;
   display: flex;
 }
 
@@ -184,7 +184,7 @@
 
 .listDate {
   font-size: 14px;
-  color: #555;
+  color: #000;
   margin: 0;
   font-weight: 500;
   letter-spacing: 0em;

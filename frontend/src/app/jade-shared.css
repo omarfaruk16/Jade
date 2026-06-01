@@ -137,7 +137,7 @@
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 1.4em;
-  color: #666;
+  color: #000;
   margin-bottom: 0.75rem;
 }
 
@@ -153,7 +153,7 @@
   font-size: 14px;
   line-height: 150%;
   letter-spacing: 0em;
-  color: #555;
+  color: #000;
 }
 
 /* ════════════════════════════════════════════════
@@ -178,7 +178,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   display: block;
-  color: #111;
+  color: #000;
 }
 
 .jade-founder-role {
@@ -233,7 +233,7 @@
 .jade-quote-text {
   font-size: 1rem;
   line-height: 1.65;
-  color: #333;
+  color: #000;
   margin: 0;
   font-weight: 400;
 }

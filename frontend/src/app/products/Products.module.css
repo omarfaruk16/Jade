@@ -31,7 +31,7 @@
 .heroSub {
   font-size: 1.125rem;
   letter-spacing: 0em;
-  color: #777;
+  color: #000;
   max-width: 550px;
   margin: 0 auto;
   line-height: 1.5;
@@ -53,7 +53,7 @@
   background: transparent;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: #000;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
@@ -132,7 +132,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #999;
+  color: #000;
   margin-bottom: 0.3rem;
 }
 
@@ -145,7 +145,7 @@
 
 .productPrice {
   font-size: 0.95rem;
-  color: #555;
+  color: #000;
   font-weight: 500;
 }
 

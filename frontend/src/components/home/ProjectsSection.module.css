@@ -25,7 +25,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #888;
+  color: #000;
   margin: 0;
 }
 
@@ -33,7 +33,7 @@
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 500;
   letter-spacing: -0.05em;
-  color: #111;
+  color: #000;
   margin: 0;
 }
 
@@ -118,7 +118,7 @@
 .cardTitle {
   font-size: 1rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: #000;
   position: relative;
   display: inline-block;
   overflow: hidden;
@@ -147,7 +147,7 @@
 
 .cardDate {
   font-size: 0.85rem;
-  color: #888;
+  color: #000;
 }
 
 /* ══════════════════════════════════════════════════

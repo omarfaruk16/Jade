@@ -106,7 +106,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 0.6rem;
-  color: #666;
+  color: #000;
 }
 
 .formGroup input,
@@ -197,7 +197,7 @@
 
 .faqSubtitle {
   font-size: 1rem;
-  color: #666;
+  color: #000;
   max-width: 300px;
   line-height: 1.5;
   text-align: right;
@@ -249,13 +249,13 @@
 }
 
 .faqTrigger:hover {
-  color: #666;
+  color: #000;
 }
 
 .faqContent {
   overflow: hidden;
   padding-bottom: 2rem;
-  color: #666;
+  color: #000;
   line-height: 1.7;
 }
 

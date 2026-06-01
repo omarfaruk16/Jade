@@ -28,7 +28,7 @@
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 150%;
-  color: #555;
+  color: #000;
   max-width: 500px;
   padding: 0px 2rem;
 }
@@ -60,7 +60,7 @@
 .count {
   font-weight: 600;
   font-size: 0.95rem;
-  color: #333;
+  color: #000;
 }
 
 .filters {
@@ -136,7 +136,7 @@
 .cardDate {
   font-size: 14px;
   letter-spacing: 0em;
-  color: #666;
+  color: #000;
 }
 
 @media (max-width: 1024px) {

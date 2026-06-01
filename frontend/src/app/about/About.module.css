@@ -55,7 +55,7 @@
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 150%;
-  color: #555;
+  color: #000;
   max-width: 600px;
   margin: 0 auto 4rem;
 }
@@ -73,7 +73,7 @@
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 150%;
-  color: #555;
+  color: #000;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -186,7 +186,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: #555;
+  color: #000;
   display: block;
   margin-bottom: 1rem;
 }
@@ -198,7 +198,7 @@
 
 .milestoneIntro {
   font-size: 1.125rem;
-  color: #333;
+  color: #000;
   line-height: 1.6;
   margin-bottom: 3rem;
   max-width: 600px;
@@ -234,7 +234,7 @@
 
 .year {
   font-weight: 600;
-  color: #111;
+  color: #000;
 }
 
 /* Philosophy Section */
@@ -247,7 +247,7 @@
 
 .philosophyText {
   font-size: 1.125rem;
-  color: #555;
+  color: #000;
   line-height: 1.7;
   margin-bottom: 2rem;
 }
@@ -264,7 +264,7 @@
   gap: 0.8rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  color: #444;
+  color: #000;
 }
 
 .philosophyRight {
@@ -338,7 +338,7 @@
 .reviewText {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #222;
+  color: #000;
   margin-bottom: 2rem;
   flex-grow: 1;
 }
@@ -364,7 +364,7 @@
 
 .clientRole {
   font-size: 0.85rem;
-  color: #888;
+  color: #000;
 }
 
 /* Team Section */
@@ -408,7 +408,7 @@
 
 .teamHeaderRight {
   font-size: 1.1rem;
-  color: #555;
+  color: #000;
   line-height: 1.6;
   align-self: center;
 }
@@ -472,7 +472,7 @@
 }
 
 .teamFooter p {
-  color: #666;
+  color: #000;
   font-size: 0.95rem;
   max-width: 400px;
 }

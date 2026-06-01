@@ -27,18 +27,18 @@ export default function ImportExportPage() {
         <section className={styles.heroSection}>
           <div className={styles.heroContainer}>
             <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>
-              <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
-            </h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.3 }}
-              className={styles.heroSubtitle}
-            >
-              We&apos;re a design-driven team creating spaces with purpose,
-              personality, and precision—built through collaboration.
-            </motion.p>
+              <h1 className={styles.heroTitle}>
+                <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
+              </h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.3 }}
+                className={styles.heroSubtitle}
+              >
+                We&apos;re a design-driven team creating spaces with purpose,
+                personality, and precision—built through collaboration.
+              </motion.p>
             </div>
           </div>
         </section>
@@ -70,7 +70,7 @@ export default function ImportExportPage() {
               <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
               <div className={styles.headerRightContent}>
                 <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
-                <button className={styles.contactBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
+                <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
               </div>
             </div>
 
@@ -150,7 +150,10 @@ export default function ImportExportPage() {
                 flawlessly? Will it last? At Jade, we remove doubt with clarity, precision, and lasting
                 support — a journey from vision to peace of mind.
               </p>
-              <button className={styles.contactBtn} onClick={() => window.location.href='/contact'}>Get a Quote</button>
+              <div className={styles.contactBtnContainer}>
+                <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Get a Quote</button>
+              </div>
+
             </div>
             <div className={styles.processCards}>
               {[
@@ -206,7 +209,7 @@ export default function ImportExportPage() {
         </SectionReveal>
 
       </main>
-      
+
       {/* Shared FAQ Section */}
       <SectionReveal>
         <FaqSection />

@@ -6,7 +6,7 @@
 }
 
 .loadingText {
-  color: #888;
+  color: #000;
   font-size: 1rem;
 }
 
@@ -18,14 +18,14 @@
 .pageTitle {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 500;
-  color: #111;
+  color: #000;
   letter-spacing: -0.05em;
   line-height: 1.1em;
   margin-bottom: 0.75rem;
 }
 
 .indexHero p {
-  color: #777;
+  color: #000;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.04em;
@@ -49,7 +49,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #999;
+  color: #000;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #eee;
   margin-bottom: 0.25rem;
@@ -64,7 +64,7 @@
   border: 1px solid #eee;
   border-radius: 10px;
   text-decoration: none;
-  color: #222;
+  color: #000;
   font-size: 0.9rem;
   font-weight: 500;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;

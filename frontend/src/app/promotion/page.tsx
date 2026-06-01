@@ -38,20 +38,28 @@ export default function PromotionPage() {
       <Navbar />
 
       <SectionReveal>
-<section className={styles.heroSection}>
-        <h1 className={styles.pageTitle}>
-          <ScaleBlur text="Ongoing Promotions" stagger={0.04} />
-        </h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-          className={styles.pageSubtitle}
-        >
-         With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
-        </motion.p>
-      </section>
-</SectionReveal>
+        <section className={styles.heroSection}>
+          <div className={styles.featureLabel}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="6" r="2.5" fill="#000" />
+              <circle cx="12" cy="18" r="2.5" fill="#000" />
+              <circle cx="6" cy="12" r="2.5" fill="#000" />
+              <circle cx="18" cy="12" r="2.5" fill="#000" />
+            </svg>
+          </div>
+          <h1 className={styles.pageTitle}>
+            <ScaleBlur text="Ongoing Promotions" stagger={0.04} />
+          </h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+            className={styles.pageSubtitle}
+          >
+            With a seamless process and attention to detail, we turn ideas into beautiful, livable realities.
+          </motion.p>
+        </section>
+      </SectionReveal>
 
       <SectionReveal>
         <div className={styles.contentContainer}>

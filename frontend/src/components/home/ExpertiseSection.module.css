@@ -28,7 +28,7 @@
 }
 
 .description {
-  color: #999;
+  color: #000;
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
@@ -100,7 +100,7 @@
 }
 
 .itemSub {
-  color: #777;
+  color: #000;
   font-size: 0.95rem;
   margin: 0;
 }
@@ -125,7 +125,7 @@
 }
 
 .descText {
-  color: #999;
+  color: #000;
   font-size: 0.95rem;
   line-height: 1.55;
   max-width: 470px;
