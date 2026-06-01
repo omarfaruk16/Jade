@@ -14,61 +14,25 @@ export default function Footer() {
       <div className={styles.container}>
 
         {/* TOP ROW */}
-        <div className={styles.topRow}>
-          <div className={styles.brandInfo}>
-            <Link href="/" className={styles.logo}>
-              <span className={styles.jadeGreen}>J</span><span className={styles.jadeOrange}>ade</span>
-            </Link>
-            <p className={styles.tagline}>
-              We transform your vision into<br />beautifully crafted spaces.
-            </p>
-          </div>
-
-          <div className={styles.navLinks}>
-            <Link href="/">Home</Link>
-            <Link href="/projects">Projects</Link>
-            <Link href="/about">About us</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-
-          <div className={styles.topRightIcon}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="4" r="2.5" fill="currentColor" />
-              <circle cx="12" cy="20" r="2.5" fill="currentColor" />
-              <circle cx="4" cy="12" r="2.5" fill="currentColor" />
-              <circle cx="20" cy="12" r="2.5" fill="currentColor" />
-            </svg>
-          </div>
-        </div>
-
-        {/* MIDDLE ROW */}
-        <div className={styles.middleRow}>
-          <p className={styles.phoneNumbers}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
-          <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
-            <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
-          </a>
-        </div>
-
-        {/* BOTTOM ROW */}
-        <div className={styles.bottomRow}>
-
-          <div className={styles.bottomLeft}>
-            <div className={styles.policyLinks}>
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms & Conditions</Link>
+        <div className={`${styles.gridRow} ${styles.top}`}>
+          <div className={styles.colLeft}>
+            <div className={styles.brandInfo}>
+              <Link href="/" className={styles.logo}>
+                <span className={styles.jadeGreen}>J</span><span className={styles.jadeOrange}>ade</span>
+              </Link>
+              <p className={styles.tagline}>
+                We transform your vision into<br />beautifully crafted spaces.
+              </p>
             </div>
-            <p className={styles.copyright}>© 2025 All rights Reserved</p>
           </div>
-
-          <div className={styles.address}>
-            <p>No.17 Jalan USJ 1/33 Taman</p>
-            <p>Perindustrian Subang Permai, 47500</p>
-            <p>Subang Jaya Selangor.</p>
-          </div>
-
-          {/* Mobile only elements or placeholder */}
-          <div className={styles.bottomRight}>
-            <div className={styles.mobileDiamondIcon}>
+          <div className={styles.colRight}>
+            <div className={styles.navLinks}>
+              <Link href="/">Home</Link>
+              <Link href="/projects">Projects</Link>
+              <Link href="/about">About us</Link>
+              <Link href="/contact">Contact</Link>
+            </div>
+            <div className={styles.topRightIcon}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="4" r="2.5" fill="currentColor" />
                 <circle cx="12" cy="20" r="2.5" fill="currentColor" />
@@ -76,14 +40,45 @@ export default function Footer() {
                 <circle cx="20" cy="12" r="2.5" fill="currentColor" />
               </svg>
             </div>
-            <div className={styles.developerSignature}>
-              <span>Developed by:</span>
-              <a href="https://onespotsolution.online/" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
-                <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
-              </a>
+          </div>
+        </div>
+
+        {/* MIDDLE EMAIL ROW */}
+        <div className={styles.emailContainer}>
+          <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
+            <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
+          </a>
+        </div>
+
+        {/* BOTTOM ROW */}
+        <div className={`${styles.gridRow} ${styles.bottom}`}>
+          <div className={styles.colLeft}>
+            <div className={styles.policyLinks}>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms & Conditions</Link>
+            </div>
+            <p className={styles.copyright}>© 2025 All rights Reserved</p>
+          </div>
+          
+          <div className={styles.colRightBottom}>
+            <div className={styles.addressSection}>
+              <p className={styles.phoneNumbers} style={{ marginBottom: '2rem' }}>+603 8021 5168 &nbsp;|&nbsp; +6019 644 9447</p>
+              <div className={styles.address}>
+                <p>No.17 Jalan USJ 1/33 Taman</p>
+                <p>Perindustrian Subang Permai, 47500</p>
+                <p>Subang Jaya Selangor.</p>
+              </div>
+            </div>
+            
+            <div className={styles.bottomRight}>
+              <div className={styles.developerSignature}>
+                <span>Made by:</span>
+                <a href="https://onespotsolution.online/" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
+                  <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
+                </a>
+              </div>
             </div>
           </div>
-
         </div>
 
       </div>

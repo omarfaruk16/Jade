@@ -2,8 +2,7 @@
   background: #000000;
   color: #ffffff;
   padding: 6rem 24px 3rem;
-  min-height: 100vh;
-  position: sticky;
+  position: relative;
   z-index: 10;
   overflow: hidden;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
@@ -14,14 +13,48 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
 }
 
-/* TOP ROW */
-.topRow {
+/* GRID ROWS */
+.gridRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.gridRow.top {
+  align-items: flex-start;
+}
+
+.gridRow.middle {
+  align-items: flex-end;
+}
+
+.gridRow.bottom {
+  align-items: flex-end;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2rem;
+}
+
+.colLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.colRight {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
+}
+
+.colRightBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
 }
 
@@ -93,16 +126,6 @@
 }
 
 /* MIDDLE ROW */
-.middleRow {
-  margin: 4rem 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 1rem;
-}
-
 .phoneNumbers {
   font-size: 15px;
   font-weight: 400;
@@ -111,17 +134,22 @@
   margin: 0;
 }
 
+.emailContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
 
 .emailText {
   font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  max-width: 900px;
   color: #ffffff;
   transition: opacity 0.2s ease;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
-  text-align: center;
+  text-decoration: none;
 }
 
 .emailText:hover {
@@ -129,26 +157,10 @@
 }
 
 /* BOTTOM ROW */
-.bottomRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
-}
-
-.bottomLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: flex-start;
-}
-
 .policyLinks {
   display: flex;
   gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .policyLinks a {
@@ -197,10 +209,6 @@
     font-size: 26px;
   }
 
-  .bottomLeft {
-    gap: 0.5rem;
-  }
-
   .policyLinks {
     flex-direction: column;
     gap: 0.5rem;
@@ -213,14 +221,24 @@
     padding: 4rem 20px 2rem;
   }
 
-  .container {
-    gap: 3rem;
+  .gridRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .topRow {
+  .colRight {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .colRightBottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2.5rem;
+    gap: 2rem;
+  }
+
+  .container {
+    gap: 3rem;
   }
 
   .tagline {
@@ -239,27 +257,8 @@
     display: none;
   }
 
-  .middleRow {
-    margin: 3rem 0;
-    align-items: flex-start;
-    text-align: left;
-    gap: 0.5rem;
-  }
-
-  .phoneNumbers {
-    font-size: 15px;
-  }
-
-  .emailText {
-    font-size: clamp(1.8rem, 8vw, 3.2rem);
-    word-break: break-all;
-  }
-
-  .bottomRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
-    padding-top: 1.5rem;
+  .emailContainer {
+    margin: 1rem 0;
   }
 
   .address {
