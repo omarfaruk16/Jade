@@ -11,7 +11,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 export default function FaqSection() {
   const [faqs, setFaqs] = useState<any[]>([]);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
     fetch(`${API_BASE}/faq`)

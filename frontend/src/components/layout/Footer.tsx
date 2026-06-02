@@ -2,12 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import jadeLogo from '../../../public/jadelogo.png';
 import styles from './Footer.module.css';
 import ScaleBlur from './ScaleBlur';
-
-const DiamondStarIcon = () => (
-  <span className={styles.diamondStar}>❖</span>
-);
 
 export default function Footer() {
   return (
@@ -19,7 +16,7 @@ export default function Footer() {
           <div className={styles.colLeft}>
             <div className={styles.brandInfo}>
               <Link href="/" className={styles.logo}>
-                <Image src="/jadelogo.png" alt="Jade" width={120} height={40} className={styles.logoImg} />
+                <Image src={jadeLogo} alt="Jade" className={styles.logoImg} />
               </Link>
               <p className={styles.tagline}>
                 We transform your vision into<br />beautifully crafted spaces.

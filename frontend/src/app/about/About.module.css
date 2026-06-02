@@ -565,8 +565,13 @@
   }
 
   .imageCol {
-    flex: 0 0 85%;
+    flex: 0 0 100%;
     scroll-snap-align: center;
+  }
+
+  .heroImagesGrid .imageCol:first-child,
+  .heroImagesGrid .imageCol:last-child {
+    display: none;
   }
 
   .teamSection {

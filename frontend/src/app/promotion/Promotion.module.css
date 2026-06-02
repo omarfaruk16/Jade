@@ -37,6 +37,7 @@
   max-width: var(--container-max, 1600px);
   margin: 0 auto;
   padding-inline: clamp(24px, 6vw, 48px);
+  padding-bottom: 6rem;
 }
 
 .promotionGrid {

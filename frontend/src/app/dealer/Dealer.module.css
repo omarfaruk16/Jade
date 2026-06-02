@@ -623,6 +623,7 @@
   .featureRow {
     grid-template-columns: 1fr;
     gap: 3rem;
+    padding-top: 2rem;
   }
 
   .introInfo p {

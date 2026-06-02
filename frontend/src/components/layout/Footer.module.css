@@ -277,6 +277,11 @@
     align-items: flex-start;
   }
 
+  .emailText {
+    font-size: clamp(1rem, 5vw, 1.6rem);
+    word-break: break-all;
+  }
+
   .address {
     text-align: left;
     order: 1;
