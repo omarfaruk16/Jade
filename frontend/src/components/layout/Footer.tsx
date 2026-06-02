@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import jadeLogo from '@/assets/jadelogo.png';
 import styles from './Footer.module.css';
 import ScaleBlur from './ScaleBlur';
 import API_BASE from '@/lib/api';
@@ -27,7 +26,7 @@ export default function Footer() {
           <div className={styles.colLeft}>
             <div className={styles.brandInfo}>
               <Link href="/" className={styles.logo}>
-                <Image src={jadeLogo} alt="Jade" className={styles.logoImg} />
+                <Image src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
               </Link>
               <p className={styles.tagline}>
                 We transform your vision into<br />beautifully crafted spaces.

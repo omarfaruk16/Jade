@@ -120,7 +120,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       <nav className={styles.navbar}>
 
         <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
-          <img src="/jadelogo.png" alt="Jade" className={styles.logoImg} />
+          <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
         </Link>
 
         <div className={styles.leftNav}>
