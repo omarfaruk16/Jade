@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
 import Image from 'next/image';
-import jadeLogo from '/../../../public/jadelogo.png';
+import jadeLogo from '@/assets/jadelogo.png';
 import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';

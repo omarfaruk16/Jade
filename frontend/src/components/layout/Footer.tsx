@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import jadeLogo from '/../../../public/jadelogo.png';
+import jadeLogo from '@/assets/jadelogo.png';
 import styles from './Footer.module.css';
 import ScaleBlur from './ScaleBlur';
 

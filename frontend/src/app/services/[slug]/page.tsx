@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import jadeLogo from '../../../../public/jadelogo.png';
+import jadeLogo from '@/assets/jadelogo.png';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
