@@ -96,7 +96,15 @@ export default function ProductDetailsPage() {
             <section className={styles.section}>
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
-                  <p className={styles.sectionLabel}>Materials</p>
+                  <p className={styles.sectionLabel}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Materials
+                  </p>
                   <TitleReveal><h2 className={styles.materialLeftTitle}>{mat.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{mat.sectionDesc}</p>
                 </div>
