@@ -366,4 +366,7 @@
     padding: 4px 8px;
     border-radius: 6px;
   }
+  .emailText{
+    font-size: 4rem;
+  }
 }
