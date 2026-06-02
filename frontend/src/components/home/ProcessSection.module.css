@@ -266,4 +266,9 @@
     padding-block: calc(var(--space-lg, 48px) * 0.75);
   }
   .leftColumn { aspect-ratio: 1; }
+  .textRow{
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 }
