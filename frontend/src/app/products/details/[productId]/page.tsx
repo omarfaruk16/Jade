@@ -128,7 +128,15 @@ export default function ProductDetailsPage() {
             <section className={styles.section}>
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
-                  <p className={styles.sectionLabel}>Accessories</p>
+                  <p className={styles.sectionLabel}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Accessories
+                  </p>
                   <TitleReveal><h2 className={styles.materialLeftTitle}>{acc.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{acc.sectionDesc}</p>
                 </div>
@@ -152,7 +160,15 @@ export default function ProductDetailsPage() {
             <section className={styles.section}>
               <div className={styles.materialSection}>
                 <div className={styles.materialLeft}>
-                  <p className={styles.sectionLabel}>Appliances</p>
+                  <p className={styles.sectionLabel}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Appliances
+                  </p>
                   <TitleReveal><h2 className={styles.materialLeftTitle}>{app.sectionTitle}</h2></TitleReveal>
                   <p className={styles.materialLeftDesc}>{app.sectionDesc}</p>
                 </div>
