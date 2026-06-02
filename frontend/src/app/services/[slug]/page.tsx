@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
@@ -93,7 +94,7 @@ export default function ServiceChildPage() {
       <div className={`${styles.subNavWrapper} ${showSubNav ? styles.subNavVisible : ''}`}>
         <div className={styles.subNav}>
           <Link href="/" className={styles.subNavLogo}>
-            <span>J</span><span>ade</span>
+            <Image src="/jadelogo.png" alt="Jade" width={100} height={34} style={{ objectFit: 'contain' }} />
           </Link>
           <div className={styles.subNavLinks}>
             {data.items.map((item: any, idx: number) => (

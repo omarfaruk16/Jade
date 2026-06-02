@@ -73,12 +73,13 @@
 }
 
 .sectionLabel {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   color: #000;
-  margin-bottom: 0.75rem;
+  align-self: flex-start;
 }
 
 .sectionTitle {
@@ -137,7 +138,7 @@
 .typesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1rem;
   margin-top: 3rem;
 }
 
@@ -188,15 +189,14 @@
 .materialLeft {}
 
 .materialLeftTitle {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  color: #000;
-  margin: 0 0 1rem;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
 .materialLeftDesc {
-  font-size: .8rem;
+  font-size: 1.2rem;
   color: #343333;
   line-height: 1.2;
 }
@@ -225,9 +225,9 @@
 }
 
 .materialItemDesc {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #000;
-  line-height: 1.5;
+  line-height: 1.2;
   margin: 0;
 }
 

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
@@ -120,7 +121,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
       <nav className={styles.navbar}>
 
         <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
-          <span>J</span><span>ade</span>
+          <Image src="/jadelogo.png" alt="Jade" width={120} height={40} className={styles.logoImg} />
         </Link>
 
         <div className={styles.leftNav}>

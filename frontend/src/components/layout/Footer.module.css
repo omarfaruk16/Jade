@@ -71,21 +71,15 @@
 }
 
 .logo {
-  font-size: 2.2rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: #ffffff;
 }
 
-.logo span:first-child {
-  color: #34d399;
-}
-
-.logo span:last-child {
-  color: #fb923c;
+.logoImg {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
 }
 
 .tagline {

@@ -33,21 +33,15 @@
 }
 
 .logo {
-  font-size: 1.6rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: #fff;
 }
 
-.logo span:first-child {
-  color: #34d399;
-}
-
-.logo span:last-child {
-  color: #fb923c;
+.logoImg {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 .leftNav {

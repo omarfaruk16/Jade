@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import API_BASE from '@/lib/api';
 import { X, Edit2, Trash2, Megaphone, Folder, MessageSquare, Users, HelpCircle, Settings, PlusCircle, Layers, Box, Upload, Eye } from 'lucide-react';
 import ServicesAdmin from './ServicesAdmin';
@@ -195,7 +196,7 @@ export default function AdminDashboard() {
       {/* Sidebar Navigation */}
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
-          <span>J</span><span>ade</span>
+          <Image src="/jadelogo.png" alt="Jade" width={100} height={34} style={{ objectFit: 'contain' }} />
         </div>
         <nav className={styles.navGroup}>
           {tabs.map(tab => (
