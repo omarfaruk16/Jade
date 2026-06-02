@@ -72,29 +72,29 @@ export default function ContactPage() {
                 </motion.p>
               </div>
 
-               <div className={styles.infoGrid}>
-                  <div className={styles.infoItem}>
-                    <h4>Call us</h4>
-                    <p>{contact?.phone || '+1 123 456 78 90'}</p>
+              <div className={styles.infoGrid}>
+                <div className={styles.infoItem}>
+                  <h4>Call us</h4>
+                  <p>{contact?.phone || '+1 123 456 78 90'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>General inquiries</h4>
+                  <p>{contact?.email || 'hello@jadespaces.com'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>Social</h4>
+                  <div className={styles.socialList}>
+                    {contact?.socials?.map((s: any) => (
+                      <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
+                    ))}
+                    {!contact && <p>Instagram, LinkedIn, Twitter</p>}
                   </div>
-                  <div className={styles.infoItem}>
-                    <h4>General inquiries</h4>
-                    <p>{contact?.email || 'hello@jadespaces.com'}</p>
-                  </div>
-                  <div className={styles.infoItem}>
-                    <h4>Social</h4>
-                    <div className={styles.socialList}>
-                      {contact?.socials?.map((s: any) => (
-                        <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
-                      ))}
-                      {!contact && <p>Instagram, LinkedIn, Twitter</p>}
-                    </div>
-                  </div>
-                  <div className={styles.infoItem}>
-                    <h4>Address</h4>
-                    <p className={styles.addressText}>{contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}</p>
-                  </div>
-               </div>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>Address</h4>
+                  <p className={styles.addressText}>{contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}</p>
+                </div>
+              </div>
             </div>
 
             {/* Right Side: Form */}
@@ -102,8 +102,8 @@ export default function ContactPage() {
               <div className={styles.formCard}>
                 {submitted ? (
                   <div className={styles.formSuccess}>
-                     <TitleReveal><h3>Message Sent!</h3></TitleReveal>
-                     <p>We will get back to you shortly.</p>
+                    <TitleReveal><h3>Message Sent!</h3></TitleReveal>
+                    <p>We will get back to you shortly.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
@@ -128,9 +128,6 @@ export default function ContactPage() {
         </SectionReveal>
 
         {/* Shared FAQ Section */}
-        <SectionReveal>
-          <FaqSection />
-        </SectionReveal>
       </div>
 
       <Footer />

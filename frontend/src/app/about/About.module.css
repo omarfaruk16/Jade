@@ -24,6 +24,7 @@
   margin: 0 auto;
   padding-inline: clamp(24px, 6vw, 48px);
   box-sizing: border-box;
+  background: white;
 }
 
 /* Header Section */
@@ -254,7 +255,7 @@
 /* Philosophy Section */
 .philosophySection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 4rem;
   padding: 8rem 0;
 }

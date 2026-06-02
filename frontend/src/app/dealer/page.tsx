@@ -11,6 +11,7 @@ import CeoBadge from '@/components/shared/CeoBadge';
 import WhatsIncluded from '@/components/shared/WhatsIncluded';
 import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
+import DreamSection from '@/components/home/DreamSection';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
@@ -66,22 +67,22 @@ export default function DealerPage() {
 
       {/* Hero */}
       <SectionReveal>
-<section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>
-            <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
-          </h1>
-          <motion.p
-            className={styles.subtitle}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.3 }}
-          >
-            We specialize in delivering high-quality architectural solutions, accessories, and products to a global client base.
-          </motion.p>
-        </div>
-      </section>
-</SectionReveal>
+        <section className={styles.hero}>
+          <div className={styles.heroContent}>
+            <h1 className={styles.title}>
+              <ScaleBlur text="Worldwide Export Import" stagger={0.04} />
+            </h1>
+            <motion.p
+              className={styles.subtitle}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.3 }}
+            >
+              We specialize in delivering high-quality architectural solutions, accessories, and products to a global client base.
+            </motion.p>
+          </div>
+        </section>
+      </SectionReveal>
 
       {/* Intro */}
       <SectionReveal>
@@ -90,10 +91,10 @@ export default function DealerPage() {
             <div className={styles.featureRow}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
-                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
-                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
-                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="6" r="2.5" fill="#000" />
+                  <circle cx="12" cy="18" r="2.5" fill="#000" />
+                  <circle cx="6" cy="12" r="2.5" fill="#000" />
+                  <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
                 <span>Insights</span>
               </div>
@@ -114,7 +115,7 @@ export default function DealerPage() {
               <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
               <div className={styles.officeHeaderRight}>
                 <p>Learn more about our practice, or read<br />stories from our studio.</p>
-                <button className={styles.contactNowBtn} onClick={() => window.location.href='/contact'}>Contact now</button>
+                <button className={styles.contactNowBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
               </div>
             </div>
 
@@ -122,10 +123,10 @@ export default function DealerPage() {
             <div className={styles.featureRow}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
-                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
-                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
-                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="6" r="2.5" fill="#000" />
+                  <circle cx="12" cy="18" r="2.5" fill="#000" />
+                  <circle cx="6" cy="12" r="2.5" fill="#000" />
+                  <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
                 <span>What&apos;s included</span>
               </div>
@@ -150,10 +151,10 @@ export default function DealerPage() {
             <div className={styles.featureRow}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
-                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
-                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
-                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="6" r="2.5" fill="#000" />
+                  <circle cx="12" cy="18" r="2.5" fill="#000" />
+                  <circle cx="6" cy="12" r="2.5" fill="#000" />
+                  <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
                 <span>What&apos;s included</span>
               </div>
@@ -164,10 +165,10 @@ export default function DealerPage() {
             <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', borderTop: '1px solid #eee' }}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="6" r="2.5" fill="#000"/>
-                  <circle cx="12" cy="18" r="2.5" fill="#000"/>
-                  <circle cx="6" cy="12" r="2.5" fill="#000"/>
-                  <circle cx="18" cy="12" r="2.5" fill="#000"/>
+                  <circle cx="12" cy="6" r="2.5" fill="#000" />
+                  <circle cx="12" cy="18" r="2.5" fill="#000" />
+                  <circle cx="6" cy="12" r="2.5" fill="#000" />
+                  <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
                 <span>Partners</span>
               </div>
@@ -191,7 +192,11 @@ export default function DealerPage() {
         </section>
       </SectionReveal>
 
+      <SectionReveal>
+        <DreamSection />
+      </SectionReveal>
       {/* Shared FAQ Section */}
+
       <SectionReveal>
         <FaqSection />
       </SectionReveal>
@@ -249,53 +254,53 @@ export default function DealerPage() {
                     <div className={styles.formRow}>
                       <div className={styles.inputGroup}>
                         <label>Full Name</label>
-                        <input type="text" placeholder="Your Full Name" required value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} />
+                        <input type="text" placeholder="Your Full Name" required value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} />
                       </div>
                       <div className={styles.inputGroup}>
                         <label>Email</label>
-                        <input type="email" placeholder="email@example.com" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                        <input type="email" placeholder="email@example.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
                       </div>
                     </div>
 
                     <div className={styles.formRow}>
                       <div className={styles.inputGroup}>
                         <label>Phone Number</label>
-                        <input type="tel" placeholder="+1 (555) 000-0000" required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
+                        <input type="tel" placeholder="+1 (555) 000-0000" required value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                       </div>
                       <div className={styles.inputGroup}>
                         <label>Business Name</label>
-                        <input type="text" placeholder="Company Name" required value={formData.businessName} onChange={e => setFormData({...formData, businessName: e.target.value})} />
+                        <input type="text" placeholder="Company Name" required value={formData.businessName} onChange={e => setFormData({ ...formData, businessName: e.target.value })} />
                       </div>
                     </div>
 
                     <div className={styles.inputGroup}>
                       <label>Business Location</label>
-                      <input type="text" placeholder="City, Country" required value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
+                      <input type="text" placeholder="City, Country" required value={formData.location} onChange={e => setFormData({ ...formData, location: e.target.value })} />
                     </div>
 
 
-                      <div className={styles.inputGroup}>
-                        <label>Budget of your deal</label>
-                        <select required value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})}>
-                          <option value="">Select...</option>
-                          <option value="500,000-700,000 RM">500,000-700,000 RM</option>
-                          <option value="700,000-1,000,000 RM">700,000-1,000,000 RM</option>
-                          <option value="1,000,000 and above RM">1,000,000 and above RM</option>
-                        </select>
-                      </div>
-                      <div className={styles.inputGroup}>
-                        <label>Why are you interested to become a dealer?</label>
-                        <select required value={formData.interest} onChange={e => setFormData({...formData, interest: e.target.value})}>
-                          <option value="">Select...</option>
-                          <option value="Want to be an entrepreneur with jade">Want to be an entrepreneur with jade</option>
-                          <option value="Expand my current business">Expand my current business</option>
-                          <option value="Others">Others</option>
-                        </select>
-                      </div>
+                    <div className={styles.inputGroup}>
+                      <label>Budget of your deal</label>
+                      <select required value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}>
+                        <option value="">Select...</option>
+                        <option value="500,000-700,000 RM">500,000-700,000 RM</option>
+                        <option value="700,000-1,000,000 RM">700,000-1,000,000 RM</option>
+                        <option value="1,000,000 and above RM">1,000,000 and above RM</option>
+                      </select>
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Why are you interested to become a dealer?</label>
+                      <select required value={formData.interest} onChange={e => setFormData({ ...formData, interest: e.target.value })}>
+                        <option value="">Select...</option>
+                        <option value="Want to be an entrepreneur with jade">Want to be an entrepreneur with jade</option>
+                        <option value="Expand my current business">Expand my current business</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
 
                     <div className={styles.inputGroup}>
                       <label>Message</label>
-                      <textarea placeholder="Tell us more about your business..." value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+                      <textarea placeholder="Tell us more about your business..." value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} />
                     </div>
 
                     <button type="submit" className={styles.submitBtn}>Submit</button>

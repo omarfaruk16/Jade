@@ -150,9 +150,6 @@ export default function ImportExportPage() {
                 flawlessly? Will it last? At Jade, we remove doubt with clarity, precision, and lasting
                 support — a journey from vision to peace of mind.
               </p>
-              <div className={styles.contactBtnContainer}>
-                <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Get a Quote</button>
-              </div>
 
             </div>
             <div className={styles.processCards}>
@@ -181,7 +178,6 @@ export default function ImportExportPage() {
               <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
               <div className={styles.insightsHeaderRight}>
                 <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
-                <button className={styles.contactBtn}>View all</button>
               </div>
             </div>
 
