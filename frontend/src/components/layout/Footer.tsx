@@ -2,11 +2,22 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import jadeLogo from '@/assets/jadelogo.png';
 import styles from './Footer.module.css';
 import ScaleBlur from './ScaleBlur';
+import API_BASE from '@/lib/api';
 
 export default function Footer() {
+  const [socials, setSocials] = useState<{ id: number; name: string; url: string }[]>([]);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/contact`)
+      .then(res => res.json())
+      .then(data => setSocials(data?.socials ?? []))
+      .catch(() => {});
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -31,12 +42,9 @@ export default function Footer() {
               <Link href="/contact">Contact</Link>
             </div>
             <div className={styles.topRightIcon}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="4" r="2.5" fill="currentColor" />
-                <circle cx="12" cy="20" r="2.5" fill="currentColor" />
-                <circle cx="4" cy="12" r="2.5" fill="currentColor" />
-                <circle cx="20" cy="12" r="2.5" fill="currentColor" />
-              </svg>
+              {socials.map(s => (
+                <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>{s.name}</a>
+              ))}
             </div>
           </div>
         </div>
