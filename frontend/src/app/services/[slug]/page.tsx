@@ -41,6 +41,7 @@ export default function ServiceChildPage() {
   const [contact, setContact] = useState<any>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch(`${API_BASE}/services/child/${slug}`)
       .then(r => r.json())
       .then(childData => {
@@ -258,23 +259,6 @@ export default function ServiceChildPage() {
       </div>
 
       {/* ── Full Width Contact Section ── */}
-      <SectionReveal>
-        <section className={styles.contactSection}>
-          <div className={styles.contactInner}>
-            <div>
-              <p className={styles.contactLabel}>Get In Touch</p>
-              <TitleReveal><h2 className={styles.contactTitle}>Interested in {data.name}?</h2></TitleReveal>
-              <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
-              <button className={styles.contactBtnLarge} onClick={() => window.location.href = '/contact'}>Contact Us</button>
-            </div>
-            <div className={styles.contactDetails}>
-              {contact?.phone && <div className={styles.contactItem}><h4>Call Us</h4><p>{contact.phone}</p></div>}
-              {contact?.email && <div className={styles.contactItem}><h4>Email</h4><p>{contact.email}</p></div>}
-              {contact?.address && <div className={styles.contactItem}><h4>Visit Us</h4><p>{contact.address}</p></div>}
-            </div>
-          </div>
-        </section>
-      </SectionReveal>
 
       <Footer />
     </div>

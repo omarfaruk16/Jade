@@ -26,7 +26,8 @@
   border-radius: 20px;
   overflow: hidden;
   background: #e8e8e8;
-  min-height: 400px;
+  max-height: 460px;
+  max-width: 350px;
 }
 
 .mediaImg {
@@ -110,8 +111,8 @@
 
 /* ── Meta row: label | text | CTA ── */
 .metaRow {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   gap: 2rem;
 }
 
@@ -151,6 +152,7 @@
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  width: fit-content;
   white-space: nowrap;
   transition: all 0.2s ease;
   font-family: inherit;

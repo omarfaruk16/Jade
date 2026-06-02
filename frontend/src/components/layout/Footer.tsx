@@ -70,9 +70,9 @@ export default function Footer() {
               <Link href="/privacy">Privacy Policy</Link>
               <Link href="/terms">Terms & Conditions</Link>
             </div>
-            <p className={styles.copyright}>© 2025 All rights Reserved</p>
+            <p className={styles.copyright}>© 2026 All rights Reserved</p>
           </div>
-          
+
           <div className={styles.colRightBottom}>
             <div className={styles.addressSection}>
               <div className={styles.address}>
@@ -81,12 +81,12 @@ export default function Footer() {
                 <p>Subang Jaya Selangor.</p>
               </div>
             </div>
-            
+
             <div className={styles.bottomRight}>
               <div className={styles.developerSignature}>
                 <span>Made by:</span>
-                <a href="https://onespotsolution.online/" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
-                  <img src="/images/1spotsolution-logo.webp" alt="1spot solution logo" className={styles.devLogo} />
+                <a href="https://www.grafinut.com" target="_blank" rel="noopener noreferrer" className={styles.devLogoLink}>
+                  <img src="/images/GRAFINUT.png" alt="1spot solution logo" className={styles.devLogo} />
                 </a>
               </div>
             </div>

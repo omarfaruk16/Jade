@@ -22,7 +22,7 @@
   text-align: center;
   color: #fff;
   padding: 6px;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
 .heroContainer {
@@ -734,17 +734,11 @@
   gap: 3rem;
 }
 
-.processCard:first-child {
-  padding-left: 0;
-}
-
-.processCard:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.processCard:not(:first-child) {
-  padding-left: 2.5rem;
+.processCard {
+  margin-right: 10px;
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 .processCardHeader {

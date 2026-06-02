@@ -24,6 +24,7 @@
   text-align: center;
   color: #fff;
   margin: 6px;
+  margin-bottom: 6rem;
   border-radius: 10px;
 }
 
@@ -62,6 +63,7 @@
 /* Intro Section */
 .intro {
   padding: 3.5rem 0;
+  background: #f8f8f8;
 }
 
 .introGrid {

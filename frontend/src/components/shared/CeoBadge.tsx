@@ -1,7 +1,7 @@
 // Shared CEO/Founder profile badge used across all pages
 export const CEO_NAME = 'Dr. Shiful Islam';
 export const CEO_ROLE = 'Founder & CEO';
-export const CEO_IMAGE = '/images/ceo.webp';
+export const CEO_IMAGE = '/images/jade_ceo.avif';
 
 interface CeoBadgeProps {
   className?: string;

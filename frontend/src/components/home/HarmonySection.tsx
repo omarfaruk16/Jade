@@ -10,10 +10,10 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 const FourDots = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="6"  r="1.5" fill="currentColor"/>
-    <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
-    <circle cx="6"  cy="12" r="1.5" fill="currentColor"/>
-    <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="12" cy="6" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+    <circle cx="6" cy="12" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="12" r="1.5" fill="currentColor" />
   </svg>
 );
 
@@ -67,7 +67,7 @@ export default function HarmonySection() {
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                Design, Installation, and Support in Harmony
+                Design, Installation, and Support in <br></br>Harmony
               </motion.h2>
 
               {/* Meta row: label | paragraph | CTA */}
@@ -115,7 +115,7 @@ export default function HarmonySection() {
       {/* Video Modal */}
       <AnimatePresence>
         {isVideoOpen && (
-          <motion.div 
+          <motion.div
             className={styles.videoModal}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -125,17 +125,17 @@ export default function HarmonySection() {
             <button className={styles.closeBtn} onClick={() => setIsVideoOpen(false)}>
               <X size={24} />
             </button>
-            <motion.div 
+            <motion.div
               className={styles.videoContainer}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={e => e.stopPropagation()}
             >
-              <video 
-                src="/images/download.mp4" 
-                controls 
-                autoPlay 
+              <video
+                src="/images/download.mp4"
+                controls
+                autoPlay
                 className={styles.videoElement}
               />
             </motion.div>

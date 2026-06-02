@@ -137,7 +137,7 @@
   position: fixed;
   top: 100px;
   left: 25px;
-  padding: 10px;
+  padding: 20px;
   right: 25px;
   width: calc(100% - 50px);
   height: auto;
@@ -179,9 +179,9 @@
   flex-direction: column;
 }
 
-.megaMenuGroup + .megaMenuGroup {
-  margin-top: 2.8rem;
-  padding-top: 2.8rem;
+.megaMenuGroup+.megaMenuGroup {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -247,7 +247,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.6rem;
-  padding: 0.6rem;
+  padding: 20px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   cursor: default;
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -470,8 +470,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .skeleton {

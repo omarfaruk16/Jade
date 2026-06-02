@@ -18,19 +18,25 @@ const GEO_URL =
 const HIGHLIGHTED = new Set([
   '124', // Canada
   '036', // Australia
+  '050', // Bangladesh
+  '724', // Spain
+  '792', // Turkey
+  '784', // UAE
+  '764', // Thailand
+  '458', // Malaysia
 ]);
 
 // ── Marker pins matching the reference exactly ────────────────────────────────
 // Reference shows 8 markers: Canada, Spain, Turkey, UAE, India, Thailand, Malaysia, Australia
 const MARKERS: { id: string; label: string; info: string; coordinates: [number, number] }[] = [
-  { id: 'canada',    label: 'Canada',    info: 'Exporting for 8 years',  coordinates: [-95,  57] },
-  { id: 'spain',     label: 'Spain',     info: 'Exporting for 5 years',  coordinates: [ -4,  40] },
-  { id: 'turkey',    label: 'Turkey',    info: 'Exporting for 6 years',  coordinates: [ 32,  39] },
-  { id: 'uae',       label: 'UAE',       info: 'Exporting for 7 years',  coordinates: [ 55,  25] },
-  { id: 'india',     label: 'India',     info: 'Exporting for 9 years',  coordinates: [ 80,  22] },
-  { id: 'thailand',  label: 'Thailand',  info: 'Exporting for 4 years',  coordinates: [101,  15] },
-  { id: 'malaysia',  label: 'Malaysia',  info: 'Exporting for 6 years',  coordinates: [110,   3] },
-  { id: 'australia', label: 'Australia', info: 'Exporting for 10 years', coordinates: [134, -26] },
+  { id: 'canada', label: 'Canada', info: 'Exporting for 5 years', coordinates: [-95, 57] },
+  { id: 'spain', label: 'Spain', info: 'Exporting for 5 years', coordinates: [-4, 40] },
+  { id: 'turkey', label: 'Turkey', info: 'Exporting for 5 years', coordinates: [32, 39] },
+  { id: 'uae', label: 'UAE', info: 'Exporting for 4 years', coordinates: [55, 25] },
+  { id: 'bangladesh', label: 'Bangladesh', info: 'Exporting for 3 years', coordinates: [90, 24] },
+  { id: 'thailand', label: 'Thailand', info: 'Exporting for 5 years', coordinates: [101, 15] },
+  { id: 'malaysia', label: 'Malaysia', info: 'Exporting for 5 years', coordinates: [110, 3] },
+  { id: 'australia', label: 'Australia', info: 'Exporting for 5 years', coordinates: [134, -26] },
 ];
 
 export default function WorldMap() {
@@ -40,7 +46,7 @@ export default function WorldMap() {
     <div className={styles.mapWrapper}>
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ scale: 127, center: [10,30] }}
+        projectionConfig={{ scale: 127, center: [10, 30] }}
         style={{ width: '100%', height: 'auto', display: 'block' }}
         viewBox="0 0 800 520"
       >
@@ -50,19 +56,19 @@ export default function WorldMap() {
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              const isOrange = HIGHLIGHTED.has(String(geo.id));
+              const isSelected = HIGHLIGHTED.has(String(geo.id));
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={isOrange ? '#F05C46' : '#1a1a1a'}
-                  stroke={isOrange ? 'rgba(255,255,255,0.5)' : '#333'}
+                  fill={isSelected ? '#5abf61' : '#1a1a1a'}
+                  stroke={isSelected ? 'rgba(255,255,255,0.5)' : '#333'}
                   strokeWidth={0.4}
                   style={{
                     default: { outline: 'none' },
-                    hover:   {
+                    hover: {
                       outline: 'none',
-                      fill: isOrange ? '#e0432e' : '#242424',
+                      fill: isSelected ? '#0f5c09' : '#242424',
                     },
                     pressed: { outline: 'none' },
                   }}
@@ -84,15 +90,15 @@ export default function WorldMap() {
               {/* Outer translucent ring */}
               <circle
                 r={isHovered ? 9 : 7}
-                fill="rgba(240,92,70,0.20)"
-                stroke="rgba(240,92,70,0.35)"
+                fill="rgba(19, 117, 11, 0.20)"
+                stroke="rgba(19, 117, 11, 0.35)"
                 strokeWidth={1}
                 style={{ transition: 'r 0.2s ease', cursor: 'pointer' }}
               />
               {/* Centre dot */}
               <circle
                 r={isHovered ? 4.5 : 3.5}
-                fill="#F05C46"
+                fill="#13750B"
                 stroke="rgba(255,255,255,0.9)"
                 strokeWidth={1.2}
                 style={{ transition: 'r 0.2s ease', cursor: 'pointer' }}

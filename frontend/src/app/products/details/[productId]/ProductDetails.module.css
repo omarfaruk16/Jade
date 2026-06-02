@@ -58,7 +58,7 @@
 
 .page {
   color: #000;
-  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  font-family: inherit;
 }
 
 /* ── Section Wrapper ── */
@@ -182,7 +182,7 @@
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 5rem;
-  align-items: center;
+  align-items: start;
   margin-top: 3rem;
 }
 

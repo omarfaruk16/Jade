@@ -8,10 +8,10 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 const FourDots = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="6"  r="1.5" fill="currentColor"/>
-    <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
-    <circle cx="6"  cy="12" r="1.5" fill="currentColor"/>
-    <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="12" cy="6" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+    <circle cx="6" cy="12" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="12" r="1.5" fill="currentColor" />
   </svg>
 );
 
@@ -27,7 +27,7 @@ export default function DreamSection() {
         <div className={`jade-container ${styles.contentContainer}`}>
           {/* Top content area */}
           <div className={styles.topArea}>
-            <motion.h2 
+            <motion.h2
               className={styles.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export default function DreamSection() {
               We’re set to build your dream just say the word.
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               className={styles.description}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export default function DreamSection() {
           </div>
 
           {/* Floating Card at Bottom Right */}
-          <motion.div 
+          <motion.div
             className={styles.floatingCard}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export default function DreamSection() {
             {/* Top row of card */}
             <div className={styles.cardHeader}>
               <div className={styles.profileInfo}>
-                <img src="/images/ceo.webp" alt="Warsty Roslan" className={styles.avatar} />
+                <img src="/images/jade_ceo.jpeg" alt="Warsty Roslan" className={styles.avatar} />
                 <div className={styles.profileText}>
                   <h4 className={styles.profileName}>Warsty Roslan</h4>
                   <p className={styles.profileRole}>Sale Expert</p>
