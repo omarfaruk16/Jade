@@ -24,22 +24,22 @@ export default function ProductDetailsPage() {
       .then(data => { if (!data.error) setProduct(data); setLoading(false); })
       .catch(() => setLoading(false));
     fetch(`${API_BASE}/contact`)
-      .then(r => r.json()).then(setContact).catch(() => {});
+      .then(r => r.json()).then(setContact).catch(() => { });
   }, [productId]);
 
   if (loading) return <div className={styles.loading}>Loading…</div>;
   if (!product) return <div className={styles.loading}>Product not found.</div>;
 
-  const fadeUp = { hidden:{opacity:0,y:40}, visible:{opacity:1,y:0,transition:{duration:0.8,ease:[0.16,1,0.3,1]}} };
+  const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } };
 
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
 
       {/* ── Hero ── */}
-      <div className={styles.heroSection} style={{ backgroundImage:`url(${product.coverImage})` }}>
-        <motion.div className={styles.heroOverlay} initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:1.2,delay:0.2}}>
-          <motion.h1 
+      <div className={styles.heroSection} style={{ backgroundImage: `url(${product.coverImage})` }}>
+        <motion.div className={styles.heroOverlay} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.2 }}>
+          <motion.h1
             className={styles.heroTitle}
             initial={{ opacity: 0.001, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function ProductDetailsPage() {
               {product.subtitle && <p className={styles.sectionSubtitle}>{product.subtitle}</p>}
               <div className={styles.descGrid}>
                 {product.descriptions.map((d: any, i: number) => (
-                  <motion.div key={d.id} className={styles.descCard} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} transition={{duration:0.6,delay:i*0.1}} viewport={{once:true}}>
+                  <motion.div key={d.id} className={styles.descCard} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}>
                     <TitleReveal><h3 className={styles.descCardTitle}>{d.title}</h3></TitleReveal>
                     <p className={styles.descCardText}>{d.description}</p>
                   </motion.div>
@@ -80,7 +80,7 @@ export default function ProductDetailsPage() {
               <TitleReveal><h2 className={styles.sectionTitle}>Types of {product.title}</h2></TitleReveal>
               <div className={styles.typesGrid}>
                 {product.types.map((t: any, i: number) => (
-                  <motion.div key={t.id} className={styles.typeCard} initial={{opacity:0,scale:0.95}} whileInView={{opacity:1,scale:1}} transition={{duration:0.5,delay:i*0.08}} viewport={{once:true}}>
+                  <motion.div key={t.id} className={styles.typeCard} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: i * 0.08 }} viewport={{ once: true }}>
                     <img src={t.image} alt={t.name} />
                     <div className={styles.typeOverlay}><span className={styles.typeName}>{t.name}</span></div>
                   </motion.div>
@@ -102,7 +102,7 @@ export default function ProductDetailsPage() {
                 </div>
                 <div className={styles.materialItemsGrid}>
                   {mat.items?.map((item: any, i: number) => (
-                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                    <motion.div key={item.id} className={styles.materialItem} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.1 }} viewport={{ once: true }}>
                       {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
                       <p className={styles.materialItemTitle}>{item.title}</p>
                       <p className={styles.materialItemDesc}>{item.description}</p>
@@ -126,7 +126,7 @@ export default function ProductDetailsPage() {
                 </div>
                 <div className={styles.materialItemsGrid}>
                   {acc.items?.map((item: any, i: number) => (
-                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                    <motion.div key={item.id} className={styles.materialItem} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.1 }} viewport={{ once: true }}>
                       {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
                       <p className={styles.materialItemTitle}>{item.title}</p>
                       <p className={styles.materialItemDesc}>{item.description}</p>
@@ -150,7 +150,7 @@ export default function ProductDetailsPage() {
                 </div>
                 <div className={styles.materialItemsGrid}>
                   {app.items?.map((item: any, i: number) => (
-                    <motion.div key={item.id} className={styles.materialItem} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} transition={{duration:0.5,delay:i*0.1}} viewport={{once:true}}>
+                    <motion.div key={item.id} className={styles.materialItem} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.1 }} viewport={{ once: true }}>
                       {item.image && <img src={item.image} alt={item.title} className={styles.materialItemImg} />}
                       <p className={styles.materialItemTitle}>{item.title}</p>
                       <p className={styles.materialItemDesc}>{item.description}</p>
@@ -165,23 +165,6 @@ export default function ProductDetailsPage() {
       </div>
 
       {/* ── Contact ── */}
-      <SectionReveal>
-        <section className={styles.contactSection}>
-          <div className={styles.contactInner}>
-            <div>
-              <p className={styles.sectionLabel} style={{color:'rgba(255,255,255,0.4)'}}>Get In Touch</p>
-              <TitleReveal><h2 className={styles.contactTitle}>Interested in {product.title}?</h2></TitleReveal>
-              <p className={styles.contactText}>Our team is ready to help you find the perfect solution for your space. Reach out and let's create something beautiful together.</p>
-              <button className={styles.contactBtn} onClick={()=>window.location.href='/contact'}>Contact Us</button>
-            </div>
-            <div className={styles.contactDetails}>
-              {contact?.phone && <div className={styles.contactItem}><h4>Call Us</h4><p>{contact.phone}</p></div>}
-              {contact?.email && <div className={styles.contactItem}><h4>Email</h4><p>{contact.email}</p></div>}
-              {contact?.address && <div className={styles.contactItem}><h4>Visit Us</h4><p>{contact.address}</p></div>}
-            </div>
-          </div>
-        </section>
-      </SectionReveal>
 
       <Footer />
     </div>

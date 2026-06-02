@@ -58,7 +58,6 @@
 
 .page {
   color: #000;
-  font-family: inherit;
 }
 
 /* ── Section Wrapper ── */
@@ -88,7 +87,7 @@
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 0 0 0.75rem;
-  color: #000;
+  color: #222222;
 }
 
 .sectionSubtitle {
@@ -197,15 +196,15 @@
 }
 
 .materialLeftDesc {
-  font-size: 1rem;
-  color: #000;
-  line-height: 1.8;
+  font-size: .8rem;
+  color: #343333;
+  line-height: 1.2;
 }
 
 .materialItemsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .materialItem {}
