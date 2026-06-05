@@ -432,13 +432,16 @@
 }
 
 .subNavLogo {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: -0.02em;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  text-decoration: none;
+}
+
+
+.subNavLogo img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 .subNavLogo span:first-child {
