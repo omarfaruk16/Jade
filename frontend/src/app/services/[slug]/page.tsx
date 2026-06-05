@@ -94,7 +94,7 @@ export default function ServiceChildPage() {
         <div className={styles.subNav}>
 
           <Link href="/" className={styles.subNavLogo} >
-            <img src="/images/jadelogo.png" alt="Jade" height={34} style={{ objectFit: 'contain' }} />
+            <img src="/images/jadelogo.png" alt="Jade" style={{ objectFit: 'contain' }} />
           </Link>
 
           <div className={styles.subNavLinks}>
