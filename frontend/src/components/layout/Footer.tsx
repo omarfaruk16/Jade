@@ -13,8 +13,9 @@ export default function Footer() {
     fetch(`${API_BASE}/contact`)
       .then(res => res.json())
       .then(data => setSocials(data?.socials ?? []))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
+
 
   return (
     <footer className={styles.footer}>

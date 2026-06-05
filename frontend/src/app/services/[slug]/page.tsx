@@ -92,9 +92,11 @@ export default function ServiceChildPage() {
       {/* Floating Sticky Sub-navigation */}
       <div className={`${styles.subNavWrapper} ${showSubNav ? styles.subNavVisible : ''}`}>
         <div className={styles.subNav}>
-          <Link href="/" className={styles.subNavLogo}>
-            <Image src="/images/jadelogo.png" alt="Jade" height={34} style={{ objectFit: 'contain' }} />
+
+          <Link href="/" className={styles.subNavLogo} >
+            <img src="/images/jadelogo.png" alt="Jade" height={34} style={{ objectFit: 'contain' }} />
           </Link>
+
           <div className={styles.subNavLinks}>
             {data.items.map((item: any, idx: number) => (
               <button
