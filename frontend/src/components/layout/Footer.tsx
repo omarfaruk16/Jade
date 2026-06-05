@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from './Footer.module.css';
 import ScaleBlur from './ScaleBlur';
@@ -26,7 +25,7 @@ export default function Footer() {
           <div className={styles.colLeft}>
             <div className={styles.brandInfo}>
               <Link href="/" className={styles.logo}>
-                <Image src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
+                <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
               </Link>
               <p className={styles.tagline}>
                 We transform your vision into<br />beautifully crafted spaces.

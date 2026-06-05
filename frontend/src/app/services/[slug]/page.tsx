@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 import API_BASE from '@/lib/api';
 import DOMPurify from 'isomorphic-dompurify';
 import Navbar from '@/components/layout/Navbar';
@@ -104,7 +103,7 @@ export default function ServiceChildPage() {
                 className={`${styles.subNavBtn} ${activeItem === item.id ? styles.subNavBtnActive : ''}`}
               >
                 {activeItem === item.id && <span className={styles.redDot} />}
-                <span className={styles.subNavNum}>0{idx + 1}</span> {item.title}
+                <span className={styles.subNavNum}></span> {item.title}
               </button>
             ))}
           </div>
