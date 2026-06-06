@@ -82,12 +82,12 @@ export default function ImportExportPage() {
 
               <div className={styles.middleCol}>
                 <div className={styles.conceptItem}>
-                  <h4>Concept Development</h4>
-                  <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
+                  <h4>Strategic Workspace Planning</h4>
+                  <p>We begin by understanding how people work, collaborate, and interact within a space. Through thoughtful planning and efficient layouts, we create workplaces that enhance productivity, support flexibility, and encourage meaningful connections among teams.</p>
                 </div>
                 <div className={styles.conceptItem}>
-                  <h4>Concept Development</h4>
-                  <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
+                  <h4>Brand-Driven Interior Experience</h4>
+                  <p>Every office is designed to reflect the identity and values of the organization. From material selections and lighting to custom furniture and visual elements, we create professional environments that strengthen company culture and leave a lasting impression on employees and visitors alike.</p>
                 </div>
               </div>
 

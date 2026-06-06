@@ -10,10 +10,10 @@ const QuoteSvg = () => (
 );
 
 const DEFAULT_QUOTES = [
-  'The design combines neutral color palettes—such as whites, grays, and soft pastels',
-  'The design combines neutral color palettes—such as whites, grays, and soft pastels',
-  'The design combines neutral color palettes—such as whites, grays, and soft pastels',
-  'The design combines neutral color palettes—such as whites, grays, and soft pastels',
+  'Our products are crafted under strict international quality standards, combining premium materials, skilled craftsmanship, and rigorous quality control to ensure lasting performance and exceptional value.',
+  'With flexible manufacturing capabilities and tailored production solutions, we deliver customized furniture and interior products that meet the unique requirements of diverse global projects.',
+  'Supported by efficient logistics and professional coordination, we ensure seamless export operations and reliable delivery for clients, distributors, and partners around the world.',
+  'We build long-term relationships through trust, consistency, and dedicated support, creating sustainable partnerships that help our clients and dealers grow with confidence.',
 ];
 
 interface WhatsIncludedProps {
