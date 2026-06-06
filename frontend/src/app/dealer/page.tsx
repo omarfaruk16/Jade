@@ -22,6 +22,28 @@ interface Partner {
   name: string;
 }
 
+const dealerBenefits = [
+  {
+    title: 'Exclusive Product Access',
+    description:
+      'Gain access to our complete portfolio of premium furniture and interior solutions designed for residential, commercial, and hospitality projects worldwide.',
+  },
+  {
+    title: 'Dedicated Business Support',
+    description:
+      'Our team provides continuous guidance, technical assistance, and responsive communication to help partners operate efficiently and confidently.',
+  },
+  {
+    title: 'Flexible Supply & Logistics',
+    description:
+      'With reliable production capabilities and organized export processes, we ensure timely deliveries and seamless order fulfillment for every market.',
+  },
+  {
+    title: 'Long-Term Growth Opportunities',
+    description:
+      'We believe in building sustainable partnerships through trust, collaboration, and shared success, creating opportunities for continuous business expansion.',
+  },
+];
 export default function DealerPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
   const [formData, setFormData] = useState({
@@ -128,10 +150,10 @@ export default function DealerPage() {
                   <circle cx="6" cy="12" r="2.5" fill="#000" />
                   <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
-                <span>What&apos;s included</span>
+                <span>Dealer Partnership Benefits</span>
               </div>
               <div className={styles.featureGridText}>
-                {[1, 2, 3, 4].map(i => (
+                {dealerBenefits.map((item, i) => (
                   <motion.div
                     key={i}
                     className={styles.conceptBlock}
@@ -140,8 +162,8 @@ export default function DealerPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: i * 0.1 }}
                   >
-                    <h4>Concept Development</h4>
-                    <p>We started by capturing the essence of coastal life—light, air, and movement. The palette leaned into ocean blues, sandy neutrals, and breezy white finishes.</p>
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
                   </motion.div>
                 ))}
               </div>
