@@ -37,8 +37,10 @@ export default function ServiceChildPage() {
   const [activeItem, setActiveItem] = useState<string>('');
   const [showSubNav, setShowSubNav] = useState(false);
   const itemRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const activeItemRef = useRef<string>('');
+  const dataRef = useRef<any>(null);
 
-  const [contact, setContact] = useState<any>(null);
+  const [contact, setContact] = useState<unknown>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,7 +48,11 @@ export default function ServiceChildPage() {
       .then(r => r.json())
       .then(childData => {
         setData(childData);
-        if (childData.items?.length > 0) setActiveItem(childData.items[0].id);
+        dataRef.current = childData;
+        if (childData.items?.length > 0) {
+          setActiveItem(childData.items[0].id);
+          activeItemRef.current = childData.items[0].id;
+        }
         setLoading(false);
       });
     fetch(`${API_BASE}/contact`)
@@ -60,22 +66,27 @@ export default function ServiceChildPage() {
       const scrollPos = window.scrollY;
       setShowSubNav(scrollPos > 600);
 
-      // Section tracking for active state
-      let currentActive = activeItem;
-      for (const item of data?.items || []) {
+      const items = dataRef.current?.items || [];
+      let currentActive = items[0]?.id || activeItemRef.current;
+      for (const item of items) {
         const ref = itemRefs.current[item.id];
         if (ref && ref.offsetTop - 150 <= scrollPos) {
           currentActive = item.id;
         }
       }
-      if (currentActive !== activeItem) setActiveItem(currentActive);
+      if (currentActive !== activeItemRef.current) {
+        activeItemRef.current = currentActive;
+        setActiveItem(currentActive);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [data, activeItem]);
+  }, []);
 
   const scrollTo = (id: string) => {
+    setActiveItem(id);
+    activeItemRef.current = id;
     const ref = itemRefs.current[id];
     if (ref) {
       window.scrollTo({ top: ref.offsetTop - 120, behavior: 'smooth' });
