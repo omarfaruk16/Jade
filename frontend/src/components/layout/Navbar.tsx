@@ -53,7 +53,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   const [servicesData, setServicesData] = useState<ServiceParent[]>([]);
   const [productsData, setProductsData] = useState<ProductCategory[]>([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredServiceImage, setHoveredServiceImage] = useState<string | null>(null);
+
 
   const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const productsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -94,9 +94,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
     ]).then(([services, products]) => {
       if (Array.isArray(services)) {
         setServicesData(services);
-        if (services?.[0]?.children?.[0]?.items?.[0]?.imageUrl) {
-          setHoveredServiceImage(services[0].children[0].items[0].imageUrl);
-        }
+
       } else {
         console.error("Expected services array but got:", services);
         setServicesData([]);
@@ -204,12 +202,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                         href={`/services/${child.slug}`}
                         className={styles.megaMenuChild}
                         onClick={() => setShowServices(false)}
-                        onMouseEnter={() => {
-                          handleServicesEnter();
-                          if (child.items?.[0]?.imageUrl) {
-                            setHoveredServiceImage(child.items[0].imageUrl);
-                          }
-                        }}
+                        onMouseEnter={handleServicesEnter}
                       >
                         {child.name}
                       </Link>
@@ -221,7 +214,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             <div className={styles.megaMenuRight}>
               {!loading && servicesData.length > 0 && (
                 <img
-                  src={hoveredServiceImage || servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "/images/Services/Nav%20ber%20thub%20services%20by%20Jade.jpg"}
+                  src="/images/Services/Nav ber thub services by Jade.jpg"
                   alt="Service Feature"
                   className={styles.megaMenuImg}
                 />
