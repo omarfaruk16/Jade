@@ -121,7 +121,7 @@ export default function DealerPage() {
                 <span>Insights</span>
               </div>
               <div className={styles.introInfo}>
-                <p>We view every dealer partnership as a long-term relationship built on trust, quality, and shared ambition. Our goal is not only to provide exceptional products, but also to empower our partners with the support, reliability, and opportunities they need to grow successfully in their respective markets. Together, we can create lasting value and bring world-class furniture solutions to customers across the globe.</p>
+                <p>We view every dealer as a valued long-term partner. Through quality craftsmanship, dependable service, and mutual trust, we work together to create meaningful growth and deliver exceptional furniture solutions to customers around the world. Our success is measured by the success of the partners who represent our brand.</p>
                 <CeoBadge />
               </div>
             </div>
