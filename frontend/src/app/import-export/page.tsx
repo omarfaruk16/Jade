@@ -54,9 +54,7 @@ export default function ImportExportPage() {
             </div>
             <div className={styles.wideMiddleCol}>
               <p className={styles.introText}>
-                The inspiration from Scandinavian aesthetics, emphasizing simplicity,
-                functionality, and natural beauty. The design combines neutral color palettes—such as
-                whites, grays, and soft pastels—with warm wooden accents to create a cozy and inviting atmosphere.
+                Worldwide export and import is more than logistics; it’s the bridge that connects Malaysian interior craftsmanship with global markets. By managing seamless trade flows, we ensure quality products reach clients securely and on time.
               </p>
               <CeoBadge />
             </div>
@@ -82,12 +80,12 @@ export default function ImportExportPage() {
 
               <div className={styles.middleCol}>
                 <div className={styles.conceptItem}>
-                  <h4>Strategic Workspace Planning</h4>
-                  <p>We begin by understanding how people work, collaborate, and interact within a space. Through thoughtful planning and efficient layouts, we create workplaces that enhance productivity, support flexibility, and encourage meaningful connections among teams.</p>
+                  <h4>Export Excellence</h4>
+                  <p>We specialize in delivering Malaysian interior products worldwide with strict quality checks and reliable shipping. This ensures clients receive premium furnishings and design solutions that meet international standards.</p>
                 </div>
                 <div className={styles.conceptItem}>
-                  <h4>Brand-Driven Interior Experience</h4>
-                  <p>Every office is designed to reflect the identity and values of the organization. From material selections and lighting to custom furniture and visual elements, we create professional environments that strengthen company culture and leave a lasting impression on employees and visitors alike.</p>
+                  <h4>Import Reliability</h4>
+                  <p>Our import services bring in high-quality materials, finishes, and fixtures from trusted global suppliers. This guarantees diversity, innovation, and cost-effective solutions for every project.</p>
                 </div>
               </div>
 

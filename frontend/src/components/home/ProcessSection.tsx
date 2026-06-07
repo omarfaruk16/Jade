@@ -26,7 +26,7 @@ export default function ProcessSection() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className={styles.videoWrapper} onClick={() => setIsVideoOpen(true)}>
-            <img src="/images/video-cover-image.avif" alt="Video cover" className={styles.videoCover} />
+            <img src="/images/3 concept view/Design, Installation, and Support in Harmony by jade.jpg" alt="Video cover" className={styles.videoCover} />
             <div className={styles.playButton}>
               <div className={styles.playIconWrapper}>
                 <Play fill="black" size={20} style={{ marginLeft: '4px' }} />
@@ -63,15 +63,15 @@ export default function ProcessSection() {
           <div className={styles.cardsRow}>
             {[
               {
-                img: '/images/f1.png',
+                img: '/images/3 concept view/The Art of Understanding brings clarity in every detail. by jade.jpg',
                 text: 'The Art of Understanding brings clarity in every detail.'
               },
               {
-                img: '/images/f2.png',
+                img: '/images/3 concept view/The Craft of Perfection delivers flawless lasting results. by jade.jpg',
                 text: 'The Craft of Perfection delivers flawless lasting results.'
               },
               {
-                img: '/images/f3.png',
+                img: '/images/3 concept view/The Promise of Forever ensures trust that never fades.. by jade.jpg',
                 text: 'The Promise of Forever ensures trust that never fades.'
               }
             ].map((card, idx) => (
