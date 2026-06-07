@@ -221,7 +221,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             <div className={styles.megaMenuRight}>
               {!loading && servicesData.length > 0 && (
                 <img
-                  src={hoveredServiceImage || servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"}
+                  src={hoveredServiceImage || servicesData[0]?.children?.[0]?.items?.[0]?.imageUrl || "/images/Services/Nav%20ber%20thub%20services%20by%20Jade.jpg"}
                   alt="Service Feature"
                   className={styles.megaMenuImg}
                 />

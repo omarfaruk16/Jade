@@ -22,10 +22,13 @@ export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
 
   const heroMedia = [
-    { id: 0, type: 'image', src: '/images/f1.png' },
-    { id: 1, type: 'video', src: '/images/download.mp4' },
-    { id: 2, type: 'image', src: '/images/f2.png' },
-    { id: 3, type: 'image', src: '/images/f3.png' }
+    { id: 0, type: 'image', src: '/images/About%20us/A.jpg' },
+    { id: 1, type: 'image', src: '/images/About%20us/B.jpg' },
+    { id: 2, type: 'image', src: '/images/About%20us/C.jpg' },
+    { id: 3, type: 'image', src: '/images/About%20us/D.jpg' },
+    { id: 4, type: 'image', src: '/images/About%20us/Asia%20Award%202025-169%20by%20jade%20.jpg' },
+    { id: 5, type: 'image', src: '/images/About%20us/Asia%20Award%202025-298%20By%20jade%27.jpg' },
+    { id: 6, type: 'image', src: '/images/About%20us/Asia%20Award%202025-394%20By%20Jade.jpg' },
   ];
 
   const handleNext = () => setActiveIndex(p => (p + 1) % heroMedia.length);

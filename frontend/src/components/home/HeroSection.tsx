@@ -73,7 +73,7 @@ export default function HeroSection() {
         >
           <span className={styles.awardsLabel}>Awards:</span>
           {/* Award Excellence widget */}
-          <img src="/images/award.png" alt="Award Excellence" className={styles.awardIcon} />
+          <img src="/images/Award/A.jpg" alt="Award Excellence" className={styles.awardIcon} />
         </motion.div>
       </div>
     </section>
