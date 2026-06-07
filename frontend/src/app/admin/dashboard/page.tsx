@@ -10,6 +10,7 @@ import ProductsAdmin from './ProductsAdmin';
 import BlogsAdmin from './BlogsAdmin';
 import ProjectsAdmin from './ProjectsAdmin';
 import styles from './AdminDashboard.module.css';
+import Link from 'next/link';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'contactMessages' | 'services' | 'products' | 'blogs'>('projects');
@@ -154,7 +155,7 @@ export default function AdminDashboard() {
       let endpointPath = tab;
       if (tab === 'dealerRequests') endpointPath = 'dealer/requests';
       if (tab === 'contactMessages') endpointPath = 'contact/messages';
-      
+
       await fetch(`${API_BASE}/${endpointPath}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -194,8 +195,12 @@ export default function AdminDashboard() {
       {/* Sidebar Navigation */}
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
-          <img src="/images/jadelogo.png" alt="Jade" style={{ objectFit: 'contain' }} />
+          <Link href="/" className={styles.logo}>
+            <img src="/images/jadelogo.png" alt="Jade" />
+          </Link>
         </div>
+
+
         <nav className={styles.navGroup}>
           {tabs.map(tab => (
             <button
