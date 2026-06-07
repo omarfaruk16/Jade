@@ -121,7 +121,7 @@ export default function DealerPage() {
                 <span>Insights</span>
               </div>
               <div className={styles.introInfo}>
-                <p>The inspiration from Scandinavian aesthetics, emphasizing simplicity, functionality, and natural beauty. The design combines neutral color palettes—such as whites, grays, and soft pastels—with warm wooden accents to create a cozy and inviting atmosphere.</p>
+                <p>We view every dealer partnership as a long-term relationship built on trust, quality, and shared ambition. Our goal is not only to provide exceptional products, but also to empower our partners with the support, reliability, and opportunities they need to grow successfully in their respective markets. Together, we can create lasting value and bring world-class furniture solutions to customers across the globe.</p>
                 <CeoBadge />
               </div>
             </div>
