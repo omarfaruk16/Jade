@@ -150,7 +150,7 @@ export default function DealerPage() {
                   <circle cx="6" cy="12" r="2.5" fill="#000" />
                   <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
-                <span>Dealer Partnership Benefits</span>
+                <span>Dealer Benefits</span>
               </div>
               <div className={styles.featureGridText}>
                 {dealerBenefits.map((item, i) => (

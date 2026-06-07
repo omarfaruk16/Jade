@@ -36,8 +36,7 @@ export default function ImportExportPage() {
                 transition={{ duration: 1.5, delay: 0.3 }}
                 className={styles.heroSubtitle}
               >
-                We&apos;re a design-driven team creating spaces with purpose,
-                personality, and precision—built through collaboration.
+                Trusted by corporate clients in Southeast Asia, the Middle East, and beyond, we export and import world-class furniture, fixtures, and interior systems that transform workspaces into productivity hubs.
               </motion.p>
             </div>
           </div>
