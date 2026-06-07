@@ -985,6 +985,11 @@
     letter-spacing: -0.02em;
   }
 
+  .heroSubtitle {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
   .harmonyIntro {
     grid-template-columns: 1fr;
     gap: 1rem;
