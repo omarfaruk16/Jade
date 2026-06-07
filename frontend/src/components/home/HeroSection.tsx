@@ -72,8 +72,18 @@ export default function HeroSection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
         >
           <span className={styles.awardsLabel}>Awards:</span>
-          {/* Award Excellence widget */}
-          <img src="/images/Award/A.jpg" alt="Award Excellence" className={styles.awardIcon} />
+          <div className={styles.awardsList}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Award/ASIA Excellence Choise Awards 2024.png" alt="ASIA Excellence Choice Awards 2024" className={styles.awardIcon} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Award/British Publishing House.png" alt="British Publishing House" className={styles.awardIcon} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Award/Gemini_Generated_Image_qsc678qsc678qsc6-removebg-preview.png" alt="Award Icon" className={styles.awardIcon} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Award/Global Business Leaders Award 2025 .png" alt="Global Business Leaders Award 2025" className={styles.awardIcon} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Award/Trusted Malaysia.png" alt="Trusted Malaysia" className={styles.awardIcon} />
+          </div>
         </motion.div>
       </div>
     </section>
