@@ -151,7 +151,7 @@ export default function ServiceChildPage() {
               <div className={styles.itemHeader}>
                 <TitleReveal><h1 className={styles.itemTitle}>{item.title}</h1></TitleReveal>
                 <div className={styles.itemHeaderRight}>
-                  <p className={styles.headerText}>Explore ideas, trends, and behind-the-scenes<br />stories from our studio.</p>
+                  <p className={styles.headerText}>Think we&apos;re the right fit? Contact us and let&apos;s get started.</p>
                   <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
                 </div>
               </div>
