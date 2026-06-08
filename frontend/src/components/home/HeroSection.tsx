@@ -14,7 +14,7 @@ export default function HeroSection() {
 
         <div className={styles.content}>
           <div className={styles.titleWrapper}>
-            <motion.p 
+            <motion.p
               className={styles.hashtag}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -22,7 +22,7 @@ export default function HeroSection() {
             >
               # Bringing Spaces to Life
             </motion.p>
-            
+
             <div style={{ overflow: 'hidden' }}>
               <h1 className={styles.title}>
                 <ScaleBlur text="The Best Interior" stagger={0.03} delay={0} />
@@ -34,18 +34,18 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <motion.button 
+          <motion.button
             className={styles.ctaButton}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-            onClick={() => window.location.href='/contact'}
+            onClick={() => window.location.href = '/contact'}
           >
             Let&apos;s Talk Concepts
           </motion.button>
         </div>
 
-        <motion.div 
+        <motion.div
           className={styles.bottomLeftWidget}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,11 +53,13 @@ export default function HeroSection() {
         >
           <div className={styles.avatars}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.pravatar.cc/100?img=33" alt="Client 1" className={styles.avatar} />
+            <img src="/images/New%20folder/Mr.%20Faaris%20bin%20Abood%20by%20Jade.jpg" alt="Mr. Faaris bin Abood" className={styles.avatar} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.pravatar.cc/100?img=47" alt="Client 2" className={styles.avatar} />
+            <img src="/images/New%20folder/Mrs.%20Jaya%20binti%20Elyas%20by%20Jade.jpg" alt="Mrs. Jaya binti Elyas" className={styles.avatar} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.pravatar.cc/100?img=12" alt="Client 3" className={styles.avatar} />
+            <img src="/images/New%20folder/Mr.%20Yaakop%20bin%20Zulkipli%20by%20Jade.jpg" alt="Mr. Yaakop bin Zulkipli" className={styles.avatar} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/New%20folder/Ameena%20binti%20Husain%20%26%20Abdullah%20bin%20Ameer%20%20by%20Jade.jpg" alt="Ameena binti Husain & Abdullah bin Ameer" className={styles.avatar} />
           </div>
           <div className={styles.trustText}>
             <strong>Trusted by over</strong>
@@ -65,7 +67,7 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.bottomRightWidget}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
