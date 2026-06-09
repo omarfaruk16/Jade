@@ -14,11 +14,11 @@
 .pageTitle {
   font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 1.1;
+  letter-spacing: -0.07em;
+  line-height: 1.05em;
   margin-bottom: 1rem;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  text-align: center;
 }
 
 .pageSubtitle {
@@ -117,6 +117,13 @@
 
   .imageWrapper {
     height: 500px;
+  }
+}
+
+@media (max-width: 809px) {
+  .pageTitle {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
   }
 }
 

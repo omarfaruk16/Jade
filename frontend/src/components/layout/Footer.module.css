@@ -380,7 +380,10 @@
     padding: 4px 8px;
     border-radius: 6px;
   }
-  .emailText{
-    font-size: 4rem;
+  .emailText {
+    font-size: clamp(1rem, 5vw, 1.6rem);
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    max-width: 100%;
   }
 }

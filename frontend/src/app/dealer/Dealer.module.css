@@ -33,7 +33,8 @@
   z-index: 10;
   text-align: center;
   color: #fff;
-  padding: 0 1.5rem;
+  padding: 24px;
+  max-width: 900px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -42,10 +43,11 @@
   font-size: clamp(3rem, 6vw, 80px);
   font-weight: 500;
   letter-spacing: -0.07em;
-  line-height: 1.05;
+  line-height: 1.05em;
   margin-bottom: 1rem;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  color: #ffffff;
+  text-align: center;
 }
 
 .subtitle {
@@ -603,6 +605,18 @@
   .formSplit {
     grid-template-columns: 1fr 1.5fr;
     gap: 2rem;
+  }
+}
+
+@media (max-width: 809px) {
+  .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+
+  .heroContent {
+    gap: 40px;
+    padding: 16px;
   }
 }
 
