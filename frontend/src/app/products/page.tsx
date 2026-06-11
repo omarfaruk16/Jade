@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-
-import TitleReveal from '@/components/layout/TitleReveal';
+import styles from './Products.module.css';
 
 export default function ProductsOverviewPage() {
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('All');
 
   useEffect(() => {
     fetch(`${API_BASE}/products/categories`)
@@ -26,36 +26,104 @@ export default function ProductsOverviewPage() {
       });
   }, []);
 
-  if (loading) return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a0a0c', color: '#fff' }}>Loading...</div>;
+  const tabs = ['All', ...categories.map((c: any) => c.name)];
+  const filtered = activeCategory === 'All'
+    ? categories
+    : categories.filter((c: any) => c.name === activeCategory);
+
+  if (loading) return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', color: '#000' }}>
+      Loading...
+    </div>
+  );
 
   return (
-    <div style={{ background: '#000', minHeight: '100vh' }}>
+    <div className={styles.pageWrapper}>
       <Navbar />
 
-      <div style={{ paddingTop: '120px', paddingBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', maxWidth: '1600px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
-        <motion.h1 
-          initial={{ opacity: 0.001, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ type: "spring", stiffness: 160, damping: 30, mass: 1 }}
-          style={{ color: '#fff', fontSize: '3rem', fontWeight: 600, marginBottom: '1rem', letterSpacing: '-0.02em' }}
+      {/* Hero */}
+      <section className={styles.heroSection}>
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={styles.heroTitle}
         >
           Our Products
         </motion.h1>
-        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.2rem', marginBottom: '4rem', maxWidth: '600px' }}>Explore our range of premium collections, crafted with luxury and elegance in mind.</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className={styles.heroSub}
+        >
+          Explore our premium collections of kitchen cabinetry and interior solutions, crafted to elevate every space.
+        </motion.p>
+      </section>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%' }}>
-          {categories.map((cat: any) => (
-            <Link key={cat.id} href={`/products/${cat.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', borderRadius: '16px', overflow: 'hidden', height: '400px' }}>
-              {/* Background Image */}
-              <img src={cat.image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"} alt={cat.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }} onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.05)')} onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')} />
-              
-              {/* Overlay */}
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', padding: '2rem' }}>
-                <TitleReveal><h2 style={{ color: '#fff', fontSize: '2rem', fontWeight: 600, marginBottom: '0.5rem' }}>{cat.name}</h2></TitleReveal>
-                <div style={{ padding: '0.5rem 1.5rem', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '0.9rem' }}>Explore Collection</div>
-              </div>
-            </Link>
+      <div className={styles.container}>
+        {/* Category Tabs */}
+        <div className={styles.categoryTabs}>
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              className={`${styles.catTab} ${activeCategory === tab ? styles.catTabActive : ''}`}
+              onClick={() => setActiveCategory(tab)}
+            >
+              {tab}
+            </button>
           ))}
+        </div>
+
+        {/* Products Grid */}
+        <motion.div
+          className={styles.productsGrid}
+          key={activeCategory}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {filtered.map((cat: any, i: number) => (
+            <motion.div
+              key={cat.id}
+              className={styles.productCard}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <Link href={`/products/${cat.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                <div className={styles.productImageWrap}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cat.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800'}
+                    alt={cat.name}
+                    className={styles.productImage}
+                  />
+                </div>
+                <div className={styles.productInfo}>
+                  <div className={styles.productCategory}>Collection</div>
+                  <h3 className={styles.productName}>{cat.name}</h3>
+                  {cat.description && (
+                    <p className={styles.productPrice}>{cat.description}</p>
+                  )}
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Showcase Banner */}
+      <div className={styles.showcaseSection}>
+        <div className={styles.showcaseBg} />
+        <div className={styles.showcaseContent}>
+          <h2 className={styles.showcaseTitle}>Designed for Every Space</h2>
+          <p className={styles.showcaseDesc}>
+            From modern minimalist to classic luxury — find the perfect kitchen solution for your lifestyle.
+          </p>
+          <Link href="/contact">
+            <button className={styles.showcaseBtn}>Book a Consultation</button>
+          </Link>
         </div>
       </div>
 
