@@ -144,16 +144,6 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             </Link>
           </div>
 
-          <div
-            className={styles.dropdownContainer}
-            onMouseEnter={handleProductsEnter}
-            onMouseLeave={handleProductsLeave}
-          >
-            <Link href="/products" className={styles.navLink}>
-              Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
-            </Link>
-          </div>
-
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href} className={styles.navLink} onMouseEnter={closeAllMenus}>
               {link.name}
@@ -316,8 +306,6 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   )}
                 </AnimatePresence>
               </div>
-              <Link href="/products" onClick={toggleMenu}>Products</Link>
-
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>
 
               <Link href="/about" onClick={toggleMenu}>About us</Link>

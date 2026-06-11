@@ -78,7 +78,8 @@
 }
 
 .logoImg {
-  height: 44px;
+  height: auto;
+  max-height: 35px;
   width: auto;
   object-fit: contain;
 }
@@ -123,7 +124,7 @@
 .socialLink {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 500;
   transition: opacity 0.2s ease;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
@@ -381,6 +382,7 @@
     padding: 4px 8px;
     border-radius: 6px;
   }
+
   .emailText {
     font-size: clamp(1rem, 5vw, 1.6rem);
     word-break: break-all;

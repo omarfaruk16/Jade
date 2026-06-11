@@ -27,6 +27,13 @@
   align-items: center;
 }
 
+.logo img {
+  height: auto;
+  max-height: 35px;
+  width: auto;
+  object-fit: contain;
+}
+
 .logo span:first-child { color: #34d399; }
 .logo span:last-child { color: #F05C46; }
 
