@@ -41,6 +41,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
+    { name: 'Products', href: '/products' },
     { name: 'Projects', href: '/projects' },
     { name: 'About us', href: '/about' },
     { name: 'Contact', href: '/contact' },
@@ -306,6 +307,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   )}
                 </AnimatePresence>
               </div>
+              <Link href="/products" onClick={toggleMenu}>Products</Link>
+
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>
 
               <Link href="/about" onClick={toggleMenu}>About us</Link>
