@@ -316,7 +316,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   )}
                 </AnimatePresence>
               </div>
-              <Link href="/products" onClick={toggleMenu}>Products</Link>
+              <Link href="#" onClick={toggleMenu}>Products</Link>
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>
 
               <Link href="/about" onClick={toggleMenu}>About us</Link>
