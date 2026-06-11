@@ -39,7 +39,7 @@
 }
 
 .logoImg {
-  height: 36px;
+  height: 50px;
   width: auto;
   object-fit: contain;
 }
@@ -87,31 +87,17 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease, font-weight 0.1s ease;
   cursor: pointer;
   padding: 2px 0;
   white-space: nowrap;
   position: relative;
 }
 
-.navLink::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.6);
-  transition: width 0.25s ease;
-}
-
 .navLink:hover {
   color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.navLink:hover::after {
-  width: 100%;
+  font-weight: 700;
+  transform: translateX(3px);
 }
 
 .navLink .icon {
@@ -189,20 +175,22 @@
 }
 
 .megaMenuChild {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 400;
   padding: 0.3rem 0 0.3rem 1rem;
   display: block;
   position: relative;
-  transition: color 0.2s ease, padding-left 0.2s ease;
-  border-left: 2px solid #fff;
+  transition: color 0.2s ease, padding-left 0.2s ease, font-weight 0.1s ease;
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 .megaMenuChild:hover {
   color: #fff;
-  padding-left: 1.4rem;
+  font-weight: 600;
+  padding-left: 1.5rem;
+  border-left-color: #fff;
 }
 
 .megaMenuRight {

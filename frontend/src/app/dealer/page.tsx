@@ -170,7 +170,7 @@ export default function DealerPage() {
             </div>
 
             {/* Quote cards */}
-            <div className={styles.featureRow}>
+            <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', borderTop: '1px solid #eee' }}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="6" r="2.5" fill="#000" />

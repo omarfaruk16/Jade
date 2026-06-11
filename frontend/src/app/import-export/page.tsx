@@ -98,7 +98,7 @@ export default function ImportExportPage() {
 
         {/* What's Included Section */}
         <SectionReveal>
-          <div className={styles.gridRow}>
+          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
             <div className={styles.leftCol}>
               <FourDotsIcon />
               <span>What&apos;s included</span>

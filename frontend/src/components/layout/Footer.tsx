@@ -8,11 +8,17 @@ import API_BASE from '@/lib/api';
 
 export default function Footer() {
   const [socials, setSocials] = useState<{ id: number; name: string; url: string }[]>([]);
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     fetch(`${API_BASE}/contact`)
       .then(res => res.json())
-      .then(data => setSocials(data?.socials ?? []))
+      .then(data => {
+        setSocials(data?.socials ?? []);
+        setPhone(data?.phone ?? '');
+        setEmail(data?.email ?? '');
+      })
       .catch(() => { });
   }, []);
 
@@ -54,18 +60,22 @@ export default function Footer() {
           <div className={styles.gridRow}>
             <div className={styles.colLeft}></div>
             <div className={styles.colRight}>
-              <p className={styles.phoneNumbers}>
-                <ScaleBlur text="+603 8021 5168 | +6019 644 9447" className={styles.phoneBlur} />
-              </p>
+              {phone && (
+                <p className={styles.phoneNumbers}>
+                  <ScaleBlur text={phone} className={styles.phoneBlur} />
+                </p>
+              )}
             </div>
           </div>
 
           {/* MIDDLE EMAIL ROW */}
-          <div className={styles.emailContainer}>
-            <a href="mailto:jadekitchen@yahoo.com" className={styles.emailText}>
-              <ScaleBlur text="jadekitchen@yahoo.com" className={styles.emailBlur} />
-            </a>
-          </div>
+          {email && (
+            <div className={styles.emailContainer}>
+              <a href={`mailto:${email}`} className={styles.emailText}>
+                <ScaleBlur text={email} className={styles.emailBlur} />
+              </a>
+            </div>
+          )}
         </div>
 
         {/* BOTTOM ROW */}

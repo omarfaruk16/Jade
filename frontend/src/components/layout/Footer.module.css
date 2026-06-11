@@ -1,10 +1,10 @@
 .footer {
   background: #000000;
   color: #ffffff;
-  padding: 0rem 24px 0rem;
+  padding: clamp(5rem, 10vh, 8rem) 0 clamp(3rem, 6vh, 5rem);
   position: relative;
   z-index: 10;
-  min-height: 100dvh;
+  min-height: 110dvh;
   overflow: hidden;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
   display: flex;
@@ -13,13 +13,14 @@
 }
 
 .container {
-  max-width: 1400px;
+  max-width: var(--container-max, 1600px);
   width: 100%;
   margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 48px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 6rem;
+  gap: 8rem;
 }
 
 /* GRID ROWS */
@@ -41,7 +42,7 @@
   align-items: flex-end;
   font-size: 14px;
   color: #ffffff;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .colLeft {
@@ -67,7 +68,7 @@
 .brandInfo {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .logo {
@@ -95,7 +96,7 @@
 .navLinks {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
   align-items: flex-start;
 }
 
@@ -116,7 +117,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.8rem;
+  gap: 1.2rem;
 }
 
 .socialLink {
@@ -188,8 +189,8 @@
 /* BOTTOM ROW */
 .policyLinks {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .policyLinks a {
@@ -247,7 +248,7 @@
 /* RESPONSIVE: Mobile View */
 @media (max-width: 768px) {
   .footer {
-    padding: 4rem 20px 2rem;
+    padding: 4rem 0 2rem;
   }
 
   .gridRow {
@@ -267,7 +268,7 @@
   }
 
   .container {
-    gap: 3rem;
+    gap: 4rem;
   }
 
   .tagline {
