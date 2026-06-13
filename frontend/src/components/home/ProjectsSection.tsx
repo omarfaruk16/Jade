@@ -21,7 +21,7 @@ export default function ProjectsSection() {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      loop: true,
+      loop: false,
       align: 'start',
       dragFree: true,
     },
