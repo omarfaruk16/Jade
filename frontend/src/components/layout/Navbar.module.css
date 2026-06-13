@@ -39,7 +39,8 @@
 }
 
 .logoImg {
-  height: 22px;
+  height: auto;
+  max-height: 22px;
   width: auto;
   object-fit: contain;
 }
