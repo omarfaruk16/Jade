@@ -274,8 +274,9 @@
   border-radius: 20px;
   margin: 2rem 0;
   overflow: visible;
-  min-height: 520px;
+  height: 520px;
   position: relative;
+  margin-bottom: 4rem;
 }
 
 .ctaInner {
@@ -335,7 +336,7 @@
 
 .ctaBadge {
   position: absolute;
-  bottom: 22%;
+  bottom: 1.5rem;
   left: 0.75rem;
   width: 237px;
   background: rgba(13, 13, 13, 0.40);
@@ -435,7 +436,8 @@
     flex-direction: column;
     margin: 1rem 0;
     overflow: hidden;
-    min-height: auto;
+    height: auto;
+    min-height: unset;
   }
 
   .ctaImageWrap {
