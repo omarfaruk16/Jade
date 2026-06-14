@@ -269,12 +269,13 @@
 /* ── CTA Section ── */
 .ctaSection {
   display: flex;
-  align-items: stretch;
+  align-items: flex-end;
   background: #F1F1F1;
   border-radius: 20px;
   margin: 2rem 0;
-  overflow: hidden;
-  min-height: 400px;
+  overflow: visible;
+  min-height: 520px;
+  position: relative;
 }
 
 .ctaInner {
@@ -284,6 +285,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 2.5rem;
+  align-self: center;
 }
 
 .ctaTagline {
@@ -319,24 +321,22 @@
 .ctaImageWrap {
   flex-shrink: 0;
   width: 42%;
+  height: 640px;
   position: relative;
-  display: flex;
-  align-items: flex-end;
 }
 
 .ctaImage {
   width: 100%;
   height: 100%;
-  background: #F1F1F1;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: bottom center;
   display: block;
 }
 
 .ctaBadge {
   position: absolute;
-  bottom: 2rem;
-  left: 1rem;
+  bottom: 22%;
+  left: 0.75rem;
   width: 237px;
   background: rgba(13, 13, 13, 0.40);
   backdrop-filter: blur(16px);
@@ -434,10 +434,12 @@
   .ctaSection {
     flex-direction: column;
     margin: 1rem 0;
+    overflow: hidden;
+    min-height: auto;
   }
 
   .ctaImageWrap {
     width: 100%;
-    min-height: 300px;
+    height: 360px;
   }
 }

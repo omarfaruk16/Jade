@@ -302,8 +302,7 @@
 }
 
 .quoteBoxWhite svg {
-  color: #f05e46;
-  /* Icon is orange on white bg */
+  color: #fff;
 }
 
 .quoteBoxOrange {

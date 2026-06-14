@@ -50,6 +50,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   const [showServices, setShowServices] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [servicesData, setServicesData] = useState<ServiceParent[]>([]);
   const [productsData, setProductsData] = useState<ProductCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -316,7 +317,42 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                   )}
                 </AnimatePresence>
               </div>
-              <Link href="#" onClick={toggleMenu}>Products</Link>
+              <div className={styles.mobileServiceWrapper}>
+                <div
+                  className={styles.mobileServiceHeader}
+                  onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                >
+                  Products <ChevronDown className={styles.icon} style={{ transform: mobileProductsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                </div>
+                <AnimatePresence>
+                  {mobileProductsOpen && (
+                    <motion.div
+                      className={styles.mobileServiceList}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      {loading ? (
+                        <div className={styles.noDataMessage}>Loading products...</div>
+                      ) : productsData.length === 0 ? (
+                        <div className={styles.noDataMessage}>No products available</div>
+                      ) : (
+                        productsData.map((cat: ProductCategory) => (
+                          <Link
+                            key={cat.id}
+                            href={`/products/${cat.slug}`}
+                            className={styles.mobileServiceChild}
+                            onClick={toggleMenu}
+                          >
+                            {cat.name}
+                          </Link>
+                        ))
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <Link href="/projects" onClick={toggleMenu}>Projects</Link>
 
               <Link href="/about" onClick={toggleMenu}>About us</Link>
