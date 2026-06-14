@@ -21,6 +21,24 @@ const DotsIcon = () => (
   </svg>
 );
 
+const CardDotsIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="6" r="2.5" fill="#bbb" />
+    <circle cx="12" cy="18" r="2.5" fill="#bbb" />
+    <circle cx="6" cy="12" r="2.5" fill="#bbb" />
+    <circle cx="18" cy="12" r="2.5" fill="#bbb" />
+  </svg>
+);
+
+const cardIcons = [
+  <svg key="0" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="3" rx="1.5"/><line x1="6" y1="10" x2="6" y2="19"/><line x1="18" y1="10" x2="18" y2="19"/><line x1="4" y1="19" x2="20" y2="19"/></svg>,
+  <svg key="1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>,
+  <svg key="2" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
+  <svg key="3" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  <svg key="4" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  <svg key="5" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>,
+];
+
 export default function ProductDetailsPage() {
   const { productId } = useParams() as { productId: string };
   const [product, setProduct] = useState<any>(null);
@@ -84,6 +102,10 @@ export default function ProductDetailsPage() {
                     transition={{ duration: 0.6, delay: i * 0.1 }}
                     viewport={{ once: true }}
                   >
+                    <div className={styles.descCardTop}>
+                      <span className={styles.descCardIcon}>{cardIcons[i % cardIcons.length]}</span>
+                      <CardDotsIcon />
+                    </div>
                     <TitleReveal><h3 className={styles.descCardTitle}>{d.title}</h3></TitleReveal>
                     <p className={styles.descCardText}>{d.description}</p>
                   </motion.div>
@@ -232,10 +254,18 @@ export default function ProductDetailsPage() {
             </div>
             <div className={styles.ctaImageWrap}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/jade_ceo.jpeg" alt="Dr. Shiful Islam" className={styles.ctaImage} />
+              <img src="/images/jade_ceo.jpeg" alt="Sales Expert" className={styles.ctaImage} />
               <div className={styles.ctaBadge}>
-                <span className={styles.ctaBadgeName}>Dr. Shiful Islam</span>
-                <span className={styles.ctaBadgeRole}>Founder & CEO</span>
+                <div className={styles.ctaBadgeText}>
+                  <span className={styles.ctaBadgeName}>Warsty Roslan</span>
+                  <span className={styles.ctaBadgeRole}>Sale Expert</span>
+                </div>
+                <span className={styles.ctaBadgeVerified}>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="9" r="9" fill="#22c55e" />
+                    <path d="M5.5 9l2.5 2.5L12.5 6.5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
               </div>
             </div>
           </section>
