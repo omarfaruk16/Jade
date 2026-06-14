@@ -69,8 +69,11 @@ export default function ServiceChildPage() {
       let currentActive = items[0]?.id || activeItemRef.current;
       for (const item of items) {
         const ref = itemRefs.current[item.id];
-        if (ref && ref.offsetTop - 150 <= scrollPos) {
-          currentActive = item.id;
+        if (ref) {
+          const refTop = ref.getBoundingClientRect().top + window.scrollY;
+          if (refTop - 150 <= scrollPos) {
+            currentActive = item.id;
+          }
         }
       }
       if (currentActive !== activeItemRef.current) {
@@ -88,7 +91,8 @@ export default function ServiceChildPage() {
     activeItemRef.current = id;
     const ref = itemRefs.current[id];
     if (ref) {
-      window.scrollTo({ top: ref.offsetTop - 120, behavior: 'smooth' });
+      const top = ref.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
