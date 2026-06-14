@@ -73,13 +73,12 @@
 /* ── Page Body ── */
 .page {
   color: #000;
+  padding: 0 5%;
 }
 
 /* ── Section ── */
 .section {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 5rem 5%;
+  padding: 5rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -207,7 +206,7 @@
 
 .typeName {
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.01em;
 }
@@ -231,7 +230,7 @@
 }
 
 .materialLeftDesc {
-  font-size: 14px;
+  font-size: 1rem;
   color: #000;
   line-height: 1.5;
 }
@@ -251,7 +250,7 @@
 }
 
 .materialItemTitle {
-  font-size: 1.1rem;
+  font-size: 20px;
   font-weight: 500;
   color: #000;
   margin: 0 0 0.25rem;
@@ -259,7 +258,7 @@
 }
 
 .materialItemDesc {
-  font-size: 0.85rem;
+  font-size:  1rem;
   color: #000;
   line-height: 1.5;
   margin: 0;
@@ -269,9 +268,9 @@
 .ctaSection {
   display: flex;
   align-items: stretch;
-  background: #f0efed;
+  background: #F1F1F1;
   border-radius: 20px;
-  margin: 2rem 5%;
+  margin: 2rem 0;
   overflow: hidden;
   min-height: 400px;
 }
@@ -286,11 +285,12 @@
 }
 
 .ctaTagline {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-family: var(--font-geist-sans);
+  font-size: clamp(2.2rem, 3.5vw, 3.5rem); /* max ≈ 56px */
   font-weight: 500;
+  line-height: 1.07; /* 60 / 56 */
+  letter-spacing: -0.03em;
   color: #111;
-  line-height: 1.25;
-  letter-spacing: -0.04em;
   max-width: 480px;
   margin: 0;
 }
@@ -302,8 +302,8 @@
   color: #fff;
   border: none;
   padding: 0.9rem 2rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
+  border-radius: 40px;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   width: fit-content;
@@ -334,20 +334,43 @@
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
-  background: rgba(30, 28, 26, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.ctaBadgeText {
+  width: 237px;
+  background: rgba(13, 13, 13, 0.40);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 8px;
+  padding: 30px 46px 30px 30px;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 10px;
+  isolation: isolate;
+}
+
+.ctaBadge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: conic-gradient(
+    from 225deg,
+    rgba(64, 64, 64, 0.50) 0%,
+    rgba(64, 64, 64, 0.35) 25%,
+    rgba(255, 255, 255, 0.50) 50%,
+    rgba(255, 255, 255, 0.50) 75%,
+    rgba(64, 64, 64, 0.50) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.ctaBadgeNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .ctaBadgeName {
@@ -362,12 +385,6 @@
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.2;
-}
-
-.ctaBadgeVerified {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
 }
 
 /* ── Responsive ── */
@@ -407,12 +424,12 @@
   }
 
   .section {
-    padding: 3.5rem 5%;
+    padding: 3.5rem 0;
   }
 
   .ctaSection {
     flex-direction: column;
-    margin: 1rem 5%;
+    margin: 1rem 0;
   }
 
   .ctaImageWrap {
