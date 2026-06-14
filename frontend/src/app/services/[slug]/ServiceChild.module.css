@@ -24,6 +24,20 @@
   text-align: center;
 }
 
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  animation: heroZoomOut 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroZoomOut {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
 .heroOverlay {
   position: absolute;
   top: 0;

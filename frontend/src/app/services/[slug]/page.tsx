@@ -13,18 +13,12 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import { QuoteIcon } from '@/components/shared/WhatsIncluded';
 
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="6" cy="4.5" r="3.5" stroke="#111" strokeWidth="1.2" />
     <path d="M6 8V13.5" stroke="#111" strokeWidth="1.2" />
-  </svg>
-);
-
-const QuoteIcon = () => (
-  <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor" />
-    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor" />
   </svg>
 );
 
@@ -125,7 +119,8 @@ export default function ServiceChildPage() {
       </div>
 
       <div className={styles.heroSection}>
-        <div className={styles.heroContainer} style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className={styles.heroContainer}>
+          <div className={styles.heroBg} style={{ backgroundImage: `url(${data.coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"})` }}></div>
           <div className={styles.heroOverlay}></div>
           <motion.div
             initial={{ opacity: 0, y: 50 }}

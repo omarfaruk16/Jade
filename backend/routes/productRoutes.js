@@ -55,10 +55,10 @@ router.get('/categories/:slug', async (req, res) => {
 
 router.post('/categories', auth, async (req, res) => {
   try {
-    const { name, image, order } = req.body;
+    const { name, image, subtitle, order } = req.body;
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const category = await prisma.productCategory.create({
-      data: { name, slug, image, order: Number(order) || 0 }
+      data: { name, slug, image, subtitle: subtitle || null, order: Number(order) || 0 }
     });
     res.json(category);
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -66,11 +66,11 @@ router.post('/categories', auth, async (req, res) => {
 
 router.put('/categories/:id', auth, async (req, res) => {
   try {
-    const { name, image, order } = req.body;
+    const { name, image, subtitle, order } = req.body;
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const category = await prisma.productCategory.update({
       where: { id: req.params.id },
-      data: { name, slug, image, order: Number(order) || 0 }
+      data: { name, slug, image, subtitle: subtitle || null, order: Number(order) || 0 }
     });
     res.json(category);
   } catch (e) { res.status(400).json({ error: e.message }); }

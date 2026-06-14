@@ -59,7 +59,7 @@ export default function ProductsAdmin() {
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [editCategory, setEditCategory] = useState<any>(null);
-  const [categoryForm, setCategoryForm] = useState({ name:'', image:'', order:0 });
+  const [categoryForm, setCategoryForm] = useState({ name:'', image:'', subtitle:'', order:0 });
 
   const [productModal, setProductModal] = useState(false);
   const [editProduct, setEditProduct] = useState<any>(null);
@@ -116,7 +116,7 @@ export default function ProductsAdmin() {
 
   const openCategoryModal = (c?: any) => {
     setEditCategory(c||null);
-    setCategoryForm(c?{name:c.name,image:c.image||'',order:c.order||0}:{name:'',image:'',order:0});
+    setCategoryForm(c?{name:c.name,image:c.image||'',subtitle:c.subtitle||'',order:c.order||0}:{name:'',image:'',subtitle:'',order:0});
     setCategoryModal(true);
   };
 
@@ -235,6 +235,7 @@ export default function ProductsAdmin() {
             <h3 style={{color:'#fff',marginBottom:'1.5rem'}}>{editCategory?'Edit':'Add'} Category</h3>
             <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
               <div><label style={lbl}>Category Name</label><input style={inp} value={categoryForm.name} onChange={e=>setCategoryForm({...categoryForm,name:e.target.value})}/></div>
+              <div><label style={lbl}>Hero Subtitle (shown on category detail page)</label><input style={inp} placeholder="e.g. Explore all luxury kitchen options" value={categoryForm.subtitle} onChange={e=>setCategoryForm({...categoryForm,subtitle:e.target.value})}/></div>
               <div>
                 <label style={lbl}>Category Image</label>
                 <div style={{display:'flex',gap:8,alignItems:'center'}}>

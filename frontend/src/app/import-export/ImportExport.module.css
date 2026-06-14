@@ -36,9 +36,20 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/import_export.avif');
-  background-size: cover;
-  background-position: center;
+}
+
+.heroContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/import_export.avif') center / cover no-repeat;
+  z-index: 0;
+  animation: heroZoomOut 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroZoomOut {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
 }
 
 .heroContent {

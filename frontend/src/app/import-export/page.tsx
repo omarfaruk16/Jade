@@ -15,6 +15,13 @@ import '@/app/jade-shared.css';
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
 
+const importExportWhatsIncluded = [
+  'Our products are manufactured in accordance with international quality standards, ensuring premium craftsmanship, reliable performance, and long-term value.',
+  'With advanced production capabilities, we deliver customized interior solutions tailored to the requirements of diverse global projects.',
+  'Efficient logistics and streamlined export operations ensure timely delivery and seamless coordination for partners worldwide.',
+  'We foster long-term business relationships through trust, consistency, and dedicated support, creating sustainable growth opportunities for our partners.',
+];
+
 export default function ImportExportPage() {
 
 
@@ -104,7 +111,7 @@ export default function ImportExportPage() {
               <span>What&apos;s included</span>
             </div>
             <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
-              <WhatsIncluded />
+              <WhatsIncluded quotes={importExportWhatsIncluded} />
             </div>
           </div>
         </SectionReveal>

@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 
-// Shared SVG quote icon
-const QuoteSvg = () => (
-  <svg className="jade-quote-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 28C10 21.373 15.373 16 22 16V20C17.582 20 14 23.582 14 28V36H22V28H10ZM26 28C26 21.373 31.373 16 38 16V20C33.582 20 30 23.582 30 28V36H38V28H26Z" fill="currentColor" />
+export const QuoteIcon = () => (
+  <svg className="jade-quote-icon" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor" />
+    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor" />
   </svg>
 );
 
@@ -32,7 +32,7 @@ export default function WhatsIncluded({ quotes = DEFAULT_QUOTES }: WhatsIncluded
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: i * 0.1 }}
         >
-          <QuoteSvg />
+          <QuoteIcon />
           <p className="jade-quote-text">{text}</p>
         </motion.div>
       ))}

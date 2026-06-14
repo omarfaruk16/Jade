@@ -44,6 +44,13 @@ const dealerBenefits = [
       'We believe in building sustainable partnerships through trust, collaboration, and shared success, creating opportunities for continuous business expansion.',
   },
 ];
+
+const dealerWhatsIncluded = [
+  'Our Malaysia-based interior company delivers premium solutions with exceptional craftsmanship, quality materials, and lasting value.',
+  'We provide customized furniture and interior solutions tailored to the needs of residential and commercial projects.',
+  'Efficient logistics and organized export operations ensure reliable delivery for partners worldwide.',
+  'We build long-term partnerships through trust, dedicated support, and continuous collaboration.',
+];
 export default function DealerPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
   const [formData, setFormData] = useState({
@@ -180,7 +187,7 @@ export default function DealerPage() {
                 </svg>
                 <span>What&apos;s included</span>
               </div>
-              <WhatsIncluded />
+              <WhatsIncluded quotes={dealerWhatsIncluded} />
             </div>
 
             {/* Partners Section (New) */}

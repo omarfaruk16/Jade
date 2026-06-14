@@ -88,7 +88,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  transition: color 0.2s ease, transform 0.2s ease, font-weight 0.1s ease;
+  transition: color 0.2s ease;
   cursor: pointer;
   padding: 2px 0;
   white-space: nowrap;
@@ -97,19 +97,16 @@
 
 .navLink:hover {
   color: #ffffff;
-  font-weight: 700;
-  transform: translateX(3px);
 }
 
 .navLink .icon {
-  width: 14px;
-  height: 14px;
+  width: 1.2em;
+  height: 1.2em;
   opacity: 0.8;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .navLink:hover .icon {
-  transform: translate(2px, -2px);
   opacity: 1;
 }
 
@@ -189,8 +186,6 @@
 
 .megaMenuChild:hover {
   color: #fff;
-  font-weight: 600;
-  padding-left: 1.5rem;
   border-left-color: #fff;
 }
 
