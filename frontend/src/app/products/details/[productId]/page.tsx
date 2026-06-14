@@ -25,7 +25,6 @@ export default function ProductDetailsPage() {
   const { productId } = useParams() as { productId: string };
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [showSubNav, setShowSubNav] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,12 +34,6 @@ export default function ProductDetailsPage() {
       .catch(() => setLoading(false));
   }, [productId]);
 
-  useEffect(() => {
-    const handleScroll = () => setShowSubNav(window.scrollY > 600);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   if (loading) return <div className={styles.loading}>Loading…</div>;
   if (!product) return <div className={styles.loading}>Product not found.</div>;
 
@@ -48,7 +41,7 @@ export default function ProductDetailsPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      <Navbar visible={!showSubNav} />
+      <Navbar />
 
       {/* Hero */}
       <div className={styles.heroSection}>
@@ -238,7 +231,12 @@ export default function ProductDetailsPage() {
               <button className={styles.ctaBtn} onClick={() => window.location.href = '/contact'}>Talk to Expert</button>
             </div>
             <div className={styles.ctaImageWrap}>
-              <img src="/images/jadelogo.png" alt="Jade" className={styles.ctaImage} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/jade_ceo.jpeg" alt="Dr. Shiful Islam" className={styles.ctaImage} />
+              <div className={styles.ctaBadge}>
+                <span className={styles.ctaBadgeName}>Dr. Shiful Islam</span>
+                <span className={styles.ctaBadgeRole}>Founder & CEO</span>
+              </div>
             </div>
           </section>
         </SectionReveal>
