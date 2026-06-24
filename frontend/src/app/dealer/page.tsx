@@ -15,6 +15,7 @@ import DreamSection from '@/components/home/DreamSection';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 interface Partner {
   id: string;
@@ -91,6 +92,7 @@ export default function DealerPage() {
   };
 
   return (
+    <SmoothScroll>
     <main className={styles.dealerPage}>
       <Navbar />
 
@@ -128,7 +130,7 @@ export default function DealerPage() {
                 <span>Insights</span>
               </div>
               <div className={styles.introInfo}>
-                <p>We view every dealer as a valued long-term partner. Through quality craftsmanship, dependable service, and mutual trust, we work together to create meaningful growth and deliver exceptional furniture solutions to customers around the world. Our success is measured by the success of the partners who represent our brand.</p>
+                <h4>We view every dealer as a valued long-term partner. Through quality craftsmanship, dependable service, and mutual trust, we work together to create meaningful growth and deliver exceptional furniture solutions to customers around the world. Our success is measured by the success of the partners who represent our brand.</h4>
                 <CeoBadge />
               </div>
             </div>
@@ -177,7 +179,7 @@ export default function DealerPage() {
             </div>
 
             {/* Quote cards */}
-            <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', borderTop: '1px solid #eee' }}>
+            <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', paddingBottom: 0, marginBottom: 0 }}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="6" r="2.5" fill="#000" />
@@ -191,7 +193,7 @@ export default function DealerPage() {
             </div>
 
             {/* Partners Section (New) */}
-            <div className={styles.featureRow} style={{ marginTop: '5rem', paddingTop: '5rem', borderTop: '1px solid #eee' }}>
+            <div className={styles.featureRow} style={{ marginTop: 0, paddingTop: '8rem' }}>
               <div className={styles.featureLabel}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="6" r="2.5" fill="#000" />
@@ -343,5 +345,6 @@ export default function DealerPage() {
 
       <Footer />
     </main>
+    </SmoothScroll>
   );
 }

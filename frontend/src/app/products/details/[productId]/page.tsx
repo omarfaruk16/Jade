@@ -11,6 +11,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './ProductDetails.module.css';
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 const DotsIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,11 +23,11 @@ const DotsIcon = () => (
 );
 
 const CardDotsIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="6" r="2.5" fill="#bbb" />
-    <circle cx="12" cy="18" r="2.5" fill="#bbb" />
-    <circle cx="6" cy="12" r="2.5" fill="#bbb" />
-    <circle cx="18" cy="12" r="2.5" fill="#bbb" />
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="6" r="2.5" fill="rgba(34, 34, 34, 0.7)" />
+    <circle cx="12" cy="18" r="2.5" fill="rgba(34, 34, 34, 0.7)" />
+    <circle cx="6" cy="12" r="2.5" fill="rgba(34, 34, 34, 0.7)" />
+    <circle cx="18" cy="12" r="2.5" fill="rgba(34, 34, 34, 0.7)" />
   </svg>
 );
 
@@ -55,6 +56,7 @@ export default function ProductDetailsPage() {
   const heroImage = product.coverImage || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000';
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -247,7 +249,7 @@ export default function ProductDetailsPage() {
         <SectionReveal>
           <section className={styles.ctaSection}>
             <div className={styles.ctaInner}>
-              <p className={styles.ctaTagline}>Hope you got a good idea about our products. To learn more or choose one, talk to our sales expert.</p>
+              <p className={styles.ctaTagline}>Hope you got a good idea about our products. To learn more or choose one, talk to our Sales Expert.</p>
               <button className={styles.ctaBtn} onClick={() => window.location.href = '/contact'}>Talk to Expert</button>
             </div>
             <div className={styles.ctaImageWrap}>
@@ -271,5 +273,6 @@ export default function ProductDetailsPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

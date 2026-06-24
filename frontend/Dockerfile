@@ -23,10 +23,12 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Copy only what Next.js standalone needs
-COPY --from=builder /app/public ./public
+# Copy only what Next.js standalone needs.
+# The standalone output is nested under app/ (workspace root is the parent dir),
+# so server.js lives at app/server.js and serves assets relative to app/.
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./app/public
+COPY --from=builder /app/.next/static ./app/.next/static
 
 EXPOSE 3000
 

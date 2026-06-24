@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
-import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
@@ -36,7 +37,9 @@ interface ProductCategory {
 }
 
 export default function Navbar({ visible = true }: { visible?: boolean }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredBtn, setHoveredBtn] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -89,6 +92,15 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  useEffect(() => {
     Promise.all([
       fetch(`${API_BASE}/services`).then(r => r.json()),
       fetch(`${API_BASE}/products/categories`).then(r => r.json())
@@ -118,49 +130,84 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
     <div className={`${styles.navbarWrapper} ${!visible ? styles.navbarHidden : ''}`}>
       <nav className={styles.navbar}>
 
-        <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
-          <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
-        </Link>
+        <div className={styles.navLeft}>
+          <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
+            <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
+          </Link>
 
-        <div className={styles.leftNav}>
-          <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Export/Import <ArrowUpRight className={styles.icon} />
-          </Link>
-          <Link href="/dealer" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Be a dealer <ArrowUpRight className={styles.icon} />
-          </Link>
-          <Link href="/promotion" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Promotion <ArrowUpRight className={styles.icon} />
-          </Link>
+          <div className={styles.navLeftLinks}>
+            <Link href="/import-export" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Export/Import</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
+            </Link>
+            <Link href="/dealer" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Be a dealer</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
+            </Link>
+            <Link href="/promotion" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Promotion</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
+            </Link>
+          </div>
         </div>
 
         <div className={styles.rightNav}>
-          <div
-            className={styles.dropdownContainer}
-            onMouseEnter={handleServicesEnter}
-            onMouseLeave={handleServicesLeave}
-          >
-            <Link href="/services" className={styles.navLink}>
-              Services <ChevronDown className={styles.icon} style={{ transform: showServices ? 'rotate(180deg)' : 'none' }} />
-            </Link>
-          </div>
+          <div className={styles.navLinkGroup}>
+            <div
+              className={styles.dropdownContainer}
+              onMouseEnter={handleServicesEnter}
+              onMouseLeave={handleServicesLeave}
+            >
+              <Link href="/services" className={`${styles.navLink} ${styles.navLinkDimmed}`}>
+                Services <ChevronDown className={styles.icon} style={{ transform: showServices ? 'rotate(180deg)' : 'none' }} />
+              </Link>
+            </div>
 
-          <div
-            className={styles.dropdownContainer}
-            onMouseEnter={handleProductsEnter}
-            onMouseLeave={handleProductsLeave}
-          >
-            <Link href="/products" className={styles.navLink}>
-              Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
-            </Link>
-          </div>
+            <div
+              className={styles.dropdownContainer}
+              onMouseEnter={handleProductsEnter}
+              onMouseLeave={handleProductsLeave}
+            >
+              <span
+                onClick={() => {
+                  if (productsData.length > 0) {
+                    router.push(`/products/${productsData[0].slug}`);
+                  } else {
+                    router.push('/products');
+                  }
+                }}
+                className={`${styles.navLink} ${styles.navLinkDimmed}`}
+                style={{ cursor: 'pointer' }}
+              >
+                Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
+              </span>
+            </div>
 
-          {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className={styles.navLink} onMouseEnter={closeAllMenus}>
-              {link.name}
-            </Link>
-          ))}
-          <button className={styles.ctaButton} onMouseEnter={closeAllMenus}>Book a Call</button>
+            <Link href="/projects" className={styles.navLink} onMouseEnter={closeAllMenus}>Projects</Link>
+            <Link href="/about" className={styles.navLink} onMouseEnter={closeAllMenus}>About us</Link>
+          </div>
+          <div className={styles.navButtonGroup}>
+            <Link href="/contact" className={styles.navLink} onMouseEnter={closeAllMenus}>Contact</Link>
+            <button
+              className={styles.ctaButton}
+              onMouseEnter={() => { closeAllMenus(); setHoveredBtn(true); }}
+              onMouseLeave={() => setHoveredBtn(false)}
+            >
+              <span style={{ position: 'relative', display: 'block', overflow: 'hidden' }}>
+                <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+                <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+              </span>
+            </button>
+          </div>
         </div>
 
         <button className={styles.mobileMenuBtn} onClick={toggleMenu} aria-label="Toggle Menu">
@@ -205,7 +252,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                         onClick={() => setShowServices(false)}
                         onMouseEnter={handleServicesEnter}
                       >
-                        {child.name}
+                        <span>{child.name}</span>
+                        <ArrowRight size={24} className={styles.megaMenuChildArrow} />
                       </Link>
                     ))}
                   </div>
@@ -358,7 +406,17 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               <Link href="/about" onClick={toggleMenu}>About us</Link>
 
               <Link href="/contact" onClick={toggleMenu}>Contact</Link>
-              <button className={styles.ctaButtonMobile} onClick={toggleMenu}>Book a Call</button>
+              <button
+              className={styles.ctaButtonMobile}
+              onClick={toggleMenu}
+              onMouseEnter={() => setHoveredBtn(true)}
+              onMouseLeave={() => setHoveredBtn(false)}
+            >
+              <span style={{ position: 'relative', display: 'block', overflow: 'hidden' }}>
+                <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+                <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+              </span>
+            </button>
             </div>
           </motion.div>
         )}

@@ -1,35 +1,38 @@
 .navbarWrapper {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 24px;
+  left: 24px;
+  right: 24px;
   z-index: 100;
-  padding: 25px;
   pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
 }
 
 .navbarHidden {
   transform: translateY(-150%);
   opacity: 0;
 }
-
 .navbar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 32px;
   width: 100%;
-  max-width: none;
-  margin: 0 auto;
-  background: rgba(18, 14, 12, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 12px 12px 32px;
   border-radius: 20px;
-  padding: 14px 32px;
-  pointer-events: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  gap: 0;
+  pointer-events: auto;
 }
 
 .logo {
@@ -39,26 +42,46 @@
 }
 
 .logoImg {
-  height: auto;
-  max-height: 22px;
-  width: auto;
+  width: 99px;
+  height: 22px;
   object-fit: contain;
+  object-position: left center;
 }
 
-.leftNav {
+.navLeft {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 32px;
-  padding-left: 150px;
+  gap: 63px;
+  flex: none;
+}
+
+.navLeftLinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+}
+
+.navLinkGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+}
+
+.navButtonGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
 }
 
 .rightNav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 28px;
-  justify-content: flex-end;
+  gap: 60px;
 }
 
 .dropdownContainer {
@@ -79,20 +102,24 @@
 }
 
 .navLink {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2em;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.5;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 2px;
   transition: color 0.2s ease;
   cursor: pointer;
-  padding: 2px 0;
+  padding: 4px 1px;
   white-space: nowrap;
   position: relative;
+}
+
+.navLinkDimmed {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .navLink:hover {
@@ -108,6 +135,42 @@
 
 .navLink:hover .icon {
   opacity: 1;
+}
+
+.iconLink .linkContent {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.iconLink .linkContent > span {
+  transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.iconLink:hover .linkContent > span {
+  transform: translateX(calc(1.2em + 2px));
+}
+
+.iconLink .iconAfter {
+  transition: transform 0.05s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.iconLink:hover .iconAfter {
+  transform: translateX(calc(100% + 4px));
+}
+
+.iconLink .iconBefore {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.iconLink:hover .iconBefore {
+  transform: translateY(-50%) translateX(0);
 }
 
 /* Megamenu Styles */
@@ -157,7 +220,7 @@
   flex-direction: column;
 }
 
-.megaMenuGroup+.megaMenuGroup {
+.megaMenuGroup + .megaMenuGroup {
   margin-top: 1.2rem;
   padding-top: 1.2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -178,15 +241,31 @@
   font-size: 1.2rem;
   font-weight: 400;
   padding: 0.3rem 0 0.3rem 1rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   position: relative;
-  transition: color 0.2s ease, padding-left 0.2s ease, font-weight 0.1s ease;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease,
+    font-weight 0.1s ease;
   border-left: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 .megaMenuChild:hover {
   color: #fff;
   border-left-color: #fff;
+}
+
+.megaMenuChildArrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.megaMenuChild:hover .megaMenuChildArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .megaMenuRight {
@@ -292,7 +371,9 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .productCategoryCard:hover .productCategoryBtn {
@@ -301,19 +382,17 @@
 }
 
 .ctaButton {
-  background: white;
+  background: #ffffff;
   color: #000;
   border: none;
   border-radius: 100px;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 1.2em;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.5;
   cursor: pointer;
   transition: all 0.2s ease;
-  height: auto;
-  margin-left: 8px;
   font-family: inherit;
   white-space: nowrap;
 }
@@ -325,12 +404,21 @@
 
 .mobileMenuBtn {
   display: none;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 1001;
   color: #fff;
   pointer-events: auto;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobileMenu {
@@ -359,14 +447,14 @@
   width: 100%;
 }
 
-.mobileLinks>a {
+.mobileLinks > a {
   font-size: 1.6rem;
   font-weight: 400;
   color: #fff;
   text-decoration: none;
 }
 
-.mobileLinks>a:hover {
+.mobileLinks > a:hover {
   opacity: 0.7;
 }
 
@@ -448,7 +536,6 @@
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 0.4;
@@ -497,12 +584,14 @@
     display: none;
   }
 
-  .leftNav {
+  .navLeftLinks {
     display: none;
   }
 
   .navbarWrapper {
-    padding: 16px;
+    top: 16px;
+    left: 16px;
+    right: 16px;
   }
 
   .navbar {
@@ -514,12 +603,14 @@
   }
 
   .mobileMenuBtn {
-    display: block;
+    display: flex;
   }
 }
 
 @media (max-width: 768px) {
   .navbarWrapper {
-    padding: 12px;
+    top: 12px;
+    left: 12px;
+    right: 12px;
   }
 }

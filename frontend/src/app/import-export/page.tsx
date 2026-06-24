@@ -14,6 +14,7 @@ import '@/app/jade-shared.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 const importExportWhatsIncluded = [
   'Our products are manufactured in accordance with international quality standards, ensuring premium craftsmanship, reliable performance, and long-term value.',
@@ -26,6 +27,7 @@ export default function ImportExportPage() {
 
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -59,9 +61,9 @@ export default function ImportExportPage() {
               <span>Insights</span>
             </div>
             <div className={styles.wideMiddleCol}>
-              <p className={styles.introText}>
+              <h4 className={styles.introText}>
                 Worldwide export and import is more than logistics; it’s the bridge that connects Malaysian interior craftsmanship with global markets. By managing seamless trade flows, we ensure quality products reach clients securely and on time.
-              </p>
+              </h4>
               <CeoBadge />
             </div>
           </div>
@@ -105,7 +107,7 @@ export default function ImportExportPage() {
 
         {/* What's Included Section */}
         <SectionReveal>
-          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
+          <div className={styles.gridRow} style={{ padding: '6rem 0 4rem' }}>
             <div className={styles.leftCol}>
               <FourDotsIcon />
               <span>What&apos;s included</span>
@@ -118,7 +120,7 @@ export default function ImportExportPage() {
 
         {/* Partners Section */}
         <SectionReveal>
-          <div className={styles.gridRow} style={{ padding: '6rem 0', borderTop: '1px solid #eee' }}>
+          <div className={styles.gridRow} style={{ padding: '6rem 0 1rem' }}>
             <div className={styles.leftCol}>
               <FourDotsIcon />
               <span>Partners</span>
@@ -217,6 +219,7 @@ export default function ImportExportPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }
 
