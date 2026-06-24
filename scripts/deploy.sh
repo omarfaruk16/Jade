@@ -21,8 +21,8 @@ main() {
     sleep 15
     log "Copying static files for Nginx"
     rm -rf /root/jade-static /root/jade-public
-    docker cp jade_frontend:/app/.next/static /root/jade-static
-    docker cp jade_frontend:/app/public /root/jade-public
+    docker cp jade_frontend:/app/app/.next/static /root/jade-static
+    docker cp jade_frontend:/app/app/public /root/jade-public
     chmod -R 755 /root/jade-static
     chmod -R 755 /root/jade-public
     chmod 755 /root
