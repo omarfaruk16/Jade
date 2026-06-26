@@ -188,7 +188,7 @@
   -webkit-backdrop-filter: blur(24px);
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 400px 0.9fr;
+  grid-template-columns: 520px 1fr;
   overflow: hidden;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   cursor: default;
