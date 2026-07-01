@@ -6,7 +6,6 @@ import AboutSection from '@/components/home/AboutSection';
 import ProjectsSection from '@/components/home/ProjectsSection';
 import CategoriesSection from '@/components/home/CategoriesSection';
 import HarmonySection from '@/components/home/HarmonySection';
-import ProcessSection from '@/components/home/ProcessSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import AsSeenSection from '@/components/home/AsSeenSection';
 import BlogsSection from '@/components/home/BlogsSection';
@@ -21,22 +20,22 @@ export default function Home() {
     <>
       <Navbar />
       <SmoothScroll>
-      <main>
-        <HeroSection />
-        <SectionReveal><AboutSection /></SectionReveal>
-        <SectionReveal><PhilosophySection /></SectionReveal>
-        <SectionReveal><ProjectsSection /></SectionReveal>
-        <SectionReveal><CategoriesSection /></SectionReveal>
-        <SectionReveal><HarmonySection /></SectionReveal>
-        <SectionReveal><TestimonialsSection /></SectionReveal>
-        <SectionReveal><AsSeenSection /></SectionReveal>
-        <SectionReveal><BlogsSection /></SectionReveal>
-        <SectionReveal><DreamSection /></SectionReveal>
-        <SectionReveal><FaqSection /></SectionReveal>
-        <SectionReveal><TeamSection /></SectionReveal>
-      </main>
-      <Footer />
-    </SmoothScroll>
+        <main>
+          <HeroSection />
+          <SectionReveal><AboutSection /></SectionReveal>
+          <SectionReveal><PhilosophySection /></SectionReveal>
+          <SectionReveal><ProjectsSection /></SectionReveal>
+          <SectionReveal><CategoriesSection /></SectionReveal>
+          <SectionReveal><HarmonySection /></SectionReveal>
+          <SectionReveal><TestimonialsSection /></SectionReveal>
+          <SectionReveal><AsSeenSection /></SectionReveal>
+          <SectionReveal><BlogsSection /></SectionReveal>
+          <SectionReveal><DreamSection /></SectionReveal>
+          <SectionReveal><FaqSection /></SectionReveal>
+          <SectionReveal><TeamSection /></SectionReveal>
+        </main>
+        <Footer />
+      </SmoothScroll>
     </>
   );
 }
