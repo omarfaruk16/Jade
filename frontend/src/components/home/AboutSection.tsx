@@ -51,7 +51,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <p className={styles.missionText}>
-              Our mission is to create exceptional, personalized spaces that truly reflect the vision and aspirations of our clients. Every project is a testament to our dedication to craftsmanship and design excellence.
+              Every space tells a story. Our purpose is to ensure that story is one of excellence, purpose, and lasting value.At Jade Kitchen, we are driven by a passion for craftsmanship, innovation, and the pursuit of perfection. Beyond creating spaces, we cultivate trust, build relationships, and transform aspirations into realities.Guided by integrity and inspired by possibility, we remain committed to delivering meaningful environments that enrich lives and stand the test of time.
             </p>
             <div className={styles.founder}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -124,7 +124,7 @@ export default function AboutSection() {
           </div>
           <div className={styles.statItem}>
             <TitleReveal><h3>8k+</h3></TitleReveal>
-            <p>Projects Completed — Quality work.</p>
+            <p>Projects Completed Quality work.</p>
           </div>
         </motion.div>
       </div>

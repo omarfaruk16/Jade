@@ -12,6 +12,7 @@ import ScaleBlur from '@/components/layout/ScaleBlur';
 import SmoothScroll from '@/components/layout/SmoothScroll';
 import TeamSection from '@/components/home/TeamSection';
 import LogoMarquee from '@/components/common/LogoMarquee';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -78,9 +79,6 @@ export default function AboutPage() {
               <h1 className={styles.pageTitle}>
                 <ScaleBlur text="About Us" stagger={0.05} />
               </h1>
-              <p className={styles.pageSubtitle}>
-                Jade Kitchen Design Sdn Bhd is a leading kitchen design and cabinet manufacturer in Malaysia, specializing in modern, contemporary, and customized kitchen solutions. Since 2007
-              </p>
 
               <div className={styles.heroGridWrapper}>
                 <div className={styles.heroImagesGrid}>
@@ -141,7 +139,7 @@ export default function AboutPage() {
               </div>
 
               <p className={styles.milestoneIntro}>
-                Our process is thoughtful, collaborative, and built around you. From the first conversation to the final detail, we blend creativity with strategy.
+                Built on trust and global pride, our timeline reflects an elite legacy of crafting premium spaces, transforming structural visions into reality.
               </p>
             </div>
 
@@ -154,7 +152,7 @@ export default function AboutPage() {
                     <circle cx="6" cy="12" r="2.5" fill="#000" />
                     <circle cx="18" cy="12" r="2.5" fill="#000" />
                   </svg>
-                  Designing Across Borders
+                  Global Design & Material Manufacturing Center
                 </div>
                 <span className={styles.year}>2025</span>
               </div>
@@ -166,19 +164,7 @@ export default function AboutPage() {
                     <circle cx="6" cy="12" r="2.5" fill="#000" />
                     <circle cx="18" cy="12" r="2.5" fill="#000" />
                   </svg>
-                  Rebranded with a Clearer Vision
-                </div>
-                <span className={styles.year}>2024</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Building a Strong Team
+                  Franchise Expansion in Bangladesh (Space_Coutoure)
                 </div>
                 <span className={styles.year}>2023</span>
               </div>
@@ -190,7 +176,7 @@ export default function AboutPage() {
                     <circle cx="6" cy="12" r="2.5" fill="#000" />
                     <circle cx="18" cy="12" r="2.5" fill="#000" />
                   </svg>
-                  Expanded to Commercial Design
+                  Cross-Border Distribution (Takara Standard Japan & AGT Turkey)
                 </div>
                 <span className={styles.year}>2022</span>
               </div>
@@ -202,9 +188,45 @@ export default function AboutPage() {
                     <circle cx="6" cy="12" r="2.5" fill="#000" />
                     <circle cx="18" cy="12" r="2.5" fill="#000" />
                   </svg>
-                  Completed 50+ Projects
+                  Architectural Solutions & IT Developments (Jadeas & Dinno BD)
                 </div>
-                <span className={styles.year}>2021</span>
+                <span className={styles.year}>2020</span>
+              </div>
+              <div className={styles.milestoneItem}>
+                <div className={styles.milestoneText}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="6" r="2.5" fill="#000" />
+                    <circle cx="12" cy="18" r="2.5" fill="#000" />
+                    <circle cx="6" cy="12" r="2.5" fill="#000" />
+                    <circle cx="18" cy="12" r="2.5" fill="#000" />
+                  </svg>
+                  Manufacturing Plant Establishments & Market Entry
+                </div>
+                <span className={styles.year}>2009</span>
+              </div>
+              <div className={styles.milestoneItem}>
+                <div className={styles.milestoneText}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="6" r="2.5" fill="#000" />
+                    <circle cx="12" cy="18" r="2.5" fill="#000" />
+                    <circle cx="6" cy="12" r="2.5" fill="#000" />
+                    <circle cx="18" cy="12" r="2.5" fill="#000" />
+                  </svg>
+                  Inaugural Kitchen Design & Export-Import Infrastructure
+                </div>
+                <span className={styles.year}>2008</span>
+              </div>
+              <div className={styles.milestoneItem}>
+                <div className={styles.milestoneText}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="6" r="2.5" fill="#000" />
+                    <circle cx="12" cy="18" r="2.5" fill="#000" />
+                    <circle cx="6" cy="12" r="2.5" fill="#000" />
+                    <circle cx="18" cy="12" r="2.5" fill="#000" />
+                  </svg>
+                  The Foundation: Architecture & Structure Design
+                </div>
+                <span className={styles.year}>2007</span>
               </div>
             </div>
           </section>
@@ -215,19 +237,19 @@ export default function AboutPage() {
           <section className={styles.philosophySection}>
             <div className={styles.philosophyLeft}>
               <div>
-                <TitleReveal><h2 className={styles.sectionTitle}>Design With Purpose,<br />Built on Collaboration</h2></TitleReveal>
+                <TitleReveal><h2 className={styles.sectionTitle}>Crafting Spaces, <br />Delivering Trust Worldwide.</h2></TitleReveal>
                 <p className={styles.philosophyText}>
-                  We're more than a design studio—we're partners in bringing spaces to life. Our approach is rooted in thoughtful strategy, creative exploration, and a commitment to meaningful results.
+                  Since 2007, Jade Kitchen designs premium custom spaces with global trust, elite partnerships, and seamless cross-border delivery.
                 </p>
               </div>
               <ul className={styles.featureList}>
                 <li>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
-                  <span>We collaborate with our trusted partners to achieve the best.</span>
+                  <span>We build relationships on total clarity and permanent trust.</span>
                 </li>
                 <li>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></svg>
-                  <span>Our mission is to transform environments into bespoke sanctuaries.</span>
+                  <span>Sharing custom innovation and true love to enrich your life.</span>
                 </li>
               </ul>
             </div>
@@ -244,15 +266,7 @@ export default function AboutPage() {
         </SectionReveal>
 
         {/* Our Clients Section */}
-        <SectionReveal>
-          <section className={styles.clientLogosSection}>
-            <h2 className={styles.clientLogosTitle}>Our Clients</h2>
-            <p className={styles.clientLogosSub}>We are proud of contributing to the success of world leading brand.</p>
-            <div className={styles.heroLogos}>
-              <LogoMarquee />
-            </div>
-          </section>
-        </SectionReveal>
+        <SectionReveal><TestimonialsSection /></SectionReveal>
 
         {/* Client Voices Section */}
         <SectionReveal>

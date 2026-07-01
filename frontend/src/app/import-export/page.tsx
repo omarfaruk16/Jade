@@ -17,10 +17,10 @@ import ScaleBlur from '@/components/layout/ScaleBlur';
 import SmoothScroll from '@/components/layout/SmoothScroll';
 
 const importExportWhatsIncluded = [
-  'Our products are manufactured in accordance with international quality standards, ensuring premium craftsmanship, reliable performance, and long-term value.',
-  'With advanced production capabilities, we deliver customized interior solutions tailored to the requirements of diverse global projects.',
-  'Efficient logistics and streamlined export operations ensure timely delivery and seamless coordination for partners worldwide.',
-  'We foster long-term business relationships through trust, consistency, and dedicated support, creating sustainable growth opportunities for our partners.',
+  'We seamlessly bring together deep design intelligence and robust manufacturing strength to serve international clients with uncompromised consistency.',
+  'From careful packaging to efficient logistics, we manage every tiny detail with responsibility and absolute care.',
+  'Beyond production lines, our commitment ensures seamless door-to-door delivery with full operational accountability.',
+  'Guided by competitive value, we build long-term confidence with every client, distributor, and dealer growing with us. ',
 ];
 
 export default function ImportExportPage() {
@@ -45,7 +45,7 @@ export default function ImportExportPage() {
                 transition={{ duration: 1.5, delay: 0.3 }}
                 className={styles.heroSubtitle}
               >
-                Trusted by corporate clients in Southeast Asia, the Middle East, and beyond, we export and import world-class furniture, fixtures, and interior systems that transform workspaces into productivity hubs.
+                Delivering trust across borders through seamless worldwide export import and global project solutions.
               </motion.p>
             </div>
           </div>
@@ -58,11 +58,11 @@ export default function ImportExportPage() {
           <div className={styles.gridRow}>
             <div className={styles.leftCol}>
               <FourDotsIcon />
-              <span>Insights</span>
+              <span>Pledge</span>
             </div>
             <div className={styles.wideMiddleCol}>
               <h4 className={styles.introText}>
-                Worldwide export and import is more than logistics; it’s the bridge that connects Malaysian interior craftsmanship with global markets. By managing seamless trade flows, we ensure quality products reach clients securely and on time.
+                At Jade Kitchen, we bring together design intelligence and manufacturing strength to serve clients across international markets with consistency and trust. With more than fifteen years of design consultation experience, our team delivers solutions shaped by insight, precision, and practical understanding of global project needs. Our product range is diverse, supported by a strong manufacturing facility, skilled manpower, and a strict quality assurance system that ensures reliability at every stage. From careful packaging to efficient logistics coordination, we manage every detail with responsibility and care. Our commitment extends beyond production. We ensure seamless door to door delivery with full accountability and service support. Guided by competitive value and a strong focus on long term partnership, we aim to build confidence with every client, distributor, and dealer who chooses to grow with us. At Jade Kitchen, we do not only supply products. We deliver trust across borders.
               </h4>
               <CeoBadge />
             </div>
@@ -73,9 +73,9 @@ export default function ImportExportPage() {
         <SectionReveal>
           <section className={styles.officeSection}>
             <div className={styles.officeHeader}>
-              <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
+              <TitleReveal><h2 className={styles.officeTitle}>Global Trade & Export Excellence</h2></TitleReveal>
               <div className={styles.headerRightContent}>
-                <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
+                <p className={styles.headerDesc}>Explore how we bridge precision manufacturing with global projects.</p>
                 <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
               </div>
             </div>
@@ -83,17 +83,17 @@ export default function ImportExportPage() {
             <div className={styles.gridRow}>
               <div className={styles.leftCol}>
                 <FourDotsIcon />
-                <span>About service</span>
+                <span>Export Power</span>
               </div>
 
               <div className={styles.middleCol}>
                 <div className={styles.conceptItem}>
-                  <h4>Export Excellence</h4>
-                  <p>We specialize in delivering Malaysian interior products worldwide with strict quality checks and reliable shipping. This ensures clients receive premium furnishings and design solutions that meet international standards.</p>
+                  <h4>Strategic Export Excellence</h4>
+                  <p>With more than fifteen years of design consultation experience, our team delivers global solutions shaped by insight, precision, and a practical understanding of international project needs.</p>
                 </div>
                 <div className={styles.conceptItem}>
-                  <h4>Import Reliability</h4>
-                  <p>Our import services bring in high-quality materials, finishes, and fixtures from trusted global suppliers. This guarantees diversity, innovation, and cost-effective solutions for every project.</p>
+                  <h4>Robust Global Sourcing </h4>
+                  <p>Our product range is diverse, supported by a state-of-the-art manufacturing facility, skilled manpower, and a strict quality assurance system that ensures reliability at every stage.</p>
                 </div>
               </div>
 
@@ -110,7 +110,7 @@ export default function ImportExportPage() {
           <div className={styles.gridRow} style={{ padding: '6rem 0 4rem' }}>
             <div className={styles.leftCol}>
               <FourDotsIcon />
-              <span>What&apos;s included</span>
+              <span>Commitments</span>
             </div>
             <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
               <WhatsIncluded quotes={importExportWhatsIncluded} />
@@ -147,22 +147,20 @@ export default function ImportExportPage() {
         <SectionReveal>
           <section className={styles.harmonySection}>
             <TitleReveal>
-              <h2 className={styles.harmonySectionTitle}>Design, Installation, and Support in Harmony</h2>
+              <h2 className={styles.harmonySectionTitle}>Aligning Global Insight with Manufacturing Strength</h2>
             </TitleReveal>
             <div className={styles.harmonyIntro}>
-              <span className={styles.resonateLabel}>(Resonate)</span>
+              <span className={styles.resonateLabel}>Philosophy</span>
               <p className={styles.harmonyDesc}>
-                Every dream home begins with questions: Will this design fit my life? Will it be installed
-                flawlessly? Will it last? At Jade, we remove doubt with clarity, precision, and lasting
-                support — a journey from vision to peace of mind.
+                At Jade Kitchen, we align global insight with manufacturing strength, combining our design intelligence and operational capabilities to eliminate cross-border complexities and deliver absolute certainty.
               </p>
 
             </div>
             <div className={styles.processCards}>
               {[
-                { img: '/images/f1.png', text: 'The Art of Understanding brings clarity in every detail.' },
-                { img: '/images/f2.png', text: 'The Craft of Perfection delivers flawless lasting results.' },
-                { img: '/images/f3.png', text: 'The Promise of Forever ensures trust that never fades.' }
+                { img: '/images/f1.png', text: 'Global consultation creates tailored solutions.' },
+                { img: '/images/f2.png', text: 'Robust manufacturing ensures rigorous quality.' },
+                { img: '/images/f3.png', text: 'Secure logistics build absolute confidence.' }
               ].map((item, idx) => (
                 <div key={idx} className={styles.processCard}>
                   <div className={styles.processCardHeader}>
@@ -181,9 +179,9 @@ export default function ImportExportPage() {
         <SectionReveal>
           <section className={styles.fullInsightsSection}>
             <div className={styles.insightsHeader}>
-              <TitleReveal><h2 className={styles.sectionTitle}>Insights that shape spaces</h2></TitleReveal>
+              <TitleReveal><h2 className={styles.sectionTitle}>Seamless Delivery Across Global Frontiers </h2></TitleReveal>
               <div className={styles.insightsHeaderRight}>
-                <p className={styles.headerDesc}>Explore ideas, trends, and behind-the-scenes stories from our studio.</p>
+                <p className={styles.headerDesc}>Connecting premium interior craftsmanship to global markets with trust.</p>
               </div>
             </div>
 
@@ -192,19 +190,19 @@ export default function ImportExportPage() {
             <div className={styles.statsRow}>
               <div className={styles.statItem}>
                 <TitleReveal><h2>15+</h2></TitleReveal>
-                <p>Years of market expertise.</p>
+                <p>Years Export Mastery</p>
               </div>
               <div className={styles.statItem}>
-                <TitleReveal><h2>2-7</h2></TitleReveal>
-                <p>Delivery Fast, reliable service.</p>
+                <TitleReveal><h2>8+</h2></TitleReveal>
+                <p>Global Territories Reached</p>
               </div>
               <div className={styles.statItem}>
-                <TitleReveal><h2>1.6k+</h2></TitleReveal>
-                <p>Clients Exceptional service.</p>
+                <TitleReveal><h2>10 Days</h2></TitleReveal>
+                <p>Record Turnaround Capability</p>
               </div>
               <div className={styles.statItem}>
-                <TitleReveal><h2>8k+</h2></TitleReveal>
-                <p>Projects Completed — Quality work.</p>
+                <TitleReveal><h2>20+</h2></TitleReveal>
+                <p>Elite industries served worldwide</p>
               </div>
             </div>
           </section>

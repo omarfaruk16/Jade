@@ -25,32 +25,32 @@ interface Partner {
 
 const dealerBenefits = [
   {
-    title: 'Exclusive Product Access',
+    title: 'Total design care & system',
     description:
-      'Gain access to our complete portfolio of premium furniture and interior solutions designed for residential, commercial, and hospitality projects worldwide.',
+      'We empower your team with comprehensive product expertise and premium design guidance, ensuring you serve clients with absolute confidence and consistency.',
   },
   {
-    title: 'Dedicated Business Support',
+    title: 'Expert marketing direction',
     description:
-      'Our team provides continuous guidance, technical assistance, and responsive communication to help partners operate efficiently and confidently.',
+      'We advance your retail market presence through strategic campaign direction and collaborative growth plans built on trust, clarity, and true excellence.',
   },
   {
-    title: 'Flexible Supply & Logistics',
+    title: 'Secure warranty assurances',
     description:
-      'With reliable production capabilities and organized export processes, we ensure timely deliveries and seamless order fulfillment for every market.',
+      'Our professional responsibility is providing complete structural reliability and reliable product protection to safeguard all elite consumer investments.',
   },
   {
-    title: 'Long-Term Growth Opportunities',
+    title: 'Reliable after sales cares',
     description:
-      'We believe in building sustainable partnerships through trust, collaboration, and shared success, creating opportunities for continuous business expansion.',
+      'We extend a dedicated ecosystem of post-purchase assistance and steady operational maintenance to ensure long-term brand growth alongside global partners.',
   },
 ];
 
 const dealerWhatsIncluded = [
-  'Our Malaysia-based interior company delivers premium solutions with exceptional craftsmanship, quality materials, and lasting value.',
+  'We deliver premium interior solutions with exceptional craftsmanship, top-tier quality materials, and true value. ',
   'We provide customized furniture and interior solutions tailored to the needs of residential and commercial projects.',
-  'Efficient logistics and organized export operations ensure reliable delivery for partners worldwide.',
-  'We build long-term partnerships through trust, dedicated support, and continuous collaboration.',
+  'We secure seamless global logistics, agile production setups, and reliable ontime delivery for partners.',
+  'We build enduring business alliances rooted in absolute trust, shared clarity, and dedicated systems.',
 ];
 export default function DealerPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -127,10 +127,10 @@ export default function DealerPage() {
                   <circle cx="6" cy="12" r="2.5" fill="#000" />
                   <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
-                <span>Insights</span>
+                <span>Pledge</span>
               </div>
               <div className={styles.introInfo}>
-                <h4>We view every dealer as a valued long-term partner. Through quality craftsmanship, dependable service, and mutual trust, we work together to create meaningful growth and deliver exceptional furniture solutions to customers around the world. Our success is measured by the success of the partners who represent our brand.</h4>
+                <h4>In Jade we build long-term partners. We extend a complete ecosystem of support, covering product expertise, design guidance, marketing direction, warranty assurance, and after-sales care. Our responsibility is to ensure our partners are fully equipped to serve clients with confidence and consistency. We believe strong partnerships are built on trust, clarity, and shared standards of excellence. When our partners grow, the brand grows with them. We invite those who value quality, integrity, and ambition to grow alongside us and shape a stronger presence in the market together.</h4>
                 <CeoBadge />
               </div>
             </div>
@@ -143,9 +143,9 @@ export default function DealerPage() {
         <section className={styles.officeDesignDetailed}>
           <div className={styles.container}>
             <div className={styles.officeHeader}>
-              <TitleReveal><h2 className={styles.officeTitle}>Office Design</h2></TitleReveal>
+              <TitleReveal><h2 className={styles.officeTitle}>Shaping the Future of Design Together</h2></TitleReveal>
               <div className={styles.officeHeaderRight}>
-                <p>Learn more about our practice, or read<br />stories from our studio.</p>
+                <p>Empowering partners with design<br />guidance, trust & support.</p>
                 <button className={styles.contactNowBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function DealerPage() {
                   <circle cx="6" cy="12" r="2.5" fill="#000" />
                   <circle cx="18" cy="12" r="2.5" fill="#000" />
                 </svg>
-                <span>What&apos;s included</span>
+                <span>Values</span>
               </div>
               <WhatsIncluded quotes={dealerWhatsIncluded} />
             </div>

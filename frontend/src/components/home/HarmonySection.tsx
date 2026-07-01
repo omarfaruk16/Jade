@@ -83,7 +83,7 @@ export default function HarmonySection() {
                   <p className={styles.metaText}>
                     Every dream home begins with questions: Will this design fit my life?
                     Will it be installed flawlessly? Will it last? At Jade, we remove doubt
-                    with clarity, precision, and lasting support — a journey from vision to
+                    with clarity, precision, and lasting support a journey from vision to
                     peace of mind.
                   </p>
                   <Link href="/contact" className={styles.ctaBtn}>Get a Quote</Link>

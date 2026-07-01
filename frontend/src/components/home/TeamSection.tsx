@@ -52,14 +52,19 @@ export default function TeamSection() {
               <div className={styles.imageWrapper}>
                 <img src={member.image} alt={member.name} />
                 <div className={styles.overlay}>
-                  <span className={styles.name}>{member.name}</span>
+                  <div className={styles.infoWrapper}>
+                    <span className={styles.name}>{member.name}</span>
+                    {member.designation && (
+                      <span className={styles.designation}>{member.designation}</span>
+                    )}
+                  </div>
                   <div className={styles.cornerIcon}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.8 }}>
-                      <circle cx="12" cy="6" r="1.5" fill="white"/>
-                      <circle cx="12" cy="18" r="1.5" fill="white"/>
-                      <circle cx="6" cy="12" r="1.5" fill="white"/>
-                      <circle cx="18" cy="12" r="1.5" fill="white"/>
-                    </svg>
+                    <div className={styles.iconDotGrid}>
+                      <span className={styles.dot}></span>
+                      <span className={styles.dot}></span>
+                      <span className={styles.dot}></span>
+                      <span className={styles.dot}></span>
+                    </div>
                   </div>
                 </div>
               </div>

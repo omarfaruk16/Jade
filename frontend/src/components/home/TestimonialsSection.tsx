@@ -11,9 +11,9 @@ import TitleReveal from '@/components/layout/TitleReveal';
 import SectionReveal from '@/components/layout/SectionReveal';
 
 const fallbackTestimonials = [
-  { id: '1', name: 'Amelia Hart', role: 'Vale Studio', rating: 5, review: 'Their work brought our entire brand to life—subtle, thoughtful, and timeless. Every element felt carefully crafted, both visually and emotionally.', avatar: 'https://i.pravatar.cc/100?img=5' },
+  { id: '1', name: 'Amelia Hart', role: 'Vale Studio', rating: 5, review: 'Their work brought our entire brand to life subtle, thoughtful, and timeless. Every element felt carefully crafted, both visually and emotionally.', avatar: 'https://i.pravatar.cc/100?img=5' },
   { id: '2', name: 'Daniel Rees', role: 'Rees & Co', rating: 5, review: 'The team captured our vision better than we imagined. From mood boards to final space, everything felt clear, smooth, and perfectly on-brand.', avatar: 'https://i.pravatar.cc/100?img=8' },
-  { id: '3', name: 'Sophie Lang', role: 'Atelier Nine', rating: 5, review: 'We felt heard and understood at every step. Their design choices not only impressed—but told our story in ways we never could with words.', avatar: 'https://i.pravatar.cc/100?img=9' },
+  { id: '3', name: 'Sophie Lang', role: 'Atelier Nine', rating: 5, review: 'We felt heard and understood at every step. Their design choices not only impressed but told our story in ways we never could with words.', avatar: 'https://i.pravatar.cc/100?img=9' },
 ];
 
 interface Testimonial {
@@ -62,7 +62,7 @@ export default function TestimonialsSection() {
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <TitleReveal><h2 className={styles.title}>
-          Don&apos;t just listen to us—see what our partners have to say.
+          Don&apos;t just listen to us see what our partners have to say.
         </h2></TitleReveal>
       </motion.div>
 

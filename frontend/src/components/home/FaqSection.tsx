@@ -52,9 +52,6 @@ export default function FaqSection() {
                 We've answered the most common questions<br />
                 to help you move forward.
               </p>
-              <div className={styles.dotsContainer}>
-                <FourDotsIcon />
-              </div>
 
             </motion.div>
           </div>

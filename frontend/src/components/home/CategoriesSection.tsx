@@ -72,8 +72,7 @@ export default function CategoriesSection() {
           <div className={styles.expertiseHeader}>
             <h2>Our expertise</h2>
             <p>
-              We offer a full spectrum of interior design — each tailored to
-              elevate spaces with clarity and timeless aesthetic value.
+              We provide a complete range of spatial solutions, thoughtfully crafted to enhance every environment with refined clarity and enduring aesthetic value.
             </p>
           </div>
 
