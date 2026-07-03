@@ -24,22 +24,22 @@ export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
 
   const heroMedia = [
-    { id: 0, type: 'image', src: '/images/About us/Moment Us by jade 1.jpg' },
-    { id: 1, type: 'image', src: '/images/About us/Moment Us by jade 2.jpg' },
-    { id: 2, type: 'image', src: '/images/About us/Moment Us by jade 3.jpg' },
-    { id: 3, type: 'image', src: '/images/About us/Moment Us by jade 4.jpg' },
-    { id: 4, type: 'image', src: '/images/About us/Moment Us by jade 5.jpg' },
-    { id: 5, type: 'image', src: '/images/About us/Moment Us by jade 6.jpg' },
-    { id: 6, type: 'image', src: '/images/About us/Moment Us by jade 7.jpg' },
-    { id: 7, type: 'image', src: '/images/About us/Moment Us by jade 8.jpg' },
-    { id: 8, type: 'image', src: '/images/About us/Moment Us by jade 9.jpg' },
-    { id: 9, type: 'image', src: '/images/About us/Moment Us by jade 10.jpg' },
-    { id: 10, type: 'image', src: '/images/About us/Moment Us by jade 11.jpg' },
-    { id: 11, type: 'image', src: '/images/About us/Moment Us by jade 12.jpg' },
-    { id: 12, type: 'image', src: '/images/About us/Moment Us by jade 13.jpg' },
-    { id: 13, type: 'image', src: '/images/About us/Moment Us by jade 14.jpg' },
-    { id: 14, type: 'image', src: '/images/About us/Moment Us by jade 15.jpg' },
-    { id: 15, type: 'image', src: '/images/About us/Moment Us by jade 16.jpg' },
+    { id: 0, type: 'image', src: '/images/about-us/moment-1.jpg' },
+    { id: 1, type: 'image', src: '/images/about-us/moment-2.jpg' },
+    { id: 2, type: 'image', src: '/images/about-us/moment-3.jpg' },
+    { id: 3, type: 'image', src: '/images/about-us/moment-4.jpg' },
+    { id: 4, type: 'image', src: '/images/about-us/moment-5.jpg' },
+    { id: 5, type: 'image', src: '/images/about-us/moment-6.jpg' },
+    { id: 6, type: 'image', src: '/images/about-us/moment-7.jpg' },
+    { id: 7, type: 'image', src: '/images/about-us/moment-8.jpg' },
+    { id: 8, type: 'image', src: '/images/about-us/moment-9.jpg' },
+    { id: 9, type: 'image', src: '/images/about-us/moment-10.jpg' },
+    { id: 10, type: 'image', src: '/images/about-us/moment-11.jpg' },
+    { id: 11, type: 'image', src: '/images/about-us/moment-12.jpg' },
+    { id: 12, type: 'image', src: '/images/about-us/moment-13.jpg' },
+    { id: 13, type: 'image', src: '/images/about-us/moment-14.jpg' },
+    { id: 14, type: 'image', src: '/images/about-us/moment-15.jpg' },
+    { id: 15, type: 'image', src: '/images/about-us/moment-16.jpg' },
   ];
 
   const handleNext = () => setActiveIndex(p => (p + 1) % heroMedia.length);
@@ -255,11 +255,11 @@ export default function AboutPage() {
               </div>
               <div className={styles.philosophyRight}>
                 <div className={styles.philColLeft}>
-                  <img src="/images/Slices/3 by jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
-                  <img src="/images/Slices/2 by jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
+                  <img src="/images/Slices/3-by-jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
+                  <img src="/images/Slices/2-by-jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
                 </div>
                 <div className={styles.philColRight}>
-                  <img src="/images/Slices/1 by jade .jpg" alt="Vase and chair" className={styles.philImgTall} />
+                  <img src="/images/Slices/1-by-jade.jpg" alt="Vase and chair" className={styles.philImgTall} />
                 </div>
               </div>
             </section>

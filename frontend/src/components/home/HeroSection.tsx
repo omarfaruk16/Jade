@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className={styles.heroWrapper}>
       <div className={styles.heroContainer}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/New%20folder/Jade-hero.jpg.jpeg" alt="Luxurious modern house exterior" className={styles.bgImage} />
+        <img src="/images/hero-avatars/hero-bg.jpg" alt="Luxurious modern house exterior" className={styles.bgImage} />
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
@@ -51,13 +51,13 @@ export default function HeroSection() {
         >
           <div className={styles.avatars}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/New%20folder/Mr.%20Faaris%20bin%20Abood%20by%20Jade.jpg" alt="Mr. Faaris bin Abood" className={styles.avatar} />
+            <img src="/images/hero-avatars/faaris.jpg" alt="Mr. Faaris bin Abood" className={styles.avatar} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/New%20folder/Mrs.%20Jaya%20binti%20Elyas%20by%20Jade.jpg" alt="Mrs. Jaya binti Elyas" className={styles.avatar} />
+            <img src="/images/hero-avatars/jaya.jpg" alt="Mrs. Jaya binti Elyas" className={styles.avatar} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/New%20folder/Mr.%20Yaakop%20bin%20Zulkipli%20by%20Jade.jpg" alt="Mr. Yaakop bin Zulkipli" className={styles.avatar} />
+            <img src="/images/hero-avatars/yaakop.jpg" alt="Mr. Yaakop bin Zulkipli" className={styles.avatar} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/New%20folder/Ameena%20binti%20Husain%20%26%20Abdullah%20bin%20Ameer%20%20by%20Jade.jpg" alt="Ameena binti Husain & Abdullah bin Ameer" className={styles.avatar} />
+            <img src="/images/hero-avatars/ameena-abdullah.jpg" alt="Ameena binti Husain & Abdullah bin Ameer" className={styles.avatar} />
           </div>
           <div className={styles.trustText}>
             <strong>Trusted by over</strong>
@@ -74,15 +74,15 @@ export default function HeroSection() {
           <span className={styles.awardsLabel}>Awards:</span>
           <div className={styles.awardsList}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/Award/ASIA Excellence Choise Awards 2024.png" alt="ASIA Excellence Choice Awards 2024" className={styles.awardIcon} />
+            <img src="/images/Award/asia-excellence-awards-2024.png" alt="ASIA Excellence Choice Awards 2024" className={styles.awardIcon} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/Award/British Publishing House.png" alt="British Publishing House" className={styles.awardIcon} />
+            <img src="/images/Award/british-publishing-house.png" alt="British Publishing House" className={styles.awardIcon} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/Award/Gemini_Generated_Image_qsc678qsc678qsc6-removebg-preview.png" alt="Award Icon" className={styles.awardIcon} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/Award/Global Business Leaders Award 2025 .png" alt="Global Business Leaders Award 2025" className={styles.awardIcon} />
+            <img src="/images/Award/global-business-leaders-award-2025.png" alt="Global Business Leaders Award 2025" className={styles.awardIcon} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/Award/Trusted Malaysia.png" alt="Trusted Malaysia" className={styles.awardIcon} />
+            <img src="/images/Award/trusted-malaysia.png" alt="Trusted Malaysia" className={styles.awardIcon} />
           </div>
         </motion.div>
       </div>

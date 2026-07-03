@@ -259,7 +259,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
             <div className={styles.megaMenuRight}>
               {!loading && servicesData.length > 0 && (
                 <img
-                  src="/images/Services/Nav ber thub services by Jade.jpg"
+                  src="/images/Services/nav-services.jpg"
                   alt="Service Feature"
                   className={styles.megaMenuImg}
                 />

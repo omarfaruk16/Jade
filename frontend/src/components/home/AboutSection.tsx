@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import styles from './AboutSection.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
@@ -36,7 +37,7 @@ export default function AboutSection() {
             <p className={styles.subtitle}>
               At Jade, we craft interiors that blend calm elegance with bold character using premium materials and timeless design to create spaces that feel as good as they look.
             </p>
-            <button className={styles.getToKnowBtn}>Get to Know Us</button>
+            <Link href="/about"><button className={styles.getToKnowBtn}>Get to Know Us</button></Link>
           </motion.div>
         </div>
 

@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
               </button>
 
               <div className={styles.videoFooter}>
-                <img src="/images/Jade Client.png" alt="Mr Faiz" className={styles.avatar} />
+                <img src="/images/jade-client.png" alt="Mr Faiz" className={styles.avatar} />
                 <div className={styles.userInfo}>
                   <h4 style={{ color: 'white' }}>Mr Faiz</h4>
                   <p style={{ color: 'rgba(255,255,255,0.75)' }}>Flora Rossa Putrajaya</p>

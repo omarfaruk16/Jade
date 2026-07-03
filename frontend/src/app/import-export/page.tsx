@@ -107,7 +107,7 @@ export default function ImportExportPage() {
 
               <div className={styles.rightCol}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/Export Import Page/Global Trade & Export Excellence By Jade.jpg" alt="Modern Office Detail" className={styles.officeImgSide} />
+                <img src="/images/export-import-page/global-trade-export.jpg" alt="Modern Office Detail" className={styles.officeImgSide} />
               </div>
             </div>
           </section>
@@ -162,9 +162,9 @@ export default function ImportExportPage() {
             </div>
             <div className={styles.processCards}>
               {[
-                { img: '/images/Export Import Page/Global consultation creates tailored solutions by jade.png', text: 'Global consultation creates tailored solutions.' },
-                { img: '/images/Export Import Page/Robust manufacturing ensures rigorous quality by jade.png', text: 'Robust manufacturing ensures rigorous quality.' },
-                { img: '/images/Export Import Page/Secure logistics build absolute confidence by jade.png', text: 'Secure logistics build absolute confidence.' }
+                { img: '/images/export-import-page/global-consultation.png', text: 'Global consultation creates tailored solutions.' },
+                { img: '/images/export-import-page/robust-manufacturing.png', text: 'Robust manufacturing ensures rigorous quality.' },
+                { img: '/images/export-import-page/secure-logistics.png', text: 'Secure logistics build absolute confidence.' }
               ].map((item, idx) => (
                 <div key={idx} className={styles.processCard}>
                   <div className={styles.processCardHeader}>
