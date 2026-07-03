@@ -100,7 +100,7 @@ export default function DealerPage() {
           <section className={styles.hero}>
             <div className={styles.heroContent}>
               <h1 className={styles.title}>
-                <ScaleBlur text="Become an Authorized Jade Partner" stagger={0.04} />
+                <ScaleBlur text="Become a Jade Partner" stagger={0.04} />
               </h1>
               <motion.p
                 className={styles.subtitle}
@@ -108,7 +108,7 @@ export default function DealerPage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.3 }}
               >
-                Partner with Jade to access world-class furniture collections, professional business support, and a proven supply network. Together, we create exceptional spaces while building sustainable growth across regional and international markets.
+                Partner with Jade to unlock a complete ecosystem of premium support, driving shared global growth
               </motion.p>
             </div>
           </section>

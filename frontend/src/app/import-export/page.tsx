@@ -185,7 +185,7 @@ export default function ImportExportPage() {
               <div className={styles.insightsHeader}>
                 <TitleReveal><h2 className={styles.sectionTitle}>Seamless Delivery Across Global Frontiers </h2></TitleReveal>
                 <div className={styles.insightsHeaderRight}>
-                  <p className={styles.headerDesc}>Connecting premium interior craftsmanship to global markets with trust.</p>
+                  <p className={styles.headerDesc}>Connecting premium craftsmanship to global markets with trust.</p>
                 </div>
               </div>
 

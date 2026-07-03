@@ -8,8 +8,10 @@ export default function HeroSection() {
   return (
     <section className={styles.heroWrapper}>
       <div className={styles.heroContainer}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/hero-avatars/hero-bg.jpg" alt="Luxurious modern house exterior" className={styles.bgImage} />
+        <div className={styles.imageWrapper}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/hero-avatars/hero-bg.jpg" alt="Luxurious modern house exterior" className={styles.bgImage} />
+        </div>
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
