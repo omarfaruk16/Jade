@@ -15,7 +15,7 @@ import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'contactMessages' | 'services' | 'products' | 'blogs'>('projects');
-  const [partnerPage, setPartnerPage] = useState<'about' | 'dealer' | 'export-import'>('about');
+  const [partnerPage, setPartnerPage] = useState<'dealer' | 'export-import'>('dealer');
   const [promotions, setPromotions] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
@@ -252,14 +252,14 @@ export default function AdminDashboard() {
             <div>
               {/* Partner sub-page switcher */}
               <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-                {(['about', 'dealer', 'export-import'] as const).map(pg => (
+                {(['dealer', 'export-import'] as const).map(pg => (
                   <button
                     key={pg}
                     onClick={() => setPartnerPage(pg)}
                     className={`${styles.navButton} ${partnerPage === pg ? styles.activeNav : ''}`}
                     style={{ padding: '0.4rem 1rem', fontSize: '0.85rem', textTransform: 'capitalize' }}
                   >
-                    {pg === 'about' ? 'About / General' : pg === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
+                    {pg === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
                   </button>
                 ))}
               </div>
@@ -490,7 +490,7 @@ export default function AdminDashboard() {
                   <div className={styles.inputGroup}>
                     <label>Page</label>
                     <div style={{ padding: '0.6rem 1rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', textTransform: 'capitalize' }}>
-                      {partnerData.page === 'about' ? 'About / General' : partnerData.page === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
+                      {partnerData.page === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
                     </div>
                   </div>
                   <div className={styles.inputGroup}>

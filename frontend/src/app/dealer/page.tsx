@@ -205,16 +205,14 @@ export default function DealerPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                   <TitleReveal><h3 style={{ fontSize: '1.2rem', fontWeight: 600, margin: 0 }}>Our export import partners</h3></TitleReveal>
                   <div className={styles.partnersGrid}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://svgl.app/library/boltshift.svg" className={styles.partnerLogo} alt="Boltshift" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://svgl.app/library/logoipsum.svg" className={styles.partnerLogo} alt="Logoipsum" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://svgl.app/library/extrahop.svg" className={styles.partnerLogo} alt="Extrahop" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://svgl.app/library/framer.svg" className={styles.partnerLogo} alt="Framer" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://svgl.app/library/vercel_wordmark_dark.svg" className={styles.partnerLogo} alt="Vercel" />
+                    {partners.length > 0 ? (
+                      partners.map(p => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={p.id} src={p.logo} alt={p.name} className={styles.partnerLogo} />
+                      ))
+                    ) : (
+                      <p style={{ color: '#999', fontSize: '0.95rem' }}>No partners added yet.</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -231,22 +229,7 @@ export default function DealerPage() {
           <FaqSection />
         </SectionReveal>
 
-        {/* Partners */}
-        {partners.length > 0 && (
-          <SectionReveal>
-            <section className={styles.partnersSection}>
-              <div className={styles.container}>
-                <TitleReveal><h3 className={styles.sectionTitle}>Meet our export partners</h3></TitleReveal>
-                <div className={styles.partnersGrid}>
-                  {partners.map(p => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img key={p.id} src={p.logo} alt={p.name} className={styles.partnerLogo} />
-                  ))}
-                </div>
-              </div>
-            </section>
-          </SectionReveal>
-        )}
+
 
         {/* Dealer Form */}
         <SectionReveal>

@@ -21,6 +21,7 @@ import TitleReveal from '@/components/layout/TitleReveal';
 export default function AboutPage() {
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [partners, setPartners] = useState<any[]>([]);
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
 
   const heroMedia = [
@@ -65,6 +66,11 @@ export default function AboutPage() {
     fetch(`${API_BASE}/team`)
       .then(res => res.json())
       .then(data => setTeamMembers(data))
+      .catch(console.error);
+
+    fetch(`${API_BASE}/partners?page=about`)
+      .then(res => res.json())
+      .then(data => Array.isArray(data) ? setPartners(data) : setPartners([]))
       .catch(console.error);
   }, []);
 
@@ -274,7 +280,7 @@ export default function AboutPage() {
                   With trusted global partners, we bring elite quality worldwide.
                 </p>
               </div>
-              <LogoMarquee />
+              <LogoMarquee partners={partners} />
             </section>
           </SectionReveal>
 
