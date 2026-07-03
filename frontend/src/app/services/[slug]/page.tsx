@@ -125,7 +125,7 @@ export default function ServiceChildPage() {
               </button>
             ))}
           </div>
-          <button className={styles.subNavAction}>Book a Call</button>
+          <a href="https://cal.com/jade-kitchen-design/not-sure-what-you-need-let-s-figure-it-out-fast" target="_blank" rel="noopener noreferrer" className={styles.subNavAction}>Book a Call</a>
         </div>
       </div>
 
@@ -158,7 +158,7 @@ export default function ServiceChildPage() {
                 <TitleReveal><h1 className={styles.itemTitle}>{item.title}</h1></TitleReveal>
                 <div className={styles.itemHeaderRight}>
                   <p className={styles.headerText}>Think we&apos;re the right fit? Contact us and let&apos;s get started.</p>
-                  <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
+                  <button className={styles.contactBtn} onClick={() => window.open('https://wa.me/601163329447', '_blank')}>Contact now</button>
                 </div>
               </div>
 

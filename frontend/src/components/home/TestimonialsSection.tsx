@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, Volume2, VolumeX } from 'lucide-react';
 import API_BASE from '@/lib/api';
 import styles from './TestimonialsSection.module.css';
 
@@ -27,6 +27,7 @@ interface Testimonial {
 
 export default function TestimonialsSection() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     fetch(`${API_BASE}/testimonials`)
@@ -111,17 +112,26 @@ export default function TestimonialsSection() {
                 src="/images/client_video.mp4"
                 autoPlay
                 loop
-                muted
+                muted={isMuted}
                 playsInline
                 suppressHydrationWarning
                 className={styles.videoBg}
               />
               <div className={styles.videoOverlay} />
+              
+              <button 
+                className={styles.muteButton}
+                onClick={() => setIsMuted(!isMuted)}
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? <VolumeX size={20} color="white" /> : <Volume2 size={20} color="white" />}
+              </button>
+
               <div className={styles.videoFooter}>
-                <img src="https://i.pravatar.cc/100?img=11" alt="Julian Meyer" className={styles.avatar} />
+                <img src="/images/Jade Client.png" alt="Mr Faiz" className={styles.avatar} />
                 <div className={styles.userInfo}>
-                  <h4 style={{ color: 'white' }}>Julian Meyer</h4>
-                  <p style={{ color: 'rgba(255,255,255,0.75)' }}>Partner</p>
+                  <h4 style={{ color: 'white' }}>Mr Faiz</h4>
+                  <p style={{ color: 'rgba(255,255,255,0.75)' }}>Flora Rossa Putrajaya</p>
                 </div>
               </div>
             </motion.div>

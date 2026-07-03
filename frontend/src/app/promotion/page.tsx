@@ -84,7 +84,7 @@ export default function PromotionPage() {
                   </div>
                   <div className={styles.promoInfo}>
                     <TitleReveal><h3 className={styles.promoTitle}>{promo.title}</h3></TitleReveal>
-                    <button className={styles.viewButton}>Get it now</button>
+                    <button className={styles.viewButton} onClick={() => window.open('https://wa.me/601163329447', '_blank')}>Get it now</button>
                   </div>
                 </motion.div>
               ))}

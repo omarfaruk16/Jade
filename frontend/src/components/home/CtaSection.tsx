@@ -61,9 +61,9 @@ export default function CtaSection() {
             <p className={styles.cardText}>
               With purpose, passion, and<br />precision in every detail.
             </p>
-            <Link href="/contact" className={styles.quoteBtn}>
+            <a href="https://wa.me/601163329447" target="_blank" rel="noopener noreferrer" className={styles.quoteBtn}>
               Get a Quote
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>

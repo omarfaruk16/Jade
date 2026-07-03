@@ -15,6 +15,7 @@ import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'contactMessages' | 'services' | 'products' | 'blogs'>('projects');
+  const [partnerPage, setPartnerPage] = useState<'about' | 'dealer' | 'export-import'>('about');
   const [promotions, setPromotions] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
@@ -32,7 +33,7 @@ export default function AdminDashboard() {
   const [testimonialData, setTestimonialData] = useState({ name: '', role: '', review: '', avatar: '', rating: 5 });
   const [teamData, setTeamData] = useState({ name: '', designation: '', image: '' });
   const [faqData, setFaqData] = useState({ question: '', answer: '' });
-  const [partnerData, setPartnerData] = useState({ name: '', logo: '' });
+  const [partnerData, setPartnerData] = useState({ name: '', logo: '', page: 'about' });
   const [uploading, setUploading] = useState(false);
 
   const fetchData = useCallback(async () => {
@@ -117,8 +118,8 @@ export default function AdminDashboard() {
       if (item) { setEditingItem(item); setFaqData({ question: item.question, answer: item.answer }); }
       else { setEditingItem(null); setFaqData({ question: '', answer: '' }); }
     } else if (activeTab === 'partners') {
-      if (item) { setEditingItem(item); setPartnerData({ name: item.name, logo: item.logo }); }
-      else { setEditingItem(null); setPartnerData({ name: '', logo: '' }); }
+      if (item) { setEditingItem(item); setPartnerData({ name: item.name, logo: item.logo, page: item.page || partnerPage }); }
+      else { setEditingItem(null); setPartnerData({ name: '', logo: '', page: partnerPage }); }
     } else if (activeTab === 'dealerRequests' || activeTab === 'contactMessages') {
       setEditingItem(item);
     }
@@ -137,7 +138,7 @@ export default function AdminDashboard() {
     else if (activeTab === 'testimonials') bodyData = { ...testimonialData, rating: Number(testimonialData.rating) };
     else if (activeTab === 'team') bodyData = teamData;
     else if (activeTab === 'faq') bodyData = faqData;
-    else if (activeTab === 'partners') bodyData = partnerData;
+    else if (activeTab === 'partners') bodyData = { ...partnerData, page: partnerData.page || partnerPage };
 
     try {
       const res = await fetch(url, {
@@ -170,7 +171,7 @@ export default function AdminDashboard() {
     if (activeTab === 'testimonials') return testimonials;
     if (activeTab === 'team') return team;
     if (activeTab === 'faq') return faqs;
-    if (activeTab === 'partners') return partners;
+    if (activeTab === 'partners') return partners.filter((p: any) => p.page === partnerPage);
     if (activeTab === 'contactMessages') return contactMessages;
     return dealerRequests;
   };
@@ -185,7 +186,8 @@ export default function AdminDashboard() {
     { id: 'faq', icon: HelpCircle, label: 'FAQ' },
     { id: 'contact', icon: Settings, label: 'Contact Settings' },
     { id: 'partners', icon: Users, label: 'Partners' },
-    { id: 'dealerRequests', icon: MessageSquare, label: 'Dealer Request' },
+    { id: 'dealerRequests', icon: MessageSquare, label: 'Dealer Requests' },
+    { id: 'contactMessages', icon: MessageSquare, label: 'Contact Messages' },
     { id: 'services', icon: Layers, label: 'Services' },
     { id: 'products', icon: Box, label: 'Products' },
     { id: 'blogs', icon: MessageSquare, label: 'Blogs' },
@@ -229,8 +231,8 @@ export default function AdminDashboard() {
           <h1 className={styles.title}>
             {tabs.find(t => t.id === activeTab)?.label} Management
           </h1>
-          {/* Projects, Services, Products, Blogs handle their own addition UI */}
-          {!['contact', 'dealerRequests', 'services', 'products', 'blogs', 'projects'].includes(activeTab) && (
+        {/* Partners, Services, Products, Blogs, Projects handle their own addition UI */}
+          {!['contact', 'dealerRequests', 'contactMessages', 'services', 'products', 'blogs', 'projects'].includes(activeTab) && (
             <button onClick={() => handleOpenModal()} className={styles.addNewBtn}>
               <PlusCircle size={20} /> Add New
             </button>
@@ -246,6 +248,54 @@ export default function AdminDashboard() {
             <ProductsAdmin />
           ) : activeTab === 'blogs' ? (
             <BlogsAdmin />
+          ) : activeTab === 'partners' ? (
+            <div>
+              {/* Partner sub-page switcher */}
+              <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+                {(['about', 'dealer', 'export-import'] as const).map(pg => (
+                  <button
+                    key={pg}
+                    onClick={() => setPartnerPage(pg)}
+                    className={`${styles.navButton} ${partnerPage === pg ? styles.activeNav : ''}`}
+                    style={{ padding: '0.4rem 1rem', fontSize: '0.85rem', textTransform: 'capitalize' }}
+                  >
+                    {pg === 'about' ? 'About / General' : pg === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
+                  </button>
+                ))}
+              </div>
+              {/* Partners table for current sub-page */}
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Logo</th>
+                      <th style={{ textAlign: 'right' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {getActiveArray().map((item: any) => (
+                      <tr key={item.id}>
+                        <td style={{ fontWeight: 500 }}>{item.name}</td>
+                        <td>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={item.logo} alt={item.name} style={{ height: 36, maxWidth: 100, objectFit: 'contain', background: '#fff', borderRadius: 6, padding: '2px 6px' }} />
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                            <button onClick={() => handleOpenModal(item)} className={styles.actionBtn} title="Edit"><Edit2 size={18} /></button>
+                            <button onClick={() => handleDelete(item.id, 'partners')} className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"><Trash2 size={18} /></button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                    {getActiveArray().length === 0 && (
+                      <tr><td colSpan={3} style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', padding: '2rem' }}>No partners for this page. Click &quot;Add New&quot; to add one.</td></tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           ) : activeTab === 'contact' ? (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -437,6 +487,12 @@ export default function AdminDashboard() {
               )}
               {activeTab === 'partners' && (
                 <>
+                  <div className={styles.inputGroup}>
+                    <label>Page</label>
+                    <div style={{ padding: '0.6rem 1rem', background: 'rgba(255,255,255,0.08)', borderRadius: '8px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', textTransform: 'capitalize' }}>
+                      {partnerData.page === 'about' ? 'About / General' : partnerData.page === 'dealer' ? 'Dealer Page' : 'Export-Import Page'}
+                    </div>
+                  </div>
                   <div className={styles.inputGroup}>
                     <label>Partner Name</label>
                     <input required value={partnerData.name} onChange={e => setPartnerData({ ...partnerData, name: e.target.value })} className={styles.input} />

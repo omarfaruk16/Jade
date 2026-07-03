@@ -250,7 +250,7 @@ export default function ProductDetailsPage() {
           <section className={styles.ctaSection}>
             <div className={styles.ctaInner}>
               <p className={styles.ctaTagline}>Hope you got a good idea about our products. To learn more or choose one, talk to our Sales Expert.</p>
-              <button className={styles.ctaBtn} onClick={() => window.location.href = '/contact'}>Talk to Expert</button>
+              <button className={styles.ctaBtn} onClick={() => window.open('https://wa.me/601163329447', '_blank')}>Talk to Expert</button>
             </div>
             <div className={styles.ctaImageWrap}>
               {/* eslint-disable-next-line @next/next/no-img-element */}

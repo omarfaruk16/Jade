@@ -86,7 +86,7 @@ export default function HarmonySection() {
                     with clarity, precision, and lasting support a journey from vision to
                     peace of mind.
                   </p>
-                  <Link href="/contact" className={styles.ctaBtn}>Get a Quote</Link>
+                  <a href="https://cal.com/jade-kitchen-design/not-sure-what-you-need-let-s-figure-it-out-fast" target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>Get a Quote</a>
                 </div>
               </motion.div>
 

@@ -167,9 +167,9 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               onMouseEnter={handleServicesEnter}
               onMouseLeave={handleServicesLeave}
             >
-              <Link href="/services" className={`${styles.navLink} ${styles.navLinkDimmed}`}>
+              <span className={`${styles.navLink} ${styles.navLinkDimmed}`} style={{ cursor: 'pointer' }}>
                 Services <ChevronDown className={styles.icon} style={{ transform: showServices ? 'rotate(180deg)' : 'none' }} />
-              </Link>
+              </span>
             </div>
 
             <div
@@ -178,13 +178,6 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               onMouseLeave={handleProductsLeave}
             >
               <span
-                onClick={() => {
-                  if (productsData.length > 0) {
-                    router.push(`/products/${productsData[0].slug}`);
-                  } else {
-                    router.push('/products');
-                  }
-                }}
                 className={`${styles.navLink} ${styles.navLinkDimmed}`}
                 style={{ cursor: 'pointer' }}
               >
@@ -197,7 +190,10 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
           </div>
           <div className={styles.navButtonGroup}>
             <Link href="/contact" className={styles.navLink} onMouseEnter={closeAllMenus}>Contact</Link>
-            <button
+            <a
+              href="https://cal.com/jade-kitchen-design/not-sure-what-you-need-let-s-figure-it-out-fast"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButton}
               onMouseEnter={() => { closeAllMenus(); setHoveredBtn(true); }}
               onMouseLeave={() => setHoveredBtn(false)}
@@ -206,7 +202,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                 <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
                 <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
               </span>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -406,7 +402,10 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               <Link href="/about" onClick={toggleMenu}>About us</Link>
 
               <Link href="/contact" onClick={toggleMenu}>Contact</Link>
-              <button
+              <a
+              href="https://cal.com/jade-kitchen-design/not-sure-what-you-need-let-s-figure-it-out-fast"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButtonMobile}
               onClick={toggleMenu}
               onMouseEnter={() => setHoveredBtn(true)}
@@ -416,7 +415,7 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                 <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
                 <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
               </span>
-            </button>
+            </a>
             </div>
           </motion.div>
         )}

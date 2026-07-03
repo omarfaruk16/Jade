@@ -37,7 +37,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-            onClick={() => window.location.href = '/contact'}
+            onClick={() => window.open('https://wa.me/601163329447', '_blank')}
           >
             Let&apos;s Talk Concepts
           </motion.button>

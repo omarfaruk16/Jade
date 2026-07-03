@@ -1,6 +1,6 @@
 'use client';
 
-
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './ImportExport.module.css';
@@ -11,6 +11,7 @@ import CeoBadge from '@/components/shared/CeoBadge';
 import WhatsIncluded from '@/components/shared/WhatsIncluded';
 import FaqSection from '@/components/home/FaqSection';
 import '@/app/jade-shared.css';
+import API_BASE from '@/lib/api';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
@@ -24,7 +25,14 @@ const importExportWhatsIncluded = [
 ];
 
 export default function ImportExportPage() {
+  const [partners, setPartners] = useState<any[]>([]);
 
+  useEffect(() => {
+    fetch(`${API_BASE}/partners?page=export-import`)
+      .then(res => res.json())
+      .then(data => Array.isArray(data) ? setPartners(data) : setPartners([]))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <SmoothScroll>
@@ -76,7 +84,7 @@ export default function ImportExportPage() {
               <TitleReveal><h2 className={styles.officeTitle}>Global Trade & Export Excellence</h2></TitleReveal>
               <div className={styles.headerRightContent}>
                 <p className={styles.headerDesc}>Explore how we bridge precision manufacturing with global projects.</p>
-                <button className={styles.contactBtn} onClick={() => window.location.href = '/contact'}>Contact now</button>
+                <button className={styles.contactBtn} onClick={() => window.open('https://wa.me/601163329447', '_blank')}>Contact now</button>
               </div>
             </div>
 
@@ -99,7 +107,7 @@ export default function ImportExportPage() {
 
               <div className={styles.rightCol}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/import-export-righy.avif" alt="Modern Office Detail" className={styles.officeImgSide} />
+                <img src="/images/Export Import Page/Global Trade & Export Excellence By Jade.jpg" alt="Modern Office Detail" className={styles.officeImgSide} />
               </div>
             </div>
           </section>
@@ -128,16 +136,12 @@ export default function ImportExportPage() {
             <div className={`${styles.middleCol} ${styles.wideMiddleCol}`}>
               <TitleReveal><h3 className={styles.partnersTitle}>Our export import partners</h3></TitleReveal>
               <div className={styles.logosRow}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://svgl.app/library/boltshift.svg" className={styles.logoItem} alt="Boltshift" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://svgl.app/library/logoipsum.svg" className={styles.logoItem} alt="Logoipsum" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://svgl.app/library/extrahop.svg" className={styles.logoItem} alt="Extrahop" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://svgl.app/library/framer.svg" className={styles.logoItem} alt="Framer" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://svgl.app/library/vercel_wordmark_dark.svg" className={styles.logoItem} alt="Vercel" />
+                {partners.length > 0 ? partners.map((p: any) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={p.id} src={p.logo} className={styles.logoItem} alt={p.name} />
+                )) : (
+                  <p style={{ color: '#999', fontSize: '0.95rem' }}>No partners added yet.</p>
+                )}
               </div>
             </div>
           </div>
@@ -158,9 +162,9 @@ export default function ImportExportPage() {
             </div>
             <div className={styles.processCards}>
               {[
-                { img: '/images/f1.png', text: 'Global consultation creates tailored solutions.' },
-                { img: '/images/f2.png', text: 'Robust manufacturing ensures rigorous quality.' },
-                { img: '/images/f3.png', text: 'Secure logistics build absolute confidence.' }
+                { img: '/images/Export Import Page/Global consultation creates tailored solutions by jade.png', text: 'Global consultation creates tailored solutions.' },
+                { img: '/images/Export Import Page/Robust manufacturing ensures rigorous quality by jade.png', text: 'Robust manufacturing ensures rigorous quality.' },
+                { img: '/images/Export Import Page/Secure logistics build absolute confidence by jade.png', text: 'Secure logistics build absolute confidence.' }
               ].map((item, idx) => (
                 <div key={idx} className={styles.processCard}>
                   <div className={styles.processCardHeader}>

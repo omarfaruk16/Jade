@@ -24,13 +24,22 @@ export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
 
   const heroMedia = [
-    { id: 0, type: 'image', src: '/images/About%20us/A.jpg' },
-    { id: 1, type: 'image', src: '/images/About%20us/B.jpg' },
-    { id: 2, type: 'image', src: '/images/About%20us/C.jpg' },
-    { id: 3, type: 'image', src: '/images/About%20us/D.jpg' },
-    { id: 4, type: 'image', src: '/images/About%20us/Asia%20Award%202025-169%20by%20jade%20.jpg' },
-    { id: 5, type: 'image', src: '/images/About%20us/Asia%20Award%202025-298%20By%20jade%27.jpg' },
-    { id: 6, type: 'image', src: '/images/About%20us/Asia%20Award%202025-394%20By%20Jade.jpg' },
+    { id: 0, type: 'image', src: '/images/About us/Moment Us by jade 1.jpg' },
+    { id: 1, type: 'image', src: '/images/About us/Moment Us by jade 2.jpg' },
+    { id: 2, type: 'image', src: '/images/About us/Moment Us by jade 3.jpg' },
+    { id: 3, type: 'image', src: '/images/About us/Moment Us by jade 4.jpg' },
+    { id: 4, type: 'image', src: '/images/About us/Moment Us by jade 5.jpg' },
+    { id: 5, type: 'image', src: '/images/About us/Moment Us by jade 6.jpg' },
+    { id: 6, type: 'image', src: '/images/About us/Moment Us by jade 7.jpg' },
+    { id: 7, type: 'image', src: '/images/About us/Moment Us by jade 8.jpg' },
+    { id: 8, type: 'image', src: '/images/About us/Moment Us by jade 9.jpg' },
+    { id: 9, type: 'image', src: '/images/About us/Moment Us by jade 10.jpg' },
+    { id: 10, type: 'image', src: '/images/About us/Moment Us by jade 11.jpg' },
+    { id: 11, type: 'image', src: '/images/About us/Moment Us by jade 12.jpg' },
+    { id: 12, type: 'image', src: '/images/About us/Moment Us by jade 13.jpg' },
+    { id: 13, type: 'image', src: '/images/About us/Moment Us by jade 14.jpg' },
+    { id: 14, type: 'image', src: '/images/About us/Moment Us by jade 15.jpg' },
+    { id: 15, type: 'image', src: '/images/About us/Moment Us by jade 16.jpg' },
   ];
 
   const handleNext = () => setActiveIndex(p => (p + 1) % heroMedia.length);
@@ -38,7 +47,7 @@ export default function AboutPage() {
 
   const getVisibleIndices = () => {
     const indices = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 3; i++) {
       indices.push((activeIndex + i) % heroMedia.length);
     }
     return indices;
@@ -68,250 +77,218 @@ export default function AboutPage() {
 
   return (
     <SmoothScroll>
-    <div className={styles.pageWrapper}>
-      <Navbar />
+      <div className={styles.pageWrapper}>
+        <Navbar />
 
-      <main className={styles.container}>
-        {/* Header Section */}
-        <SectionReveal>
-          <div className={styles.heroOuterWrapper}>
-            <section className={styles.headerSection}>
-              <h1 className={styles.pageTitle}>
-                <ScaleBlur text="About Us" stagger={0.05} />
-              </h1>
+        <main className={styles.container}>
+          {/* Header Section */}
+          <SectionReveal>
+            <div className={styles.heroOuterWrapper}>
+              <section className={styles.headerSection}>
+                <h1 className={styles.pageTitle}>
+                  <ScaleBlur text="About Us" stagger={0.05} />
+                </h1>
 
-              <div className={styles.heroGridWrapper}>
-                <div className={styles.heroImagesGrid}>
-                  {visibleIndices.map((mediaIndex, i) => {
-                    const media = heroMedia[mediaIndex];
+                <div className={styles.heroGridWrapper}>
+                  <div className={styles.heroImagesGrid}>
+                    {visibleIndices.map((mediaIndex, i) => {
+                      const media = heroMedia[mediaIndex];
 
-                    return (
-                      <div key={i} className={styles.imageCol}>
-                        <AnimatePresence mode="popLayout">
-                          <motion.div
-                            key={media.id}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 1.05 }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
-                          >
-                            {media.type === 'video' ? (
-                              <video src={media.src} autoPlay muted loop playsInline className={styles.heroMediaEl} />
-                            ) : (
-                              <img src={media.src} alt="" className={styles.heroMediaEl} />
-                            )}
-                          </motion.div>
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
+                      return (
+                        <div key={i} className={styles.imageCol}>
+                          <AnimatePresence mode="popLayout">
+                            <motion.div
+                              key={media.id}
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 1.05 }}
+                              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                              style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+                            >
+                              {media.type === 'video' ? (
+                                <video src={media.src} autoPlay muted loop playsInline className={styles.heroMediaEl} />
+                              ) : (
+                                <img src={media.src} alt="" className={styles.heroMediaEl} />
+                              )}
+                            </motion.div>
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft}`} onClick={handlePrev}>
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight}`} onClick={handleNext}>
+                    <ChevronRight size={24} />
+                  </button>
                 </div>
 
-                <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft}`} onClick={handlePrev}>
-                  <ChevronLeft size={24} />
-                </button>
-                <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight}`} onClick={handleNext}>
-                  <ChevronRight size={24} />
-                </button>
-                <div className={styles.sliderDots}>
-                  {heroMedia.map((_, dotIdx) => (
-                    <span
-                      key={dotIdx}
-                      className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
-                      onClick={() => setActiveIndex(dotIdx)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-            </section>
-          </div>
-        </SectionReveal>
-
-        {/* Milestones Section */}
-        <SectionReveal>
-          <section className={styles.milestoneSection}>
-            <div className={styles.milestoneTop}>
-              <div className={styles.milestoneHeader}>
-                <span className={styles.label}>Our history</span>
-                <TitleReveal><h2 className={styles.sectionTitle}>Our Historical Milestones</h2></TitleReveal>
-              </div>
-
-              <p className={styles.milestoneIntro}>
-                Built on trust and global pride, our timeline reflects an elite legacy of crafting premium spaces, transforming structural visions into reality.
-              </p>
+              </section>
             </div>
+          </SectionReveal>
 
-            <div className={styles.milestoneList}>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Global Design & Material Manufacturing Center
+          {/* Milestones Section */}
+          <SectionReveal>
+            <section className={styles.milestoneSection}>
+              <div className={styles.milestoneTop}>
+                <div className={styles.milestoneHeader}>
+                  <span className={styles.label}>Our history</span>
+                  <TitleReveal><h2 className={styles.sectionTitle}>Our Historical Milestones</h2></TitleReveal>
                 </div>
-                <span className={styles.year}>2025</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Franchise Expansion in Bangladesh (Space_Coutoure)
-                </div>
-                <span className={styles.year}>2023</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Cross-Border Distribution (Takara Standard Japan & AGT Turkey)
-                </div>
-                <span className={styles.year}>2022</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Architectural Solutions & IT Developments (Jadeas & Dinno BD)
-                </div>
-                <span className={styles.year}>2020</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Manufacturing Plant Establishments & Market Entry
-                </div>
-                <span className={styles.year}>2009</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  Inaugural Kitchen Design & Export-Import Infrastructure
-                </div>
-                <span className={styles.year}>2008</span>
-              </div>
-              <div className={styles.milestoneItem}>
-                <div className={styles.milestoneText}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2.5" fill="#000" />
-                    <circle cx="12" cy="18" r="2.5" fill="#000" />
-                    <circle cx="6" cy="12" r="2.5" fill="#000" />
-                    <circle cx="18" cy="12" r="2.5" fill="#000" />
-                  </svg>
-                  The Foundation: Architecture & Structure Design
-                </div>
-                <span className={styles.year}>2007</span>
-              </div>
-            </div>
-          </section>
-        </SectionReveal>
 
-        {/* Philosophy Section */}
-        <SectionReveal>
-          <section className={styles.philosophySection}>
-            <div className={styles.philosophyLeft}>
-              <div>
-                <TitleReveal><h2 className={styles.sectionTitle}>Crafting Spaces, <br />Delivering Trust Worldwide.</h2></TitleReveal>
-                <p className={styles.philosophyText}>
-                  Since 2007, Jade Kitchen designs premium custom spaces with global trust, elite partnerships, and seamless cross-border delivery.
+                <p className={styles.milestoneIntro}>
+                  Built on trust and global pride, our timeline reflects an elite legacy of crafting premium spaces, transforming structural visions into reality.
                 </p>
               </div>
-              <ul className={styles.featureList}>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
-                  <span>We build relationships on total clarity and permanent trust.</span>
-                </li>
-                <li>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></svg>
-                  <span>Sharing custom innovation and true love to enrich your life.</span>
-                </li>
-              </ul>
-            </div>
-            <div className={styles.philosophyRight}>
-              <div className={styles.philColLeft}>
-                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wood paneling" className={styles.philImgSmall} />
-                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Glass doors" className={styles.philImgSmall} />
-              </div>
-              <div className={styles.philColRight}>
-                <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vase and chair" className={styles.philImgTall} />
-              </div>
-            </div>
-          </section>
-        </SectionReveal>
 
-        {/* Our Clients Section */}
-        <SectionReveal><TestimonialsSection /></SectionReveal>
-
-        {/* Client Voices Section */}
-        <SectionReveal>
-          <section className={styles.clientVoicesSection}>
-            <div className={styles.voicesHeader}>
-              <TitleReveal><h2 className={styles.sectionTitleCenter}>Client Voices</h2></TitleReveal>
-              <p className={styles.sectionSubtitleCenter}>
-                Real feedback from the incredible people we've had the pleasure to design for.
-              </p>
-            </div>
-
-            <div className={styles.testimonialsGrid}>
-              {testimonials.length > 0 ? (
-                testimonials.map((testi, idx) => (
-                  <div key={idx} className={styles.testimonialCard}>
-                    <div className={styles.stars}>
-                      {'★'.repeat(testi.rating)}{'☆'.repeat(5 - testi.rating)}
-                    </div>
-                    <p className={styles.reviewText}>
-                      "{testi.review}"
-                    </p>
-                    <div className={styles.clientInfo}>
-                      <img src={testi.avatar || 'https://via.placeholder.com/50'} alt={testi.name} className={styles.avatar} />
-                      <div>
-                        <h4 className={styles.clientName}>{testi.name}</h4>
-                        <span className={styles.clientRole}>{testi.role}</span>
-                      </div>
-                    </div>
+              <div className={styles.milestoneList}>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Global Design & Material Manufacturing Center
                   </div>
-                ))
-              ) : (
-                <p style={{ textAlign: 'center', gridColumn: '1 / -1', color: '#666' }}>No testimonials available yet.</p>
-              )}
-            </div>
-          </section>
-        </SectionReveal>
+                  <span className={styles.year}>2025</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Franchise Expansion in Bangladesh (Space_Coutoure)
+                  </div>
+                  <span className={styles.year}>2023</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Cross-Border Distribution (Takara Standard Japan & AGT Turkey)
+                  </div>
+                  <span className={styles.year}>2022</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Architectural Solutions & IT Developments (Jadeas & Dinno BD)
+                  </div>
+                  <span className={styles.year}>2020</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Manufacturing Plant Establishments & Market Entry
+                  </div>
+                  <span className={styles.year}>2009</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    Inaugural Kitchen Design & Export-Import Infrastructure
+                  </div>
+                  <span className={styles.year}>2008</span>
+                </div>
+                <div className={styles.milestoneItem}>
+                  <div className={styles.milestoneText}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="6" r="2.5" fill="#000" />
+                      <circle cx="12" cy="18" r="2.5" fill="#000" />
+                      <circle cx="6" cy="12" r="2.5" fill="#000" />
+                      <circle cx="18" cy="12" r="2.5" fill="#000" />
+                    </svg>
+                    The Foundation: Architecture & Structure Design
+                  </div>
+                  <span className={styles.year}>2007</span>
+                </div>
+              </div>
+            </section>
+          </SectionReveal>
 
-        {/* Shared Team Section */}
-        <SectionReveal>
-          <TeamSection />
-        </SectionReveal>
+          {/* Philosophy Section */}
+          <SectionReveal>
+            <section className={styles.philosophySection}>
+              <div className={styles.philosophyLeft}>
+                <div>
+                  <TitleReveal><h2 className={styles.sectionTitle}>Crafting Spaces, <br />Delivering Trust Worldwide.</h2></TitleReveal>
+                  <p className={styles.philosophyText}>
+                    Since 2007, Jade Kitchen designs premium custom spaces with global trust, elite partnerships, and seamless cross-border delivery.
+                  </p>
+                </div>
+                <ul className={styles.featureList}>
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    <span>We build relationships on total clarity and permanent trust.</span>
+                  </li>
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></svg>
+                    <span>Sharing custom innovation and true love to enrich your life.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className={styles.philosophyRight}>
+                <div className={styles.philColLeft}>
+                  <img src="/images/Slices/3 by jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
+                  <img src="/images/Slices/2 by jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
+                </div>
+                <div className={styles.philColRight}>
+                  <img src="/images/Slices/1 by jade .jpg" alt="Vase and chair" className={styles.philImgTall} />
+                </div>
+              </div>
+            </section>
+          </SectionReveal>
 
-      </main>
-      <Footer />
-    </div>
+          {/* Our Clients Section */}
+          <SectionReveal>
+            <section className={styles.ourClientsSection}>
+              <div className={styles.ourClientsHeader}>
+                <TitleReveal><h2 className={styles.sectionTitleCenter}>Global Partner</h2></TitleReveal>
+                <p className={styles.sectionSubtitleCenter}>
+                  With trusted global partners, we bring elite quality worldwide.
+                </p>
+              </div>
+              <LogoMarquee />
+            </section>
+          </SectionReveal>
+
+          {/* Testimonials Section */}
+          <TestimonialsSection />
+
+          {/* Shared Team Section */}
+          <SectionReveal>
+            <TeamSection />
+          </SectionReveal>
+
+        </main>
+        <Footer />
+      </div>
     </SmoothScroll>
   );
 }

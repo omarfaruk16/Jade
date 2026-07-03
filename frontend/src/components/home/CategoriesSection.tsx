@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./CategoriesSection.module.css";
 import SectionReveal from '@/components/layout/SectionReveal';
 import API_BASE from '@/lib/api';
+import Link from 'next/link';
 
 const defaultServices = [
   {
@@ -14,6 +15,7 @@ const defaultServices = [
     number: "80+",
     label: "Tailored home environments",
     desc: "We create refined, functional interiors that reflect your lifestyle—balancing comfort, sophistication, and thoughtful material choices.",
+    slug: "residential-interior-design",
   },
   {
     id: "02",
@@ -23,6 +25,7 @@ const defaultServices = [
     number: "50+",
     label: "Commercial spaces",
     desc: "We design productive, premium business environments for offices, showrooms, restaurants, and retail spaces.",
+    slug: "commercial-interior-design",
   },
   {
     id: "03",
@@ -32,6 +35,7 @@ const defaultServices = [
     number: "120+",
     label: "Custom furniture pieces",
     desc: "From concept to production, we create furniture solutions tailored to your space and brand identity.",
+    slug: "custom-furniture-oem-solutions",
   },
 ];
 
@@ -54,6 +58,7 @@ export default function CategoriesSection() {
               number: c.statsNumber || "",
               label: c.statsText ? c.statsText.replace(/^\/\s*/, '') : "",
               desc: c.description || "",
+              slug: c.slug || `service-${index + 1}`,
             })));
           }
         }
@@ -119,9 +124,9 @@ export default function CategoriesSection() {
                       </button>
 
                       {(isOpen || true) && (
-                        <button className={`${styles.learnBtn} ${isOpen ? styles.btnOpen : ""}`}>
+                        <Link href={`/services/${item.slug}`} className={`${styles.learnBtn} ${isOpen ? styles.btnOpen : ""}`}>
                           Learn more
-                        </button>
+                        </Link>
                       )}
                     </div>
                   </div>

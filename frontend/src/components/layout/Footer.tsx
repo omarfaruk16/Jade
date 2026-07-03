@@ -4,25 +4,25 @@ import { ArrowRight } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const productLinks = [
-  { label: 'TV Cabinet', href: '#' },
-  { label: 'Home Furnishes', href: '#' },
-  { label: 'Kitchen', href: '#' },
-  { label: 'Wardrobe', href: '#' },
+  { label: 'TV Cabinet', href: '/products' },
+  { label: 'Home Furnishes', href: '/products' },
+  { label: 'Kitchen', href: '/products' },
+  { label: 'Wardrobe', href: '/products' },
 ];
 
 const companyLinks = [
-  { label: 'About Us', href: '#' },
-  { label: 'Export & Import', href: '#' },
-  { label: 'Blog', href: '#' },
-  { label: 'Projects', href: '#' },
-  { label: 'Promotions', href: '#' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Export & Import', href: '/import-export' },
+  { label: 'Blog', href: '/blogs' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Promotions', href: '/promotion' },
 ];
 
 const legalLinks = [
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Warranty Policy', href: '/warranty' },
-  { label: 'Contact', href: '#' },
-  { label: 'Be A dealer', href: '#' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Be A dealer', href: '/dealer' },
 ];
 
 export default function Footer() {

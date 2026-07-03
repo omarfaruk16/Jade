@@ -1,17 +1,9 @@
 'use client';
 
 import styles from './LogoMarquee.module.css';
+import { partnerLogos } from '@/lib/logos';
 
-const logos = [
-  { src: '/images/logo/DAIKIN.webp', alt: 'Daikin' },
-  { src: '/images/logo/bmw.webp', alt: 'BMW' },
-  { src: '/images/logo/fi.avif', alt: 'F1' },
-  { src: '/images/logo/launchsimplae.png', alt: 'LaunchSimple' },
-  { src: '/images/logo/shanta.webp', alt: 'Shanta' },
-  { src: '/images/logo/DAIKIN.webp', alt: 'Daikin' },
-  { src: '/images/logo/bmw.webp', alt: 'BMW' },
-  { src: '/images/logo/fi.avif', alt: 'F1' },
-];
+const logos = partnerLogos.map((src, i) => ({ src, alt: `Partner Logo ${i + 1}` }));
 
 export default function LogoMarquee() {
   return (

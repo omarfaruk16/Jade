@@ -3,13 +3,7 @@
 import styles from './AsSeenSection.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 
-const logos = [
-  '/images/logo/fi.avif',
-  '/images/logo/bmw.webp',
-  '/images/logo/DAIKIN.webp',
-  '/images/logo/launchsimplae.png',
-  '/images/logo/shanta.webp',
-];
+import { partnerLogos as logos } from '@/lib/logos';
 
 export default function AsSeenSection() {
   return (

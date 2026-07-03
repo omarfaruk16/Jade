@@ -51,24 +51,6 @@ export default function BlogsClientPage() {
         >
           Explore ideas, trends, and behind-the-scenes stories from our studio.
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.15 }}
-          style={{ display: 'flex', justifyContent: 'center', gap: '0' }}
-        >
-          <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="Your email"
-            className="blog-email-input"
-            style={{ padding: '0.875rem 1.25rem', border: '1px solid #ddd', borderRadius: '8px 0 0 8px', outline: 'none', fontSize: '0.9rem', width: 320 }}
-          />
-          <button
-            style={{ background: '#111', color: '#fff', border: 'none', padding: '0.875rem 1.5rem', borderRadius: '0 8px 8px 0', cursor: 'pointer', fontWeight: 600, fontSize: '0.9rem' }}
-          >
-            Subscribe
-          </button>
-        </motion.div>
       </section>
 </SectionReveal>
 
