@@ -288,9 +288,7 @@ export default function AboutPage() {
           <TestimonialsSection />
 
           {/* Shared Team Section */}
-          <SectionReveal>
-            <TeamSection />
-          </SectionReveal>
+          <TeamSection />
 
         </main>
         <Footer />

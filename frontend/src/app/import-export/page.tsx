@@ -215,9 +215,7 @@ export default function ImportExportPage() {
         </main>
 
         {/* Shared FAQ Section */}
-        <SectionReveal>
-          <FaqSection />
-        </SectionReveal>
+        <FaqSection />
 
         <Footer />
       </div>

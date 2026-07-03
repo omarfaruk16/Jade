@@ -69,7 +69,6 @@ export default function ProjectsArchive() {
         </div>
       </div> */}
 
-      <SectionReveal>
         <div className={styles.projectsGrid}>
           {loading ? (
             <div style={{ textAlign: 'center', width: '100%', gridColumn: 'span 3', padding: '4rem' }}>Loading architecture...</div>
@@ -99,7 +98,6 @@ export default function ProjectsArchive() {
             ))
           )}
         </div>
-      </SectionReveal>
     </div>
     </SmoothScroll>
   );

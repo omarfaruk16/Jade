@@ -149,11 +149,11 @@ export default function ServiceChildPage() {
 
       <div className={styles.page}>
         {data.items.map((item: any) => (
-          <SectionReveal key={item.id}>
-            <section
-              ref={el => { itemRefs.current[item.id] = el; }}
-              className={styles.serviceItem}
-            >
+          <section
+            key={item.id}
+            ref={el => { itemRefs.current[item.id] = el; }}
+            className={styles.serviceItem}
+          >
               <div className={styles.itemHeader}>
                 <TitleReveal><h1 className={styles.itemTitle}>{item.title}</h1></TitleReveal>
                 <div className={styles.itemHeaderRight}>
@@ -273,7 +273,6 @@ export default function ServiceChildPage() {
                 </SectionReveal>
               )}
             </section>
-          </SectionReveal>
         ))}
       </div>
 

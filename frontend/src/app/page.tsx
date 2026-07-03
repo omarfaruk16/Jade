@@ -23,16 +23,16 @@ export default function Home() {
         <main>
           <HeroSection />
           <SectionReveal><AboutSection /></SectionReveal>
-          <SectionReveal><PhilosophySection /></SectionReveal>
+          <PhilosophySection />
           <SectionReveal><ProjectsSection /></SectionReveal>
-          <SectionReveal><CategoriesSection /></SectionReveal>
-          <SectionReveal><HarmonySection /></SectionReveal>
-          <SectionReveal><TestimonialsSection /></SectionReveal>
-          <SectionReveal><AsSeenSection /></SectionReveal>
-          <SectionReveal><BlogsSection /></SectionReveal>
-          <SectionReveal><DreamSection /></SectionReveal>
-          <SectionReveal><FaqSection /></SectionReveal>
-          <SectionReveal><TeamSection /></SectionReveal>
+          <CategoriesSection />
+          <HarmonySection />
+          <TestimonialsSection />
+          <AsSeenSection />
+          <BlogsSection />
+          <DreamSection />
+          <FaqSection />
+          <TeamSection />
         </main>
         <Footer />
       </SmoothScroll>

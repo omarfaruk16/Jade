@@ -220,14 +220,10 @@ export default function DealerPage() {
           </section>
         </SectionReveal>
 
-        <SectionReveal>
-          <DreamSection />
-        </SectionReveal>
+        <DreamSection />
         {/* Shared FAQ Section */}
 
-        <SectionReveal>
-          <FaqSection />
-        </SectionReveal>
+        <FaqSection />
 
 
 
