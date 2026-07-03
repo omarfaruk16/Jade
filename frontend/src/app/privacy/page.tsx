@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <LegalDoc
       title="Privacy Policy"
-      lastUpdate="Apr 9, 2025"
+      lastUpdate="July 1, 2026"
       intro="At Jade Kitchen Design Sdn Bhd, we value the trust you place in us to craft your premium spaces. This policy outlines our commitment to protecting your personal information and ensuring transparency, quality, and punctuality in our business operations."
     >
       <Section title="1. Data Protection & Customer Privacy">

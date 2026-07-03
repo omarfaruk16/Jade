@@ -3,7 +3,7 @@
 import styles from './AsSeenSection.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 
-import { partnerLogos as logos } from '@/lib/logos';
+import { homeLogos as logos } from '@/lib/logos';
 
 export default function AsSeenSection() {
   return (

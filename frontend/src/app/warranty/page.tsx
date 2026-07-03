@@ -16,7 +16,7 @@ export default function WarrantyPage() {
   return (
     <LegalDoc
       title="Warranty Policy"
-      lastUpdate="Apr 9, 2025"
+      lastUpdate="July 1, 2026"
       intro="This Limited Warranty applies exclusively to Jade's own manufacturing products purchased directly from Jade Kitchen Design Sdn Bhd."
     >
       <Section title="Disclaimer & Commitment">

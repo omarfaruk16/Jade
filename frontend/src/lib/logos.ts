@@ -24,3 +24,16 @@ export const partnerLogos = [
   '/images/Logo/sub-zero-home-appliance-cooking-ranges-maytag-subzero-refrigerator-repair-png-favpng-BLHztfvFszVHjVA7eknq03tZ6-removebg-preview.png',
   '/images/Logo/スクリーンショット_2023-10-05_171151-removebg-preview.png'
 ];
+
+export const homeLogos = [
+  '/images/homelogo/Baws .png',
+  '/images/homelogo/Bumi link .png',
+  '/images/homelogo/Business Deal.png',
+  '/images/homelogo/Daikin .png',
+  '/images/homelogo/JM biriani.png',
+  '/images/homelogo/Shanta .png',
+  '/images/homelogo/cropped-AI-Logo-JMG-png-1.png',
+  '/images/homelogo/f1-logo-png-red-large-900x231.png',
+  '/images/homelogo/gh.png',
+  '/images/homelogo/logo.png'
+];

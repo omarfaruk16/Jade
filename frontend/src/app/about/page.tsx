@@ -261,8 +261,8 @@ export default function AboutPage() {
               </div>
               <div className={styles.philosophyRight}>
                 <div className={styles.philColLeft}>
-                  <img src="/images/Slices/3-by-jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
-                  <img src="/images/Slices/2-by-jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
+                  <img src="/images/Slices/2-by-jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
+                  <img src="/images/Slices/3-by-jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
                 </div>
                 <div className={styles.philColRight}>
                   <img src="/images/Slices/1-by-jade.jpg" alt="Vase and chair" className={styles.philImgTall} />
