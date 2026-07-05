@@ -238,7 +238,7 @@ export default function DealerPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 1.2 }}
                 >
-                  <TitleReveal><h2>Become a dealer</h2></TitleReveal>
+                  <h2>Become a dealer</h2>
                   <p>You can become a part of our world!</p>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/images/be_a_dealer_handshack.avif" alt="Handshake" className={styles.handshakeImage} />
