@@ -6,7 +6,6 @@ import { X } from 'lucide-react';
 import Link from 'next/link';
 import styles from './HarmonySection.module.css';
 import TitleReveal from '@/components/layout/TitleReveal';
-import SectionReveal from '@/components/layout/SectionReveal';
 
 const FourDots = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -36,7 +35,7 @@ export default function HarmonySection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <SectionReveal>
+    <>
       <section className={styles.harmonySection}>
         <div className="jade-container">
           <div className={styles.desktopLayout}>
@@ -144,6 +143,6 @@ export default function HarmonySection() {
           </motion.div>
         )}
       </AnimatePresence>
-    </SectionReveal>
+    </>
   );
 }

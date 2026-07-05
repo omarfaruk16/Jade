@@ -63,7 +63,6 @@ export default function PromotionPage() {
         </section>
       </SectionReveal>
 
-      <SectionReveal>
         <div className={styles.contentContainer}>
           {loading ? (
             <div className={styles.loadingContainer}>Loading offers...</div>
@@ -95,7 +94,6 @@ export default function PromotionPage() {
             </div>
           )}
         </div>
-      </SectionReveal>
 
       <Footer />
     </div>

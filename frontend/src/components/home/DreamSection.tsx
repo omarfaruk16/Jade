@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styles from './DreamSection.module.css';
 
-import SectionReveal from '@/components/layout/SectionReveal';
-
 const FourDots = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="6" r="1.5" fill="currentColor" />
@@ -17,7 +15,6 @@ const FourDots = () => (
 
 export default function DreamSection() {
   return (
-    <SectionReveal>
       <section className={styles.section}>
         <div className={styles.backgroundWrapper}>
           <img src="/images/bg-2.avif" alt="Interior space" className={styles.bgImage} />
@@ -82,6 +79,5 @@ export default function DreamSection() {
           </motion.div>
         </div>
       </section>
-    </SectionReveal>
   );
 }

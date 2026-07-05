@@ -55,7 +55,6 @@ export default function BlogsClientPage() {
 </SectionReveal>
 
       {/* Blog Grid */}
-      <SectionReveal>
         <section style={{ padding: '0 0 8rem', background: '#fff' }}>
           <div className="jade-container" style={{ paddingTop: '4rem' }}>
             {blogs.length === 0 ? (
@@ -98,7 +97,6 @@ export default function BlogsClientPage() {
             )}
           </div>
         </section>
-      </SectionReveal>
 
       <style>{`
         .blog-grid {

@@ -117,7 +117,6 @@ export default function ProjectDetails() {
       <div className={styles.contentContainer}>
 
         {/* ── Product Information Section ── */}
-        <SectionReveal>
           <section className={styles.overviewSection}>
             {/* Left label */}
             <div className={styles.leftColumn}>
@@ -162,11 +161,9 @@ export default function ProjectDetails() {
               <img src={project.overviewImage} alt="Overview" className={styles.overviewImage} />
             </motion.div>
           </section>
-        </SectionReveal>
 
         {/* ── Gallery ── */}
         {gallery.length > 0 && (
-          <SectionReveal>
             <section className={styles.gallerySection}>
               <div className={styles.galleryGrid}>
                 {gallery.map((url, i) => (
@@ -184,12 +181,10 @@ export default function ProjectDetails() {
                 ))}
               </div>
             </section>
-          </SectionReveal>
         )}
 
         {/* ── Process Section ── */}
         {(processSteps.length > 0 || project.processImage) && (
-          <SectionReveal>
             <section className={styles.processSection}>
               {/* Left label */}
               <div className={styles.leftColumn}>
@@ -235,7 +230,6 @@ export default function ProjectDetails() {
                 </motion.div>
               )}
             </section>
-          </SectionReveal>
         )}
 
         {/* ── Related Projects ── */}

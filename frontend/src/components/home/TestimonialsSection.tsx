@@ -8,8 +8,6 @@ import styles from './TestimonialsSection.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 
-import SectionReveal from '@/components/layout/SectionReveal';
-
 const fallbackTestimonials = [
   { id: '1', name: 'Amelia Hart', role: 'Vale Studio', rating: 5, review: 'Their work brought our entire brand to life subtle, thoughtful, and timeless. Every element felt carefully crafted, both visually and emotionally.', avatar: 'https://i.pravatar.cc/100?img=5' },
   { id: '2', name: 'Daniel Rees', role: 'Rees & Co', rating: 5, review: 'The team captured our vision better than we imagined. From mood boards to final space, everything felt clear, smooth, and perfectly on-brand.', avatar: 'https://i.pravatar.cc/100?img=8' },
@@ -52,7 +50,6 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <SectionReveal>
       <section className={styles.section}>
         <div className="jade-container">
           <motion.div
@@ -169,6 +166,5 @@ export default function TestimonialsSection() {
           </div>
         </div>
       </section>
-    </SectionReveal>
   );
 }

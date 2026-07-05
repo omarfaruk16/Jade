@@ -4,12 +4,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styles from './CtaSection.module.css';
 
-import SectionReveal from '@/components/layout/SectionReveal';
-
 export default function CtaSection() {
   return (
-    <SectionReveal>
-<section className={styles.section}>
+    <section className={styles.section}>
       <div className={styles.bgWrapper}>
         <img src="/images/bg-2.avif" alt="Modern interior design" className={styles.bgImage} />
         <div className={styles.overlay} />
@@ -69,7 +66,6 @@ export default function CtaSection() {
       </div>
       </div>
     </section>
-</SectionReveal>
   );
 }
 

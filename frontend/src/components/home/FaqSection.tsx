@@ -7,8 +7,6 @@ import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import styles from './FaqSection.module.css';
 
-import SectionReveal from '@/components/layout/SectionReveal';
-
 export default function FaqSection() {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -27,7 +25,6 @@ export default function FaqSection() {
   };
 
   return (
-    <SectionReveal>
       <section className={styles.section}>
         <div className="jade-container">
           <div className={styles.header}>
@@ -122,7 +119,6 @@ export default function FaqSection() {
           </div>
         </div>
       </section>
-    </SectionReveal>
   );
 }
 

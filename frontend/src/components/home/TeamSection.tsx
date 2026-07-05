@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import API_BASE from '@/lib/api';
 import styles from './TeamSection.module.css';
 
-import SectionReveal from '@/components/layout/SectionReveal';
 import TitleReveal from '@/components/layout/TitleReveal';
 
 export default function TeamSection() {
@@ -19,8 +18,7 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <SectionReveal>
-<section className={styles.section}>
+    <section className={styles.section}>
       <div className={`${styles.container} jade-container`}>
         <div className={styles.header}>
           <TitleReveal>
@@ -92,6 +90,5 @@ export default function TeamSection() {
         </motion.div>
       </div>
     </section>
-</SectionReveal>
   );
 }

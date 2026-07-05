@@ -37,7 +37,10 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests, please try again later.' },
-  skip: (req) => process.env.NODE_ENV === 'development' || req.path === '/api/health', // Don't rate limit health check or development environment
+  // Don't rate limit the health check or the development environment.
+  // NOTE: the limiter is mounted at '/api/', so Express strips that prefix and
+  // req.path is '/health' here — match against req.originalUrl for the full path.
+  skip: (req) => process.env.NODE_ENV === 'development' || req.originalUrl.startsWith('/api/health'),
 });
 app.use('/api/', limiter);
 

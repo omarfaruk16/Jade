@@ -228,8 +228,7 @@ export default function DealerPage() {
 
 
         {/* Dealer Form */}
-        <SectionReveal>
-          <section className={styles.dealerFormSection}>
+        <section className={styles.dealerFormSection}>
             <div className={styles.container}>
               <div className={styles.formSplit}>
                 <motion.div
@@ -319,7 +318,6 @@ export default function DealerPage() {
               </div>
             </div>
           </section>
-        </SectionReveal>
 
         <Footer />
       </main>

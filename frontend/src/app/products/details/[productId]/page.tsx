@@ -83,7 +83,6 @@ export default function ProductDetailsPage() {
 
         {/* Descriptions */}
         {product.descriptions?.length > 0 && (
-          <SectionReveal>
             <section className={styles.section}>
               <div className={styles.sectionLabel}>
                 <DotsIcon />
@@ -112,12 +111,10 @@ export default function ProductDetailsPage() {
                 ))}
               </div>
             </section>
-          </SectionReveal>
         )}
 
         {/* Types */}
         {product.types?.length > 0 && (
-          <SectionReveal>
             <section className={styles.section}>
               <div className={styles.sectionLabel}>
                 <DotsIcon />
@@ -140,13 +137,11 @@ export default function ProductDetailsPage() {
                 ))}
               </div>
             </section>
-          </SectionReveal>
         )}
 
         {/* Materials */}
         {product.materials?.map((mat: any) => (
-          <SectionReveal key={mat.id}>
-            <section className={styles.section}>
+            <section className={styles.section} key={mat.id}>
               <div className={styles.materialLayout}>
                 <div className={styles.materialLeft}>
                   <div className={styles.sectionLabel}>
@@ -174,13 +169,11 @@ export default function ProductDetailsPage() {
                 </div>
               </div>
             </section>
-          </SectionReveal>
         ))}
 
         {/* Accessories */}
         {product.accessories?.map((acc: any) => (
-          <SectionReveal key={acc.id}>
-            <section className={styles.section}>
+            <section className={styles.section} key={acc.id}>
               <div className={styles.materialLayout}>
                 <div className={styles.materialLeft}>
                   <div className={styles.sectionLabel}>
@@ -208,13 +201,11 @@ export default function ProductDetailsPage() {
                 </div>
               </div>
             </section>
-          </SectionReveal>
         ))}
 
         {/* Appliances */}
         {product.appliances?.map((app: any) => (
-          <SectionReveal key={app.id}>
-            <section className={styles.section}>
+            <section className={styles.section} key={app.id}>
               <div className={styles.materialLayout}>
                 <div className={styles.materialLeft}>
                   <div className={styles.sectionLabel}>
@@ -242,7 +233,6 @@ export default function ProductDetailsPage() {
                 </div>
               </div>
             </section>
-          </SectionReveal>
         ))}
 
         {/* CTA */}

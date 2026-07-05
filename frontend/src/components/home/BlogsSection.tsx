@@ -9,8 +9,6 @@ import styles from './BlogsSection.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 
-import SectionReveal from '@/components/layout/SectionReveal';
-
 const DEFAULT_BLOGS = [
   {
     id: 'default-1',
@@ -67,8 +65,7 @@ export default function BlogsSection() {
   const [featured, ...rest] = displayBlogs;
 
   return (
-    <SectionReveal>
-<section className={styles.section}>
+    <section className={styles.section}>
       <div className="jade-container">
       {/* Header Row */}
       <div className={styles.header}>
@@ -138,6 +135,5 @@ export default function BlogsSection() {
       </div>
       </div>
     </section>
-</SectionReveal>
   );
 }

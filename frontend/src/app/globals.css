@@ -53,7 +53,8 @@ body {
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0em;
-  scroll-behavior: smooth;
+  /* NOTE: no `scroll-behavior: smooth` here — Lenis owns smooth scrolling.
+     Native CSS smooth-scroll fights Lenis and causes janky/stuttering scroll. */
   -webkit-font-smoothing: antialiased;
 }
 
