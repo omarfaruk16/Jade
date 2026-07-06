@@ -17,7 +17,7 @@ interface Testimonial {
 }
 
 export default function TestimonialsSectionClient({ testimonials }: { testimonials: Testimonial[] }) {
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   return (
       <section className={styles.section}>
