@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Volume2, VolumeX } from 'lucide-react';
 import styles from './TestimonialsSection.module.css';
@@ -18,9 +18,15 @@ interface Testimonial {
 
 export default function TestimonialsSectionClient({ testimonials }: { testimonials: Testimonial[] }) {
   const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsMuted(false), 100);
+    const timer = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(() => {});
+        setIsMuted(false);
+      }
+    }, 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -81,12 +87,12 @@ export default function TestimonialsSectionClient({ testimonials }: { testimonia
               transition={{ delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <video
+                ref={videoRef}
                 src="/images/client_video.mp4"
-                autoPlay
                 loop
                 muted={isMuted}
                 playsInline
-                preload="none"
+                preload="metadata"
                 suppressHydrationWarning
                 className={styles.videoBg}
               />
