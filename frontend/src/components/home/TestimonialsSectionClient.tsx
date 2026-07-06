@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Volume2, VolumeX } from 'lucide-react';
 import styles from './TestimonialsSection.module.css';
@@ -17,7 +17,12 @@ interface Testimonial {
 }
 
 export default function TestimonialsSectionClient({ testimonials }: { testimonials: Testimonial[] }) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMuted(false), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
       <section className={styles.section}>

@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './ProjectDetails.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
@@ -186,7 +185,6 @@ export default function ProjectDetailsClient({
             <section style={{ paddingBottom: '6rem' }}>
               <div className={styles.relatedHeader}>
                 <TitleReveal><h2>Related Projects</h2></TitleReveal>
-                <ChevronRight />
               </div>
               <div className={styles.relatedGrid}>
                 {relatedProjects.map((rel, i) => (
