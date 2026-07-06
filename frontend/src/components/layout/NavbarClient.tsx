@@ -219,7 +219,7 @@ export default function NavbarClient({
             <div className={styles.megaMenuRight}>
               {servicesData.length > 0 && (
                 <img
-                  src="/images/Services/nav-services.jpg"
+                  src="/images/Services/nav-services.webp"
                   alt="Service Feature"
                   className={styles.megaMenuImg}
                 />

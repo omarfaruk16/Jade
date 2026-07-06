@@ -22,15 +22,6 @@
   margin: 0;
 }
 
-.titleDash {
-  display: inline-block;
-  width: 1em;
-  height: 4px;
-  background: currentColor;
-  vertical-align: middle;
-  margin: 0 0.1em;
-}
-
 .headerRight {
   display: flex;
   flex-direction: column;
@@ -235,7 +226,16 @@
     grid-template-rows: repeat(4, auto);
   }
 
-  .headerRight {
+.titleDash {
+  display: inline-block;
+  width: 1em;
+  height: 4px;
+  background: currentColor;
+  vertical-align: middle;
+  margin: 0 0.1em;
+}
+
+.headerRight {
     align-items: flex-start;
     text-align: left;
   }

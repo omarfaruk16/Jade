@@ -98,7 +98,7 @@ export default function FaqSectionClient({ faqs }: { faqs: Faq[] }) {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img src="/images/contact_faq_team.png" alt="Team meeting" className={styles.faqImage} />
+              <img src="/images/contact_faq_team.webp" alt="Team meeting" className={styles.faqImage} />
 
               <div className={styles.floatingContact}>
                 <div className={styles.contactLeft}>

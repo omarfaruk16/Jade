@@ -15,22 +15,22 @@ export default function AboutPageClient({ partners }: { partners: any[] }) {
   const [activeIndex, setActiveIndex] = useState(1); // Start with index 1 in center
 
   const heroMedia = [
-    { id: 0, type: 'image', src: '/images/about-us/moment-1.jpg' },
-    { id: 1, type: 'image', src: '/images/about-us/moment-2.jpg' },
-    { id: 2, type: 'image', src: '/images/about-us/moment-3.jpg' },
-    { id: 3, type: 'image', src: '/images/about-us/moment-4.jpg' },
-    { id: 4, type: 'image', src: '/images/about-us/moment-5.jpg' },
-    { id: 5, type: 'image', src: '/images/about-us/moment-6.jpg' },
-    { id: 6, type: 'image', src: '/images/about-us/moment-7.jpg' },
-    { id: 7, type: 'image', src: '/images/about-us/moment-8.jpg' },
-    { id: 8, type: 'image', src: '/images/about-us/moment-9.jpg' },
-    { id: 9, type: 'image', src: '/images/about-us/moment-10.jpg' },
-    { id: 10, type: 'image', src: '/images/about-us/moment-11.jpg' },
-    { id: 11, type: 'image', src: '/images/about-us/moment-12.jpg' },
-    { id: 12, type: 'image', src: '/images/about-us/moment-13.jpg' },
-    { id: 13, type: 'image', src: '/images/about-us/moment-14.jpg' },
-    { id: 14, type: 'image', src: '/images/about-us/moment-15.jpg' },
-    { id: 15, type: 'image', src: '/images/about-us/moment-16.jpg' },
+    { id: 0, type: 'image', src: '/images/about-us/moment-1.webp' },
+    { id: 1, type: 'image', src: '/images/about-us/moment-2.webp' },
+    { id: 2, type: 'image', src: '/images/about-us/moment-3.webp' },
+    { id: 3, type: 'image', src: '/images/about-us/moment-4.webp' },
+    { id: 4, type: 'image', src: '/images/about-us/moment-5.webp' },
+    { id: 5, type: 'image', src: '/images/about-us/moment-6.webp' },
+    { id: 6, type: 'image', src: '/images/about-us/moment-7.webp' },
+    { id: 7, type: 'image', src: '/images/about-us/moment-8.webp' },
+    { id: 8, type: 'image', src: '/images/about-us/moment-9.webp' },
+    { id: 9, type: 'image', src: '/images/about-us/moment-10.webp' },
+    { id: 10, type: 'image', src: '/images/about-us/moment-11.webp' },
+    { id: 11, type: 'image', src: '/images/about-us/moment-12.webp' },
+    { id: 12, type: 'image', src: '/images/about-us/moment-13.webp' },
+    { id: 13, type: 'image', src: '/images/about-us/moment-14.webp' },
+    { id: 14, type: 'image', src: '/images/about-us/moment-15.webp' },
+    { id: 15, type: 'image', src: '/images/about-us/moment-16.webp' },
   ];
 
   const handleNext = () => setActiveIndex(p => (p + 1) % heroMedia.length);

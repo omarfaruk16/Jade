@@ -98,7 +98,7 @@ export default function ImportExportClient({ partners }: { partners: any[] }) {
 
                 <div className={styles.rightCol}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/export-import-page/global-trade-export.jpg" alt="Modern Office Detail" className={styles.officeImgSide} />
+                  <img src="/images/export-import-page/global-trade-export.webp" alt="Modern Office Detail" className={styles.officeImgSide} />
                 </div>
               </div>
             </section>

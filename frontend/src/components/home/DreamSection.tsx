@@ -17,7 +17,7 @@ export default function DreamSection() {
   return (
       <section className={styles.section}>
         <div className={styles.backgroundWrapper}>
-          <img src="/images/bg-2.avif" alt="Interior space" className={styles.bgImage} />
+          <img src="/images/bg-2.webp" alt="Interior space" className={styles.bgImage} />
           <div className={styles.bgOverlay} />
         </div>
 

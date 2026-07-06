@@ -67,7 +67,7 @@ export default function AboutSection() {
           {/* 2. Image 1 (Dark Bowl) */}
           <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg1}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/f1.png" alt="Cabinet design" />
+            <img src="/images/f1.webp" alt="Cabinet design" />
           </motion.div>
 
           {/* 3. Text 1 (01 Royal Reverie) */}
@@ -87,7 +87,7 @@ export default function AboutSection() {
           {/* 5. Image 3 (Staircase) */}
           <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg3}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/f3.png" alt="Concrete interior" />
+            <img src="/images/f3.webp" alt="Concrete interior" />
           </motion.div>
 
           {/* 6. Text 3 (03 Dreamscape) */}
@@ -100,7 +100,7 @@ export default function AboutSection() {
           {/* 7. Image 2 (Orange Sink) */}
           <motion.div className={`${styles.card} ${styles.imageCard} ${styles.cImg2}`} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/f2.png" alt="Orange Sink design" />
+            <img src="/images/f2.webp" alt="Orange Sink design" />
           </motion.div>
         </div>
 

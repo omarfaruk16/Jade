@@ -225,7 +225,7 @@ export default function ProductDetailsClient({ product }: { product: any }) {
             </div>
             <div className={styles.ctaImageWrap}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/sales.png" alt="Sales Expert" className={styles.ctaImage} />
+              <img src="/images/sales.webp" alt="Sales Expert" className={styles.ctaImage} />
               <div className={styles.ctaBadge}>
                 <div className={styles.ctaBadgeNameRow}>
                   <span className={styles.ctaBadgeName}>Warsty Roslan</span>

@@ -42,7 +42,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/export-import-page/worldwide-export-import.jpg') center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/export-import-page/worldwide-export-import.webp') center / cover no-repeat;
   z-index: 0;
   animation: heroZoomOut 2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

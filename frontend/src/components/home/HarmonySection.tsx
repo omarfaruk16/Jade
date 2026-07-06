@@ -18,15 +18,15 @@ const FourDots = () => (
 
 const features = [
   {
-    img: '/images/f1.jpg',
+    img: '/images/f1.webp',
     label: 'The Art of Understanding brings clarity in every detail.',
   },
   {
-    img: '/images/f2.jpg',
+    img: '/images/f2.webp',
     label: 'The Craft of Perfection delivers flawless lasting results.',
   },
   {
-    img: '/images/f3.jpg',
+    img: '/images/f3.webp',
     label: 'The Promise of Forever ensures trust that never fades.',
   },
 ];
@@ -47,7 +47,7 @@ export default function HarmonySection() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img src="/images/bg-2.jpg" alt="Jade interior showcase" className={styles.mediaImg} />
+              <img src="/images/bg-2.webp" alt="Jade interior showcase" className={styles.mediaImg} />
               <div className={styles.mediaOverlay}>
                 <button className={styles.videoBtn} onClick={() => setIsVideoOpen(true)}>
                   <span className={styles.playIcon}>▶</span>
@@ -137,6 +137,7 @@ export default function HarmonySection() {
                 src="/images/download.mp4"
                 controls
                 autoPlay
+                preload="none"
                 className={styles.videoElement}
               />
             </motion.div>
