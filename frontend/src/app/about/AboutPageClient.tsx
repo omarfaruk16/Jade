@@ -229,11 +229,11 @@ export default function AboutPageClient({ partners }: { partners: any[] }) {
               </div>
               <div className={styles.philosophyRight}>
                 <div className={styles.philColLeft}>
-                  <img src="/images/Slices/2-by-jade.jpg" alt="Wood paneling" className={styles.philImgSmall} />
-                  <img src="/images/Slices/3-by-jade.jpg" alt="Glass doors" className={styles.philImgSmall} />
+                  <img src="/images/Slices/2-by-jade.webp" alt="Wood paneling" className={styles.philImgSmall} />
+                  <img src="/images/Slices/3-by-jade.webp" alt="Glass doors" className={styles.philImgSmall} />
                 </div>
                 <div className={styles.philColRight}>
-                  <img src="/images/Slices/1-by-jade.jpg" alt="Vase and chair" className={styles.philImgTall} />
+                  <img src="/images/Slices/1-by-jade.webp" alt="Vase and chair" className={styles.philImgTall} />
                 </div>
               </div>
             </section>

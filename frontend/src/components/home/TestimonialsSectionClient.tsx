@@ -98,7 +98,7 @@ export default function TestimonialsSectionClient({ testimonials }: { testimonia
               <div className={styles.videoFooter}>
                 <img src="/images/jade-client.webp" alt="Mr Faiz Fikri" className={styles.avatar} />
                 <div className={styles.userInfo}>
-                  <h4 style={{ color: 'white' }}>Mr Faiz</h4>
+                  <h4 style={{ color: 'white' }}>Mr Faiz Fikri</h4>
                   <p style={{ color: 'rgba(255,255,255,0.75)' }}>Flora Rossa Putrajaya</p>
                 </div>
               </div>
