@@ -1,10 +1,5 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import styles from "./CategoriesSection.module.css";
-import SectionReveal from '@/components/layout/SectionReveal';
-import API_BASE from '@/lib/api';
-import Link from 'next/link';
+import { getServiceChildren } from '@/lib/data';
+import CategoriesSectionClient from './CategoriesSectionClient';
 
 const defaultServices = [
   {
@@ -39,104 +34,21 @@ const defaultServices = [
   },
 ];
 
-export default function CategoriesSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [services, setServices] = useState(defaultServices);
+export default async function CategoriesSection() {
+  const data = await getServiceChildren();
 
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const res = await fetch(`${API_BASE}/services/children`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.length > 0) {
-            setServices(data.map((c: any, index: number) => ({
-              id: String(index + 1).padStart(2, '0'),
-              title: c.name,
-              subtitle: c.subtitle || "",
-              image: c.coverImage || "",
-              number: c.statsNumber || "",
-              label: c.statsText ? c.statsText.replace(/^\/\s*/, '') : "",
-              desc: c.description || "",
-              slug: c.slug || `service-${index + 1}`,
-            })));
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch services", err);
-      }
-    };
-    fetchServices();
-  }, []);
+  const services = data && data.length > 0
+    ? data.map((c: any, index: number) => ({
+      id: String(index + 1).padStart(2, '0'),
+      title: c.name,
+      subtitle: c.subtitle || "",
+      image: c.coverImage || "",
+      number: c.statsNumber || "",
+      label: c.statsText ? c.statsText.replace(/^\/\s*/, '') : "",
+      desc: c.description || "",
+      slug: c.slug || `service-${index + 1}`,
+    }))
+    : defaultServices;
 
-  return (
-    <SectionReveal>
-      <section className={styles.expertiseSection}>
-        <div className={styles.expertiseContainer}>
-          <div className={`jade-container ${styles.innerContainer}`}>
-          <div className={styles.expertiseHeader}>
-            <h2>Our expertise</h2>
-            <p>
-              We provide a complete range of spatial solutions, thoughtfully crafted to enhance every environment with refined clarity and enduring aesthetic value.
-            </p>
-          </div>
-
-          <div className={styles.expertiseList}>
-            {services.map((item, index) => {
-              const isOpen = openIndex === index;
-
-              return (
-                <div
-                  key={item.id}
-                  className={`${styles.expertiseItem} ${isOpen ? styles.active : ""} ${styles.mobileOpen}`}
-                >
-                  <div className={styles.itemGrid}>
-                    <span className={styles.itemNumber}>{item.id}</span>
-
-                    {item.image ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className={styles.itemImage}
-                      />
-                    ) : (
-                      <div className={styles.itemImage} />
-                    )}
-
-                    <div className={styles.itemContent}>
-                      <h3>{item.title}</h3>
-                      <p>{item.subtitle}</p>
-
-                      <div className={`${styles.itemDetails} ${isOpen ? styles.detailsOpen : ""}`}>
-                        <h4>{item.number}</h4>
-                        <strong>/ {item.label}</strong>
-                        <p>{item.desc}</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.itemAction}>
-                      <button
-                        className={styles.toggleBtn}
-                        onClick={() => setOpenIndex(isOpen ? null : index)}
-                      >
-                        {isOpen ? "×" : "+"}
-                      </button>
-
-                      {(isOpen || true) && (
-                        <Link href={`/services/${item.slug}`} className={`${styles.learnBtn} ${isOpen ? styles.btnOpen : ""}`}>
-                          Learn more
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          </div>
-        </div>
-      </section>
-    </SectionReveal>
-  );
+  return <CategoriesSectionClient services={services} />;
 }

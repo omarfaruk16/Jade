@@ -1,10 +1,7 @@
-'use client';
-
 import { ArrowRight } from 'lucide-react';
 import styles from './Footer.module.css';
 
-import { useEffect, useState } from 'react';
-import API_BASE from '@/lib/api';
+import { getProductCategories } from '@/lib/data';
 
 const companyLinks = [
   { label: 'About Us', href: '/about' },
@@ -21,21 +18,12 @@ const legalLinks = [
   { label: 'Be A dealer', href: '/dealer' },
 ];
 
-export default function Footer() {
-  const [productLinks, setProductLinks] = useState<{ label: string, href: string }[]>([]);
+export default async function Footer() {
+  const categories = await getProductCategories();
+  const productLinks: { label: string, href: string }[] = Array.isArray(categories)
+    ? categories.map((cat: any) => ({ label: cat.name, href: `/products/${cat.slug}` }))
+    : [];
 
-  useEffect(() => {
-    fetch(`${API_BASE}/products/categories`)
-      .then(res => res.json())
-      .then(data => {
-        const links = data.map((cat: any) => ({
-          label: cat.name,
-          href: `/products/${cat.slug}`
-        }));
-        setProductLinks(links);
-      })
-      .catch(err => console.error('Failed to load categories', err));
-  }, []);
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>

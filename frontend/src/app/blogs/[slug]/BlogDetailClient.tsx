@@ -1,65 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import API_BASE from '@/lib/api';
 import dynamic from 'next/dynamic';
 
 import { ChevronRight } from 'lucide-react';
-import TitleReveal from '@/components/layout/TitleReveal';
 import styles from './BlogDetailClient.module.css';
 
 const MDPreview = dynamic(() => import('@uiw/react-md-editor').then(mod => mod.default.Markdown), { ssr: false });
 
-export default function BlogDetailClient({ slug }: { slug: string }) {
-  const [blog, setBlog] = useState<any>(null);
-  const [relatedBlogs, setRelatedBlogs] = useState<any[]>([]);
-  const [notFound, setNotFound] = useState(false);
+interface Blog {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  coverImage: string;
+  createdAt: string;
+}
 
-  useEffect(() => {
-    fetch(`${API_BASE}/blogs/${slug}`)
-      .then(res => {
-        if (!res.ok) { setNotFound(true); return null; }
-        return res.json();
-      })
-      .then(data => { 
-        if (data) {
-          setBlog(data);
-          // Fetch related blogs (recent ones)
-          fetch(`${API_BASE}/blogs/recent?limit=4`)
-            .then(r => r.json())
-            .then(recent => {
-              if (Array.isArray(recent)) {
-                // Filter out current blog
-                setRelatedBlogs(recent.filter((b: any) => b.slug !== slug).slice(0, 3));
-              }
-            })
-            .catch(console.error);
-        } 
-      })
-      .catch(() => setNotFound(true));
-  }, [slug]);
-
-  if (notFound) {
-    return (
-      <main className={styles.notFound}>
-        <div className={styles.notFoundContent}>
-          <TitleReveal><h1 className={styles.notFoundTitle}>Blog not found</h1></TitleReveal>
-          <Link href="/blogs" className={styles.notFoundLink}>← Back to Blogs</Link>
-        </div>
-      </main>
-    );
-  }
-
-  if (!blog) {
-    return (
-      <main className={styles.spinnerContainer}>
-        <div className={styles.spinner} />
-      </main>
-    );
-  }
-
+export default function BlogDetailClient({ blog, relatedBlogs }: { blog: Blog; relatedBlogs: Blog[] }) {
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
@@ -74,7 +33,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
           className={styles.heroImg}
         />
         <div className={styles.heroOverlay} />
-        
+
         <div className={styles.heroContent}>
           <motion.p
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}

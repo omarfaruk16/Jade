@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import API_BASE from '@/lib/api';
 
 import { ChevronRight } from 'lucide-react';
 
@@ -11,17 +9,15 @@ import TitleReveal from '@/components/layout/TitleReveal';
 
 import SectionReveal from '@/components/layout/SectionReveal';
 
-export default function BlogsClientPage() {
-  const [blogs, setBlogs] = useState<any[]>([]);
-  const [email, setEmail] = useState('');
+interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  coverImage: string;
+  createdAt: string;
+}
 
-  useEffect(() => {
-    fetch(`${API_BASE}/blogs`)
-      .then(res => res.json())
-      .then(data => setBlogs(data))
-      .catch(console.error);
-  }, []);
-
+export default function BlogsClientPage({ blogs }: { blogs: Blog[] }) {
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   };

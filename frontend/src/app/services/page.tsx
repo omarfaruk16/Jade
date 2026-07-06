@@ -1,42 +1,20 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import API_BASE from '@/lib/api';
+import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './Services.module.css';
 
-
-import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
 import SmoothScroll from '@/components/layout/SmoothScroll';
+import { getServices } from '@/lib/data';
 
-export default function ServicesPage() {
-  const [parents, setParents] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+export default async function ServicesPage() {
+  const parents = await getServices();
 
-  useEffect(() => {
-    fetch(`${API_BASE}/services`)
-      .then(r => r.json())
-      .then(data => {
-        setParents(data);
-        setLoading(false);
-        // Auto-redirect to the first child category
-        const firstChild = data?.[0]?.children?.[0];
-        if (firstChild?.slug) {
-          router.replace(`/services/${firstChild.slug}`);
-        }
-      });
-  }, [router]);
-
-  if (loading) return (
-    <div className={styles.indexPage}>
-      <div className={styles.loadingText}>Loading services…</div>
-    </div>
-  );
+  const firstChild = parents?.[0]?.children?.[0];
+  if (firstChild?.slug) {
+    redirect(`/services/${firstChild.slug}`);
+  }
 
   return (
     <SmoothScroll>
@@ -67,4 +45,3 @@ export default function ServicesPage() {
     </SmoothScroll>
   );
 }
-

@@ -79,9 +79,19 @@
 
 /* ── Carousel viewport ── */
 .carouselViewport {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   width: 100%;
   contain: layout style;
+  scroll-behavior: auto;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselViewport::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Moving strip ── */
@@ -90,7 +100,6 @@
   gap: 1.5rem;
   user-select: none;
   -webkit-user-drag: none;
-  will-change: transform;
 }
 
 /* Each card width is computed dynamically based on the active breakpoint variables */
