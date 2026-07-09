@@ -1,0 +1,22 @@
+.sectionReveal {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+  animation: slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+}
+
+.sectionReveal.visible {
+  animation-play-state: running;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

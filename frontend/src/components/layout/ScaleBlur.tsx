@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import styles from './ScaleBlurOpt.module.css';
 
 interface ScaleBlurProps {
   text: string;
@@ -9,55 +10,69 @@ interface ScaleBlurProps {
   delay?: number;
 }
 
-const charVariants = {
-  hidden: { opacity: 0, scale: 0.2, filter: "blur(10px)" },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] },
-  },
-};
+export default function ScaleBlur({ text = '', stagger = 0.05, className = '', delay = 0 }: ScaleBlurProps) {
+  const ref = useRef<HTMLSpanElement>(null);
 
-export default function ScaleBlur({ text = "", stagger = 0.05, className = "", delay = 0 }: ScaleBlurProps) {
-  const words = (text || "").split(" ");
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const spans = entry.target.querySelectorAll(`.${styles.char}`);
+          spans.forEach((span, index) => {
+            const element = span as HTMLElement;
+            setTimeout(() => {
+              element.classList.add(styles.visible);
+            }, (delay * 1000) + (index * stagger * 1000));
+          });
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-30px'
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [stagger, delay]);
+
+  const words = (text || '').split(' ');
 
   return (
-    <motion.span
+    <span
+      ref={ref}
       className={`inline-flex flex-wrap ${className}`}
-      style={{ wordBreak: "normal", overflowWrap: "normal", justifyContent: "center" }}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={{ visible: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
+      style={{ wordBreak: 'normal', overflowWrap: 'normal', justifyContent: 'center' }}
     >
       {words.map((word, wi) => (
         <span
           key={wi}
           style={{
-            display: "inline-flex",
-            whiteSpace: "nowrap",
+            display: 'inline-flex',
+            whiteSpace: 'nowrap',
           }}
         >
-          {word.split("").map((c, ci) => (
-            <motion.span
+          {word.split('').map((c, ci) => (
+            <span
               key={ci}
-              style={{ display: "inline-block" }}
-              variants={charVariants}
+              className={styles.char}
+              style={{ display: 'inline-block' }}
             >
               {c}
-            </motion.span>
+            </span>
           ))}
           {wi < words.length - 1 && (
-            <motion.span
-              style={{ display: "inline-block", width: "0.2em" }}
-              variants={charVariants}
-            >
-              {"\u00A0"}
-            </motion.span>
+            <span className={styles.char} style={{ display: 'inline-block', width: '0.2em' }}>
+              {' '}
+            </span>
           )}
         </span>
       ))}
-    </motion.span>
+    </span>
   );
 }
