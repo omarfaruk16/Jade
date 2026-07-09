@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import styles from "./CategoriesSection.module.css";
-import SectionReveal from '@/components/layout/SectionReveal';
 import Link from 'next/link';
 
 interface ServiceCard {
@@ -20,7 +19,6 @@ export default function CategoriesSectionClient({ services }: { services: Servic
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <SectionReveal>
       <section className={styles.expertiseSection}>
         <div className={styles.expertiseContainer}>
           <div className={`jade-container ${styles.innerContainer}`}>
@@ -87,6 +85,5 @@ export default function CategoriesSectionClient({ services }: { services: Servic
           </div>
         </div>
       </section>
-    </SectionReveal>
   );
 }

@@ -1,4 +1,5 @@
 
+import { Suspense } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SmoothScroll from '@/components/layout/SmoothScroll';
@@ -26,11 +27,27 @@ export default function Home() {
           <SectionReveal><AboutSection /></SectionReveal>
           <PhilosophySection />
           <SectionReveal><ProjectsSection /></SectionReveal>
-          <CategoriesSection />
-          <HarmonySection />
-          <TestimonialsSection />
-          <AsSeenSection />
-          <BlogsSection />
+
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <CategoriesSection />
+          </Suspense>
+
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <HarmonySection />
+          </Suspense>
+
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <TestimonialsSection />
+          </Suspense>
+
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <AsSeenSection />
+          </Suspense>
+
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <BlogsSection />
+          </Suspense>
+
           <DreamSection />
           <FaqSection />
           <TeamSection />
