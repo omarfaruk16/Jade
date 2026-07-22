@@ -23,8 +23,7 @@ export default function AdminDashboard() {
   const [partners, setPartners] = useState<any[]>([]);
   const [dealerRequests, setDealerRequests] = useState<any[]>([]);
   const [contactMessages, setContactMessages] = useState<any[]>([]);
-  const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', address: '', addresses: [], socials: [], siteTitle: '', siteDescription: '' });
-  const [addrModal, setAddrModal] = useState<{ open: boolean; mode: 'add' | 'edit'; data: { id?: string; label: string; address: string } }>({ open: false, mode: 'add', data: { label: '', address: '' } });
+  const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', socials: [], siteTitle: '', siteDescription: '' });
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -381,62 +380,6 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* ── Row 2: Addresses ── */}
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Locations / Addresses</label>
-                  <button
-                    onClick={() => setAddrModal({ open: true, mode: 'add', data: { label: '', address: '' } })}
-                    className={styles.navButton} style={{ padding: '0.4rem 0.8rem' }}
-                  >
-                    <PlusCircle size={16} /> Add Address
-                  </button>
-                </div>
-
-                <div className={styles.tableWrapper}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        <th>Label</th>
-                        <th>Address</th>
-                        <th style={{ textAlign: 'right' }}>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(contactInfo.addresses || []).map((addr: any) => (
-                        <tr key={addr.id}>
-                          <td style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>{addr.label || '—'}</td>
-                          <td>{addr.address}</td>
-                          <td style={{ textAlign: 'right' }}>
-                            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                              <button
-                                onClick={() => setAddrModal({ open: true, mode: 'edit', data: { id: addr.id, label: addr.label || '', address: addr.address } })}
-                                className={styles.actionBtn} title="Edit"
-                              ><Edit2 size={18} /></button>
-                              <button
-                                onClick={async () => {
-                                  if (!confirm('Delete this address?')) return;
-                                  const token = localStorage.getItem('adminToken');
-                                  await fetch(`${API_BASE}/contact/addresses/${addr.id}`, {
-                                    method: 'DELETE',
-                                    headers: { 'Authorization': `Bearer ${token}` }
-                                  });
-                                  fetchData();
-                                }}
-                                className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"
-                              ><Trash2 size={18} /></button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                      {(contactInfo.addresses || []).length === 0 && (
-                        <tr><td colSpan={3} style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', padding: '2rem' }}>No addresses yet. Click &quot;Add Address&quot; to add one.</td></tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
             </div>
           ) : (
             <div className={styles.tableWrapper}>
@@ -626,63 +569,6 @@ export default function AdminDashboard() {
         document.body
       )}
 
-      {/* Address add / edit modal — always centered, never hidden by scroll */}
-      {addrModal.open && typeof document !== 'undefined' && createPortal(
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal} style={{ maxWidth: '480px' }}>
-            <button onClick={() => setAddrModal({ open: false, mode: 'add', data: { label: '', address: '' } })} className={styles.closeModal}><X size={20} /></button>
-            <h3 style={{ marginBottom: '2rem', fontSize: '1.6rem', fontWeight: 700, color: '#fff' }}>
-              {addrModal.mode === 'add' ? 'Add New Address' : 'Edit Address'}
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div className={styles.inputGroup}>
-                <label>Label <span style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>(optional — e.g. Headquarters, Showroom)</span></label>
-                <input
-                  value={addrModal.data.label}
-                  onChange={e => setAddrModal(m => ({ ...m, data: { ...m.data, label: e.target.value } }))}
-                  className={styles.input}
-                  placeholder="e.g. Headquarters"
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Full Address *</label>
-                <textarea
-                  value={addrModal.data.address}
-                  onChange={e => setAddrModal(m => ({ ...m, data: { ...m.data, address: e.target.value } }))}
-                  className={styles.textarea}
-                  style={{ minHeight: '90px' }}
-                  placeholder="123 Business St, City, Country"
-                />
-              </div>
-              <button
-                onClick={async () => {
-                  if (!addrModal.data.address.trim()) return alert('Address is required.');
-                  const token = localStorage.getItem('adminToken');
-                  if (addrModal.mode === 'add') {
-                    await fetch(`${API_BASE}/contact/addresses`, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                      body: JSON.stringify({ label: addrModal.data.label, address: addrModal.data.address })
-                    });
-                  } else {
-                    await fetch(`${API_BASE}/contact/addresses/${addrModal.data.id}`, {
-                      method: 'PUT',
-                      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                      body: JSON.stringify({ label: addrModal.data.label, address: addrModal.data.address })
-                    });
-                  }
-                  setAddrModal({ open: false, mode: 'add', data: { label: '', address: '' } });
-                  fetchData();
-                }}
-                className={styles.saveBtn}
-              >
-                {addrModal.mode === 'add' ? 'Add Address' : 'Save Changes'}
-              </button>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
     </div>
     </SmoothScroll>
   );

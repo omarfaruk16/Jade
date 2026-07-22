@@ -18,15 +18,10 @@ router.get('/', async (req, res) => {
       contact = await prisma.contactSettings.create({
         data: {
           id: 'default',
-          phone: '+1 (555) 000-0000',
-          email: 'hello@example.com',
-          address: '123 Business St, City, Country',
-          socials: {
-            create: [
-              { name: 'Instagram', url: 'https://instagram.com' },
-              { name: 'LinkedIn', url: 'https://linkedin.com' }
-            ]
-          }
+          phone: '',
+          email: '',
+          address: '',
+          socials: { create: [] }
         },
         include: { socials: true, addresses: true }
       });

@@ -83,17 +83,12 @@ export default function ContactPageClient() {
               <div className={styles.infoItem}>
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
-                  {contact?.addresses && contact.addresses.length > 0
-                    ? contact.addresses.map((addr: any) => (
-                        <div key={addr.id} className={styles.addressEntry}>
-                          {addr.label && <strong>{addr.label}</strong>}
-                          <p className={styles.addressText}>{addr.address}</p>
-                        </div>
-                      ))
-                    : <p className={styles.addressText}>
-                        {contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}
-                      </p>
-                  }
+                  {(contact?.addresses || []).map((addr: any) => (
+                    <div key={addr.id} className={styles.addressEntry}>
+                      {addr.label && <strong>{addr.label}</strong>}
+                      <p className={styles.addressText}>{addr.address}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
