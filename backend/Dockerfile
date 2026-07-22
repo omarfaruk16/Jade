@@ -1,9 +1,9 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
-# Install openssl for prisma compatibility
-RUN apk add --no-cache openssl
+# Install openssl for Prisma compatibility (Debian-based, no Alpine CDN issues)
+RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies first (cached layer)
 COPY package*.json ./
