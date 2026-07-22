@@ -8,13 +8,13 @@ router.get('/', async (req, res) => {
   try {
     let contact = await prisma.contactSettings.findUnique({
       where: { id: 'default' },
-      include: { 
+      include: {
         socials: true,
         addresses: {
           orderBy: { order: 'asc' }
         }
       }
-    });
+    }).catch(() => null);
     
     if (!contact) {
       // Create default if not exists
@@ -29,26 +29,36 @@ router.get('/', async (req, res) => {
               { name: 'Instagram', url: 'https://instagram.com' },
               { name: 'LinkedIn', url: 'https://linkedin.com' }
             ]
-          },
-          addresses: {
-            create: [
-              { 
-                label: 'Headquarters',
-                address: '123 Business St, City, Country',
-                order: 0
-              }
-            ]
           }
         },
-        include: { 
-          socials: true,
-          addresses: {
-            orderBy: { order: 'asc' }
-          }
+        include: {
+          socials: true
         }
-      });
+      }).catch(() => null);
     }
-    res.json(contact);
+
+    // Parse addresses from address field (JSON format for backward compatibility)
+    let addresses = [];
+    try {
+      if (contact?.address) {
+        // Try to parse as JSON first
+        if (contact.address.startsWith('[')) {
+          addresses = JSON.parse(contact.address);
+        } else {
+          // Fallback: single address format
+          addresses = [{ label: 'Headquarters', address: contact.address }];
+        }
+      }
+    } catch (e) {
+      // If parse fails, treat as single address
+      addresses = contact?.address ? [{ label: 'Headquarters', address: contact.address }] : [];
+    }
+
+    // Return combined response
+    res.json({
+      ...contact,
+      addresses: addresses
+    });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -66,9 +76,7 @@ router.put('/', auth, async (req, res) => {
   if (typeof email !== 'string' || !emailRegex.test(email) || email.length > 100) {
     return res.status(400).json({ error: 'A valid email is required (up to 100 characters).' });
   }
-  if (typeof address !== 'string' || address.length > 255) {
-    return res.status(400).json({ error: 'Address must be a string up to 255 characters.' });
-  }
+
   if (!Array.isArray(socials)) {
     return res.status(400).json({ error: 'Socials must be an array.' });
   }
@@ -78,19 +86,22 @@ router.put('/', auth, async (req, res) => {
     }
   }
 
-  // Validate addresses if provided
-  if (addresses && !Array.isArray(addresses)) {
-    return res.status(400).json({ error: 'Addresses must be an array.' });
-  }
-  if (addresses) {
+  // Process addresses
+  let addressField = address;
+  if (addresses && Array.isArray(addresses)) {
+    // Validate addresses
     for (const addr of addresses) {
       if (!addr || typeof addr.address !== 'string' || addr.address.length > 500) {
-        return res.status(400).json({ error: 'Each address must have a valid string address (up to 500 characters).' });
+        return res.status(400).json({ error: 'Each address must have a valid string address.' });
       }
       if (addr.label && (typeof addr.label !== 'string' || addr.label.length > 100)) {
         return res.status(400).json({ error: 'Address label must be a string up to 100 characters.' });
       }
     }
+    // Store as JSON string
+    addressField = JSON.stringify(addresses);
+  } else if (typeof address !== 'string' || address.length > 500) {
+    return res.status(400).json({ error: 'Address must be a string up to 500 characters.' });
   }
 
   try {
@@ -99,52 +110,42 @@ router.put('/', auth, async (req, res) => {
       update: {
         phone,
         email,
-        address,
+        address: addressField,
         socials: {
           deleteMany: {},
           create: socials.map(s => ({ name: s.name, url: s.url }))
-        },
-        addresses: addresses ? {
-          deleteMany: {},
-          create: addresses.map((addr, idx) => ({ 
-            label: addr.label || null,
-            address: addr.address,
-            order: idx
-          }))
-        } : undefined
+        }
       },
       create: {
         id: 'default',
         phone,
         email,
-        address,
+        address: addressField,
         socials: {
           create: socials.map(s => ({ name: s.name, url: s.url }))
-        },
-        addresses: addresses ? {
-          create: addresses.map((addr, idx) => ({ 
-            label: addr.label || null,
-            address: addr.address,
-            order: idx
-          }))
-        } : {
-          create: [
-            { 
-              label: 'Headquarters',
-              address: address,
-              order: 0
-            }
-          ]
         }
       },
-      include: { 
-        socials: true,
-        addresses: {
-          orderBy: { order: 'asc' }
-        }
+      include: {
+        socials: true
       }
     });
-    res.json(contact);
+
+    // Parse addresses for response
+    let parsedAddresses = [];
+    try {
+      if (contact.address.startsWith('[')) {
+        parsedAddresses = JSON.parse(contact.address);
+      } else {
+        parsedAddresses = [{ label: 'Headquarters', address: contact.address }];
+      }
+    } catch (e) {
+      parsedAddresses = [{ label: 'Headquarters', address: contact.address }];
+    }
+
+    res.json({
+      ...contact,
+      addresses: parsedAddresses
+    });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
