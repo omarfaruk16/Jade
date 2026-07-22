@@ -19,6 +19,8 @@ main() {
     docker compose up -d --remove-orphans
     log "Waiting for containers to be healthy"
     sleep 15
+    log "Running database migrations"
+    docker exec -e DATABASE_URL="postgresql://jade_user:jade_secure_2026@db:5432/jade_db?schema=public" jade_backend npx prisma migrate deploy
     log "Copying static files for Nginx"
     rm -rf /root/jade-static /root/jade-public
     docker cp jade_frontend:/app/app/.next/static /root/jade-static
