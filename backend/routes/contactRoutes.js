@@ -8,7 +8,12 @@ router.get('/', async (req, res) => {
   try {
     let contact = await prisma.contactSettings.findUnique({
       where: { id: 'default' },
-      include: { socials: true }
+      include: { 
+        socials: true,
+        addresses: {
+          orderBy: { order: 'asc' }
+        }
+      }
     });
     
     if (!contact) {
@@ -24,9 +29,23 @@ router.get('/', async (req, res) => {
               { name: 'Instagram', url: 'https://instagram.com' },
               { name: 'LinkedIn', url: 'https://linkedin.com' }
             ]
+          },
+          addresses: {
+            create: [
+              { 
+                label: 'Headquarters',
+                address: '123 Business St, City, Country',
+                order: 0
+              }
+            ]
           }
         },
-        include: { socials: true }
+        include: { 
+          socials: true,
+          addresses: {
+            orderBy: { order: 'asc' }
+          }
+        }
       });
     }
     res.json(contact);
@@ -37,7 +56,7 @@ router.get('/', async (req, res) => {
 
 // UPDATE contact info (Protected)
 router.put('/', auth, async (req, res) => {
-  const { phone, email, address, socials } = req.body;
+  const { phone, email, address, addresses, socials } = req.body;
 
   // Basic validation
   if (typeof phone !== 'string' || phone.length > 50) {
@@ -59,6 +78,21 @@ router.put('/', auth, async (req, res) => {
     }
   }
 
+  // Validate addresses if provided
+  if (addresses && !Array.isArray(addresses)) {
+    return res.status(400).json({ error: 'Addresses must be an array.' });
+  }
+  if (addresses) {
+    for (const addr of addresses) {
+      if (!addr || typeof addr.address !== 'string' || addr.address.length > 500) {
+        return res.status(400).json({ error: 'Each address must have a valid string address (up to 500 characters).' });
+      }
+      if (addr.label && (typeof addr.label !== 'string' || addr.label.length > 100)) {
+        return res.status(400).json({ error: 'Address label must be a string up to 100 characters.' });
+      }
+    }
+  }
+
   try {
     const contact = await prisma.contactSettings.upsert({
       where: { id: 'default' },
@@ -69,7 +103,15 @@ router.put('/', auth, async (req, res) => {
         socials: {
           deleteMany: {},
           create: socials.map(s => ({ name: s.name, url: s.url }))
-        }
+        },
+        addresses: addresses ? {
+          deleteMany: {},
+          create: addresses.map((addr, idx) => ({ 
+            label: addr.label || null,
+            address: addr.address,
+            order: idx
+          }))
+        } : undefined
       },
       create: {
         id: 'default',
@@ -78,9 +120,29 @@ router.put('/', auth, async (req, res) => {
         address,
         socials: {
           create: socials.map(s => ({ name: s.name, url: s.url }))
+        },
+        addresses: addresses ? {
+          create: addresses.map((addr, idx) => ({ 
+            label: addr.label || null,
+            address: addr.address,
+            order: idx
+          }))
+        } : {
+          create: [
+            { 
+              label: 'Headquarters',
+              address: address,
+              order: 0
+            }
+          ]
         }
       },
-      include: { socials: true }
+      include: { 
+        socials: true,
+        addresses: {
+          orderBy: { order: 'asc' }
+        }
+      }
     });
     res.json(contact);
   } catch (e) {

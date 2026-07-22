@@ -77,8 +77,18 @@ export default function ContactPageClient({ contact }: { contact: any }) {
                     </div>
                   </div>
                   <div className={styles.infoItem}>
-                    <h4>Address</h4>
-                    <p className={styles.addressText}>{contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}</p>
+                    <h4>Locations</h4>
+                    <div className={styles.addressList}>
+                      {contact?.addresses && contact.addresses.length > 0 ? (
+                        contact.addresses.map((addr: any, idx: number) => (
+                          <p key={idx} className={styles.addressText}>
+                            {addr.label && <strong>{addr.label}:</strong>} {addr.address}
+                          </p>
+                        ))
+                      ) : (
+                        <p className={styles.addressText}>{contact?.address || '123 Main St, Suite 400, Springfield, IL 62701, USA'}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

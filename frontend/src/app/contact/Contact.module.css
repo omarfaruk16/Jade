@@ -82,6 +82,27 @@
 .addressText {
   line-height: 1.5;
   max-width: 250px;
+  margin: 0;
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addressList p {
+  margin: 0;
+  font-size: 1rem;
+  color: #000;
+  line-height: 1.5;
+}
+
+.addressList strong {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #000;
 }
 
 /* Form Side */

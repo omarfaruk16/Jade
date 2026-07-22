@@ -88,9 +88,19 @@ model ContactSettings {
   id        String       @id @default("default")
   phone     String
   email     String
-  address   String
+  address   String       // Legacy: kept for backward compatibility
   updatedAt DateTime     @updatedAt
   socials   SocialLink[]
+  addresses Address[]
+}
+
+model Address {
+  id                String          @id @default(uuid())
+  label             String?         // e.g., "Headquarters", "Branch 1", etc.
+  address           String
+  order             Int             @default(0)
+  contactSettings   ContactSettings @relation(fields: [contactSettingsId], references: [id], onDelete: Cascade)
+  contactSettingsId String
 }
 
 model SocialLink {
