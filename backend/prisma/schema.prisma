@@ -85,18 +85,20 @@ model FAQ {
 }
 
 model ContactSettings {
-  id        String       @id @default("default")
-  phone     String
-  email     String
-  address   String       // Legacy: kept for backward compatibility
-  updatedAt DateTime     @updatedAt
-  socials   SocialLink[]
-  addresses Address[]
+  id               String       @id @default("default")
+  phone            String
+  email            String
+  address          String       // Legacy: kept for backward compatibility
+  siteTitle        String       @default("Jade Kitchen Design | Interior Products Manufacturer Malaysia")
+  siteDescription  String       @default("Leading Malaysian manufacturer of custom kitchen cabinets, wardrobes, bespoke furniture, interior fit-out products, and worldwide export & import services.")
+  updatedAt        DateTime     @updatedAt
+  socials          SocialLink[]
+  addresses        Address[]
 }
 
 model Address {
   id                String          @id @default(uuid())
-  label             String?         // e.g., "Headquarters", "Branch 1", etc.
+  label             String?
   address           String
   order             Int             @default(0)
   contactSettings   ContactSettings @relation(fields: [contactSettingsId], references: [id], onDelete: Cascade)

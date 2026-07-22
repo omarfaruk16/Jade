@@ -23,7 +23,8 @@ export default function AdminDashboard() {
   const [partners, setPartners] = useState<any[]>([]);
   const [dealerRequests, setDealerRequests] = useState<any[]>([]);
   const [contactMessages, setContactMessages] = useState<any[]>([]);
-  const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', address: '', socials: [] });
+  const [contactInfo, setContactInfo] = useState<any>({ phone: '', email: '', address: '', addresses: [], socials: [], siteTitle: '', siteDescription: '' });
+  const [addrModal, setAddrModal] = useState<{ open: boolean; mode: 'add' | 'edit'; data: { id?: string; label: string; address: string } }>({ open: false, mode: 'add', data: { label: '', address: '' } });
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -297,60 +298,204 @@ export default function AdminDashboard() {
               </div>
             </div>
           ) : activeTab === 'contact' ? (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div className={styles.inputGroup}>
-                  <label>Business Phone</label>
-                  <input value={contactInfo.phone} onChange={e => setContactInfo({ ...contactInfo, phone: e.target.value })} className={styles.input} />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Public Email</label>
-                  <input value={contactInfo.email} onChange={e => setContactInfo({ ...contactInfo, email: e.target.value })} className={styles.input} />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label>Headquarters Address</label>
-                  <textarea value={contactInfo.address} onChange={e => setContactInfo({ ...contactInfo, address: e.target.value })} className={styles.textarea} style={{ minHeight: '120px' }} />
-                </div>
-                <button onClick={async () => {
-                  const token = localStorage.getItem('adminToken');
-                  const res = await fetch(`${API_BASE}/contact`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                    body: JSON.stringify(contactInfo)
-                  });
-                  if (res.ok) alert('Settings saved!');
-                }} className={styles.saveBtn}>
-                  Save All Contact Settings
-                </button>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
 
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Social Media Links</label>
-                  <button onClick={() => setContactInfo({ ...contactInfo, socials: [...contactInfo.socials, { name: '', url: '' }] })} className={styles.navButton} style={{ padding: '0.4rem 0.8rem' }}>
-                    <PlusCircle size={16} /> Add Social
+              {/* ── Row 1: Basic info + Socials ── */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+
+                {/* Left — Basic info */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <div className={styles.inputGroup}>
+                    <label>Business Phone</label>
+                    <input value={contactInfo.phone || ''} onChange={e => setContactInfo({ ...contactInfo, phone: e.target.value })} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Public Email</label>
+                    <input value={contactInfo.email || ''} onChange={e => setContactInfo({ ...contactInfo, email: e.target.value })} className={styles.input} />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Website Title (Google Search)</label>
+                    <input
+                      value={contactInfo.siteTitle || ''}
+                      onChange={e => setContactInfo({ ...contactInfo, siteTitle: e.target.value })}
+                      className={styles.input}
+                      placeholder="Jade Kitchen Design | Interior Products Manufacturer Malaysia"
+                    />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Website Description (Google Search)</label>
+                    <textarea
+                      value={contactInfo.siteDescription || ''}
+                      onChange={e => setContactInfo({ ...contactInfo, siteDescription: e.target.value })}
+                      className={styles.textarea}
+                      style={{ minHeight: '100px' }}
+                      placeholder="Brief description shown under the site title in Google results…"
+                    />
+                  </div>
+                  <button onClick={async () => {
+                    const token = localStorage.getItem('adminToken');
+                    const res = await fetch(`${API_BASE}/contact`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                      body: JSON.stringify({
+                        phone: contactInfo.phone,
+                        email: contactInfo.email,
+                        socials: contactInfo.socials,
+                        siteTitle: contactInfo.siteTitle,
+                        siteDescription: contactInfo.siteDescription,
+                      })
+                    });
+                    if (res.ok) { fetchData(); alert('Settings saved!'); }
+                    else { const err = await res.json(); alert(err.error || 'Failed to save'); }
+                  }} className={styles.saveBtn}>
+                    Save Contact Settings
                   </button>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {contactInfo.socials.map((social: any, idx: number) => (
-                    <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                      <input placeholder="Name" value={social.name} onChange={e => {
-                        const newSocials = [...contactInfo.socials];
-                        newSocials[idx].name = e.target.value;
-                        setContactInfo({ ...contactInfo, socials: newSocials });
-                      }} className={styles.input} style={{ flex: 1 }} />
-                      <input placeholder="URL" value={social.url} onChange={e => {
-                        const newSocials = [...contactInfo.socials];
-                        newSocials[idx].url = e.target.value;
-                        setContactInfo({ ...contactInfo, socials: newSocials });
-                      }} className={styles.input} style={{ flex: 2 }} />
-                      <button onClick={() => {
-                        const newSocials = contactInfo.socials.filter((_: any, i: number) => i !== idx);
-                        setContactInfo({ ...contactInfo, socials: newSocials });
-                      }} className={`${styles.actionBtn} ${styles.deleteBtn}`}><Trash2 size={18} /></button>
-                    </div>
-                  ))}
+
+                {/* Right — Socials */}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Social Media Links</label>
+                    <button onClick={() => setContactInfo({ ...contactInfo, socials: [...(contactInfo.socials || []), { name: '', url: '' }] })} className={styles.navButton} style={{ padding: '0.4rem 0.8rem' }}>
+                      <PlusCircle size={16} /> Add Social
+                    </button>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {(contactInfo.socials || []).map((social: any, idx: number) => (
+                      <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                        <input placeholder="Name (e.g. Instagram)" value={social.name} onChange={e => {
+                          const s = [...contactInfo.socials]; s[idx] = { ...s[idx], name: e.target.value };
+                          setContactInfo({ ...contactInfo, socials: s });
+                        }} className={styles.input} style={{ flex: 1 }} />
+                        <input placeholder="URL" value={social.url} onChange={e => {
+                          const s = [...contactInfo.socials]; s[idx] = { ...s[idx], url: e.target.value };
+                          setContactInfo({ ...contactInfo, socials: s });
+                        }} className={styles.input} style={{ flex: 2 }} />
+                        <button onClick={() => {
+                          const s = contactInfo.socials.filter((_: any, i: number) => i !== idx);
+                          setContactInfo({ ...contactInfo, socials: s });
+                        }} className={`${styles.actionBtn} ${styles.deleteBtn}`}><Trash2 size={18} /></button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              </div>
+
+              {/* ── Row 2: Addresses ── */}
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', fontWeight: 600 }}>Locations / Addresses</label>
+                  <button
+                    onClick={() => setAddrModal({ open: true, mode: 'add', data: { label: '', address: '' } })}
+                    className={styles.navButton} style={{ padding: '0.4rem 0.8rem' }}
+                  >
+                    <PlusCircle size={16} /> Add Address
+                  </button>
+                </div>
+
+                <div className={styles.tableWrapper}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Label</th>
+                        <th>Address</th>
+                        <th style={{ textAlign: 'right' }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(contactInfo.addresses || []).map((addr: any) => (
+                        <tr key={addr.id}>
+                          <td style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>{addr.label || '—'}</td>
+                          <td>{addr.address}</td>
+                          <td style={{ textAlign: 'right' }}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                              <button
+                                onClick={() => setAddrModal({ open: true, mode: 'edit', data: { id: addr.id, label: addr.label || '', address: addr.address } })}
+                                className={styles.actionBtn} title="Edit"
+                              ><Edit2 size={18} /></button>
+                              <button
+                                onClick={async () => {
+                                  if (!confirm('Delete this address?')) return;
+                                  const token = localStorage.getItem('adminToken');
+                                  await fetch(`${API_BASE}/contact/addresses/${addr.id}`, {
+                                    method: 'DELETE',
+                                    headers: { 'Authorization': `Bearer ${token}` }
+                                  });
+                                  fetchData();
+                                }}
+                                className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete"
+                              ><Trash2 size={18} /></button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                      {(contactInfo.addresses || []).length === 0 && (
+                        <tr><td colSpan={3} style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', padding: '2rem' }}>No addresses yet. Click &quot;Add Address&quot; to add one.</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Inline address add/edit form */}
+                {addrModal.open && (
+                  <div style={{ marginTop: '1.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <h4 style={{ color: '#fff', margin: 0 }}>{addrModal.mode === 'add' ? 'Add New Address' : 'Edit Address'}</h4>
+                    <div className={styles.inputGroup}>
+                      <label>Label (optional, e.g. &quot;Headquarters&quot;, &quot;Showroom&quot;)</label>
+                      <input
+                        value={addrModal.data.label}
+                        onChange={e => setAddrModal(m => ({ ...m, data: { ...m.data, label: e.target.value } }))}
+                        className={styles.input}
+                        placeholder="e.g. Headquarters"
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Full Address *</label>
+                      <textarea
+                        required
+                        value={addrModal.data.address}
+                        onChange={e => setAddrModal(m => ({ ...m, data: { ...m.data, address: e.target.value } }))}
+                        className={styles.textarea}
+                        style={{ minHeight: '80px' }}
+                        placeholder="123 Business St, City, Country"
+                      />
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
+                      <button
+                        onClick={async () => {
+                          if (!addrModal.data.address.trim()) return alert('Address is required.');
+                          const token = localStorage.getItem('adminToken');
+                          if (addrModal.mode === 'add') {
+                            await fetch(`${API_BASE}/contact/addresses`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                              body: JSON.stringify({ label: addrModal.data.label, address: addrModal.data.address })
+                            });
+                          } else {
+                            await fetch(`${API_BASE}/contact/addresses/${addrModal.data.id}`, {
+                              method: 'PUT',
+                              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                              body: JSON.stringify({ label: addrModal.data.label, address: addrModal.data.address })
+                            });
+                          }
+                          setAddrModal({ open: false, mode: 'add', data: { label: '', address: '' } });
+                          fetchData();
+                        }}
+                        className={styles.saveBtn}
+                        style={{ flex: 1 }}
+                      >
+                        {addrModal.mode === 'add' ? 'Add Address' : 'Save Changes'}
+                      </button>
+                      <button
+                        onClick={() => setAddrModal({ open: false, mode: 'add', data: { label: '', address: '' } })}
+                        className={`${styles.actionBtn} ${styles.deleteBtn}`}
+                        style={{ padding: '0.6rem 1.2rem' }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
