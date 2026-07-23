@@ -4,7 +4,8 @@
     {
       "name": "jade-frontend",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "frontend", "--", "--port", "3005"],
+      "runtimeArgs": ["run", "dev", "--", "--port", "3005"],
+      "cwd": "/Users/mdomarfaruk/Desktop/Web Dev/Project/Jade/frontend",
       "port": 3005
     }
   ]

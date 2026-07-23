@@ -52,7 +52,7 @@
 
 .infoGrid {
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 3rem 2rem;
   align-items: start;
 }
@@ -82,7 +82,7 @@
 
 .addressText {
   line-height: 1.5;
-  max-width: 250px;
+  max-width: 270px;
   margin: 0;
 }
 
