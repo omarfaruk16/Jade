@@ -69,15 +69,15 @@ export default function ContactPageClient() {
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
                   <div className={styles.addressEntry}>
-                    <strong>🇺🇸 USA</strong>
+                    <span className={styles.addressFlag}>🇺🇸</span>
                     <p className={styles.addressText}>123 Main St, Suite 400,<br />Springfield, IL 62701, USA</p>
                   </div>
                   <div className={styles.addressEntry}>
-                    <strong>🇦🇺 Australia</strong>
+                    <span className={styles.addressFlag}>🇦🇺</span>
                     <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
                   </div>
                   <div className={styles.addressEntry}>
-                    <strong>🇨🇦 Canada</strong>
+                    <span className={styles.addressFlag}>🇨🇦</span>
                     <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
                   </div>
                 </div>
