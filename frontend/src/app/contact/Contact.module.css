@@ -57,25 +57,6 @@
   align-items: start;
 }
 
-.addressCol {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.addressCol h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-
-.detailsCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-self: stretch;
-}
-
 .infoItem h4 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -147,14 +128,14 @@
 
 .formCard {
   background: #fff;
-  padding: 1.5rem;
+  padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
   border: 1px solid #f0f0f0;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.2rem;
 }
 
 .formGroup label {
@@ -185,7 +166,7 @@
 }
 
 .formGroup textarea {
-  min-height: 120px;
+  min-height: 220px;
   resize: vertical;
 }
 
