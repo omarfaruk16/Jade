@@ -54,6 +54,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem 2rem;
+  align-items: start;
+}
+
+.addressCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.addressCol h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.detailsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .infoItem h4 {

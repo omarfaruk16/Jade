@@ -64,36 +64,41 @@ export default function ContactPageClient() {
             </div>
 
             <div className={styles.infoGrid}>
-              <div className={styles.infoItem}>
-                <h4>Call us</h4>
-                <p>{contact?.phone || '+1 123 456 78 90'}</p>
-              </div>
-              <div className={styles.infoItem}>
-                <h4>General inquiries</h4>
-                <p>{contact?.email || 'hello@jadespaces.com'}</p>
-              </div>
-              <div className={styles.infoItem}>
-                <h4>Social</h4>
-                <div className={styles.socialList}>
-                  {contact?.socials?.map((s: any) => (
-                    <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
-                  ))}
-                </div>
-              </div>
-              <div className={styles.infoItem}>
+              {/* Left column: Addresses */}
+              <div className={styles.addressCol}>
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
                   <div className={styles.addressEntry}>
-                    <strong>USA</strong>
+                    <strong>🇺🇸 USA</strong>
                     <p className={styles.addressText}>123 Main St, Suite 400,<br />Springfield, IL 62701, USA</p>
                   </div>
                   <div className={styles.addressEntry}>
-                    <strong>Australia</strong>
+                    <strong>🇦🇺 Australia</strong>
                     <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
                   </div>
                   <div className={styles.addressEntry}>
-                    <strong>Canada</strong>
+                    <strong>🇨🇦 Canada</strong>
                     <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right column: Contact details */}
+              <div className={styles.detailsCol}>
+                <div className={styles.infoItem}>
+                  <h4>Call us</h4>
+                  <p>{contact?.phone || '+1 123 456 78 90'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>General inquiries</h4>
+                  <p>{contact?.email || 'hello@jadespaces.com'}</p>
+                </div>
+                <div className={styles.infoItem}>
+                  <h4>Social</h4>
+                  <div className={styles.socialList}>
+                    {contact?.socials?.map((s: any) => (
+                      <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
+                    ))}
                   </div>
                 </div>
               </div>
