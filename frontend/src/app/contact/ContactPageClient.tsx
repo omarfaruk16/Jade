@@ -69,8 +69,8 @@ export default function ContactPageClient() {
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
                   <div className={styles.addressEntry}>
-                    <span className={styles.addressFlag}>🇺🇸</span>
-                    <p className={styles.addressText}>123 Main St, Suite 400,<br />Springfield, IL 62701, USA</p>
+                    <span className={styles.addressFlag}>🇲🇾</span>
+                    <p className={styles.addressText}>No.17 Jalan USJ 1/33 Taman<br />Perindustrian Subang Permai, 47500<br />Subang Jaya Selangor. Malaysia</p>
                   </div>
                   <div className={styles.addressEntry}>
                     <span className={styles.addressFlag}>🇦🇺</span>
