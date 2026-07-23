@@ -75,18 +75,9 @@ export default function ContactPageClient() {
               <div className={styles.infoItem}>
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
-                  <div className={styles.addressEntry}>
-                    <span className={styles.addressFlag}>🇲🇾</span>
-                    <p className={styles.addressText}>No.17 Jalan USJ 1/33 Taman<br />Perindustrian Subang Permai, 47500<br />Subang Jaya Selangor. Malaysia</p>
-                  </div>
-                  <div className={styles.addressEntry}>
-                    <span className={styles.addressFlag}>🇦🇺</span>
-                    <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
-                  </div>
-                  <div className={styles.addressEntry}>
-                    <span className={styles.addressFlag}>🇨🇦</span>
-                    <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
-                  </div>
+                  <p className={styles.addressText}>No.17 Jalan USJ 1/33 Taman<br />Perindustrian Subang Permai, 47500<br />Subang Jaya Selangor. Malaysia</p>
+                  <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
+                  <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
                 </div>
               </div>
               <div className={styles.infoItem}>
