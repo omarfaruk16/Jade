@@ -13,7 +13,7 @@
 }
 
 .contactHeader {
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 .pageTitle {
@@ -123,7 +123,12 @@
 .formSide {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+}
+
+.formSide .formCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .formCard {
@@ -167,6 +172,7 @@
 
 .formGroup textarea {
   min-height: 220px;
+  flex: 1;
   resize: vertical;
 }
 
