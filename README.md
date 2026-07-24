@@ -1,4 +1,4 @@
-# Jade Project
+# Jade-Project
 
 A premium Full-stack template.
 
@@ -41,7 +41,7 @@ The frontend will be available at [http://localhost:3000](http://localhost:3000)
 
 ## Project Structure
 ```
-Jade/
+Jade-Project/
 ├── frontend/    # Next.js Application
 ├── backend/     # Express.js API
 └── package.json # Root manager
